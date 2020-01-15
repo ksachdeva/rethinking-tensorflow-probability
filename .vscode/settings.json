@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "./env/bin/python3.7",
+    "python.formatting.provider": "autopep8"
+}
