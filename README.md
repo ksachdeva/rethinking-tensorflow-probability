@@ -9,4 +9,6 @@ Note - These notebooks are based on 8th December 2019 draft. I will update the n
 
 *Clicking on the notebook will open it in colab*
 
+* [Chapter 3 - Sampling the Imaginary](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/03_sampling_the_imaginary.ipynb)
+
 * [Chapter 4 - Geocentric Models](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/04_geocentric_models.ipynb)
