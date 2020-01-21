@@ -16,3 +16,6 @@ You can browse the notebooks converted into html document by going to this url -
 * [Chapter 3 - Sampling the Imaginary](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/03_sampling_the_imaginary.ipynb) 
 
 * [Chapter 4 - Geocentric Models](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/04_geocentric_models.ipynb) 
+
+* [Chapter 5 - The Many Variables and The Spurious Waffles](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/05_the_many_variables_and_the_spurious_waffles.ipynb) 
+
