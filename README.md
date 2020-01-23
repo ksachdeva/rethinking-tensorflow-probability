@@ -19,3 +19,6 @@ You can browse the notebooks converted into html document by going to this url -
 
 * [Chapter 5 - The Many Variables and The Spurious Waffles](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/05_the_many_variables_and_the_spurious_waffles.ipynb) 
 
+* [Chapter 9 - Markov Chain Monte Carlo](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/09_markov_chain_monte_carlo.ipynb)
+
+* [Chapter 10 - Big Entropy and The Generalized Linear Model](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/10_big_entropy_and_the_generalized_linear_model.ipynb)
