@@ -26,3 +26,7 @@ You can browse the notebooks converted into html document by going to this url -
 * [Chapter 9 - Markov Chain Monte Carlo](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/09_markov_chain_monte_carlo.ipynb)
 
 * [Chapter 10 - Big Entropy and The Generalized Linear Model](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/10_big_entropy_and_the_generalized_linear_model.ipynb)
+
+* [Chapter 11 - God Spiked the Integers (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/11_god_spiked_the_integers.ipynb)
+
+* [Chapter 12 - Monsters and Mixtures (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/12_monsters_and_mixtures.ipynb)
