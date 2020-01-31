@@ -11,6 +11,10 @@ You can browse the notebooks converted into html document by going to this url -
 
 *Clicking on the link will open the notebook in Google Colab*
 
+* [Preface](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/preface.ipynb)
+
+* [Chapter 1 - The Golem of Prague](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/01_the_golem_of_prague.ipynb)
+
 * [Chapter 2 - Small worlds & large worlds](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/02_small_worlds_and_large_worlds.ipynb)  
 
 * [Chapter 3 - Sampling the Imaginary](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/03_sampling_the_imaginary.ipynb) 
