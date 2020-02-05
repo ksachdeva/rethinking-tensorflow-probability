@@ -31,4 +31,4 @@ You can browse the notebooks converted into html document by going to this url -
 
 * [Chapter 12 - Monsters and Mixtures (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/12_monsters_and_mixtures.ipynb)
 
-* [Chapter 13 - Models with Memory (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb)
+* [Chapter 13 - Models with Memory (Few cells not working)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb)
