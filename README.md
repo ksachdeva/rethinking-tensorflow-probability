@@ -21,7 +21,13 @@ You can browse the notebooks converted into html document by going to this url -
 
 * [Chapter 4 - Geocentric Models](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/04_geocentric_models.ipynb) 
 
-* [Chapter 5 - The Many Variables and The Spurious Waffles](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/05_the_many_variables_and_the_spurious_waffles.ipynb) 
+* [Chapter 5 - The Many Variables and The Spurious Waffles](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/05_the_many_variables_and_the_spurious_waffles.ipynb)
+
+* *Chapter 6 - The Haunted DAG & The Causal Terror* - TODO
+
+* *Chapter 7 - Ulysses' Compass* - TODO
+
+* *Chapter 6 - Conditional Manatees* - TODO
 
 * [Chapter 9 - Markov Chain Monte Carlo](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/09_markov_chain_monte_carlo.ipynb)
 
@@ -33,4 +39,10 @@ You can browse the notebooks converted into html document by going to this url -
 
 * [Chapter 13 - Models with Memory (Few cells not working)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb)
 
+* *Chapter 14 - Adventures in Covariance* - TODO
+
 * [Chapter 15 - Missing data & Other Opportunities (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/15_missing_data_and_other_opportunities.ipynb)
+
+* *Chapter 16 - Generalized Linear Madness* - TODO
+
+* *Chapter 17 - Horoscopes* - TODO
