@@ -45,7 +45,7 @@ You can browse the notebooks converted into html document by going to this url -
 
 * [Chapter 16 - Generalized Linear Madness](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/16_generalized_linear_madness.ipynb)
 
-* *Chapter 17 - Horoscopes* - TODO
+* [Chapter 17 - Horoscopes](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/17_horoscopes.ipynb)
 
 ## Acknowledgements
 
