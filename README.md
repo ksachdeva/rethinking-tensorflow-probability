@@ -43,12 +43,12 @@ You can browse the notebooks converted into html document by going to this url -
 
 * [Chapter 15 - Missing data & Other Opportunities (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/15_missing_data_and_other_opportunities.ipynb)
 
-* *Chapter 16 - Generalized Linear Madness* - TODO
+* [Chapter 16 - Generalized Linear Madness](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/16_generalized_linear_madness.ipynb)
 
 * *Chapter 17 - Horoscopes* - TODO
 
 ## Acknowledgements
 
-My immense gratitude goes to Professor Richard McElreath for writing such a wonderful book. His method of teaching has made somewhat difficult subject of Bayesian Statistics approachable, interesting and to some extent fun as well. His lectures and book are the testament of a great teacher. We need many educators like you Sir !.
+My immense gratitude goes to Professor Richard McElreath for writing such a wonderful book. His method of teaching has made somewhat difficult subject of Bayesian Statistics approachable, interesting and to some extent fun as well. We need more educators like you Sir !.
 
-Another person I want to thank is Du Phan (https://github.com/fehiepsi). He is the main author of [Numpyro](), a great framework to do Bayesian Analysis. He has ported Statsical Rethinking (2nd Ed) to Numpyro and his notebooks were not only insipiration but were also great help to me in creating graphs. I borrowed most of his code fragments when it came to plotting the figures using matplotlib.
+Another person I want to thank is Du Phan (https://github.com/fehiepsi). He is the main author of [Numpyro](https://github.com/pyro-ppl/numpyro), a great framework to do Bayesian Analysis. He has ported Statsical Rethinking (2nd Ed) to Numpyro and his notebooks were not only insipirational but were also of great help to me in creating graphs. I borrowed most of his code fragments when it came to plotting the figures using matplotlib.
