@@ -27,7 +27,7 @@ You can browse the notebooks converted into html document by going to this url -
 
 * *Chapter 7 - Ulysses' Compass* - TODO
 
-* *Chapter 8 - Conditional Manatees* - TODO
+* [Chapter 8 - Conditional Manatees](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/08_conditional_manatees.ipynb)
 
 * [Chapter 9 - Markov Chain Monte Carlo](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/09_markov_chain_monte_carlo.ipynb)
 
