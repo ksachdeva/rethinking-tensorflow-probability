@@ -10,3 +10,6 @@ watermark
 scipy
 daft
 causalgraphicalmodels
+jupyter_contrib_nbextensions
+jax
+jaxlib
