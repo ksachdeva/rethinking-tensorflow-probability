@@ -9,7 +9,9 @@ You can browse the notebooks converted into html document by going to this url -
 
 ## Chapters  
 
-*Clicking on the links will open the notebooks in Google Colab*
+*Clicking on the links will open the notebooks in Google Colab <img src="https://www.tensorflow.org/images/colab_logo_32px.png"/>*
+
+If you prefer to run the notebooks in binder then click here [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master)
 
 * [Preface](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/preface.ipynb)
 
