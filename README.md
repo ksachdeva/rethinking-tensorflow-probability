@@ -25,6 +25,8 @@ You can browse the notebooks converted into html document by going to this url -
 
 There are few code cells in various notebooks that are still not working. I do plan to investigate & fix/finish them. Chapter 14 in particular is not working. Any help is appreciated.
 
+In majority of the chapters, the book has used quadratic approximation (quap) where as I have used HMC everywhere. I plan to change this as well by implementing Quadratic/Laplace approximation.
+
 ## Chapters  
 
 *Clicking on the links will open the notebooks in Google Colab <img src="https://www.tensorflow.org/images/colab_logo_32px.png"/>*
