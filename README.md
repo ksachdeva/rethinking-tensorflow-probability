@@ -5,8 +5,6 @@ chapters of [Statistical Rethinking 2nd Edition](https://xcelab.net/rm/statistic
 
 Note - These notebooks are based on the 8th December 2019 draft. I will update the notebooks once the book is released.
 
-You can browse the notebooks converted into html document by going to this url - [https://ksachdeva.github.io/rethinking-tensorflow-probability/](https://ksachdeva.github.io/rethinking-tensorflow-probability/)
-
 ## Misc Notes
 
 * **Why Tensorflow Probability ?** There are many great probabilitic frameworks (PPLs) out there. I especially like `Numpyro` & `PyMC3` (& `PyMC4`). There are 2 main reasons why I chose to do this exercise in tfp.
@@ -28,6 +26,8 @@ There are few code cells in various notebooks that are still not working. I do p
 In majority of the chapters, the book has used quadratic approximation (quap) where as I have used HMC everywhere. I plan to change this as well by implementing Quadratic/Laplace approximation.
 
 ## Chapters  
+
+If you prefer the readonly view of notebooks (html pages) then use this link - [https://ksachdeva.github.io/rethinking-tensorflow-probability/](https://ksachdeva.github.io/rethinking-tensorflow-probability/)
 
 If you want to run the notebooks locally -
 
