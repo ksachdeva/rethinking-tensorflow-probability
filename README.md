@@ -29,9 +29,18 @@ In majority of the chapters, the book has used quadratic approximation (quap) wh
 
 ## Chapters  
 
-*Clicking on the links will open the notebooks in Google Colab <img src="https://www.tensorflow.org/images/colab_logo_32px.png"/>*
+If you want to run the notebooks locally -
+
+```bash
+# install the requirements
+pip install -r requirements.txt
+# install jupyter in your virtual environment
+pip install -r requirements-extra.txt
+```
 
 If you prefer to run the notebooks in binder then click here [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master)
+
+*Clicking on the links will open the notebooks in Google Colab <img src="https://www.tensorflow.org/images/colab_logo_32px.png"/>*
 
 * [Preface](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/preface.ipynb)
 
