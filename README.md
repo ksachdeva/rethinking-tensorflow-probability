@@ -68,7 +68,7 @@ If you prefer to run the notebooks in binder then click here [![Binder](https://
 
 * [Chapter 12 - Monsters and Mixtures (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/12_monsters_and_mixtures.ipynb)
 
-* [Chapter 13 - Models with Memory (Few cells not working)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb)
+* [Chapter 13 - Models with Memory](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb)
 
 * [Chapter 14 - Adventures in Covariance (Not working at all)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/14_adevntures_in_covariance.ipynb)
 
