@@ -70,7 +70,7 @@ If you prefer to run the notebooks in binder then click here [![Binder](https://
 
 * [Chapter 13 - Models with Memory](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb)
 
-* [Chapter 14 - Adventures in Covariance (Not working at all)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/14_adevntures_in_covariance.ipynb)
+* [Chapter 14 - Adventures in Covariance (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/14_adventures_in_covariance.ipynb)
 
 * [Chapter 15 - Missing data & Other Opportunities (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/15_missing_data_and_other_opportunities.ipynb)
 
