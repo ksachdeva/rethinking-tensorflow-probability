@@ -2,8 +2,8 @@ arviz
 pandas
 matplotlib
 seaborn
-tensorflow==2.1.0
-tensorflow_probability==0.9.0
+tf-nightly
+tfp-nightly
 watermark
 scipy
 daft
