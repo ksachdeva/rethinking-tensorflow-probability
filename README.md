@@ -54,9 +54,9 @@ If you prefer to run the notebooks in binder then click here [![Binder](https://
 
 * [Chapter 5 - The Many Variables and The Spurious Waffles](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/05_the_many_variables_and_the_spurious_waffles.ipynb)
 
-* [Chapter 6 - The Haunted DAG & The Causal Terror (WIP & Few cells not working)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/06_the_haunted_dag_and_the_causal_terror.ipynb)
+* [Chapter 6 - The Haunted DAG & The Causal Terror](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/06_the_haunted_dag_and_the_causal_terror.ipynb)
 
-* [Chapter 7 - Ulysses' Compass (WIP)](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/07_ulysses_compass.ipynb)
+* [Chapter 7 - Ulysses' Compass](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/07_ulysses_compass.ipynb)
 
 * [Chapter 8 - Conditional Manatees](https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/08_conditional_manatees.ipynb)
 
