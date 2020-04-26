@@ -13244,23 +13244,11 @@ pandas 1.0.3
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>
-<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>
-<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
+<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
 
 <span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -13270,7 +13258,7 @@ pandas 1.0.3
                    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
                  <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
@@ -13292,7 +13280,7 @@ pandas 1.0.3
     <span class="p">)</span>
 
 <span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">run_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
               <span class="n">bijectors</span><span class="p">,</span> 
               <span class="n">step_size</span><span class="p">,</span> 
               <span class="n">target_log_prob_fn</span><span class="p">,</span> 
@@ -13329,27 +13317,27 @@ pandas 1.0.3
         <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
         <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>
+    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
 
 <span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
-                      <span class="n">observed_data</span><span class="p">,</span> 
-                      <span class="n">params</span><span class="p">,</span> 
-                      <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>
-                      <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                      <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                              
-                      <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
-                      <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>       
-    
-    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+              <span class="n">observed_data</span><span class="p">,</span> 
+              <span class="n">params</span><span class="p">,</span> 
+              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
         
+    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
     <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
 
+    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
 
-    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>    
-    <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span>
-    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
                                   <span class="n">bijectors</span><span class="p">,</span>
                                   <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
                                   <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
@@ -13357,9 +13345,26 @@ pandas 1.0.3
                                   <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
 
     <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
-    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>    
-    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">results</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
+    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
+        
+    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
+        
+        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
+
+    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
+
+    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
+                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
 </pre></div>
 
     </div>
@@ -13376,7 +13381,7 @@ pandas 1.0.3
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
@@ -13406,7 +13411,7 @@ pandas 1.0.3
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.5</span>  <span class="c1"># average morning wait time</span>
@@ -13430,7 +13435,7 @@ pandas 1.0.3
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
@@ -13458,7 +13463,7 @@ pandas 1.0.3
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cov_ab</span> <span class="o">=</span> <span class="n">sigma_a</span> <span class="o">*</span> <span class="n">sigma_b</span> <span class="o">*</span> <span class="n">rho</span>
@@ -13479,7 +13484,7 @@ pandas 1.0.3
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
@@ -13495,7 +13500,7 @@ pandas 1.0.3
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13521,7 +13526,7 @@ array([[1, 3],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sigmas</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">sigma_a</span><span class="p">,</span> <span class="n">sigma_b</span><span class="p">])</span>  <span class="c1"># standard deviations</span>
@@ -13543,7 +13548,7 @@ array([[1, 3],
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13569,7 +13574,7 @@ array([[ 1.  , -0.35],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_cafes</span> <span class="o">=</span> <span class="mi">20</span>
@@ -13589,7 +13594,7 @@ array([[ 1.  , -0.35],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_vary_effects</span><span class="p">():</span>
@@ -13643,7 +13648,7 @@ Instructions for updating:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a_cafe</span> <span class="o">=</span> <span class="n">vary_effects</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
@@ -13664,7 +13669,7 @@ Instructions for updating:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a_cafe</span><span class="p">,</span> <span class="n">b_cafe</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
@@ -13725,7 +13730,7 @@ height=433
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_visits</span> <span class="o">=</span> <span class="mi">10</span>
@@ -13762,7 +13767,7 @@ height=433
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -13859,7 +13864,7 @@ height=433
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LKJ</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),))</span>
@@ -13897,7 +13902,7 @@ height=406
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">R</span><span class="o">.</span><span class="n">shape</span>
@@ -13913,7 +13918,7 @@ height=406
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -13937,7 +13942,7 @@ height=406
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model_14_1</span><span class="p">(</span><span class="n">cafe</span><span class="p">,</span> <span class="n">afternoon</span><span class="p">):</span>
@@ -13987,7 +13992,7 @@ height=406
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha_init</span><span class="p">,</span> <span class="n">beta_init</span><span class="p">,</span> <span class="n">sigma_init</span><span class="p">,</span> <span class="n">sigma_alpha_beta_init</span><span class="p">,</span> <span class="n">Rho_init</span><span class="p">,</span> <span class="n">a_cafe_b_cafe_init</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_14_1</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -14012,7 +14017,7 @@ height=406
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -14034,7 +14039,7 @@ array([[[ 1.        ,  0.48552346],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">init_rho</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
@@ -14052,7 +14057,7 @@ array([[[ 1.        ,  0.48552346],
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -14074,7 +14079,7 @@ array([[[1., 0.],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
@@ -14098,15 +14103,14 @@ array([[[1., 0.],
 
 <span class="n">observed_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),)</span>
 
-<span class="n">trace_14_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                    <span class="n">jdc_14_1</span><span class="p">,</span> 
-                    <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
-                    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma_alpha_beta&#39;</span><span class="p">,</span> <span class="s1">&#39;Rho&#39;</span><span class="p">,</span> <span class="s1">&#39;a_cafe_b_cafe&#39;</span><span class="p">],</span>
-                    <span class="n">num_samples</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
-                    <span class="n">burnin</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
-                    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span>
-                    <span class="p">)</span>
+<span class="n">posterior_14_1</span><span class="p">,</span> <span class="n">trace_14_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
+                                    <span class="n">jdc_14_1</span><span class="p">,</span> 
+                                    <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
+                                    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma_alpha_beta&#39;</span><span class="p">,</span> <span class="s1">&#39;Rho&#39;</span><span class="p">,</span> <span class="s1">&#39;a_cafe_b_cafe&#39;</span><span class="p">],</span>
+                                    <span class="n">num_samples</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+                                    <span class="n">burnin</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+                                    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+                                    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14143,7 +14147,7 @@ Do not pass `graph_parents`.  They will  no longer be used.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">trace_14_1</span><span class="o">.</span><span class="n">posterior</span>
@@ -14173,7 +14177,7 @@ Do not pass `graph_parents`.  They will  no longer be used.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[26]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -14230,7 +14234,7 @@ array([[[[ 1.        , -0.7334884 ],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rhos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -14246,7 +14250,7 @@ array([[[[ 1.        , -0.7334884 ],
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -14282,7 +14286,7 @@ array([[[ 1.        , -0.7334884 ],
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
@@ -14298,7 +14302,7 @@ array([[[ 1.        , -0.7334884 ],
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -14317,7 +14321,7 @@ array([-0.71648794, -0.6635404 , -0.6635404 , ..., -0.642717  ,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
@@ -14361,7 +14365,7 @@ height=409
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">wait</span><span class="p">[(</span><span class="n">cafe_id</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">afternoon</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)])</span>
@@ -14423,7 +14427,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># compute posterior mean bivariate Gaussian</span>
@@ -14463,7 +14467,7 @@ height=432
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -14491,7 +14495,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># convert varying effects to waiting times</span>
@@ -14553,7 +14557,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># now shrinkage distribution by simulation</span>
@@ -14594,7 +14598,7 @@ height=432
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -14622,7 +14626,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHIMPANZEE_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
@@ -14643,7 +14647,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model_14_2</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">block_id</span><span class="p">,</span> <span class="n">num_chains</span><span class="p">):</span>
@@ -14732,7 +14736,7 @@ height=432
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -14811,7 +14815,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">g_init</span><span class="p">,</span> <span class="n">sigma_actor_init</span><span class="p">,</span> <span class="n">rho_actor_init</span><span class="p">,</span> <span class="n">sigma_block_init</span><span class="p">,</span> <span class="n">rho_block_init</span><span class="p">,</span> <span class="n">alpha_init</span><span class="p">,</span> <span class="n">beta_init</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_14_2</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
@@ -14842,7 +14846,7 @@ height=432
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
@@ -14868,117 +14872,20 @@ height=432
 
 <span class="n">observed_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;L&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),)</span>
 
-<span class="n">trace_14_2</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                    <span class="n">jdc_14_2</span><span class="p">,</span> 
-                    <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
-                    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma_actor&#39;</span><span class="p">,</span> <span class="s1">&#39;rho_actor&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma_block&#39;</span><span class="p">,</span> <span class="s1">&#39;rho_block&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">],</span>
-                    <span class="n">num_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
-                    <span class="n">burnin</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-                    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+
+<span class="c1"># Issue:</span>
+<span class="c1"># This used to work</span>
+<span class="c1"># posterior_14_2, trace_14_2 = sample_posterior(</span>
+<span class="c1">#                                 jdc_14_2, </span>
+<span class="c1">#                                 observed_data=observed_data,</span>
+<span class="c1">#                                 params=[&#39;g&#39;, &#39;sigma_actor&#39;, &#39;rho_actor&#39;, &#39;sigma_block&#39;, &#39;rho_block&#39;, &#39;alpha&#39;, &#39;beta&#39;],</span>
+<span class="c1">#                                 num_samples=2000,</span>
+<span class="c1">#                                 burnin=500,</span>
+<span class="c1">#                                 init_state=init_state,</span>
+<span class="c1">#                                 bijectors=bijectors)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(7, 4)
-(7, 4)
-(7, 4)
-(7, 4)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">InvalidArgumentError</span>                      Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-37-0b1aff23fbe7&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     29</span>                     burnin<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">500</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">     30</span>                     init_state<span class="ansi-blue-fg">=</span>init_state<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">---&gt; 31</span><span class="ansi-red-fg">                     bijectors=bijectors)
-</span>
-<span class="ansi-green-fg">&lt;ipython-input-8-f66d631a5e59&gt;</span> in <span class="ansi-cyan-fg">sample_posterior</span><span class="ansi-blue-fg">(jdc, observed_data, params, num_chains, init_state, bijectors, num_samples, burnin)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>                                   target_log_prob_fn<span class="ansi-blue-fg">=</span>target_log_prob_fn<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>                                   num_samples<span class="ansi-blue-fg">=</span>num_samples<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">---&gt; 98</span><span class="ansi-red-fg">                                   burnin=burnin)
-</span><span class="ansi-green-intense-fg ansi-bold">     99</span> 
-<span class="ansi-green-intense-fg ansi-bold">    100</span>     stat_names <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;mean_tree_accept&#39;</span><span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, *args, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    693</span>       <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    694</span>         compiler <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#34;nonXla&#34;</span>
-<span class="ansi-green-fg">--&gt; 695</span><span class="ansi-red-fg">         </span>result <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_call<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    696</span> 
-<span class="ansi-green-intense-fg ansi-bold">    697</span>       new_tracing_count <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_get_tracing_count<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ansi-cyan-fg">_call</span><span class="ansi-blue-fg">(self, *args, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    726</span>       <span class="ansi-red-fg"># In this case we have not created variables on the first call. So we can</span>
-<span class="ansi-green-intense-fg ansi-bold">    727</span>       <span class="ansi-red-fg"># run the first trace but we should fail if variables are created.</span>
-<span class="ansi-green-fg">--&gt; 728</span><span class="ansi-red-fg">       </span>results <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_stateful_fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    729</span>       <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_created_variables<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    730</span>         raise ValueError(&#34;Creating variables on a non-first call to a function&#34;
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2409</span>     <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2410</span>       graph_function<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_maybe_define_function<span class="ansi-blue-fg">(</span>args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 2411</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> graph_function<span class="ansi-blue-fg">.</span>_filtered_call<span class="ansi-blue-fg">(</span>args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span>  <span class="ansi-red-fg"># pylint: disable=protected-access</span>
-<span class="ansi-green-intense-fg ansi-bold">   2412</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2413</span>   <span class="ansi-blue-fg">@</span>property
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">_filtered_call</span><span class="ansi-blue-fg">(self, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1657</span>          if isinstance(t, (ops.Tensor,
-<span class="ansi-green-intense-fg ansi-bold">   1658</span>                            resource_variable_ops.BaseResourceVariable))),
-<span class="ansi-green-fg">-&gt; 1659</span><span class="ansi-red-fg">         self.captured_inputs)
-</span><span class="ansi-green-intense-fg ansi-bold">   1660</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1661</span>   <span class="ansi-green-fg">def</span> _call_flat<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> captured_inputs<span class="ansi-blue-fg">,</span> cancellation_manager<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">_call_flat</span><span class="ansi-blue-fg">(self, args, captured_inputs, cancellation_manager)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1734</span>       <span class="ansi-red-fg"># No tape is watching; skip to running the function.</span>
-<span class="ansi-green-intense-fg ansi-bold">   1735</span>       return self._build_call_outputs(self._inference_function.call(
-<span class="ansi-green-fg">-&gt; 1736</span><span class="ansi-red-fg">           ctx, args, cancellation_manager=cancellation_manager))
-</span><span class="ansi-green-intense-fg ansi-bold">   1737</span>     forward_backward = self._select_forward_and_backward_functions(
-<span class="ansi-green-intense-fg ansi-bold">   1738</span>         args<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">call</span><span class="ansi-blue-fg">(self, ctx, args, cancellation_manager)</span>
-<span class="ansi-green-intense-fg ansi-bold">    597</span>               inputs<span class="ansi-blue-fg">=</span>args<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    598</span>               attrs<span class="ansi-blue-fg">=</span>attrs<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 599</span><span class="ansi-red-fg">               ctx=ctx)
-</span><span class="ansi-green-intense-fg ansi-bold">    600</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    601</span>           outputs = execute.execute_with_cancellation(
-
-<span class="ansi-green-fg">~/Desktop/Dev/projects/myoss/rethinking-tfp-interim/env/lib/python3.6/site-packages/tensorflow/python/eager/execute.py</span> in <span class="ansi-cyan-fg">quick_execute</span><span class="ansi-blue-fg">(op_name, num_outputs, inputs, attrs, ctx, name)</span>
-<span class="ansi-green-intense-fg ansi-bold">     58</span>     ctx<span class="ansi-blue-fg">.</span>ensure_initialized<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     59</span>     tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
-<span class="ansi-green-fg">---&gt; 60</span><span class="ansi-red-fg">                                         inputs, attrs, num_outputs)
-</span><span class="ansi-green-intense-fg ansi-bold">     61</span>   <span class="ansi-green-fg">except</span> core<span class="ansi-blue-fg">.</span>_NotOkStatusException <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     62</span>     <span class="ansi-green-fg">if</span> name <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">InvalidArgumentError</span>:  Input matrix is not invertible.
-	 [[{{node mcmc_sample_chain/trace_scan/while/body/_1/mcmc_sample_chain/trace_scan/while/smart_for_loop/while/body/_531/mcmc_sample_chain/trace_scan/while/smart_for_loop/while/simple_step_size_adaptation___init__/_one_step/transformed_kernel_one_step/mh_one_step/hmc_kernel_one_step/leapfrog_integrate/while/body/_997/mcmc_sample_chain/trace_scan/while/smart_for_loop/while/simple_step_size_adaptation___init__/_one_step/transformed_kernel_one_step/mh_one_step/hmc_kernel_one_step/leapfrog_integrate/while/leapfrog_integrate_one_step/maybe_call_fn_and_grads/value_and_gradients/JointDistributionCoroutine/log_prob/mcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_Samplemcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_MultivariateNormalTriL_1/log_prob/mcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_MultivariateNormalTriL_1/log_prob/mcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_MultivariateNormalTriL_1_chain_of_mcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_MultivariateNormalTriL_1_shift_of_mcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_MultivariateNormalTriL_1_scale_matvec_linear_operator/inverse/mcmc_sample_chain_trace_scan_while_smart_for_loop_while_simple_step_size_adaptation___init____one_step_transformed_kernel_one_step_mh_one_step_hmc_kernel_one_step_leapfrog_integrate_while_leapfrog_integrate_one_step_maybe_call_fn_and_grads_value_and_gradients_JointDistributionCoroutine_log_prob_MultivariateNormalTriL_1_scale_matvec_linear_operator/inverse/LinearOperatorLowerTriangular/solve/LinearOperatorLowerTriangular/solve/triangular_solve/MatrixTriangularSolve}}]] [Op:__inference_run_chain_16315]
-
-Function call stack:
-run_chain
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -14995,23 +14902,10 @@ entire structure in xarray. Really arviz does not work if there is 1 chain.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trace_14_2</span><span class="o">.</span><span class="n">posterior</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace_14_2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># az.summary(trace_14_2)</span>
 </pre></div>
 
     </div>
