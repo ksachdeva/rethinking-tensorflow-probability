@@ -1,12 +1,13 @@
+tf-nightly
+tfp-nightly
 arviz
 pandas
 matplotlib
 seaborn
-tf-nightly
-tfp-nightly
 watermark
 scipy
 daft
 causalgraphicalmodels
 jax
 jaxlib
+statsmodels
