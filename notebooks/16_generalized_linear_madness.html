@@ -1,0 +1,1989 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 16 - Generalized Linear Madness &#8212; Statistical Rethinking (2nd Edition)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ksachdeva.github.io/rethinking-tensorflow-probability/notebooks/16_generalized_linear_madness.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 17 - Horoscopes" href="17_horoscopes.html" />
+    <link rel="prev" title="Chapter 15 - Missing Data and Other Opportunities" href="15_missing_data_and_other_opportunities.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Rethinking (2nd Edition)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Statistical Rethinking (2nd Edition) with Tensorflow Probability
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_the_golem_of_prague.html">
+   Chapter 1 The Gloem of Prague
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_small_worlds_and_large_worlds.html">
+   Chapter 2 - Small Worlds and Large Worlds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_sampling_the_imaginary.html">
+   Chapter 3 - Sampling the Imaginary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_geocentric_models.html">
+   Chapter 4 - Geocentric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_the_many_variables_and_the_spurious_waffles.html">
+   Chapter 5 - The Many Variables &amp; The Spurious Waffles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_the_haunted_dag_and_the_causal_terror.html">
+   Chapter 6 - The Haunted DAG and The Causal Terror
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_ulysses_compass.html">
+   Chapter 7 - Ulysses’ Compass
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_conditional_manatees.html">
+   Chapter 8 - Conditional Manatees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_markov_chain_monte_carlo.html">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_big_entropy_and_the_generalized_linear_model.html">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_god_spiked_the_integers.html">
+   Chapter 11 - God Spiked the Integers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_monsters_and_mixtures.html">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_models_with_memory.html">
+   Chapter 13 - Models with Memory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_adventures_in_covariance.html">
+   Chapter 14 - Adventures in Covariance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_missing_data_and_other_opportunities.html">
+   Chapter 15 - Missing Data and Other Opportunities
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_horoscopes.html">
+   Chapter 17 - Horoscopes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/16_generalized_linear_madness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability/issues/new?title=Issue%20on%20page%20%2Fnotebooks/16_generalized_linear_madness.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master?urlpath=tree/notebooks/16_generalized_linear_madness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+     Tensorflow MCMC Sampling helpers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-urls-utils">
+     Dataset URLs &amp; Utils
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-people">
+     16.1 Geometric people
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-scientific-model">
+       16.1.1 The scientific model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-statistical-model">
+       16.1.2 The statistical model
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-16-1">
+         Code 16.1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-16-2">
+         Code 16.2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-16-3">
+         Code 16.3
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hidden-minds-and-observed-behavior">
+     16.2 Hidden minds and observed behavior
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-4">
+       Code 16.4
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-5">
+       Code 16.5
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-6">
+       Code 16.6
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       16.2.2 The statistical model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-16-7-not-working">
+     Code 16.7  (Not working !)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-8-depends-on-16-7-not-implemented">
+       Code 16.8 (depends on 16.7) [Not implemented]
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordinary-differential-nut-cracking">
+     16.3 Ordinary differential nut cracking
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-9">
+       Code 16.9
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-10">
+       Code 16.10
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-11">
+       Code 16.11
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-12">
+       Code 16.12
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-dynamics">
+     16.4 Population dynamics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-13">
+       Code 16.13
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-14">
+       Code 16.14
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-15">
+       Code 16.15
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-16">
+       Code 16.16
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-16-17">
+     Code 16.17
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 16 - Generalized Linear Madness</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+     Tensorflow MCMC Sampling helpers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-urls-utils">
+     Dataset URLs &amp; Utils
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-people">
+     16.1 Geometric people
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-scientific-model">
+       16.1.1 The scientific model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-statistical-model">
+       16.1.2 The statistical model
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-16-1">
+         Code 16.1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-16-2">
+         Code 16.2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-16-3">
+         Code 16.3
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hidden-minds-and-observed-behavior">
+     16.2 Hidden minds and observed behavior
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-4">
+       Code 16.4
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-5">
+       Code 16.5
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-6">
+       Code 16.6
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       16.2.2 The statistical model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-16-7-not-working">
+     Code 16.7  (Not working !)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-8-depends-on-16-7-not-implemented">
+       Code 16.8 (depends on 16.7) [Not implemented]
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordinary-differential-nut-cracking">
+     16.3 Ordinary differential nut cracking
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-9">
+       Code 16.9
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-10">
+       Code 16.10
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-11">
+       Code 16.11
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-12">
+       Code 16.12
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-dynamics">
+     16.4 Population dynamics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-13">
+       Code 16.13
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-14">
+       Code 16.14
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-15">
+       Code 16.15
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-16-16">
+       Code 16.16
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-16-17">
+     Code 16.17
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/16_generalized_linear_madness.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-16-generalized-linear-madness">
+<h1>Chapter 16 - Generalized Linear Madness<a class="headerlink" href="#chapter-16-generalized-linear-madness" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports-and-utility-functions">
+<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
+<span class="k">try</span><span class="p">:</span>
+  <span class="kn">import</span> <span class="nn">google.colab</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip install -q watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
+
+<span class="c1"># visualization </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># aliases</span>
+<span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
+<span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
+<span class="n">Root</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="o">.</span><span class="n">Root</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:37:51.829564: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 21:37:51.829607: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy                 : 1.21.5
+tensorflow            : 2.7.0
+tensorflow_probability: 0.15.0
+arviz                 : 0.11.4
+scipy                 : 1.7.3
+pandas                : 1.3.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tensorflow-mcmc-sampling-helpers">
+<h2>Tensorflow MCMC Sampling helpers<a class="headerlink" href="#tensorflow-mcmc-sampling-helpers" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
+<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
+
+<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
+        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
+        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
+        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
+        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+              <span class="n">bijectors</span><span class="p">,</span> 
+              <span class="n">step_size</span><span class="p">,</span> 
+              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
+              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
+              <span class="p">):</span>    
+
+    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+        <span class="p">)</span>
+
+    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
+                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
+                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
+                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
+
+    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
+        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
+
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
+        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
+        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+    <span class="p">)</span>    
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
+        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
+
+<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
+              <span class="n">observed_data</span><span class="p">,</span> 
+              <span class="n">params</span><span class="p">,</span> 
+              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
+        
+    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
+
+    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+                                  <span class="n">bijectors</span><span class="p">,</span>
+                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
+                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
+                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
+                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
+
+    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
+    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
+        
+    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
+        
+        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
+
+    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
+
+    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
+                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-urls-utils">
+<h2>Dataset URLs &amp; Utils<a class="headerlink" href="#dataset-urls-utils" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
+<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/master/data&quot;</span>
+
+<span class="n">HOWELL1_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Howell1.csv&quot;</span>
+<span class="n">BOXES_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Boxes.csv&quot;</span>
+<span class="n">PANDA_NUTS_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Panda_nuts.csv&quot;</span>
+<span class="n">LYNX_HARE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Lynx_Hare.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A utility method to convert data (columns) from pandas dataframe</span>
+<span class="c1"># into tensors with appropriate type</span>
+<span class="k">def</span> <span class="nf">df_to_tensors</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">default_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; name : Name of the dataset</span>
+<span class="sd">        df : pandas dataframe</span>
+<span class="sd">        colums : a list of names that have the same type or</span>
+<span class="sd">                 a dictionary where keys are the column names and values are the tensorflow type (e.g. tf.float32)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
+        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span>        
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">default_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">column_names</span><span class="p">]</span>    
+        
+    <span class="c1"># build the cls</span>
+    <span class="n">tuple_cls</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">column_names</span><span class="p">)</span>    
+    <span class="c1"># build the obj</span>
+    <span class="k">return</span> <span class="n">tuple_cls</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="geometric-people">
+<h2>16.1 Geometric people<a class="headerlink" href="#geometric-people" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-scientific-model">
+<h3>16.1.1 The scientific model<a class="headerlink" href="#the-scientific-model" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="the-statistical-model">
+<h3>16.1.2 The statistical model<a class="headerlink" href="#the-statistical-model" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-16-1">
+<h4>Code 16.1<a class="headerlink" href="#code-16-1" title="Permalink to this headline">¶</a></h4>
+<p>Even though Generalized Linear Models are very powerful, not everything can still be modeled as a GLM - a linear combination of variables mapped onto a non-linear outcome.</p>
+<p>Author strongly suggests that starting with GLM instead of real models may have severe consequences as it may be difficult to learn from failures in this case.</p>
+<p>Here the focus is going to be using scientific information in modeling</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">HOWELL1_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+
+<span class="c1"># scale observed variables</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="n">d</span><span class="o">.</span><span class="n">height</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>height</th>
+      <th>weight</th>
+      <th>age</th>
+      <th>male</th>
+      <th>w</th>
+      <th>h</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>151.765</td>
+      <td>47.825606</td>
+      <td>63.0</td>
+      <td>1</td>
+      <td>1.343015</td>
+      <td>1.097650</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>139.700</td>
+      <td>36.485807</td>
+      <td>63.0</td>
+      <td>0</td>
+      <td>1.024577</td>
+      <td>1.010389</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>136.525</td>
+      <td>31.864838</td>
+      <td>65.0</td>
+      <td>0</td>
+      <td>0.894813</td>
+      <td>0.987425</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>156.845</td>
+      <td>53.041914</td>
+      <td>41.0</td>
+      <td>1</td>
+      <td>1.489497</td>
+      <td>1.134391</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>145.415</td>
+      <td>41.276872</td>
+      <td>51.0</td>
+      <td>0</td>
+      <td>1.159117</td>
+      <td>1.051723</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>539</th>
+      <td>145.415</td>
+      <td>31.127751</td>
+      <td>17.0</td>
+      <td>1</td>
+      <td>0.874114</td>
+      <td>1.051723</td>
+    </tr>
+    <tr>
+      <th>540</th>
+      <td>162.560</td>
+      <td>52.163080</td>
+      <td>31.0</td>
+      <td>1</td>
+      <td>1.464818</td>
+      <td>1.175725</td>
+    </tr>
+    <tr>
+      <th>541</th>
+      <td>156.210</td>
+      <td>54.062497</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>1.518157</td>
+      <td>1.129798</td>
+    </tr>
+    <tr>
+      <th>542</th>
+      <td>71.120</td>
+      <td>8.051258</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0.226092</td>
+      <td>0.514380</td>
+    </tr>
+    <tr>
+      <th>543</th>
+      <td>158.750</td>
+      <td>52.531624</td>
+      <td>68.0</td>
+      <td>1</td>
+      <td>1.475167</td>
+      <td>1.148169</td>
+    </tr>
+  </tbody>
+</table>
+<p>544 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s1">&#39;Howell1&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:37:54.795983: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 21:37:54.796107: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 21:37:54.796142: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-17 21:37:54.796585: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-16-2">
+<h4>Code 16.2<a class="headerlink" href="#code-16-2" title="Permalink to this headline">¶</a></h4>
+<p>The first thing to notice about the parameters k and p is that they are multiplied in the model and the data have no way to estimate anything except their product</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_16_1</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
+      <span class="n">p</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">18.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>      
+      <span class="n">k</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+      <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>     
+        
+      <span class="n">term1</span> <span class="o">=</span> <span class="n">p</span> <span class="o">**</span> <span class="mi">2</span>
+      <span class="n">term2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">3</span>
+      
+      <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.141593</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">term1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">term2</span><span class="p">)</span> 
+        
+      <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+      
+      <span class="n">w</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
+      
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
+    
+<span class="n">jdc_16_1</span> <span class="o">=</span> <span class="n">model_16_1</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_CHAINS_FOR_16_1</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Note - if I use zeros as the starting point</span>
+<span class="c1"># then the sampled params are really bad</span>
+<span class="c1">#</span>
+<span class="c1"># So starting the init state sampled from the model</span>
+<span class="c1"># itself</span>
+<span class="n">p_init</span><span class="p">,</span> <span class="n">k_init</span><span class="p">,</span> <span class="n">sigma_init</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_16_1</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+
+<span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">p_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_1</span><span class="p">,)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">k_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_1</span><span class="p">,)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">sigma_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_1</span><span class="p">,)),</span>
+<span class="p">]</span>
+
+
+<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>    
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>    
+<span class="p">]</span>
+
+<span class="n">posterior_16_1</span><span class="p">,</span> <span class="n">trace_16_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span><span class="n">jdc_16_1</span><span class="p">,</span>
+                               <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">w</span><span class="p">,),</span>
+                               <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
+                               <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+                               <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-16-3">
+<h4>Code 16.3<a class="headerlink" href="#code-16-3" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">num</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">p_sample</span> <span class="o">=</span> <span class="n">trace_16_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">k_sample</span> <span class="o">=</span> <span class="n">trace_16_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sigma_sample</span> <span class="o">=</span> <span class="n">trace_16_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">compute_w_from_samples</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.141593</span> <span class="o">*</span> <span class="n">k_sample</span> <span class="o">*</span> <span class="n">p_sample</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>     
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma_sample</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="n">w_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">compute_w_from_samples</span><span class="p">,</span> <span class="n">h_seq</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">mu_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">w_sim</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">w_CI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">w_sim</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">94.5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;royalblue&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+              <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;height (scaled)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;weight (scaled)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_seq</span><span class="p">,</span> <span class="n">mu_mean</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">h_seq</span><span class="p">,</span> <span class="n">w_CI</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">w_CI</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16_generalized_linear_madness_24_0.png" src="../_images/16_generalized_linear_madness_24_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hidden-minds-and-observed-behavior">
+<h2>16.2 Hidden minds and observed behavior<a class="headerlink" href="#hidden-minds-and-observed-behavior" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-16-4">
+<h3>Code 16.4<a class="headerlink" href="#code-16-4" title="Permalink to this headline">¶</a></h3>
+<p>This dataset is about choices of the children.</p>
+<p>Apparatus has 3 tubes of different colors - Yellow, Blue and Red.</p>
+<p>If you drop a ball in the tube then a toy comes out.</p>
+<p>4 children demonstrated how the apparatus works i.e. they dropped the balls in the tube and showed that toys come out.</p>
+<p>629 children were involved aged 4 to 14 years</p>
+<p>In each trial, 3 demonstrator children chose the same color and the fourth one chose a differnt color. So out of 3 colors, 1 was selected by majority (i.e. 3 here), 1 was minority and 1 was not selected.</p>
+<p>The dataset is about the 5th children’s choice once he/she has the seen the demonstration by 4 children. The task is to determine if his/her choice was impacted by the majority.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">BOXES_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">)))</span>
+<span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;stats&quot;</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_5.5%</th>
+      <th>hdi_94.5%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>y</th>
+      <td>2.121</td>
+      <td>0.728</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <td>1.506</td>
+      <td>0.500</td>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td>8.030</td>
+      <td>2.498</td>
+      <td>5.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>majority_first</th>
+      <td>0.485</td>
+      <td>0.500</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>culture</th>
+      <td>3.752</td>
+      <td>1.960</td>
+      <td>1.0</td>
+      <td>6.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="code-16-5">
+<h3>Code 16.5<a class="headerlink" href="#code-16-5" title="Permalink to this headline">¶</a></h3>
+<p>1 -&gt; unchosen color by demonstrators</p>
+<p>2 -&gt; majority color</p>
+<p>3 -&gt; minority color</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">/</span> <span class="n">d</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    0.211447
+3    0.332273
+2    0.456280
+Name: y, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above shows, that majority color was indeed chosen by the fifth children. But does this mean it was simply because of demonstration ? Was it the <strong>cause</strong> of what we are seeing in the data ?</p>
+<p>Authors says that we can not be sure of it because there could be different strategies and it may be the case that one of the strategy led to the same choice</p>
+</div>
+<div class="section" id="code-16-6">
+<h3>Code 16.6<a class="headerlink" href="#code-16-6" title="Permalink to this headline">¶</a></h3>
+<p>If we simulate choices for these children, we can figure out how often we might see the “2” choice, the one that indicates the majority color.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># number of children</span>
+
+<span class="c1"># half are random</span>
+<span class="c1"># sample from 1,2,3 at random for each</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])[</span>
+    <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,))</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="p">]</span>
+
+<span class="c1"># half follow majority</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># combine</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">])</span>
+
+<span class="c1"># shuffle</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># count the 2s</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6666666666666666
+</pre></div>
+</div>
+</div>
+</div>
+<p>About 2/3rd of the choices are for the majority color (i.e. 2)</p>
+</div>
+<div class="section" id="id1">
+<h3>16.2.2 The statistical model<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="code-16-7-not-working">
+<h2>Code 16.7  (Not working !)<a class="headerlink" href="#code-16-7-not-working" title="Permalink to this headline">¶</a></h2>
+<p>Having issues with shape again :(</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y</th>
+      <th>gender</th>
+      <th>age</th>
+      <th>majority_first</th>
+      <th>culture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>629.000000</td>
+      <td>629.000000</td>
+      <td>629.000000</td>
+      <td>629.000000</td>
+      <td>629.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.120827</td>
+      <td>1.505564</td>
+      <td>8.030207</td>
+      <td>0.484897</td>
+      <td>3.751987</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.727986</td>
+      <td>0.500367</td>
+      <td>2.497906</td>
+      <td>0.500170</td>
+      <td>1.960319</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>4.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>6.000000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>8.000000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.000000</td>
+      <td>2.000000</td>
+      <td>10.000000</td>
+      <td>1.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>3.000000</td>
+      <td>2.000000</td>
+      <td>14.000000</td>
+      <td>1.000000</td>
+      <td>8.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_boxes_model</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">majority_first</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="c1"># prior</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Dirichlet</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="c1"># probability of data</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># majority</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># minority</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># maverick</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="c1"># random</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">majority_first</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># follow first</span>
+                          <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                          <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        
+<span class="c1">#         ps = tf.squeeze(p)</span>
+        <span class="n">ps</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">phi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        
+        <span class="c1"># compute log( p_s * Pr(y_i|s )</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ps</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            
+        <span class="c1"># compute average log-probability of y</span>
+        <span class="n">logprob</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_logsumexp</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">w</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">logprob</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+        
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dat= dict(N=d.shape[0],</span>
+<span class="c1">#           y=d.y.values,</span>
+<span class="c1">#           majority_first=d.majority_first.values)</span>
+
+<span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Boxes&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;majority_first&quot;</span><span class="p">])</span>
+
+<span class="n">jdc_boxes_model</span> <span class="o">=</span> <span class="n">make_boxes_model</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tdf</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">majority_first</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># uncomment the line below to see the error</span>
+
+<span class="c1"># jdc_boxes_model.sample(2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="code-16-8-depends-on-16-7-not-implemented">
+<h3>Code 16.8 (depends on 16.7) [Not implemented]<a class="headerlink" href="#code-16-8-depends-on-16-7-not-implemented" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="ordinary-differential-nut-cracking">
+<h2>16.3 Ordinary differential nut cracking<a class="headerlink" href="#ordinary-differential-nut-cracking" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-16-9">
+<h3>Code 16.9<a class="headerlink" href="#code-16-9" title="Permalink to this headline">¶</a></h3>
+<p>Modelling nut opening skill of chimpanzees</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PANDA_NUTS_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chimpanzee</th>
+      <th>age</th>
+      <th>sex</th>
+      <th>hammer</th>
+      <th>nuts_opened</th>
+      <th>seconds</th>
+      <th>help</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11</td>
+      <td>3</td>
+      <td>m</td>
+      <td>G</td>
+      <td>0</td>
+      <td>61.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>11</td>
+      <td>3</td>
+      <td>m</td>
+      <td>G</td>
+      <td>0</td>
+      <td>37.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18</td>
+      <td>4</td>
+      <td>f</td>
+      <td>wood</td>
+      <td>0</td>
+      <td>20.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>18</td>
+      <td>4</td>
+      <td>f</td>
+      <td>G</td>
+      <td>0</td>
+      <td>14.0</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>18</td>
+      <td>4</td>
+      <td>f</td>
+      <td>L</td>
+      <td>0</td>
+      <td>13.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>10</td>
+      <td>15</td>
+      <td>m</td>
+      <td>G</td>
+      <td>7</td>
+      <td>12.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>10</td>
+      <td>15</td>
+      <td>m</td>
+      <td>G</td>
+      <td>5</td>
+      <td>12.5</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>6</td>
+      <td>15</td>
+      <td>m</td>
+      <td>G</td>
+      <td>8</td>
+      <td>13.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>6</td>
+      <td>16</td>
+      <td>m</td>
+      <td>G</td>
+      <td>24</td>
+      <td>20.0</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>6</td>
+      <td>16</td>
+      <td>m</td>
+      <td>G</td>
+      <td>25</td>
+      <td>36.0</td>
+      <td>N</td>
+    </tr>
+  </tbody>
+</table>
+<p>84 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>We want to understand how nut opening skills develop and which factors contribute to it.</p>
+<p>We need a generative model of nut opening rate as it varies by age.</p>
+<p>On simple factor to assume is the individual’s strenght and as age increases it increases as well.</p>
+</div>
+<div class="section" id="code-16-10">
+<h3>Code 16.10<a class="headerlink" href="#code-16-10" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># relative grow curve</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;body mass&quot;</span><span class="p">)</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">at</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># implied rate of nut opening curve</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+                 <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;nuts per second&quot;</span><span class="p">)</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">at</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="n">theta</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16_generalized_linear_madness_46_0.png" src="../_images/16_generalized_linear_madness_46_0.png" />
+<img alt="../_images/16_generalized_linear_madness_46_1.png" src="../_images/16_generalized_linear_madness_46_1.png" />
+</div>
+</div>
+<p>The first graph (body mass vs age) is showing that opening kill tries to start leveling off around age 12</p>
+<p>The second graph (nuts per second vs age) shows many different developmental patterns</p>
+</div>
+<div class="section" id="code-16-11">
+<h3>Code 16.11<a class="headerlink" href="#code-16-11" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;age_prop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Nuts&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;nuts_opened&quot;</span><span class="p">,</span> <span class="s2">&quot;age_prop&quot;</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">model_16_4</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
+      <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;phi&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>      
+      <span class="n">k</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>      
+      <span class="n">theta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">5.</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+    
+      <span class="n">term1</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+      <span class="n">term2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">*</span><span class="n">age</span><span class="p">))</span> <span class="o">**</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  
+    
+      <span class="n">lambda_</span> <span class="o">=</span> <span class="n">seconds</span> <span class="o">*</span> <span class="n">term1</span> <span class="o">*</span> <span class="n">term2</span> 
+      
+      <span class="n">n</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">lambda_</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
+      
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
+    
+<span class="n">jdc_16_4</span> <span class="o">=</span> <span class="n">model_16_4</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">seconds</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">age_prop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jdc_16_4</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py:342: calling Poisson.__init__ (from tensorflow_probability.python.distributions.poisson) with interpolate_nondiscrete is deprecated and will be removed after 2021-02-01.
+Instructions for updating:
+The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_zero_outside_support` (with the opposite sense).
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
+  var0=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
+    array([[1.0156687],
+           [1.0117512]], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
+    array([[1.4538714],
+           [1.8032928]], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
+    array([[4.7032456],
+           [3.8847773]], dtype=float32)&gt;,
+  var3=&lt;tf.Tensor: shape=(2, 1, 84), dtype=float32, numpy=
+    array([[[ 1.,  1.,  0.,  0.,  0.,  0.,  1.,  2.,  0.,  1.,  0.,  1.,
+              0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+              0.,  1.,  0.,  0.,  0.,  2.,  0.,  1.,  0.,  1.,  0.,  2.,
+              0.,  0.,  0.,  0.,  0.,  1.,  1.,  1.,  0.,  5.,  4.,  5.,
+              3.,  3.,  3.,  1.,  0.,  1.,  0.,  0.,  1.,  2.,  1.,  6.,
+              0.,  1.,  1.,  2.,  7.,  1.,  0., 12.,  7.,  4.,  1.,  2.,
+              6., 21.,  8., 15., 12.,  7.,  9.,  1.,  3.,  0.,  8., 10.]],
+    
+           [[ 0.,  0.,  1.,  0.,  0.,  1.,  0., 10.,  2.,  1.,  3.,  5.,
+              0.,  2.,  1.,  0.,  2.,  5.,  1.,  1.,  2.,  0.,  2.,  0.,
+              2.,  0.,  0.,  0.,  3.,  2.,  0.,  2.,  2.,  2.,  0.,  3.,
+              0.,  3.,  0.,  0.,  1.,  4.,  6.,  2.,  3., 11.,  5.,  3.,
+              8.,  5., 15.,  2.,  0.,  1.,  1.,  1.,  3.,  7.,  4.,  8.,
+              0.,  7.,  3.,  5., 14.,  1.,  3., 26., 21.,  7.,  3.,  3.,
+              8., 20., 15., 19., 22., 12.,  6.,  5.,  3.,  6., 14., 23.]]],
+          dtype=float32)&gt;
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_CHAINS_FOR_16_4</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Note - if I use zeros as the starting point</span>
+<span class="c1"># then the sampled params are really bad</span>
+<span class="c1">#</span>
+<span class="c1"># So starting the init state sampled from the model</span>
+<span class="c1"># itself</span>
+<span class="n">phi_init</span><span class="p">,</span> <span class="n">k_init</span><span class="p">,</span> <span class="n">theta_init</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_16_4</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+
+<span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">phi_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">k_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">theta_init</span><span class="p">,(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
+<span class="p">]</span>
+
+
+<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>    
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>    
+<span class="p">]</span>
+
+<span class="n">posterior_16_4</span><span class="p">,</span> <span class="n">trace_16_4</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span><span class="n">jdc_16_4</span><span class="p">,</span>
+                               <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">nuts_opened</span><span class="p">,),</span>
+                               <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;phi&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;theta&#39;</span><span class="p">],</span>
+                               <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+                               <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-16-12">
+<h3>Code 16.12<a class="headerlink" href="#code-16-12" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_phi</span> <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;phi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">post_k</span>   <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">post_theta</span>  <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+            <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;nuts per second&quot;</span><span class="p">)</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">at</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+
+<span class="c1"># raw data</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">nuts_opened</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">d</span><span class="o">.</span><span class="n">seconds</span><span class="o">.</span><span class="n">values</span>
+<span class="n">normalize</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">point_size</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">seconds</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mi">5</span>
+<span class="n">jitter</span> <span class="o">=</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">jitter</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">point_size</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+
+<span class="c1"># 30 posterior curves</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">post_phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">post_k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="n">post_theta</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16_generalized_linear_madness_53_0.png" src="../_images/16_generalized_linear_madness_53_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="population-dynamics">
+<h2>16.4 Population dynamics<a class="headerlink" href="#population-dynamics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-16-13">
+<h3>Code 16.13<a class="headerlink" href="#code-16-13" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">LYNX_HARE_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;ko-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;throusands of pelts&quot;</span><span class="p">)</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">Year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">at</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;bo-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Lepus&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16_generalized_linear_madness_56_0.png" src="../_images/16_generalized_linear_madness_56_0.png" />
+</div>
+</div>
+<p>Above graph is showing 20 years of Lynx &amp; hare pelts (attacks).</p>
+<p>They seem to be related to each other. Both fluctuate but they seem to fluctuate together</p>
+</div>
+<div class="section" id="code-16-14">
+<h3>Code 16.14<a class="headerlink" href="#code-16-14" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_lynx_hare</span><span class="p">(</span><span class="n">n_steps</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.002</span><span class="p">):</span>
+    <span class="n">L0</span> <span class="o">=</span> <span class="n">init</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">H0</span> <span class="o">=</span> <span class="n">init</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="n">H</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="n">H_i</span> <span class="o">=</span> <span class="n">H</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">H</span> <span class="o">*</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">L</span><span class="p">)</span>
+        <span class="n">L_i</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">H</span> <span class="o">-</span> <span class="n">theta</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">H_i</span><span class="p">,</span> <span class="n">L_i</span><span class="p">)</span>
+
+    <span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">L0</span><span class="p">))</span>
+    
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">H</span><span class="o">.</span><span class="n">numpy</span><span class="p">()])</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">L0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">L</span><span class="o">.</span><span class="n">numpy</span><span class="p">()])</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">L</span><span class="p">,</span> <span class="n">H</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-16-15">
+<h3>Code 16.15<a class="headerlink" href="#code-16-15" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">sim_lynx_hare</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">theta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Hare population</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Lynx population</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+              <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;number (thousands)&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16_generalized_linear_madness_61_0.png" src="../_images/16_generalized_linear_madness_61_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-16-16">
+<h3>Code 16.16<a class="headerlink" href="#code-16-16" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">Ht</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">Ht</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;thousand of pelts&quot;</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16_generalized_linear_madness_63_0.png" src="../_images/16_generalized_linear_madness_63_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-16-17">
+<h2>Code 16.17<a class="headerlink" href="#code-16-17" title="Permalink to this headline">¶</a></h2>
+<p>Ordinary differential equations</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="15_missing_data_and_other_opportunities.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 15 - Missing Data and Other Opportunities</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="17_horoscopes.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 17 - Horoscopes</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Richard McElreath<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

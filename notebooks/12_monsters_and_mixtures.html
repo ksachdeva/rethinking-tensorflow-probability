@@ -1,0 +1,1352 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 12 - Monsters and Mixtures &#8212; Statistical Rethinking (2nd Edition)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ksachdeva.github.io/rethinking-tensorflow-probability/notebooks/12_monsters_and_mixtures.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 13 - Models with Memory" href="13_models_with_memory.html" />
+    <link rel="prev" title="Chapter 11 - God Spiked the Integers" href="11_god_spiked_the_integers.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Rethinking (2nd Edition)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Statistical Rethinking (2nd Edition) with Tensorflow Probability
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_the_golem_of_prague.html">
+   Chapter 1 The Gloem of Prague
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_small_worlds_and_large_worlds.html">
+   Chapter 2 - Small Worlds and Large Worlds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_sampling_the_imaginary.html">
+   Chapter 3 - Sampling the Imaginary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_geocentric_models.html">
+   Chapter 4 - Geocentric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_the_many_variables_and_the_spurious_waffles.html">
+   Chapter 5 - The Many Variables &amp; The Spurious Waffles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_the_haunted_dag_and_the_causal_terror.html">
+   Chapter 6 - The Haunted DAG and The Causal Terror
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_ulysses_compass.html">
+   Chapter 7 - Ulysses’ Compass
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_conditional_manatees.html">
+   Chapter 8 - Conditional Manatees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_markov_chain_monte_carlo.html">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_big_entropy_and_the_generalized_linear_model.html">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_god_spiked_the_integers.html">
+   Chapter 11 - God Spiked the Integers
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_models_with_memory.html">
+   Chapter 13 - Models with Memory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_adventures_in_covariance.html">
+   Chapter 14 - Adventures in Covariance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_missing_data_and_other_opportunities.html">
+   Chapter 15 - Missing Data and Other Opportunities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_generalized_linear_madness.html">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_horoscopes.html">
+   Chapter 17 - Horoscopes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/12_monsters_and_mixtures.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability/issues/new?title=Issue%20on%20page%20%2Fnotebooks/12_monsters_and_mixtures.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master?urlpath=tree/notebooks/12_monsters_and_mixtures.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+       Tensorflow MCMC sampling helpers
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-urls-utils">
+       Dataset URLs &amp; Utils
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#over-dispersed-counts">
+     12.1 Over-dispersed counts
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beta-binomial">
+       12.1.1 Beta-binomial
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-1">
+         Code 12.1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-2">
+         Code 12.2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-3">
+         Code 12.3
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-4">
+         Code 12.4
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-5">
+         Code 12.5
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#negative-binomial-or-gamma-poisson">
+       12.1.2 Negative-binomial or gamma-Poisson
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-6-not-working">
+         Code 12.6  (Not working !)
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zero-inflated-outcomes-todo">
+     12.2 Zero-inflated outcomes (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordered-categorical-outcomes-todo">
+     12.3 Ordered categorical outcomes (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordered-categorical-predictors-todo">
+     12.4 Ordered categorical predictors (TODO)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 12 - Monsters and Mixtures</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+       Tensorflow MCMC sampling helpers
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-urls-utils">
+       Dataset URLs &amp; Utils
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#over-dispersed-counts">
+     12.1 Over-dispersed counts
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beta-binomial">
+       12.1.1 Beta-binomial
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-1">
+         Code 12.1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-2">
+         Code 12.2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-3">
+         Code 12.3
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-4">
+         Code 12.4
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-5">
+         Code 12.5
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#negative-binomial-or-gamma-poisson">
+       12.1.2 Negative-binomial or gamma-Poisson
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-12-6-not-working">
+         Code 12.6  (Not working !)
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zero-inflated-outcomes-todo">
+     12.2 Zero-inflated outcomes (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordered-categorical-outcomes-todo">
+     12.3 Ordered categorical outcomes (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordered-categorical-predictors-todo">
+     12.4 Ordered categorical predictors (TODO)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/12_monsters_and_mixtures.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-12-monsters-and-mixtures">
+<h1>Chapter 12 - Monsters and Mixtures<a class="headerlink" href="#chapter-12-monsters-and-mixtures" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports-and-utility-functions">
+<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
+<span class="k">try</span><span class="p">:</span>
+  <span class="kn">import</span> <span class="nn">google.colab</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip install -q watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
+
+<span class="c1"># visualization </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># aliases</span>
+<span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
+<span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
+<span class="n">Root</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="o">.</span><span class="n">Root</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:35:15.588741: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 21:35:15.588781: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy                 : 1.21.5
+tensorflow            : 2.7.0
+tensorflow_probability: 0.15.0
+arviz                 : 0.11.4
+scipy                 : 1.7.3
+pandas                : 1.3.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tensorflow-mcmc-sampling-helpers">
+<h3>Tensorflow MCMC sampling helpers<a class="headerlink" href="#tensorflow-mcmc-sampling-helpers" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
+<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
+
+<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
+        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
+        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
+        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
+        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+              <span class="n">bijectors</span><span class="p">,</span> 
+              <span class="n">step_size</span><span class="p">,</span> 
+              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
+              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
+              <span class="p">):</span>    
+
+    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+        <span class="p">)</span>
+
+    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
+                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
+                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
+                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
+
+    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
+        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
+
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
+        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
+        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+    <span class="p">)</span>    
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
+        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
+
+<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
+              <span class="n">observed_data</span><span class="p">,</span> 
+              <span class="n">params</span><span class="p">,</span> 
+              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
+        
+    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
+
+    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+                                  <span class="n">bijectors</span><span class="p">,</span>
+                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
+                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
+                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
+                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
+
+    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
+    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
+        
+    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
+        
+        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
+
+    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
+
+    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
+                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-urls-utils">
+<h3>Dataset URLs &amp; Utils<a class="headerlink" href="#dataset-urls-utils" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
+<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/master/data&quot;</span>
+
+<span class="n">UCBADMIT_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/UCBadmit.csv&quot;</span>
+<span class="n">KLINE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Kline.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A utility method to convert data (columns) from pandas dataframe</span>
+<span class="c1"># into tensors with appropriate type</span>
+<span class="k">def</span> <span class="nf">df_to_tensors</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">default_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; name : Name of the dataset</span>
+<span class="sd">        df : pandas dataframe</span>
+<span class="sd">        colums : a list of names that have the same type or</span>
+<span class="sd">                 a dictionary where keys are the column names and values are the tensorflow type (e.g. tf.float32)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
+        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span>        
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">default_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">column_names</span><span class="p">]</span>    
+        
+    <span class="c1"># build the cls</span>
+    <span class="n">tuple_cls</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">column_names</span><span class="p">)</span>    
+    <span class="c1"># build the obj</span>
+    <span class="k">return</span> <span class="n">tuple_cls</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="over-dispersed-counts">
+<h2>12.1 Over-dispersed counts<a class="headerlink" href="#over-dispersed-counts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="beta-binomial">
+<h3>12.1.1 Beta-binomial<a class="headerlink" href="#beta-binomial" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-12-1">
+<h4>Code 12.1<a class="headerlink" href="#code-12-1" title="Permalink to this headline">¶</a></h4>
+<p>A beta distribution is a probability distribution for probabilities !</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pbar</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1"># mean</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># total concentration</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:35:18.199020: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 21:35:18.199114: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 21:35:18.199147: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-17 21:35:18.199514: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+</pre></div>
+</div>
+<img alt="../_images/12_monsters_and_mixtures_17_2.png" src="../_images/12_monsters_and_mixtures_17_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-12-2">
+<h4>Code 12.2<a class="headerlink" href="#code-12-2" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">UCBADMIT_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;gid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;applicant.gender&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;male&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">&quot;gid&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;applications&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="s2">&quot;admit&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="s2">&quot;reject&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_12_1</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
+      <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+      <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+      <span class="n">theta</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">+</span> <span class="mi">2</span>
+      <span class="n">pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>        
+        
+      <span class="c1"># prepare the concentration vector</span>
+      <span class="n">concentration1</span> <span class="o">=</span> <span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+      <span class="n">concentration0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>    
+    
+      <span class="n">concentration</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">concentration1</span><span class="p">,</span> <span class="n">concentration0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        
+      <span class="c1"># outcome A i.e. admit  </span>
+      <span class="c1"># since it is a multinomial we will have K = 2</span>
+      <span class="c1"># note -  this does not really behave like Binomial in terms of the sample shape</span>
+      <span class="n">A</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">DirichletMultinomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="n">concentration</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
+      
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
+    
+<span class="n">jdc_12_1</span> <span class="o">=</span> <span class="n">model_12_1</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">gid</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">applications</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-12-3">
+<h4>Code 12.3<a class="headerlink" href="#code-12-3" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the expected shape by the DirichletMultinomial  </span>
+<span class="n">obs_values</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tdf</span><span class="o">.</span><span class="n">admit</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">reject</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBER_OF_CHAINS_12_1</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS_12_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS_12_1</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+<span class="p">]</span>
+
+
+<span class="n">posterior_12_1</span><span class="p">,</span> <span class="n">trace_12_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
+                                <span class="n">jdc_12_1</span><span class="p">,</span> 
+                                <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                                <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">obs_values</span><span class="p">,),</span> 
+                                <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+                                <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+                                <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;phi&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the difference between alphas</span>
+<span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;da&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> \
+         <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># compute theta</span>
+<span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;phi&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace_12_1</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_5.5%</th>
+      <th>hdi_94.5%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>alpha[0]</th>
+      <td>-0.400</td>
+      <td>0.424</td>
+      <td>-1.031</td>
+      <td>0.275</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>741.0</td>
+      <td>835.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[1]</th>
+      <td>-0.284</td>
+      <td>0.432</td>
+      <td>-0.953</td>
+      <td>0.375</td>
+      <td>0.017</td>
+      <td>0.013</td>
+      <td>631.0</td>
+      <td>490.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>phi</th>
+      <td>0.501</td>
+      <td>0.745</td>
+      <td>-0.605</td>
+      <td>1.776</td>
+      <td>0.055</td>
+      <td>0.042</td>
+      <td>191.0</td>
+      <td>228.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>da</th>
+      <td>-0.115</td>
+      <td>0.608</td>
+      <td>-1.153</td>
+      <td>0.735</td>
+      <td>0.023</td>
+      <td>0.017</td>
+      <td>676.0</td>
+      <td>538.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>theta</th>
+      <td>2.501</td>
+      <td>0.745</td>
+      <td>1.395</td>
+      <td>3.776</td>
+      <td>0.055</td>
+      <td>0.041</td>
+      <td>191.0</td>
+      <td>228.0</td>
+      <td>1.01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="code-12-4">
+<h4>Code 12.4<a class="headerlink" href="#code-12-4" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since we have two chains and data is stored in InferenceData format</span>
+<span class="c1"># we have to manually extract it</span>
+<span class="c1">#</span>
+<span class="c1"># Here I am using the data from chain 0</span>
+<span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">sample_theta</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gid</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># draw posterior mean beta distribution</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">[:,</span> <span class="n">gid</span><span class="p">]))</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">sample_theta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;probability admit&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+
+<span class="c1"># draw 50 beta distributions sampled from posterior</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">gid</span><span class="p">])</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">sample_theta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">theta</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+             <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;distribution of female admission rates&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12_monsters_and_mixtures_29_0.png" src="../_images/12_monsters_and_mixtures_29_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-12-5">
+<h4>Code 12.5<a class="headerlink" href="#code-12-5" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get samples given the posterior distribution</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">gid</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">gid</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">sample_pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>    
+
+<span class="c1"># need to reshape it to make it happy</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sample_theta</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># prepare the concentration vector</span>
+<span class="n">concentration1</span> <span class="o">=</span> <span class="n">sample_pbar</span> <span class="o">*</span> <span class="n">st</span>
+<span class="n">concentration0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sample_pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">st</span>    
+
+<span class="n">concentration</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">concentration1</span><span class="p">,</span> <span class="n">concentration0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">dist</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">DirichletMultinomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="n">concentration</span><span class="p">)</span>
+
+<span class="n">predictive_samples</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numpy style indexing magic ! .. hate it !</span>
+<span class="n">admit_rate</span> <span class="o">=</span> <span class="n">predictive_samples</span><span class="p">[::,::,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+             <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">elinewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;k+&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mf">94.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;k+&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12_monsters_and_mixtures_33_0.png" src="../_images/12_monsters_and_mixtures_33_0.png" />
+</div>
+</div>
+<p>In the above plot, the vertifical axis shows the predicted proportion admitted, for each case on the horizontal.</p>
+<p>Blue points show the empirical proportion admitted on each row of data</p>
+<p>Open circles are the posterior mean pbar and + symbols mark the 89% interval of predicted counts of admission</p>
+</div>
+</div>
+<div class="section" id="negative-binomial-or-gamma-poisson">
+<h3>12.1.2 Negative-binomial or gamma-Poisson<a class="headerlink" href="#negative-binomial-or-gamma-poisson" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-12-6-not-working">
+<h4>Code 12.6  (Not working !)<a class="headerlink" href="#code-12-6-not-working" title="Permalink to this headline">¶</a></h4>
+<p>Start to use <strong>Gamma-Poisson</strong> (also known as <strong>Negative Binomial</strong>) models.</p>
+<p>Essentially Gamm-Poisson is about associating a rate to each Posisson count observation. Estimates the shape of gamma distribution to describe the Poisson rates across cases.</p>
+<p>Gamma-Poisson also expects more variation around the mean rate.</p>
+<p>The negative binomial distribution arises naturally from a probability experiment of performing a series of independent Bernoulli trials until the occurrence of the rth success where r is a positive integer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">KLINE_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;P&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">population</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;cid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;high&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>culture</th>
+      <th>population</th>
+      <th>contact</th>
+      <th>total_tools</th>
+      <th>mean_TU</th>
+      <th>P</th>
+      <th>cid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Malekula</td>
+      <td>1100</td>
+      <td>low</td>
+      <td>13</td>
+      <td>3.2</td>
+      <td>-1.291473</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Tikopia</td>
+      <td>1500</td>
+      <td>low</td>
+      <td>22</td>
+      <td>4.7</td>
+      <td>-1.088551</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Santa Cruz</td>
+      <td>3600</td>
+      <td>low</td>
+      <td>24</td>
+      <td>4.0</td>
+      <td>-0.515765</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Yap</td>
+      <td>4791</td>
+      <td>high</td>
+      <td>43</td>
+      <td>5.0</td>
+      <td>-0.328773</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Lau Fiji</td>
+      <td>7400</td>
+      <td>high</td>
+      <td>33</td>
+      <td>5.0</td>
+      <td>-0.044339</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_12_2</span><span class="p">(</span><span class="n">cid</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
+      <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+      <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+      <span class="n">gamma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+      <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+      <span class="n">lambda_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> \
+              <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span> <span class="o">/</span> <span class="n">gamma</span>
+    
+      <span class="n">g_concentration</span> <span class="o">=</span> <span class="n">lambda_</span> <span class="o">/</span> <span class="n">phi</span>
+      <span class="n">g_rate</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">phi</span>
+    
+      <span class="n">t1</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+          <span class="n">tfd</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="n">concentration</span><span class="o">=</span><span class="n">g_concentration</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">g_rate</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+      <span class="n">T</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">t1</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
+      
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+    
+<span class="n">jdc_12_2</span> <span class="o">=</span> <span class="n">model_12_2</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">cid</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">P</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+
+<span class="c1"># Issue -</span>
+<span class="c1"># Even prior sampling is not coming back !</span>
+<span class="c1"># jdc_12_2.sample()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NUMBER_OF_CHAINS_12_2 = 1</span>
+
+<span class="c1"># alpha_init, beta_init, gamma_init, phi_init, t1_init, _ = jdc_12_2.sample(2)</span>
+
+<span class="c1"># init_state = [</span>
+<span class="c1">#     alpha_init,</span>
+<span class="c1">#     beta_init,</span>
+<span class="c1">#     gamma_init,</span>
+<span class="c1">#     phi_init,</span>
+<span class="c1">#     t1_init</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># bijectors = [</span>
+<span class="c1">#     tfb.Identity(),</span>
+<span class="c1">#     tfb.Exp(),</span>
+<span class="c1">#     tfb.Exp(),</span>
+<span class="c1">#     tfb.Exp(),</span>
+<span class="c1">#     tfb.Identity(),</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># posterior_12_2, trace_12_2 = sample_posterior(jdc_12_2, </span>
+<span class="c1">#                                    observed_data=(d.total_tools.values,),</span>
+<span class="c1">#                                    init_state=init_state,</span>
+<span class="c1">#                                    bijectors=bijectors,</span>
+<span class="c1">#                                    params=[&#39;alpha&#39;, &#39;beta&#39;, &#39;gamma&#39; &#39;phi&#39;, &#39;t1&#39;])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># az.summary(trace_12_2, credible_interval=0.89)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="zero-inflated-outcomes-todo">
+<h2>12.2 Zero-inflated outcomes (TODO)<a class="headerlink" href="#zero-inflated-outcomes-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="ordered-categorical-outcomes-todo">
+<h2>12.3 Ordered categorical outcomes (TODO)<a class="headerlink" href="#ordered-categorical-outcomes-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="ordered-categorical-predictors-todo">
+<h2>12.4 Ordered categorical predictors (TODO)<a class="headerlink" href="#ordered-categorical-predictors-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="11_god_spiked_the_integers.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 11 - God Spiked the Integers</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="13_models_with_memory.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 13 - Models with Memory</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Richard McElreath<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

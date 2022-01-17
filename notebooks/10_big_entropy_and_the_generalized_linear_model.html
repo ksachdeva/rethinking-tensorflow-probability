@@ -1,0 +1,1022 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 10 - Big Entropy and The Generalized Linear Model &#8212; Statistical Rethinking (2nd Edition)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ksachdeva.github.io/rethinking-tensorflow-probability/notebooks/10_big_entropy_and_the_generalized_linear_model.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 11 - God Spiked the Integers" href="11_god_spiked_the_integers.html" />
+    <link rel="prev" title="Chapter 9 - Markov Chain Monte Carlo" href="09_markov_chain_monte_carlo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Rethinking (2nd Edition)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Statistical Rethinking (2nd Edition) with Tensorflow Probability
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_the_golem_of_prague.html">
+   Chapter 1 The Gloem of Prague
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_small_worlds_and_large_worlds.html">
+   Chapter 2 - Small Worlds and Large Worlds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_sampling_the_imaginary.html">
+   Chapter 3 - Sampling the Imaginary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_geocentric_models.html">
+   Chapter 4 - Geocentric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_the_many_variables_and_the_spurious_waffles.html">
+   Chapter 5 - The Many Variables &amp; The Spurious Waffles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_the_haunted_dag_and_the_causal_terror.html">
+   Chapter 6 - The Haunted DAG and The Causal Terror
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_ulysses_compass.html">
+   Chapter 7 - Ulysses’ Compass
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_conditional_manatees.html">
+   Chapter 8 - Conditional Manatees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_markov_chain_monte_carlo.html">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_god_spiked_the_integers.html">
+   Chapter 11 - God Spiked the Integers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_monsters_and_mixtures.html">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_models_with_memory.html">
+   Chapter 13 - Models with Memory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_adventures_in_covariance.html">
+   Chapter 14 - Adventures in Covariance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_missing_data_and_other_opportunities.html">
+   Chapter 15 - Missing Data and Other Opportunities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_generalized_linear_madness.html">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_horoscopes.html">
+   Chapter 17 - Horoscopes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/10_big_entropy_and_the_generalized_linear_model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability/issues/new?title=Issue%20on%20page%20%2Fnotebooks/10_big_entropy_and_the_generalized_linear_model.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master?urlpath=tree/notebooks/10_big_entropy_and_the_generalized_linear_model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maximum-entropy">
+     10.1 Maximum entropy
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-1">
+       Code 10.1
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-2">
+       Code 10.2
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-3">
+       Code 10.3
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-4">
+       Code 10.4
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binomial">
+       10.1.2 Binomial
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-5">
+         Code 10.5
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-6">
+         Code 10.6
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-7">
+         Code 10.7
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-8">
+         Code 10.8
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-9">
+         Code 10.9
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-10">
+         Code 10.10
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-11">
+         Code 10.11
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-12">
+         Code 10.12
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-13">
+         Code 10.13
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 10 - Big Entropy and The Generalized Linear Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maximum-entropy">
+     10.1 Maximum entropy
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-1">
+       Code 10.1
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-2">
+       Code 10.2
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-3">
+       Code 10.3
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-10-4">
+       Code 10.4
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binomial">
+       10.1.2 Binomial
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-5">
+         Code 10.5
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-6">
+         Code 10.6
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-7">
+         Code 10.7
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-8">
+         Code 10.8
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-9">
+         Code 10.9
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-10">
+         Code 10.10
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-11">
+         Code 10.11
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-12">
+         Code 10.12
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-10-13">
+         Code 10.13
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/10_big_entropy_and_the_generalized_linear_model.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-10-big-entropy-and-the-generalized-linear-model">
+<h1>Chapter 10 - Big Entropy and The Generalized Linear Model<a class="headerlink" href="#chapter-10-big-entropy-and-the-generalized-linear-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports-and-utility-functions">
+<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
+<span class="k">try</span><span class="p">:</span>
+  <span class="kn">import</span> <span class="nn">google.colab</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip install -q watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
+
+<span class="c1"># visualization </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># aliases</span>
+<span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:33:27.627080: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 21:33:27.627121: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy                 : 1.21.5
+tensorflow            : 2.7.0
+tensorflow_probability: 0.15.0
+arviz                 : 0.11.4
+scipy                 : 1.7.3
+pandas                : 1.3.5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="maximum-entropy">
+<h2>10.1 Maximum entropy<a class="headerlink" href="#maximum-entropy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-10-1">
+<h3>Code 10.1<a class="headerlink" href="#code-10-1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+     <span class="s1">&#39;B&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+     <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+     <span class="s1">&#39;D&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+     <span class="s1">&#39;E&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-2">
+<h3>Code 10.2<a class="headerlink" href="#code-10-2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_norm</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-3">
+<h3>Code 10.3<a class="headerlink" href="#code-10-3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">p_norm</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">entropy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">H</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A   -0.000000
+B    0.639032
+C    0.950271
+D    1.470808
+E    1.609438
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-4">
+<h3>Code 10.4<a class="headerlink" href="#code-10-4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ways</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1260</span><span class="p">,</span> <span class="mi">37800</span><span class="p">,</span> <span class="mi">113400</span><span class="p">])</span>
+<span class="n">logwayspp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ways</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="binomial">
+<h3>10.1.2 Binomial<a class="headerlink" href="#binomial" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-10-5">
+<h4>Code 10.5<a class="headerlink" href="#code-10-5" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build list of the candidate distributions.</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">]]</span>
+
+<span class="c1"># Compute expected value of each. The sum of the multiplied entries is just a dot product.</span>
+<span class="n">p_ev</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]</span>
+<span class="n">p_ev</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 1.0, 1.0, 1.0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-6">
+<h4>Code 10.6<a class="headerlink" href="#code-10-6" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute entropy of each distribution</span>
+<span class="n">p_ent</span> <span class="o">=</span> <span class="p">[</span><span class="n">entropy</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]</span>
+<span class="n">p_ent</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.3862943611198906,
+ 1.3296613488547582,
+ 1.3296613488547582,
+ 1.2130075659799042]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-7">
+<h4>Code 10.7<a class="headerlink" href="#code-10-7" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">**</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.09000000000000002,
+ 0.21000000000000002,
+ 0.21000000000000002,
+ 0.48999999999999994]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-8">
+<h4>Code 10.8<a class="headerlink" href="#code-10-8" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.221728604109787
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-9">
+<h4>Code 10.9<a class="headerlink" href="#code-10-9" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_p</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">1.4</span><span class="p">):</span>
+    <span class="n">x123</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">x4</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x123</span><span class="p">)</span> <span class="o">-</span> <span class="n">x123</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x123</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">G</span><span class="p">)</span>
+    <span class="n">x1234</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x123</span><span class="p">,</span> <span class="p">[</span><span class="n">x4</span><span class="p">]))</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x1234</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">x1234</span> <span class="o">/</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-10">
+<h4>Code 10.10<a class="headerlink" href="#code-10-10" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># should re-write this using map</span>
+<span class="n">H</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">p_</span> <span class="o">=</span> <span class="n">sim_p</span><span class="p">()</span>
+    <span class="n">H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">[</span><span class="n">rep</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:33:30.356451: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 21:33:30.356488: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 21:33:30.356549: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-17 21:33:30.356934: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2244</span><span class="o">/</span><span class="mf">2183151899.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">h</span><span class="p">,</span> <span class="n">p_</span> <span class="o">=</span> <span class="n">sim_p</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">p</span><span class="p">[</span><span class="n">rep</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_</span>
+
+<span class="nn">/tmp/ipykernel_2244/1738301079.py</span> in <span class="ni">sim_p</span><span class="nt">(G)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">sim_p</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">1.4</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">x123</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">x4</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x123</span><span class="p">)</span> <span class="o">-</span> <span class="n">x123</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x123</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">G</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">x1234</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x123</span><span class="p">,</span> <span class="p">[</span><span class="n">x4</span><span class="p">]))</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x1234</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="sd">     with self._name_and_control_scope(name):</span>
+<span class="ne">-&gt; </span><span class="mi">1234</span><span class="sd">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="sd">     samples = self._sample_n(</span>
+<span class="ne">-&gt; </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/uniform.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="sd">     high = tf.convert_to_tensor(self.high)</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="sd">     shape = ps.concat([[n], self._batch_shape_tensor(</span>
+<span class="ne">--&gt; </span><span class="mi">155</span><span class="sd">         low=low, high=high)], 0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     samples = samplers.uniform(shape=shape, dtype=self.dtype, seed=seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd">     return low + self._range(low=low, high=high) * samples</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_batch_shape_tensor</span><span class="nt">(self, **parameter_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span><span class="sd">     try:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span><span class="sd">       return batch_shape_lib.inferred_batch_shape_tensor(</span>
+<span class="ne">-&gt; </span><span class="mi">1014</span><span class="sd">           self, **parameter_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span><span class="sd">     except NotImplementedError:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span><span class="sd">       raise NotImplementedError(&#39;Cannot compute batch shape of distribution &#39;</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">inferred_batch_shape_tensor</span><span class="nt">(batch_object, bijector_x_event_ndims, **parameter_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd">       bijector_x_event_ndims=bijector_x_event_ndims,</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="sd">       require_static=False,</span>
+<span class="ne">--&gt; </span><span class="mi">115</span><span class="sd">       **parameter_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span><span class="sd">   return functools.reduce(ps.broadcast_shape, tf.nest.flatten(batch_shapes), [])</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">map_fn_over_parameters_with_event_ndims</span><span class="nt">(batch_object, fn, bijector_x_event_ndims, require_static, **parameter_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span><span class="sd">     results[param_name] = nest.map_structure_up_to(</span>
+<span class="ne">--&gt; </span><span class="mi">362</span><span class="sd">         param, fn, param, param_event_ndims)</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="sd">   return results</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">map_structure_up_to</span><span class="nt">(shallow_tree, func, *inputs, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1378</span><span class="sd">       lambda _, *values: func(*values),  # Discards the path arg.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1379</span><span class="sd">       *inputs,</span>
+<span class="ne">-&gt; </span><span class="mi">1380</span><span class="sd">       **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1381</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1382</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">map_structure_with_tuple_paths_up_to</span><span class="nt">(shallow_tree, func, *inputs, **kwargs)</span>
+<span class="nn">   1473       path for path, _</span> in <span class="ni">_yield_flat_up_to</span><span class="nt">(shallow_tree, inputs[0], is_seq))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1474</span><span class="sd">   results = [</span>
+<span class="nn">-&gt; 1475       func(*args, **kwargs) for args</span> in <span class="ni">zip</span><span class="nt">(flat_path_gen, *flat_value_gen)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1476</span><span class="sd">   ]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1477</span><span class="sd">   return pack_sequence_as(structure=shallow_tree, flat_sequence=results,</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="nn">   1473       path for path, _</span> in <span class="ni">_yield_flat_up_to</span><span class="nt">(shallow_tree, inputs[0], is_seq))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1474</span><span class="sd">   results = [</span>
+<span class="nn">-&gt; 1475       func(*args, **kwargs) for args</span> in <span class="ni">zip</span><span class="nt">(flat_path_gen, *flat_value_gen)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1476</span><span class="sd">   ]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1477</span><span class="sd">   return pack_sequence_as(structure=shallow_tree, flat_sequence=results,</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(_, *values)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1376</span><span class="sd">   return map_structure_with_tuple_paths_up_to(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1377</span><span class="sd">       shallow_tree,</span>
+<span class="ne">-&gt; </span><span class="mi">1378</span><span class="sd">       lambda _, *values: func(*values),  # Discards the path arg.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1379</span><span class="sd">       *inputs,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1380</span><span class="sd">       **kwargs)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">get_batch_shape_tensor_part</span><span class="nt">(x, event_ndims)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span><span class="sd">   else:</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span><span class="sd">     base_shape = tf.shape(x)</span>
+<span class="ne">--&gt; </span><span class="mi">139</span><span class="sd">   return _truncate_shape_tensor(base_shape, event_ndims)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">_truncate_shape_tensor</span><span class="nt">(shape, rightmost_ndims_to_truncate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="sd">       # actually has, if that&#39;s fewer than `event_ndims` (i.e.,</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="sd">       # if it relies on broadcasting).</span>
+<span class="ne">--&gt; </span><span class="mi">185</span><span class="sd">       ps.minimum(rightmost_ndims_to_truncate, base_rank))]</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="sd">     filtered_tb = None</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="sd">     try:</span>
+<span class="ne">--&gt; </span><span class="mi">150</span><span class="sd">       return fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="sd">     except Exception as e:</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="sd">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="sd">       # Fallback dispatch system (dispatch v1):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="sd">       try:</span>
+<span class="ne">-&gt; </span><span class="mi">1096</span><span class="sd">         return dispatch_target(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="sd">       except (TypeError, ValueError):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="sd">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/array_ops.py</span> in <span class="ni">_slice_helper</span><span class="nt">(tensor, slice_spec, var)</span>
+<span class="g g-Whitespace">    </span><span class="mi">964</span><span class="sd">       tf.newaxis or scalar int32/int64 tensors.</span>
+<span class="g g-Whitespace">    </span><span class="mi">965</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">966</span>   <span class="n">tensor</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">967</span>   <span class="c1"># TODO(wangpeng): Consider supporting var</span>
+<span class="g g-Whitespace">    </span><span class="mi">968</span>   <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ops</span><span class="o">.</span><span class="n">_numpy_style_slicing</span><span class="p">:</span>  <span class="c1"># pylint: disable=protected-access</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Entropy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10_big_entropy_and_the_generalized_linear_model_30_0.png" src="../_images/10_big_entropy_and_the_generalized_linear_model_30_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-10-11">
+<h4>Code 10.11<a class="headerlink" href="#code-10-11" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entropies</span> <span class="o">=</span> <span class="n">H</span>
+<span class="n">distributions</span> <span class="o">=</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-12">
+<h4>Code 10.12<a class="headerlink" href="#code-10-12" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.221727963784415
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-10-13">
+<h4>Code 10.13<a class="headerlink" href="#code-10-13" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">H</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.08976286, 0.21026032, 0.21021396, 0.48976286])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="09_markov_chain_monte_carlo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 9 - Markov Chain Monte Carlo</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="11_god_spiked_the_integers.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 11 - God Spiked the Integers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Richard McElreath<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

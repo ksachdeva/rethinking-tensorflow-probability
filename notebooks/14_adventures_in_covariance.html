@@ -1,0 +1,1950 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 14 - Adventures in Covariance &#8212; Statistical Rethinking (2nd Edition)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ksachdeva.github.io/rethinking-tensorflow-probability/notebooks/14_adventures_in_covariance.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 15 - Missing Data and Other Opportunities" href="15_missing_data_and_other_opportunities.html" />
+    <link rel="prev" title="Chapter 13 - Models with Memory" href="13_models_with_memory.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Rethinking (2nd Edition)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Statistical Rethinking (2nd Edition) with Tensorflow Probability
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_the_golem_of_prague.html">
+   Chapter 1 The Gloem of Prague
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_small_worlds_and_large_worlds.html">
+   Chapter 2 - Small Worlds and Large Worlds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_sampling_the_imaginary.html">
+   Chapter 3 - Sampling the Imaginary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_geocentric_models.html">
+   Chapter 4 - Geocentric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_the_many_variables_and_the_spurious_waffles.html">
+   Chapter 5 - The Many Variables &amp; The Spurious Waffles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_the_haunted_dag_and_the_causal_terror.html">
+   Chapter 6 - The Haunted DAG and The Causal Terror
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_ulysses_compass.html">
+   Chapter 7 - Ulysses’ Compass
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_conditional_manatees.html">
+   Chapter 8 - Conditional Manatees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_markov_chain_monte_carlo.html">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_big_entropy_and_the_generalized_linear_model.html">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_god_spiked_the_integers.html">
+   Chapter 11 - God Spiked the Integers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_monsters_and_mixtures.html">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_models_with_memory.html">
+   Chapter 13 - Models with Memory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 14 - Adventures in Covariance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_missing_data_and_other_opportunities.html">
+   Chapter 15 - Missing Data and Other Opportunities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_generalized_linear_madness.html">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_horoscopes.html">
+   Chapter 17 - Horoscopes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/14_adventures_in_covariance.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability/issues/new?title=Issue%20on%20page%20%2Fnotebooks/14_adventures_in_covariance.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master?urlpath=tree/notebooks/14_adventures_in_covariance.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 14 - Adventures in Covariance
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+     Tensorflow MCMC Sampling helpers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-urls">
+     Dataset URLs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#varying-slopes-by-construction">
+     14.1 Varying slopes by construction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simulate-the-population">
+       14.1.1 Simulate the population
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-1">
+         Code 14.1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-2">
+         Code 14.2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-3">
+         Code 14.3
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-4">
+         Code 14.4
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-5">
+         Code 14.5
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-6">
+         Code 14.6
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-7">
+         Code 14.7
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-8">
+         Code 14.8
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-9">
+         Code 14.9
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simulate-observations">
+       14.1.2 Simulate observations
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-10">
+         Code 14.10
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-vaying-slopes-model">
+       14.1.3 The vaying slopes model
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-11">
+         Code 14.11
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-12">
+         Code 14.12
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-13">
+         Code 14.13
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-14">
+         Code 14.14
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-15">
+         Code 14.15
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-16">
+         Code 14.16
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-17">
+         Code 14.17
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advanced-varying-slopes">
+     14.2 Advanced varying slopes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-14-18">
+       Code 14.18
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instruments-and-causal-designs-todo">
+     14.3 Instruments and causal designs (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#social-relations-as-correlated-varying-effects-todo">
+     14.4 Social relations as correlated varying effects (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuous-categories-and-the-gaussian-process-todo">
+     14.5 Continuous categories and the Gaussian process (TODO)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 14 - Adventures in Covariance</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 14 - Adventures in Covariance
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+     Tensorflow MCMC Sampling helpers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-urls">
+     Dataset URLs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#varying-slopes-by-construction">
+     14.1 Varying slopes by construction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simulate-the-population">
+       14.1.1 Simulate the population
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-1">
+         Code 14.1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-2">
+         Code 14.2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-3">
+         Code 14.3
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-4">
+         Code 14.4
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-5">
+         Code 14.5
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-6">
+         Code 14.6
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-7">
+         Code 14.7
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-8">
+         Code 14.8
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-9">
+         Code 14.9
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simulate-observations">
+       14.1.2 Simulate observations
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-10">
+         Code 14.10
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-vaying-slopes-model">
+       14.1.3 The vaying slopes model
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-11">
+         Code 14.11
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-12">
+         Code 14.12
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-13">
+         Code 14.13
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-14">
+         Code 14.14
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-15">
+         Code 14.15
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-16">
+         Code 14.16
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-14-17">
+         Code 14.17
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advanced-varying-slopes">
+     14.2 Advanced varying slopes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-14-18">
+       Code 14.18
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instruments-and-causal-designs-todo">
+     14.3 Instruments and causal designs (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#social-relations-as-correlated-varying-effects-todo">
+     14.4 Social relations as correlated varying effects (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuous-categories-and-the-gaussian-process-todo">
+     14.5 Continuous categories and the Gaussian process (TODO)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/14_adventures_in_covariance.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-14-adventures-in-covariance">
+<h1>Chapter 14 - Adventures in Covariance<a class="headerlink" href="#chapter-14-adventures-in-covariance" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports-and-utility-functions">
+<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
+<span class="k">try</span><span class="p">:</span>
+  <span class="kn">import</span> <span class="nn">google.colab</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip install -q watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
+
+<span class="c1"># visualization </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span><span class="p">,</span> <span class="n">transforms</span>
+
+<span class="c1"># aliases</span>
+<span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
+<span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
+<span class="n">Root</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="o">.</span><span class="n">Root</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:36:41.387398: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 21:36:41.387437: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy                 : 1.21.5
+tensorflow            : 2.7.0
+tensorflow_probability: 0.15.0
+arviz                 : 0.11.4
+scipy                 : 1.7.3
+pandas                : 1.3.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tensorflow-mcmc-sampling-helpers">
+<h2>Tensorflow MCMC Sampling helpers<a class="headerlink" href="#tensorflow-mcmc-sampling-helpers" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
+<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
+<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
+
+<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
+        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
+        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
+        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
+        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+              <span class="n">bijectors</span><span class="p">,</span> 
+              <span class="n">step_size</span><span class="p">,</span> 
+              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
+              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
+              <span class="p">):</span>    
+
+    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+        <span class="p">)</span>
+
+    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
+                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
+                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
+                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
+
+    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
+        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
+
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
+        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
+        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+    <span class="p">)</span>    
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
+        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
+
+<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
+              <span class="n">observed_data</span><span class="p">,</span> 
+              <span class="n">params</span><span class="p">,</span> 
+              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
+        
+    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
+
+    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+                                  <span class="n">bijectors</span><span class="p">,</span>
+                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
+                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
+                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
+                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
+
+    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
+    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
+        
+    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
+        
+        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
+
+    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
+
+    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
+                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-urls">
+<h2>Dataset URLs<a class="headerlink" href="#dataset-urls" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
+<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/master/data&quot;</span>
+
+<span class="n">CHIMPANZEE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/chimpanzees.csv&quot;</span>
+<span class="n">KOSTER_LECKIE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/KosterLeckie.csv&quot;</span>
+<span class="n">ISLANDS_DISTMATRIX_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/islandsDistMatrix.csv&quot;</span>
+<span class="n">KLINE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Kline2.csv&quot;</span>
+<span class="n">PRIMATES301_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Primates301.csv&quot;</span>
+<span class="n">PRIMATES301_VCOV_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Primates301_vcov_matrix.csv&quot;</span>
+<span class="n">PRIMATES301_DISTANCE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Primates301_distance_matrix.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="varying-slopes-by-construction">
+<h2>14.1 Varying slopes by construction<a class="headerlink" href="#varying-slopes-by-construction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simulate-the-population">
+<h3>14.1.1 Simulate the population<a class="headerlink" href="#simulate-the-population" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-14-1">
+<h4>Code 14.1<a class="headerlink" href="#code-14-1" title="Permalink to this headline">¶</a></h4>
+<p>Simulate the population</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.5</span>  <span class="c1"># average morning wait time</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># average difference afternoon wait time</span>
+<span class="n">sigma_a</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># std dev in intercepts</span>
+<span class="n">sigma_b</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># std dev in slopes</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.7</span>  <span class="c1"># correlation between intercepts and slopes</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-2">
+<h4>Code 14.2<a class="headerlink" href="#code-14-2" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:36:43.992980: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:36:43.993026: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 21:36:43.993050: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-17 21:36:43.993461: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The value in a is the mean intercept, the wait in the morning. And the value in b is the mean slope, the difference in wait between afternoon and morning</p>
+</div>
+<div class="section" id="code-14-3">
+<h4>Code 14.3<a class="headerlink" href="#code-14-3" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov_ab</span> <span class="o">=</span> <span class="n">sigma_a</span> <span class="o">*</span> <span class="n">sigma_b</span> <span class="o">*</span> <span class="n">rho</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="n">sigma_a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cov_ab</span><span class="p">],</span> <span class="p">[</span><span class="n">cov_ab</span><span class="p">,</span> <span class="n">sigma_b</span> <span class="o">**</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-4">
+<h4>Code 14.4<a class="headerlink" href="#code-14-4" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=int32, numpy=
+array([[1, 3],
+       [2, 4]], dtype=int32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-5">
+<h4>Code 14.5<a class="headerlink" href="#code-14-5" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigmas</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">sigma_a</span><span class="p">,</span> <span class="n">sigma_b</span><span class="p">])</span>  <span class="c1"># standard deviations</span>
+<span class="n">Rho</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">rho</span><span class="p">],</span> <span class="p">[</span><span class="n">rho</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>  <span class="c1"># correlation matrix</span>
+
+<span class="c1"># now matrix multiply to get covariance matrix</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tensor_diag</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span> <span class="o">@</span> <span class="n">Rho</span> <span class="o">@</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tensor_diag</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span>
+
+<span class="n">Sigma</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
+array([[ 1.  , -0.35],
+       [-0.35,  0.25]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-6">
+<h4>Code 14.6<a class="headerlink" href="#code-14-6" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_cafes</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-7">
+<h4>Code 14.7<a class="headerlink" href="#code-14-7" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_vary_effects</span><span class="p">():</span>
+  <span class="n">_seed</span> <span class="o">=</span> <span class="mi">5</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">_seed</span><span class="p">)</span>
+
+  <span class="n">seed</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SeedStream</span><span class="p">(</span><span class="n">_seed</span><span class="p">,</span> <span class="n">salt</span><span class="o">=</span><span class="s2">&quot;vary_effects&quot;</span><span class="p">)</span>    
+  
+  <span class="n">Mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>  
+
+  <span class="n">vary_effects</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalTriL</span><span class="p">(</span>
+      <span class="n">loc</span><span class="o">=</span><span class="n">Mu</span><span class="p">,</span>
+      <span class="n">scale_tril</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">Sigma</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">N_cafes</span><span class="p">,),</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span>
+    
+
+  <span class="k">return</span> <span class="n">vary_effects</span>
+
+<span class="n">vary_effects</span> <span class="o">=</span> <span class="n">build_vary_effects</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-8">
+<h4>Code 14.8<a class="headerlink" href="#code-14-8" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_cafe</span> <span class="o">=</span> <span class="n">vary_effects</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">b_cafe</span> <span class="o">=</span> <span class="n">vary_effects</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-9">
+<h4>Code 14.9<a class="headerlink" href="#code-14-9" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a_cafe</span><span class="p">,</span> <span class="n">b_cafe</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;intercepts (a_cafe)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;slopes (b_cafe)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">5.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">1.8</span><span class="p">,</span><span class="o">-</span><span class="mf">0.25</span><span class="p">))</span>
+
+<span class="c1"># overlay population distribution</span>
+<span class="c1"># Ref: https://matplotlib.org/gallery/statistics/confidence_ellipse.html</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">]:</span>
+    <span class="n">pearson</span> <span class="o">=</span> <span class="n">Sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">pearson</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pearson</span><span class="p">),</span>
+                      <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    <span class="n">std_dev</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">scale_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">scale_y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Affine2D</span><span class="p">()</span><span class="o">.</span><span class="n">rotate_deg</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">)</span>
+    <span class="n">ellipse</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">Mu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Mu</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14_adventures_in_covariance_33_0.png" src="../_images/14_adventures_in_covariance_33_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simulate-observations">
+<h3>14.1.2 Simulate observations<a class="headerlink" href="#simulate-observations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-14-10">
+<h4>Code 14.10<a class="headerlink" href="#code-14-10" title="Permalink to this headline">¶</a></h4>
+<p>The data we’re generating describes the waiting times in 20 different cafés. Each café has a different average waiting times in the morning and in the afternoon. The average morning waiting time is the intercept, and the difference between afternoon and morning average waiting times is the slope.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_visits</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">afternoon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">N_visits</span> <span class="o">*</span> <span class="n">N_cafes</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">cafe_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N_cafes</span><span class="p">),</span> <span class="n">N_visits</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">generate_data_frame</span><span class="p">():</span>
+  <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># std dev within cafes</span>
+
+  <span class="n">_seed</span> <span class="o">=</span> <span class="mi">22</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">_seed</span><span class="p">)</span>
+
+  <span class="n">seed</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SeedStream</span><span class="p">(</span><span class="n">_seed</span><span class="p">,</span> <span class="n">salt</span><span class="o">=</span><span class="s2">&quot;generate_data_frame&quot;</span><span class="p">)</span>    
+
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">a_cafe</span><span class="p">,</span> <span class="n">cafe_id</span><span class="p">)</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">b_cafe</span><span class="p">,</span> <span class="n">cafe_id</span><span class="p">)</span> <span class="o">*</span> <span class="n">afternoon</span>
+
+  <span class="n">wait</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">cafe</span><span class="o">=</span><span class="n">cafe_id</span><span class="p">,</span> <span class="n">afternoon</span><span class="o">=</span><span class="n">afternoon</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">))</span>
+
+  <span class="k">return</span> <span class="n">d</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">generate_data_frame</span><span class="p">()</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cafe</th>
+      <th>afternoon</th>
+      <th>wait</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>200.000000</td>
+      <td>200.000000</td>
+      <td>200.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>9.500000</td>
+      <td>0.500000</td>
+      <td>3.145164</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>5.780751</td>
+      <td>0.501255</td>
+      <td>1.103819</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.627383</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>4.750000</td>
+      <td>0.000000</td>
+      <td>2.435770</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>9.500000</td>
+      <td>0.500000</td>
+      <td>3.129436</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>14.250000</td>
+      <td>1.000000</td>
+      <td>3.787630</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>19.000000</td>
+      <td>1.000000</td>
+      <td>6.477736</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-vaying-slopes-model">
+<h3>14.1.3 The vaying slopes model<a class="headerlink" href="#the-vaying-slopes-model" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-14-11">
+<h4>Code 14.11<a class="headerlink" href="#code-14-11" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LKJ</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),))</span>
+<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">R</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;correlation&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14_adventures_in_covariance_39_0.png" src="../_images/14_adventures_in_covariance_39_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TensorShape([10000, 2, 2])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-12">
+<h4>Code 14.12<a class="headerlink" href="#code-14-12" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_14_1</span><span class="p">(</span><span class="n">cafe</span><span class="p">,</span> <span class="n">afternoon</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">2.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">beta</span>  <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>        
+<span class="c1">#         sigma = yield Root(tfd.Sample(tfd.HalfCauchy(loc=0., scale=1.), sample_shape=1))</span>
+<span class="c1">#         sigma_alpha_beta = yield Root(tfd.Sample(tfd.HalfCauchy(loc=0., scale=1.), sample_shape=2))        </span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">sigma_alpha_beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>        
+<span class="c1">#        Rho = yield Root(tfd.Sample(tfd.LKJ(dimension=2, concentration=2.), sample_shape=1))  </span>
+        <span class="n">Rho</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LKJ</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="mf">2.</span><span class="p">))</span>      
+        
+        <span class="n">Mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperatorDiag</span><span class="p">(</span><span class="n">sigma_alpha_beta</span><span class="p">)</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">Rho</span><span class="p">))</span>
+        
+        <span class="n">a_cafe_b_cafe</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span>
+                <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalTriL</span><span class="p">(</span>
+                        <span class="n">loc</span> <span class="o">=</span> <span class="n">Mu</span><span class="p">,</span>
+                        <span class="n">scale_tril</span> <span class="o">=</span> <span class="n">scale</span>
+                    <span class="p">),</span><span class="n">sample_shape</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+        <span class="c1"># extract the alphas and betas</span>
+        <span class="n">a_cafe</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">a_cafe_b_cafe</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">b_cafe</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">a_cafe_b_cafe</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># extract alphas and beta using the cafe id as the index</span>
+        <span class="n">term1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">a_cafe</span><span class="p">,</span> <span class="n">cafe</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">b_cafe</span><span class="p">,</span> <span class="n">cafe</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    
+        <span class="c1"># linear model</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">*</span> <span class="n">afternoon</span>        
+        
+        <span class="n">wait</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+        
+        
+<span class="n">jdc_14_1</span> <span class="o">=</span> <span class="n">model_14_1</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">cafe</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">afternoon</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha_init</span><span class="p">,</span> <span class="n">beta_init</span><span class="p">,</span> <span class="n">sigma_init</span><span class="p">,</span> <span class="n">sigma_alpha_beta_init</span><span class="p">,</span> <span class="n">Rho_init</span><span class="p">,</span> <span class="n">a_cafe_b_cafe_init</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_14_1</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># let&#39;s see Rho and make sure that what we have</span>
+<span class="c1"># looks like a correlation matrix as a sanity check</span>
+<span class="c1">#</span>
+<span class="c1"># Now this will a prior sample so most likely</span>
+<span class="c1"># we will get the correct sample however when we will do HMC</span>
+<span class="c1"># we maybe extra care</span>
+<span class="c1"># alpha_init, beta_init, sigma_init, sigma_alpha_beta_init, Rho_init, a_cafe_b_cafe_init</span>
+<span class="n">Rho_init</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2, 2), dtype=float32, numpy=
+array([[[ 1.        ,  0.1601274 ],
+        [ 0.1601274 ,  1.        ]],
+
+       [[ 1.        , -0.06374174],
+        [-0.06374174,  1.        ]]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_rho</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+
+<span class="n">init_rho</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2, 2), dtype=float32, numpy=
+array([[[1., 0.],
+        [0., 1.]],
+
+       [[1., 0.],
+        [0., 1.]]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">alpha_init</span><span class="p">,</span>
+    <span class="n">beta_init</span><span class="p">,</span>
+    <span class="n">sigma_init</span><span class="p">,</span>
+    <span class="n">sigma_alpha_beta_init</span><span class="p">,</span>
+    <span class="n">init_rho</span><span class="p">,</span>
+    <span class="n">a_cafe_b_cafe_init</span>
+<span class="p">]</span>
+
+
+<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>  <span class="c1"># alpha</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>  <span class="c1"># beta</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>  <span class="c1"># sigma</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>  <span class="c1"># sigma_alpha_beta</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">CorrelationCholesky</span><span class="p">(),</span>  <span class="c1"># Rho</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>  <span class="c1"># a_cafe_b_cafe</span>
+<span class="p">]</span>
+
+<span class="n">observed_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),)</span>
+
+<span class="n">posterior_14_1</span><span class="p">,</span> <span class="n">trace_14_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
+                                    <span class="n">jdc_14_1</span><span class="p">,</span> 
+                                    <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
+                                    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma_alpha_beta&#39;</span><span class="p">,</span> <span class="s1">&#39;Rho&#39;</span><span class="p">,</span> <span class="s1">&#39;a_cafe_b_cafe&#39;</span><span class="p">],</span>
+                                    <span class="n">num_samples</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+                                    <span class="n">burnin</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+                                    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+                                    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-13">
+<h4>Code 14.13<a class="headerlink" href="#code-14-13" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">trace_14_1</span><span class="o">.</span><span class="n">posterior</span>
+
+<span class="c1"># Here comes the important part !</span>
+<span class="c1">#</span>
+<span class="c1"># The posterior that we get is not really Rho because of the bijector</span>
+<span class="c1"># that we used. Hence we need to get the correlation matrix back (i.e. Rho)</span>
+
+<span class="n">states</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;Rho&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">rhos</span> <span class="o">=</span> <span class="n">states</span> <span class="o">@</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">states</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># let&#39;s look at the rhos</span>
+<span class="c1"># we should see that it will be a collection of 2x2 matrices such that on diagnoal you would</span>
+<span class="c1"># see the ones</span>
+<span class="n">rhos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 4000, 2, 2), dtype=float32, numpy=
+array([[[[ 1.        , -0.5191445 ],
+         [-0.5191445 ,  0.9999999 ]],
+
+        [[ 1.        , -0.44894338],
+         [-0.44894338,  0.9999999 ]],
+
+        [[ 1.        , -0.57372105],
+         [-0.57372105,  0.9999999 ]],
+
+        ...,
+
+        [[ 1.        , -0.87136114],
+         [-0.87136114,  1.        ]],
+
+        [[ 1.        , -0.8623171 ],
+         [-0.8623171 ,  1.        ]],
+
+        [[ 1.        , -0.86074287],
+         [-0.86074287,  1.        ]]],
+
+
+       [[[ 1.        , -0.60459495],
+         [-0.60459495,  1.        ]],
+
+        [[ 1.        , -0.592773  ],
+         [-0.592773  ,  1.        ]],
+
+        [[ 1.        , -0.69023496],
+         [-0.69023496,  0.9999999 ]],
+
+        ...,
+
+        [[ 1.        , -0.7170182 ],
+         [-0.7170182 ,  1.0000001 ]],
+
+        [[ 1.        , -0.4906618 ],
+         [-0.4906618 ,  1.        ]],
+
+        [[ 1.        , -0.5256052 ],
+         [-0.5256052 ,  1.        ]]]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(4000, 2, 2), dtype=float32, numpy=
+array([[[ 1.        , -0.5191445 ],
+        [-0.5191445 ,  0.9999999 ]],
+
+       [[ 1.        , -0.44894338],
+        [-0.44894338,  0.9999999 ]],
+
+       [[ 1.        , -0.57372105],
+        [-0.57372105,  0.9999999 ]],
+
+       ...,
+
+       [[ 1.        , -0.87136114],
+        [-0.87136114,  1.        ]],
+
+       [[ 1.        , -0.8623171 ],
+        [-0.8623171 ,  1.        ]],
+
+       [[ 1.        , -0.86074287],
+        [-0.86074287,  1.        ]]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(4000,), dtype=float32, numpy=
+array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
+       -0.4906618 , -0.5256052 ], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2439</span><span class="o">/</span><span class="mf">3075958100.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/plots/kdeplot.py</span> in <span class="ni">plot_kde</span><span class="nt">(values, values2, cumulative, rug, label, bw, adaptive, quantiles, rotated, contour, hdi_probs, fill_last, figsize, textsize, plot_kwargs, fill_kwargs, rug_kwargs, contour_kwargs, contourf_kwargs, pcolormesh_kwargs, is_circular, ax, legend, backend, backend_kwargs, show, return_glyph, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>                 <span class="n">bw</span> <span class="o">=</span> <span class="s2">&quot;experimental&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> 
+<span class="ne">--&gt; </span><span class="mi">261</span>         <span class="n">grid</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">is_circular</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span> <span class="n">adaptive</span><span class="o">=</span><span class="n">adaptive</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="n">cumulative</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">grid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/density_utils.py</span> in <span class="ni">kde</span><span class="nt">(x, circular, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">478</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span><span class="sd">     x = x[np.isfinite(x)]</span>
+<span class="ne">--&gt; </span><span class="mi">480</span><span class="sd">     if x.size == 0 or np.all(x == x[0]):</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span><span class="sd">         warnings.warn(&quot;Your data appears to have a single value or no finite values&quot;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span><span class="sd">         If you are looking for numpy-related methods, please run the following:</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span><span class="sd">         from tensorflow.python.ops.numpy_ops import np_config</span>
+<span class="ne">--&gt; </span><span class="mi">441</span><span class="sd">         np_config.enable_numpy_behavior()&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="bp">self</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span> 
+
+<span class="ne">AttributeError</span>: 
+        <span class="s1">&#39;EagerTensor&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;size&#39;</span><span class="o">.</span>
+        <span class="n">If</span> <span class="n">you</span> <span class="n">are</span> <span class="n">looking</span> <span class="k">for</span> <span class="n">numpy</span><span class="o">-</span><span class="n">related</span> <span class="n">methods</span><span class="p">,</span> <span class="n">please</span> <span class="n">run</span> <span class="n">the</span> <span class="n">following</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">tensorflow.python.ops.numpy_ops</span> <span class="kn">import</span> <span class="n">np_config</span>
+        <span class="n">np_config</span><span class="o">.</span><span class="n">enable_numpy_behavior</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-14-14">
+<h4>Code 14.14<a class="headerlink" href="#code-14-14" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">wait</span><span class="p">[(</span><span class="n">cafe_id</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">afternoon</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)])</span>
+               <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_cafes</span><span class="p">)])</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">wait</span><span class="p">[(</span><span class="n">cafe_id</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">afternoon</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)])</span>
+               <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_cafes</span><span class="p">)])</span> <span class="o">-</span> <span class="n">a1</span>
+
+<span class="c1"># extract posterior means of partially pooled estimates</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;a_cafe_b_cafe&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;a_cafe_b_cafe&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># plot both and connect with lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;intercept&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;slope&quot;</span><span class="p">,</span>
+              <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">),</span>
+              <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_cafes</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a2</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">b1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b2</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14_adventures_in_covariance_52_0.png" src="../_images/14_adventures_in_covariance_52_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-14-15">
+<h4>Code 14.15<a class="headerlink" href="#code-14-15" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute posterior mean bivariate Gaussian</span>
+<span class="n">Mu_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+<span class="n">rho_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;Rho&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">sa_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">sb_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">cov_ab</span> <span class="o">=</span> <span class="n">sa_est</span> <span class="o">*</span> <span class="n">sb_est</span> <span class="o">*</span> <span class="n">rho_est</span>
+<span class="n">Sigma_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">sa_est</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cov_ab</span><span class="p">],</span> <span class="p">[</span><span class="n">cov_ab</span><span class="p">,</span> <span class="n">sb_est</span> <span class="o">**</span> <span class="mi">2</span><span class="p">]])</span>
+
+<span class="c1"># draw contours</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">]:</span>
+    <span class="n">pearson</span> <span class="o">=</span> <span class="n">Sigma_est</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma_est</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Sigma_est</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">pearson</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pearson</span><span class="p">),</span>
+                      <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    
+    
+    <span class="n">std_dev</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">scale_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma_est</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">scale_y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma_est</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Affine2D</span><span class="p">()</span><span class="o">.</span><span class="n">rotate_deg</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">)</span>
+    <span class="n">ellipse</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">Mu_est</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Mu_est</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14_adventures_in_covariance_54_0.png" src="../_images/14_adventures_in_covariance_54_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-14-16">
+<h4>Code 14.16<a class="headerlink" href="#code-14-16" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert varying effects to waiting times</span>
+<span class="n">wait_morning_1</span> <span class="o">=</span> <span class="n">a1</span>
+<span class="n">wait_afternoon_1</span> <span class="o">=</span> <span class="n">a1</span> <span class="o">+</span> <span class="n">b1</span>
+<span class="n">wait_morning_2</span> <span class="o">=</span> <span class="n">a2</span>
+<span class="n">wait_afternoon_2</span> <span class="o">=</span> <span class="n">a2</span> <span class="o">+</span> <span class="n">b2</span>
+
+<span class="c1"># plot both and connect with lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wait_morning_1</span><span class="p">,</span> <span class="n">wait_afternoon_1</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;morning wait&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;afternoon wait&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wait_afternoon_1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wait_afternoon_1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wait_morning_1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wait_morning_1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wait_morning_2</span><span class="p">,</span> <span class="n">wait_afternoon_2</span><span class="p">,</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_cafes</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">wait_morning_1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">wait_morning_2</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
+             <span class="p">[</span><span class="n">wait_afternoon_1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">wait_afternoon_2</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wait_morning_1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wait_morning_1</span><span class="p">),</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14_adventures_in_covariance_56_0.png" src="../_images/14_adventures_in_covariance_56_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-14-17">
+<h4>Code 14.17<a class="headerlink" href="#code-14-17" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now shrinkage distribution by simulation</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalTriL</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">Mu_est</span><span class="p">,</span> <span class="n">scale_tril</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">Sigma_est</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="mi">10000</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="n">v</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># calculate afternoon wait</span>
+
+<span class="n">Sigma_est2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">Mu_est2</span> <span class="o">=</span> <span class="n">Mu_est</span>
+
+<span class="n">Mu_est2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mu_est2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Mu_est2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># draw contours</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">]:</span>
+    <span class="n">pearson</span> <span class="o">=</span> <span class="n">Sigma_est2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma_est2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Sigma_est2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">pearson</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pearson</span><span class="p">),</span>
+                      <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+        
+    <span class="n">std_dev</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">scale_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma_est2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">scale_y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sigma_est2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Affine2D</span><span class="p">()</span><span class="o">.</span><span class="n">rotate_deg</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">)</span>
+    <span class="n">ellipse</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span>
+        <span class="n">scale</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">Mu_est2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Mu_est2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14_adventures_in_covariance_58_0.png" src="../_images/14_adventures_in_covariance_58_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="advanced-varying-slopes">
+<h2>14.2 Advanced varying slopes<a class="headerlink" href="#advanced-varying-slopes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-14-18">
+<h3>Code 14.18<a class="headerlink" href="#code-14-18" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHIMPANZEE_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;block_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">block</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">prosoc_left</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">condition</span>
+
+<span class="n">dat</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">pulled_left</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tid</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">treatment</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+           <span class="n">actor</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">actor</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">block_id</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">block_id</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># actor 0 to 6 =&gt; 7</span>
+<span class="c1"># tid 0 to 3 =&gt; 4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_14_2</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">block_id</span><span class="p">,</span> <span class="n">num_chains</span><span class="p">):</span>
+    
+    <span class="c1"># we need to create the indexes that make</span>
+    <span class="c1"># gather_nd happy</span>
+    <span class="n">actor_tid</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">actor</span><span class="p">,</span> <span class="n">tid</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">block_tid</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">block_id</span><span class="p">,</span> <span class="n">tid</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">batch_dims</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">if</span> <span class="n">num_chains</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">actor_tid_tiled</span> <span class="o">=</span>  <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">actor_tid</span><span class="p">,</span> <span class="p">(</span><span class="n">num_chains</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">actor_tid_reshaped</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">actor_tid_tiled</span><span class="p">,</span> <span class="p">(</span><span class="n">num_chains</span><span class="p">,</span> <span class="mi">504</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        
+        <span class="n">actor_tid</span> <span class="o">=</span> <span class="n">actor_tid_reshaped</span>
+        
+        <span class="n">block_tid_tiled</span> <span class="o">=</span>  <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">block_tid</span><span class="p">,</span> <span class="p">(</span><span class="n">num_chains</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">block_tid_reshaped</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">block_tid_tiled</span><span class="p">,</span> <span class="p">(</span><span class="n">num_chains</span><span class="p">,</span> <span class="mi">504</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        
+        <span class="n">block_tid</span> <span class="o">=</span> <span class="n">block_tid_reshaped</span>
+        
+        <span class="n">batch_dims</span> <span class="o">=</span> <span class="mi">1</span>
+        
+    
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="c1"># fixed priors</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">sigma_actor</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="c1"># note - not using Sample as it does not work with it</span>
+        <span class="n">rho_actor</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LKJ</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="mf">4.</span><span class="p">))</span>
+        <span class="n">sigma_block</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="c1"># note - not using Sample as it does not work with it</span>
+        <span class="n">rho_block</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">LKJ</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="mf">4.</span><span class="p">))</span>
+        <span class="c1"># adaptive priors</span>
+        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span>
+                <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalTriL</span><span class="p">(</span>
+                        <span class="n">loc</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span>
+                        <span class="n">scale_tril</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperatorDiag</span><span class="p">(</span><span class="n">sigma_actor</span><span class="p">)</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">rho_actor</span><span class="p">)</span>
+                    <span class="p">),</span><span class="n">sample_shape</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+        
+        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span>
+                <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalTriL</span><span class="p">(</span>
+                        <span class="n">loc</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span>
+                        <span class="n">scale_tril</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperatorDiag</span><span class="p">(</span><span class="n">sigma_block</span><span class="p">)</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">rho_block</span><span class="p">)</span>
+                    <span class="p">),</span><span class="n">sample_shape</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        
+  
+        <span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="n">term1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">actor_tid</span><span class="p">,</span> <span class="n">batch_dims</span><span class="o">=</span><span class="n">batch_dims</span><span class="p">)</span>
+        <span class="n">term3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">block_tid</span><span class="p">,</span> <span class="n">batch_dims</span><span class="o">=</span><span class="n">batch_dims</span><span class="p">)</span>
+        
+        <span class="n">logit_p</span> <span class="o">=</span>  <span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">+</span> <span class="n">term3</span>
+        
+        <span class="n">L</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">logits</span><span class="o">=</span><span class="n">logit_p</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+        
+    
+<span class="n">jdc_14_2</span> <span class="o">=</span> <span class="n">model_14_2</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;tid&quot;</span><span class="p">],</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;actor&quot;</span><span class="p">],</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;block_id&quot;</span><span class="p">],</span> <span class="n">num_chains</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">jdc_14_2</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+(7, 4)
+(7, 4)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
+  var0=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-0.5014254 ,  0.74232   ,  0.4499971 ,  0.76490015], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.31832603, 0.47213277, 0.28802052, 5.721535  ], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
+    array([[ 1.        ,  0.04274065,  0.21720065,  0.3427556 ],
+           [ 0.04274065,  1.        ,  0.13831937, -0.1113151 ],
+           [ 0.21720065,  0.13831937,  1.        ,  0.4894933 ],
+           [ 0.3427556 , -0.1113151 ,  0.4894933 ,  1.        ]],
+          dtype=float32)&gt;,
+  var3=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.00137686, 0.28870302, 1.2713518 , 0.75674313], dtype=float32)&gt;,
+  var4=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
+    array([[ 1.        , -0.6184058 , -0.32602987,  0.147812  ],
+           [-0.6184058 ,  1.        ,  0.20703457,  0.06719287],
+           [-0.32602987,  0.20703457,  1.        , -0.3049771 ],
+           [ 0.147812  ,  0.06719287, -0.3049771 ,  1.        ]],
+          dtype=float32)&gt;,
+  var5=&lt;tf.Tensor: shape=(7, 4), dtype=float32, numpy=
+    array([[ 0.6302743 , -0.5363723 , -0.07518335, 15.145892  ],
+           [ 0.11294036, -0.15341198,  0.5445305 , 10.76273   ],
+           [-0.14775464, -0.19655983,  0.25711694, -0.5218694 ],
+           [ 0.37437737,  0.26977664,  0.15452878, -0.30596495],
+           [-0.18130596,  0.32749844, -0.26742986, -3.6027462 ],
+           [ 0.8370365 ,  0.3294301 ,  0.15910186, 13.008111  ],
+           [-0.20101161, -0.30880588, -0.15883592, -8.388695  ]],
+          dtype=float32)&gt;,
+  var6=&lt;tf.Tensor: shape=(6, 4), dtype=float32, numpy=
+    array([[-6.1072106e-04, -3.1334347e-01, -1.7209022e+00,  9.8799431e-01],
+           [ 2.5450452e-03, -5.9288430e-01, -2.1505771e+00,  1.0472307e+00],
+           [ 2.8115786e-03, -3.6377683e-01, -1.3972664e+00,  4.4514343e-01],
+           [ 3.7121904e-04,  7.6736458e-02,  1.7643657e-01, -1.1165903e+00],
+           [-8.3132523e-05, -2.1002574e-01,  1.0349289e+00, -2.0302877e-02],
+           [-5.3229812e-04,  1.5425898e-02, -5.7022110e-02, -6.0530847e-01]],
+          dtype=float32)&gt;,
+  var7=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
+    array([1., 1., 0., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
+           0., 0., 1., 1., 1., 0., 1., 1., 1., 0., 0., 0., 1., 0., 0., 1., 1.,
+           1., 0., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1., 1., 1., 1., 0., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1.,
+           1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 0., 0., 1.,
+           0., 1., 1., 1., 0., 1., 0., 0., 0., 1., 1., 0., 1., 0., 1., 1., 1.,
+           1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 0., 1., 0., 0., 0., 0., 1., 1., 1., 0., 0.,
+           0., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 1., 0., 0., 0.,
+           1., 0., 1., 1., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 0., 0., 1., 1., 0., 1., 0., 1., 1., 1., 0., 1.,
+           0., 0., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 1., 1.,
+           0., 0., 1., 0., 0., 0., 1., 0., 1., 1., 1., 1., 0., 0., 1., 0., 1.,
+           0., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 1., 0., 1., 1., 0., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 1., 0., 1., 0., 0.,
+           1., 0., 1., 1., 0., 1., 0., 0., 0., 0., 1., 0., 0., 1., 1., 0., 1.,
+           0., 1., 1., 1., 1., 0., 0., 1., 0., 0., 1., 0., 1., 0., 1., 0., 0.,
+           1., 1., 0., 1., 0., 1., 0., 0., 1., 0., 1., 0., 1., 0., 1., 0., 0.,
+           1., 1., 1., 1., 0., 0., 1., 1., 1., 0., 1., 0., 1., 0., 1., 0., 1.,
+           0., 0., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1., 1., 0.,
+           0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
+           1., 1., 1., 1., 0., 1., 1., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1.,
+           1., 0., 1., 1., 1., 1., 0., 1., 1., 0., 1., 0., 0., 1., 1., 0., 1.,
+           0., 1., 1., 1., 0., 1., 0., 1., 0., 1., 0., 1., 1., 1., 0., 0., 0.,
+           1., 0., 0., 0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0.,
+           1., 0., 1., 1., 1., 0., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0.,
+           1., 0., 0., 0., 0., 1., 1., 1., 1., 0., 1.], dtype=float32)&gt;
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_init</span><span class="p">,</span> <span class="n">sigma_actor_init</span><span class="p">,</span> <span class="n">rho_actor_init</span><span class="p">,</span> <span class="n">sigma_block_init</span><span class="p">,</span> <span class="n">rho_block_init</span><span class="p">,</span> <span class="n">alpha_init</span><span class="p">,</span> <span class="n">beta_init</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_14_2</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">g_init</span><span class="p">,</span>
+    <span class="n">sigma_actor_init</span><span class="p">,</span>
+    <span class="n">rho_actor_init</span><span class="p">,</span> 
+    <span class="n">sigma_block_init</span><span class="p">,</span> 
+    <span class="n">rho_block_init</span><span class="p">,</span> 
+    <span class="n">alpha_init</span><span class="p">,</span> 
+    <span class="n">beta_init</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">CorrelationCholesky</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">CorrelationCholesky</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+<span class="p">]</span>
+
+
+<span class="n">observed_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;L&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),)</span>
+
+
+<span class="c1"># Issue:</span>
+<span class="c1"># This used to work</span>
+<span class="c1"># posterior_14_2, trace_14_2 = sample_posterior(</span>
+<span class="c1">#                                 jdc_14_2, </span>
+<span class="c1">#                                 observed_data=observed_data,</span>
+<span class="c1">#                                 params=[&#39;g&#39;, &#39;sigma_actor&#39;, &#39;rho_actor&#39;, &#39;sigma_block&#39;, &#39;rho_block&#39;, &#39;alpha&#39;, &#39;beta&#39;],</span>
+<span class="c1">#                                 num_samples=2000,</span>
+<span class="c1">#                                 burnin=500,</span>
+<span class="c1">#                                 init_state=init_state,</span>
+<span class="c1">#                                 bijectors=bijectors)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is happening is that arviz assigns 7 to the chain dimension and this screws up the
+entire structure in xarray. Really arviz does not work if there is 1 chain.</p>
+<p>Now I have problem using 2 chains so that is the real problem indeed !</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># az.summary(trace_14_2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="instruments-and-causal-designs-todo">
+<h2>14.3 Instruments and causal designs (TODO)<a class="headerlink" href="#instruments-and-causal-designs-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="social-relations-as-correlated-varying-effects-todo">
+<h2>14.4 Social relations as correlated varying effects (TODO)<a class="headerlink" href="#social-relations-as-correlated-varying-effects-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="continuous-categories-and-the-gaussian-process-todo">
+<h2>14.5 Continuous categories and the Gaussian process (TODO)<a class="headerlink" href="#continuous-categories-and-the-gaussian-process-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="13_models_with_memory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 13 - Models with Memory</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="15_missing_data_and_other_opportunities.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 15 - Missing Data and Other Opportunities</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Richard McElreath<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

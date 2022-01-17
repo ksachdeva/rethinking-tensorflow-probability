@@ -1,0 +1,1155 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 9 - Markov Chain Monte Carlo &#8212; Statistical Rethinking (2nd Edition)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ksachdeva.github.io/rethinking-tensorflow-probability/notebooks/09_markov_chain_monte_carlo.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 10 - Big Entropy and The Generalized Linear Model" href="10_big_entropy_and_the_generalized_linear_model.html" />
+    <link rel="prev" title="Chapter 8 - Conditional Manatees" href="08_conditional_manatees.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Rethinking (2nd Edition)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Statistical Rethinking (2nd Edition) with Tensorflow Probability
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_the_golem_of_prague.html">
+   Chapter 1 The Gloem of Prague
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_small_worlds_and_large_worlds.html">
+   Chapter 2 - Small Worlds and Large Worlds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_sampling_the_imaginary.html">
+   Chapter 3 - Sampling the Imaginary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_geocentric_models.html">
+   Chapter 4 - Geocentric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_the_many_variables_and_the_spurious_waffles.html">
+   Chapter 5 - The Many Variables &amp; The Spurious Waffles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_the_haunted_dag_and_the_causal_terror.html">
+   Chapter 6 - The Haunted DAG and The Causal Terror
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_ulysses_compass.html">
+   Chapter 7 - Ulysses’ Compass
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_conditional_manatees.html">
+   Chapter 8 - Conditional Manatees
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_big_entropy_and_the_generalized_linear_model.html">
+   Chapter 10 - Big Entropy and The Generalized Linear Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_god_spiked_the_integers.html">
+   Chapter 11 - God Spiked the Integers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_monsters_and_mixtures.html">
+   Chapter 12 - Monsters and Mixtures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_models_with_memory.html">
+   Chapter 13 - Models with Memory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_adventures_in_covariance.html">
+   Chapter 14 - Adventures in Covariance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_missing_data_and_other_opportunities.html">
+   Chapter 15 - Missing Data and Other Opportunities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_generalized_linear_madness.html">
+   Chapter 16 - Generalized Linear Madness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_horoscopes.html">
+   Chapter 17 - Horoscopes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/09_markov_chain_monte_carlo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ksachdeva/rethinking-tensorflow-probability/issues/new?title=Issue%20on%20page%20%2Fnotebooks/09_markov_chain_monte_carlo.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ksachdeva/rethinking-tensorflow-probability/master?urlpath=tree/notebooks/09_markov_chain_monte_carlo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+       Tensorflow MCMC sampling helpers
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-urls">
+       Dataset URLs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#good-king-markov-and-his-island-kingdom">
+     9.1 Good King Markov and His island kingdom
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-1">
+       Code 9.1
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-2">
+       Code 9.2
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-3">
+       Code 9.3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metropolis-algorithms">
+     9.2 Metropolis Algorithms
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gibbs-sampling">
+       9.2.1 Gibbs sampling
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#high-dimensional-problems">
+       9.2.2 High-dimensional problems
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-9-4">
+         Code 9.4
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hamiltonian-monte-carlo">
+     9.3 Hamiltonian Monte Carlo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-5">
+       Code 9.5
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-6">
+       Code 9.6
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-7-9-8-9-9-9-10">
+       Code 9.7,  9.8,  9.9 &amp; 9.10
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#easy-hmc-ulam-todo">
+     9.4 Easy HMC: ulam  (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#care-and-feeding-of-your-markov-chain-todo">
+     9.5 Care and feeding of your Markov chain (TODO)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 9 - Markov Chain Monte Carlo</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Chapter 9 - Markov Chain Monte Carlo
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports-and-utility-functions">
+     Imports and utility functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
+       Tensorflow MCMC sampling helpers
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-urls">
+       Dataset URLs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#good-king-markov-and-his-island-kingdom">
+     9.1 Good King Markov and His island kingdom
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-1">
+       Code 9.1
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-2">
+       Code 9.2
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-3">
+       Code 9.3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metropolis-algorithms">
+     9.2 Metropolis Algorithms
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gibbs-sampling">
+       9.2.1 Gibbs sampling
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#high-dimensional-problems">
+       9.2.2 High-dimensional problems
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-9-4">
+         Code 9.4
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hamiltonian-monte-carlo">
+     9.3 Hamiltonian Monte Carlo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-5">
+       Code 9.5
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-6">
+       Code 9.6
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-9-7-9-8-9-9-9-10">
+       Code 9.7,  9.8,  9.9 &amp; 9.10
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#easy-hmc-ulam-todo">
+     9.4 Easy HMC: ulam  (TODO)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#care-and-feeding-of-your-markov-chain-todo">
+     9.5 Care and feeding of your Markov chain (TODO)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/09_markov_chain_and_monte_carlo.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-9-markov-chain-monte-carlo">
+<h1>Chapter 9 - Markov Chain Monte Carlo<a class="headerlink" href="#chapter-9-markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports-and-utility-functions">
+<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
+<span class="k">try</span><span class="p">:</span>
+  <span class="kn">import</span> <span class="nn">google.colab</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip install -q watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">ops</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+
+<span class="c1"># Core</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
+
+<span class="c1"># visualization </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># aliases</span>
+<span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
+<span class="n">Root</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="o">.</span><span class="n">Root</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:32:48.663967: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy                 : 1.21.5
+tensorflow            : 2.7.0
+tensorflow_probability: 0.15.0
+arviz                 : 0.11.4
+scipy                 : 1.7.3
+pandas                : 1.3.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tensorflow-mcmc-sampling-helpers">
+<h3>Tensorflow MCMC sampling helpers<a class="headerlink" href="#tensorflow-mcmc-sampling-helpers" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>
+<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>
+<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
+        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
+        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
+        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
+        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+              <span class="n">bijectors</span><span class="p">,</span> 
+              <span class="n">step_size</span><span class="p">,</span> 
+              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
+              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
+              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
+              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
+              <span class="p">):</span>    
+
+    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+        <span class="p">)</span>
+
+    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
+                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
+                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
+                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
+
+    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
+        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
+
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
+        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
+        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
+        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
+    <span class="p">)</span>    
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
+        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>
+
+<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
+                      <span class="n">observed_data</span><span class="p">,</span> 
+                      <span class="n">params</span><span class="p">,</span> 
+                      <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>
+                      <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                      <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                              
+                      <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
+                      <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>       
+    
+    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
+
+
+    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>    
+    <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
+                                  <span class="n">bijectors</span><span class="p">,</span>
+                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
+                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
+                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
+                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
+
+    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
+    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>    
+    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">results</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-urls">
+<h3>Dataset URLs<a class="headerlink" href="#dataset-urls" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
+<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/master/data&quot;</span>
+
+<span class="n">RUGGED_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/rugged.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="good-king-markov-and-his-island-kingdom">
+<h2>9.1 Good King Markov and His island kingdom<a class="headerlink" href="#good-king-markov-and-his-island-kingdom" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-9-1">
+<h3>Code 9.1<a class="headerlink" href="#code-9-1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Takes few minutes to run</span>
+
+<span class="n">num_weeks</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">)</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_weeks</span><span class="p">)</span>
+<span class="n">current</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">coin_dist</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="n">probs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">proposal_dist</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span> <span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_weeks</span><span class="p">):</span>
+    <span class="c1"># record current position</span>
+    <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">current</span>
+
+    <span class="c1"># flip coin to generate proposal</span>
+    <span class="n">bern</span> <span class="o">=</span> <span class="n">coin_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    
+    <span class="n">proposal</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="p">(</span><span class="n">bern</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># now make sure he loops around the archipelago</span>
+    <span class="n">proposal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">proposal</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">proposal</span><span class="p">)</span>
+    <span class="n">proposal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">proposal</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">proposal</span><span class="p">)</span>
+
+    <span class="c1"># move?</span>
+    <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
+    <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:32:50.894965: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 21:32:50.895003: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2203</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-9-2">
+<h3>Code 9.2<a class="headerlink" href="#code-9-2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">),</span> <span class="n">positions</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_markov_chain_monte_carlo_18_0.png" src="../_images/09_markov_chain_monte_carlo_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="code-9-3">
+<h3>Code 9.3<a class="headerlink" href="#code-9-3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">rwidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_markov_chain_monte_carlo_20_0.png" src="../_images/09_markov_chain_monte_carlo_20_0.png" />
+</div>
+</div>
+<p>In above plot, horizontal axis is the islands (and their relative populations). Vertical axis is the number of weeks that King stayed at that island</p>
+</div>
+</div>
+<div class="section" id="metropolis-algorithms">
+<h2>9.2 Metropolis Algorithms<a class="headerlink" href="#metropolis-algorithms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gibbs-sampling">
+<h3>9.2.1 Gibbs sampling<a class="headerlink" href="#gibbs-sampling" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="high-dimensional-problems">
+<h3>9.2.2 High-dimensional problems<a class="headerlink" href="#high-dimensional-problems" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-9-4">
+<h4>Code 9.4<a class="headerlink" href="#code-9-4" title="Permalink to this headline">¶</a></h4>
+<p>What this section demonstrates is that as the number of dimensions increase the mass of the samples move away from the peak.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Radial distance from the mode&quot;</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">build_and_plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">ax_p</span><span class="p">):</span>    
+    <span class="n">loc</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">scale_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalDiag</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale_diag</span><span class="o">=</span><span class="n">scale_diag</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">T</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">rad_dist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">Y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">Rd</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">rad_dist</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span>
+    <span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Rd</span><span class="p">),</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Dim = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_p</span><span class="p">);</span>
+    
+<span class="n">build_and_plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">build_and_plot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">build_and_plot</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">build_and_plot</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_markov_chain_monte_carlo_26_0.png" src="../_images/09_markov_chain_monte_carlo_26_0.png" />
+</div>
+</div>
+<p>In the above plot, the horizontal axis shows <strong>Radial distance</strong> from the <strong>mode</strong> in the parameter space.</p>
+<p>The peak in the above diagrams represent the amount of samples.</p>
+<p>For Dim == 1, the peak is near 0</p>
+<p>For Dim == 10, the peak is far from zero already</p>
+<p>and so on …</p>
+<p>The sampled points are in a thin, high-dimensional shell very far from the mode.</p>
+<p>Because of above behavior (i.e. high dimensionsal space), the author suggests we need better MCMC algos than Metropolios and Gibbs</p>
+</div>
+</div>
+</div>
+<div class="section" id="hamiltonian-monte-carlo">
+<h2>9.3 Hamiltonian Monte Carlo<a class="headerlink" href="#hamiltonian-monte-carlo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-9-5">
+<h3>Code 9.5<a class="headerlink" href="#code-9-5" title="Permalink to this headline">¶</a></h3>
+<p>These next few cells will implement the Hamiltonian Monte Carlo algo. (Overthinking box in the chapter)</p>
+<p>We need five things to do that -</p>
+<ol class="simple">
+<li><p>A function named <code class="docutils literal notranslate"><span class="pre">U</span></code> that returns the -ive log-prob of data at a current position (parameter value)</p></li>
+<li><p>A function named <code class="docutils literal notranslate"><span class="pre">grad_U</span></code> that returns the <em>gradient</em> of the -ive log-prob at the current position</p></li>
+<li><p>A step size <code class="docutils literal notranslate"><span class="pre">epsilon</span></code></p></li>
+<li><p>A count of leapfrog steps <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
+<li><p>A starting position <code class="docutils literal notranslate"><span class="pre">current_q</span></code></p></li>
+</ol>
+<p>Note - The position is a vector of parameter values &amp; that the gradient also needs to return the vector of the same lenght.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Note - change from the book here</span>
+<span class="c1">#</span>
+<span class="c1"># The book generates the test data in code 9.6 but I am going to generate it here</span>
+
+<span class="k">def</span> <span class="nf">generate_test_data</span><span class="p">():</span>
+    <span class="c1"># test data</span>
+    <span class="n">_SEED</span> <span class="o">=</span> <span class="mi">7</span>
+
+    <span class="n">seed</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SeedStream</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">_SEED</span><span class="p">,</span> <span class="n">salt</span><span class="o">=</span><span class="s2">&quot;Testdata&quot;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+    <span class="c1"># standardize the data</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">generate_test_data</span><span class="p">()</span>
+
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.12833239, -0.22964787, -0.40774608, -0.30924067, -0.75710726,
+       -1.12151   ,  0.54429084,  0.20373885,  0.5373924 ,  2.2354805 ,
+       -0.55821157,  0.8479281 , -0.01069919, -2.2879438 ,  2.1183472 ,
+        0.5721366 ,  1.5381907 , -2.4450817 , -0.15067661,  0.0314163 ,
+       -0.06329995, -1.5469027 ,  0.6112922 , -0.6234371 ,  0.7724736 ,
+        0.31413972,  2.2127857 , -0.30521753, -0.06263847,  0.60814875,
+        1.7873812 , -0.23929906, -0.1567227 , -0.09433585, -0.25074163,
+        0.3817731 , -1.289493  , -0.03346271, -0.25672948, -0.02745551,
+        1.6410016 , -1.2717627 , -0.18327089,  0.6673328 , -0.7348228 ,
+       -0.5346852 , -1.177903  , -0.9149043 , -0.3239217 ,  0.6152883 ],
+      dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+    <span class="n">muy</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mux</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">logprob_y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">muy</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">logprob_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mux</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    
+    <span class="n">logprob_muy</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">muy</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">logprob_mux</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">mux</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">logprob_y</span> <span class="o">+</span> <span class="n">logprob_x</span> <span class="o">+</span> <span class="n">logprob_muy</span> <span class="o">+</span> <span class="n">logprob_mux</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-9-6">
+<h3>Code 9.6<a class="headerlink" href="#code-9-6" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U_gradient</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+    <span class="n">muy</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mux</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">G1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">muy</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">muy</span><span class="p">)</span> <span class="o">/</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># dU/dmuy</span>
+    <span class="n">G2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mux</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">mux</span><span class="p">)</span> <span class="o">/</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># dU/dmux</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="o">-</span><span class="n">G1</span><span class="p">,</span> <span class="o">-</span><span class="n">G2</span><span class="p">])</span>  <span class="c1"># negative bc energy is neg-log-prob</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-9-7-9-8-9-9-9-10">
+<h3>Code 9.7,  9.8,  9.9 &amp; 9.10<a class="headerlink" href="#code-9-7-9-8-9-9-9-10" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">Q</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="mf">0.31</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;muy&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;mux&quot;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">pr</span><span class="p">,</span> <span class="n">pr</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">pr</span><span class="p">,</span> <span class="n">pr</span><span class="p">))</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">11</span>  <span class="c1"># 0.03/28 for U-turns --- 11 for working example</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">path_col</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="mf">0.075</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x152a34d50&gt;
+</pre></div>
+</div>
+<img alt="../_images/09_markov_chain_monte_carlo_35_1.png" src="../_images/09_markov_chain_monte_carlo_35_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">HMC2</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">grad_U</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">current_q</span><span class="p">):</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">current_q</span>
+    
+    <span class="c1"># Random flick - p is the momentum</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">current_p</span> <span class="o">=</span> <span class="n">p</span>
+    
+    <span class="c1"># Make a half step for momentum at the begining</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">grad_U</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    
+    <span class="c1"># initialize bookkeeping - saves trajectory</span>
+    <span class="n">qtraj</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">qtraj</span>        
+    
+    <span class="n">qtraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">qtraj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">current_q</span><span class="p">)</span>
+    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">ptraj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>    
+    
+    <span class="c1"># Alternate full steps for position and momentum</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">p</span>  <span class="c1"># Full step for the position</span>
+        <span class="c1"># Make a full step for the momentum, except at end of trajectory</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">grad_U</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+            <span class="n">ptraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">ptraj</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">qtraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">qtraj</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="c1"># Make a half step for momentum at the end</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">grad_U</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    
+    <span class="c1">#ptraj[L] = p</span>
+    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">ptraj</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    
+    <span class="c1"># Negate momentum at end of trajectory to make the proposal symmetric</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="o">-</span><span class="n">p</span>
+    <span class="c1"># Evaluate potential and kinetic energies at start and end of trajectory</span>
+    <span class="n">current_U</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">current_q</span><span class="p">)</span>
+    <span class="n">current_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_p</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">proposed_U</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">proposed_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="c1"># Accept or reject the state at end of trajectory, returning either</span>
+    <span class="c1"># the position at the end of the trajectory or the initial position</span>
+    <span class="n">accept</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">runif</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">runif</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">current_U</span> <span class="o">-</span> <span class="n">proposed_U</span> <span class="o">+</span> <span class="n">current_K</span> <span class="o">-</span> <span class="n">proposed_K</span><span class="p">):</span>
+        <span class="n">new_q</span> <span class="o">=</span> <span class="n">q</span>  <span class="c1"># accept</span>
+        <span class="n">accept</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_q</span> <span class="o">=</span> <span class="n">current_q</span>  <span class="c1"># reject</span>
+        
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">new_q</span><span class="p">,</span> <span class="s2">&quot;traj&quot;</span><span class="p">:</span> <span class="n">qtraj</span><span class="p">,</span> <span class="s2">&quot;ptraj&quot;</span><span class="p">:</span> <span class="n">ptraj</span><span class="p">,</span> <span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="n">accept</span><span class="p">,</span>
+            <span class="s2">&quot;dH&quot;</span><span class="p">:</span> <span class="n">proposed_U</span> <span class="o">+</span> <span class="n">proposed_K</span> <span class="o">-</span> <span class="p">(</span><span class="n">current_U</span> <span class="o">+</span> <span class="n">current_K</span><span class="p">)}</span>
+    
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>    
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">HMC2</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U_gradient</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">])</span> 
+    <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+            <span class="n">K0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;ptraj&quot;</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                     <span class="n">c</span><span class="o">=</span><span class="n">path_col</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">K0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># for fancy arrows</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                     <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                     <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;arrowstyle&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;-&quot;</span><span class="p">})</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                     <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;dH&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:absl:No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+</pre></div>
+</div>
+<img alt="../_images/09_markov_chain_monte_carlo_36_1.png" src="../_images/09_markov_chain_monte_carlo_36_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="easy-hmc-ulam-todo">
+<h2>9.4 Easy HMC: ulam  (TODO)<a class="headerlink" href="#easy-hmc-ulam-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="care-and-feeding-of-your-markov-chain-todo">
+<h2>9.5 Care and feeding of your Markov chain (TODO)<a class="headerlink" href="#care-and-feeding-of-your-markov-chain-todo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="08_conditional_manatees.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 8 - Conditional Manatees</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="10_big_entropy_and_the_generalized_linear_model.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 10 - Big Entropy and The Generalized Linear Model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Richard McElreath<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
