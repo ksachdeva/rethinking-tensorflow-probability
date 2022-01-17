@@ -1,1 +1,19 @@
-theme: jekyll-theme-minimal
+# Book settings
+title: Statistical Rethinking (2nd Edition)
+author: Richard McElreath
+logo: logo.png
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+parse:
+  myst_extended_syntax: true
+
+repository:
+  url: https://github.com/ksachdeva/rethinking-tensorflow-probability
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://ksachdeva.github.io/rethinking-tensorflow-probability

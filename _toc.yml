@@ -1,0 +1,21 @@
+format: jb-book
+root: README
+chapters:
+  - file: notebooks/00_preface.ipynb
+  - file: notebooks/01_the_golem_of_prague.ipynb
+  - file: notebooks/02_small_worlds_and_large_worlds.ipynb
+  - file: notebooks/03_sampling_the_imaginary.ipynb
+  - file: notebooks/04_geocentric_models.ipynb
+  - file: notebooks/05_the_many_variables_and_the_spurious_waffles.ipynb
+  - file: notebooks/06_the_haunted_dag_and_the_causal_terror.ipynb
+  - file: notebooks/07_ulysses_compass.ipynb
+  - file: notebooks/08_conditional_manatees.ipynb
+  - file: notebooks/09_markov_chain_monte_carlo.ipynb
+  - file: notebooks/10_big_entropy_and_the_generalized_linear_model.ipynb
+  - file: notebooks/11_god_spiked_the_integers.ipynb
+  - file: notebooks/12_monsters_and_mixtures.ipynb
+  - file: notebooks/13_models_with_memory.ipynb
+  - file: notebooks/14_adventures_in_covariance.ipynb
+  - file: notebooks/15_missing_data_and_other_opportunities.ipynb
+  - file: notebooks/16_generalized_linear_madness.ipynb
+  - file: notebooks/17_horoscopes.ipynb
