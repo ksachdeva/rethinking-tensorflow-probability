@@ -988,8 +988,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:31:14.313545: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 21:31:14.313587: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:41:38.649752: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 22:41:38.649789: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1317,10 +1317,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:31:17.268181: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 21:31:17.268222: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 21:31:17.268247: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 21:31:17.268587: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:41:40.912719: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 22:41:40.912755: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 22:41:40.912776: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
+2022-01-17 22:41:40.913076: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1426,39 +1426,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.527</td>
-      <td>0.102</td>
-      <td>0.384</td>
-      <td>0.692</td>
+      <td>0.524</td>
+      <td>0.107</td>
+      <td>0.369</td>
+      <td>0.690</td>
       <td>0.002</td>
-      <td>0.001</td>
-      <td>2471.0</td>
-      <td>3050.0</td>
-      <td>1.01</td>
+      <td>0.002</td>
+      <td>1956.0</td>
+      <td>2296.0</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>0.167</td>
-      <td>0.112</td>
+      <td>0.164</td>
+      <td>0.124</td>
+      <td>-0.011</td>
+      <td>0.355</td>
+      <td>0.003</td>
       <td>0.002</td>
-      <td>0.347</td>
-      <td>0.002</td>
-      <td>0.002</td>
-      <td>3002.0</td>
-      <td>2619.0</td>
+      <td>1422.0</td>
+      <td>1784.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>-1.432</td>
-      <td>0.379</td>
-      <td>-2.056</td>
-      <td>-0.939</td>
-      <td>0.031</td>
-      <td>0.026</td>
-      <td>112.0</td>
-      <td>30.0</td>
-      <td>1.02</td>
+      <td>-1.413</td>
+      <td>0.387</td>
+      <td>-2.068</td>
+      <td>-0.932</td>
+      <td>0.049</td>
+      <td>0.048</td>
+      <td>41.0</td>
+      <td>16.0</td>
+      <td>1.08</td>
     </tr>
   </tbody>
 </table>
@@ -1501,8 +1501,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
  mass_std     0.167118
  dtype: float64,
                Intercept      mass_std
- Intercept  4.980017e-03  3.981467e-19
- mass_std   3.981467e-19  5.810020e-03)
+ Intercept  4.980017e-03  1.803280e-20
+ mass_std   1.803280e-20  5.810020e-03)
 </pre></div>
 </div>
 </div>
@@ -1564,7 +1564,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5318055137966897
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5277544417675111
 </pre></div>
 </div>
 </div>
@@ -1845,79 +1845,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2094</span><span class="o">/</span><span class="mf">3035999005.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">posterior_7_1</span><span class="p">,</span> <span class="n">trace_7_1</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">jdc_7_1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">posterior_7_2</span><span class="p">,</span> <span class="n">trace_7_2</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">jdc_7_2</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">posterior_7_3</span><span class="p">,</span> <span class="n">trace_7_3</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">jdc_7_3</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">posterior_7_4</span><span class="p">,</span> <span class="n">trace_7_4</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">jdc_7_4</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">posterior_7_5</span><span class="p">,</span> <span class="n">trace_7_5</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">jdc_7_5</span><span class="p">)</span>
-
-<span class="nn">/tmp/ipykernel_2094/2077961507.py</span> in <span class="ni">compute_brain_body_posterior_for_simulation</span><span class="nt">(beta_degree, jdc)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span>             <span class="n">burnin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>             <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">32</span>             <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> 
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">trace</span>
-
-<span class="nn">/tmp/ipykernel_2094/1192407478.py</span> in <span class="ni">sample_posterior</span><span class="nt">(jdc, observed_data, params, init_state, bijectors, step_size, num_chains, num_samples, burnin)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>                                   <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span>                                   <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">99</span>                                   <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> 
-<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="n">filtered_tb</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span>       <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span>       <span class="n">filtered_tb</span> <span class="o">=</span> <span class="n">_process_traceback_frames</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">__traceback__</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">908</span> 
-<span class="g g-Whitespace">    </span><span class="mi">909</span>       <span class="k">with</span> <span class="n">OptionalXlaContext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jit_compile</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">910</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">911</span> 
-<span class="g g-Whitespace">    </span><span class="mi">912</span>       <span class="n">new_tracing_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experimental_get_tracing_count</span><span class="p">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">_call</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">947</span>       <span class="c1"># In this case we have not created variables on the first call. So we can</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>       <span class="c1"># run the first trace but we should fail if variables are created.</span>
-<span class="ne">--&gt; </span><span class="mi">949</span>       <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stateful_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">950</span>       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_created_variables</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ALLOW_DYNAMIC_VARIABLE_CREATION</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">951</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Creating variables on a non-first call to a function&quot;</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3129</span>        <span class="n">filtered_flat_args</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_define_function</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3130</span>     <span class="k">return</span> <span class="n">graph_function</span><span class="o">.</span><span class="n">_call_flat</span><span class="p">(</span>
-<span class="ne">-&gt; </span><span class="mi">3131</span>         <span class="n">filtered_flat_args</span><span class="p">,</span> <span class="n">captured_inputs</span><span class="o">=</span><span class="n">graph_function</span><span class="o">.</span><span class="n">captured_inputs</span><span class="p">)</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="g g-Whitespace">   </span><span class="mi">3132</span> 
-<span class="g g-Whitespace">   </span><span class="mi">3133</span>   <span class="nd">@property</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_call_flat</span><span class="nt">(self, args, captured_inputs, cancellation_manager)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1958</span>       <span class="c1"># No tape is watching; skip to running the function.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1959</span>       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_call_outputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inference_function</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
-<span class="ne">-&gt; </span><span class="mi">1960</span>           <span class="n">ctx</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">cancellation_manager</span><span class="o">=</span><span class="n">cancellation_manager</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1961</span>     <span class="n">forward_backward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_forward_and_backward_functions</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1962</span>         <span class="n">args</span><span class="p">,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">call</span><span class="nt">(self, ctx, args, cancellation_manager)</span>
-<span class="g g-Whitespace">    </span><span class="mi">601</span>               <span class="n">inputs</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">602</span>               <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">603</span>               <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">604</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span>           <span class="n">outputs</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">execute_with_cancellation</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/execute.py</span> in <span class="ni">quick_execute</span><span class="nt">(op_name, num_outputs, inputs, attrs, ctx, name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="n">ctx</span><span class="o">.</span><span class="n">ensure_initialized</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">tensors</span> <span class="o">=</span> <span class="n">pywrap_tfe</span><span class="o">.</span><span class="n">TFE_Py_Execute</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="n">device_name</span><span class="p">,</span> <span class="n">op_name</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>                                         <span class="n">inputs</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>   <span class="k">except</span> <span class="n">core</span><span class="o">.</span><span class="n">_NotOkStatusException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fb9b87a5200&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>

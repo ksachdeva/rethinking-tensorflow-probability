@@ -644,8 +644,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:37:11.894824: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 21:37:11.894862: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:46:25.106937: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 22:46:25.106970: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -876,107 +876,14 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:37:14.556959: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 21:37:14.556995: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 21:37:14.557019: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 21:37:14.558621: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:46:27.141361: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 22:46:27.141394: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 22:46:27.141414: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
+2022-01-17 22:46:27.141697: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2483</span><span class="o">/</span><span class="mf">2722967679.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">pancakes</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10_000</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">pancakes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sim_pancake</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">pancakes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pancakes</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-
-<span class="nn">/tmp/ipykernel_2483/2722967679.py</span> in <span class="ni">sim_pancake</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># simulate a pancake and return randomly ordered sides</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">def</span> <span class="nf">sim_pancake</span><span class="p">():</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">pancake</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">sides</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span> <span class="n">pancake</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sides</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="sd">     with self._name_and_control_scope(name):</span>
-<span class="ne">-&gt; </span><span class="mi">1234</span><span class="sd">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="sd">     samples = self._sample_n(</span>
-<span class="ne">-&gt; </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/categorical.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="sd">   def _sample_n(self, n, seed=None):</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span><span class="sd">     logits = self._logits_parameter_no_checks()</span>
-<span class="ne">--&gt; </span><span class="mi">236</span><span class="sd">     logits_2d = tf.reshape(logits, [-1, self._num_categories(logits)])</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span><span class="sd">     sample_dtype = tf.int64 if dtype_util.size(self.dtype) &gt; 4 else tf.int32</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span><span class="sd">     # TODO(b/147874898): Remove workaround for seed-sensitive tests.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="sd">     filtered_tb = None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="sd">     try:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span><span class="sd">       return fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="sd">     except Exception as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="sd">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="sd">       # Fallback dispatch system (dispatch v1):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="sd">       try:</span>
-<span class="ne">-&gt; </span><span class="mi">1096</span><span class="sd">         return dispatch_target(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="sd">       except (TypeError, ValueError):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="sd">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/array_ops.py</span> in <span class="ni">reshape</span><span class="nt">(tensor, shape, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span><span class="sd">     A `Tensor`. Has the same type as `tensor`.</span>
-<span class="g g-Whitespace">    </span><span class="mi">196</span><span class="sd">   &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">197</span>   <span class="n">result</span> <span class="o">=</span> <span class="n">gen_array_ops</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span>   <span class="n">tensor_util</span><span class="o">.</span><span class="n">maybe_set_static_shape</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>   <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gen_array_ops.py</span> in <span class="ni">reshape</span><span class="nt">(tensor, shape, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8540</span>     <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">8541</span>       <span class="k">return</span> <span class="n">reshape_eager_fallback</span><span class="p">(</span>
-<span class="ne">-&gt; </span><span class="mi">8542</span>           <span class="n">tensor</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">_ctx</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8543</span>     <span class="k">except</span> <span class="n">_core</span><span class="o">.</span><span class="n">_SymbolicException</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">8544</span>       <span class="k">pass</span>  <span class="c1"># Add nodes to the TensorFlow graph.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gen_array_ops.py</span> in <span class="ni">reshape_eager_fallback</span><span class="nt">(tensor, shape, name, ctx)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8561</span> <span class="k">def</span> <span class="nf">reshape_eager_fallback</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">8562</span>   <span class="n">_attr_T</span><span class="p">,</span> <span class="p">(</span><span class="n">tensor</span><span class="p">,)</span> <span class="o">=</span> <span class="n">_execute</span><span class="o">.</span><span class="n">args_to_matching_eager</span><span class="p">([</span><span class="n">tensor</span><span class="p">],</span> <span class="n">ctx</span><span class="p">,</span> <span class="p">[])</span>
-<span class="ne">-&gt; </span><span class="mi">8563</span>   <span class="n">_attr_Tshape</span><span class="p">,</span> <span class="p">(</span><span class="n">shape</span><span class="p">,)</span> <span class="o">=</span> <span class="n">_execute</span><span class="o">.</span><span class="n">args_to_matching_eager</span><span class="p">([</span><span class="n">shape</span><span class="p">],</span> <span class="n">ctx</span><span class="p">,</span> <span class="p">[</span><span class="n">_dtypes</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">_dtypes</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="p">],</span> <span class="n">_dtypes</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">8564</span>   <span class="n">_inputs_flat</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">,</span> <span class="n">shape</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">8565</span>   <span class="n">_attrs</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="n">_attr_T</span><span class="p">,</span> <span class="s2">&quot;Tshape&quot;</span><span class="p">,</span> <span class="n">_attr_Tshape</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/execute.py</span> in <span class="ni">args_to_matching_eager</span><span class="nt">(l, ctx, allowed_dtypes, default_dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span>       <span class="c1"># not list allowed dtypes, in which case we should skip this.</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>       <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">allowed_dtypes</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">260</span>         <span class="n">tensor</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="c1"># If we did not match an allowed dtype, try again with the default</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="c1"># dtype. This could be because we have an empty tensor and thus we</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/profiler/trace.py</span> in <span class="ni">wrapped</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>         <span class="k">with</span> <span class="n">Trace</span><span class="p">(</span><span class="n">trace_name</span><span class="p">,</span> <span class="o">**</span><span class="n">trace_kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>           <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">163</span>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> 
-<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="k">return</span> <span class="n">wrapped</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">convert_to_tensor</span><span class="nt">(value, dtype, name, as_ref, preferred_dtype, dtype_hint, ctx, accepted_result_types)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1596</span>   <span class="c1"># See below for the reason why it&#39;s `type(value)` and not just `value`.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1597</span>   <span class="c1"># https://docs.python.org/3.8/reference/datamodel.html#special-lookup</span>
-<span class="ne">-&gt; </span><span class="mi">1598</span>   <span class="n">overload</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="s2">&quot;__tf_tensor__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1599</span>   <span class="k">if</span> <span class="n">overload</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="k">return</span> <span class="n">overload</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>  <span class="c1">#  pylint: disable=not-callable</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6594303923521211
 </pre></div>
 </div>
 </div>
@@ -1123,649 +1030,649 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
       <th>alpha</th>
       <td>-0.05</td>
       <td>0.10</td>
-      <td>-0.22</td>
-      <td>0.09</td>
+      <td>-0.20</td>
+      <td>0.10</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>82.21</td>
-      <td>209.04</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>betaA</th>
-      <td>-0.62</td>
-      <td>0.14</td>
-      <td>-0.84</td>
-      <td>-0.40</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>88.22</td>
-      <td>229.90</td>
+      <td>78.36</td>
+      <td>194.12</td>
       <td>1.02</td>
     </tr>
     <tr>
+      <th>betaA</th>
+      <td>-0.58</td>
+      <td>0.16</td>
+      <td>-0.80</td>
+      <td>-0.28</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>51.71</td>
+      <td>184.37</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
       <th>betaM</th>
-      <td>0.05</td>
-      <td>0.15</td>
-      <td>-0.16</td>
-      <td>0.32</td>
+      <td>0.10</td>
+      <td>0.17</td>
+      <td>-0.15</td>
+      <td>0.36</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>114.43</td>
-      <td>347.85</td>
+      <td>63.34</td>
+      <td>107.52</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.58</td>
-      <td>0.09</td>
-      <td>0.44</td>
-      <td>0.72</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>76.40</td>
-      <td>171.47</td>
-      <td>1.04</td>
+      <td>0.10</td>
+      <td>0.42</td>
+      <td>0.75</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>21.37</td>
+      <td>49.04</td>
+      <td>1.09</td>
     </tr>
     <tr>
       <th>D_true[0]</th>
-      <td>1.09</td>
-      <td>0.34</td>
+      <td>1.12</td>
+      <td>0.35</td>
       <td>0.61</td>
-      <td>1.67</td>
+      <td>1.66</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>159.51</td>
-      <td>250.32</td>
+      <td>133.11</td>
+      <td>190.78</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[1]</th>
-      <td>0.75</td>
-      <td>0.50</td>
-      <td>-0.05</td>
-      <td>1.47</td>
+      <td>0.69</td>
+      <td>0.54</td>
+      <td>-0.18</td>
+      <td>1.51</td>
       <td>0.07</td>
       <td>0.05</td>
-      <td>47.37</td>
-      <td>84.67</td>
+      <td>56.53</td>
+      <td>175.34</td>
       <td>1.04</td>
     </tr>
     <tr>
       <th>D_true[2]</th>
-      <td>0.46</td>
-      <td>0.35</td>
-      <td>-0.06</td>
-      <td>1.06</td>
+      <td>0.45</td>
+      <td>0.34</td>
+      <td>-0.11</td>
+      <td>0.95</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>116.11</td>
-      <td>208.93</td>
-      <td>1.03</td>
+      <td>178.47</td>
+      <td>232.45</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[3]</th>
-      <td>1.37</td>
-      <td>0.45</td>
-      <td>0.64</td>
-      <td>2.05</td>
+      <td>1.47</td>
+      <td>0.50</td>
+      <td>0.70</td>
+      <td>2.25</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>76.87</td>
-      <td>170.62</td>
-      <td>1.04</td>
+      <td>84.65</td>
+      <td>156.74</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[4]</th>
-      <td>-0.89</td>
-      <td>0.14</td>
-      <td>-1.10</td>
+      <td>-0.90</td>
+      <td>0.15</td>
+      <td>-1.11</td>
       <td>-0.67</td>
       <td>0.01</td>
       <td>0.00</td>
-      <td>518.86</td>
-      <td>132.81</td>
-      <td>1.02</td>
+      <td>861.99</td>
+      <td>166.35</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>D_true[5]</th>
-      <td>0.64</td>
-      <td>0.37</td>
-      <td>0.06</td>
-      <td>1.22</td>
+      <td>0.78</td>
+      <td>0.45</td>
+      <td>0.11</td>
+      <td>1.53</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>136.83</td>
-      <td>191.55</td>
-      <td>1.01</td>
+      <td>118.12</td>
+      <td>202.34</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[6]</th>
-      <td>-1.39</td>
-      <td>0.30</td>
-      <td>-1.92</td>
-      <td>-0.95</td>
+      <td>-1.36</td>
+      <td>0.34</td>
+      <td>-1.91</td>
+      <td>-0.84</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>165.80</td>
-      <td>242.80</td>
-      <td>1.01</td>
+      <td>152.81</td>
+      <td>253.33</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[7]</th>
-      <td>-0.28</td>
+      <td>-0.31</td>
       <td>0.49</td>
-      <td>-0.92</td>
-      <td>0.58</td>
-      <td>0.05</td>
-      <td>0.04</td>
-      <td>95.48</td>
-      <td>139.48</td>
-      <td>1.01</td>
+      <td>-1.15</td>
+      <td>0.37</td>
+      <td>0.06</td>
+      <td>0.07</td>
+      <td>87.03</td>
+      <td>188.82</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>D_true[8]</th>
-      <td>-1.91</td>
-      <td>0.54</td>
-      <td>-2.69</td>
-      <td>-0.99</td>
-      <td>0.07</td>
-      <td>0.05</td>
-      <td>53.85</td>
-      <td>123.70</td>
-      <td>1.04</td>
+      <td>-1.81</td>
+      <td>0.62</td>
+      <td>-2.79</td>
+      <td>-0.75</td>
+      <td>0.11</td>
+      <td>0.08</td>
+      <td>32.42</td>
+      <td>52.23</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>D_true[9]</th>
       <td>-0.62</td>
-      <td>0.16</td>
-      <td>-0.87</td>
-      <td>-0.37</td>
+      <td>0.18</td>
+      <td>-0.90</td>
+      <td>-0.33</td>
       <td>0.01</td>
-      <td>0.00</td>
-      <td>549.23</td>
-      <td>342.97</td>
+      <td>0.01</td>
+      <td>685.11</td>
+      <td>404.18</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>D_true[10]</th>
-      <td>0.77</td>
+      <td>0.79</td>
+      <td>0.28</td>
       <td>0.30</td>
-      <td>0.25</td>
-      <td>1.22</td>
-      <td>0.03</td>
+      <td>1.18</td>
       <td>0.02</td>
-      <td>124.21</td>
-      <td>272.58</td>
-      <td>1.03</td>
+      <td>0.02</td>
+      <td>176.06</td>
+      <td>212.31</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[11]</th>
-      <td>-0.61</td>
-      <td>0.43</td>
-      <td>-1.25</td>
+      <td>-0.50</td>
+      <td>0.57</td>
+      <td>-1.37</td>
+      <td>0.39</td>
+      <td>0.07</td>
       <td>0.05</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>95.24</td>
-      <td>150.47</td>
+      <td>62.05</td>
+      <td>122.19</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[12]</th>
-      <td>0.19</td>
-      <td>0.46</td>
-      <td>-0.55</td>
-      <td>0.88</td>
-      <td>0.05</td>
-      <td>0.03</td>
-      <td>87.89</td>
-      <td>103.57</td>
-      <td>1.04</td>
+      <td>0.17</td>
+      <td>0.51</td>
+      <td>-0.64</td>
+      <td>1.01</td>
+      <td>0.13</td>
+      <td>0.10</td>
+      <td>14.71</td>
+      <td>106.51</td>
+      <td>1.11</td>
     </tr>
     <tr>
       <th>D_true[13]</th>
-      <td>-0.89</td>
-      <td>0.22</td>
-      <td>-1.25</td>
-      <td>-0.58</td>
+      <td>-0.88</td>
+      <td>0.24</td>
+      <td>-1.20</td>
+      <td>-0.43</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>346.04</td>
-      <td>304.33</td>
-      <td>1.00</td>
+      <td>254.46</td>
+      <td>366.81</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[14]</th>
-      <td>0.56</td>
-      <td>0.32</td>
-      <td>-0.01</td>
-      <td>1.01</td>
+      <td>0.54</td>
+      <td>0.33</td>
+      <td>0.05</td>
+      <td>1.08</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>191.62</td>
-      <td>208.55</td>
+      <td>198.50</td>
+      <td>301.28</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[15]</th>
-      <td>0.27</td>
-      <td>0.35</td>
-      <td>-0.23</td>
-      <td>0.84</td>
+      <td>0.28</td>
+      <td>0.40</td>
+      <td>-0.33</td>
+      <td>0.87</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>141.59</td>
-      <td>195.93</td>
+      <td>111.39</td>
+      <td>233.49</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[16]</th>
-      <td>0.50</td>
-      <td>0.42</td>
-      <td>-0.04</td>
-      <td>1.23</td>
-      <td>0.05</td>
-      <td>0.03</td>
-      <td>85.63</td>
-      <td>87.77</td>
-      <td>1.03</td>
+      <td>0.45</td>
+      <td>0.40</td>
+      <td>-0.20</td>
+      <td>1.09</td>
+      <td>0.04</td>
+      <td>0.02</td>
+      <td>129.87</td>
+      <td>265.02</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[17]</th>
-      <td>1.23</td>
+      <td>1.29</td>
       <td>0.33</td>
-      <td>0.73</td>
-      <td>1.74</td>
+      <td>0.76</td>
+      <td>1.77</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>136.09</td>
-      <td>218.05</td>
-      <td>1.00</td>
+      <td>128.63</td>
+      <td>304.70</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[18]</th>
       <td>0.45</td>
-      <td>0.37</td>
-      <td>-0.28</td>
-      <td>0.93</td>
+      <td>0.39</td>
+      <td>-0.15</td>
+      <td>1.11</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>130.57</td>
-      <td>213.07</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>D_true[19]</th>
-      <td>0.44</td>
-      <td>0.51</td>
-      <td>-0.47</td>
-      <td>1.10</td>
-      <td>0.10</td>
-      <td>0.07</td>
-      <td>26.31</td>
-      <td>87.96</td>
-      <td>1.09</td>
-    </tr>
-    <tr>
-      <th>D_true[20]</th>
-      <td>-0.58</td>
-      <td>0.30</td>
-      <td>-1.01</td>
-      <td>-0.08</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>211.87</td>
-      <td>280.96</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>D_true[21]</th>
-      <td>-1.11</td>
-      <td>0.26</td>
-      <td>-1.53</td>
-      <td>-0.77</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>252.05</td>
-      <td>394.30</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>D_true[22]</th>
-      <td>-0.26</td>
-      <td>0.25</td>
-      <td>-0.72</td>
-      <td>0.09</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>226.73</td>
-      <td>181.36</td>
+      <td>132.77</td>
+      <td>308.56</td>
       <td>1.02</td>
     </tr>
     <tr>
-      <th>D_true[23]</th>
-      <td>-0.99</td>
-      <td>0.29</td>
-      <td>-1.46</td>
+      <th>D_true[19]</th>
+      <td>0.30</td>
+      <td>0.52</td>
+      <td>-0.61</td>
+      <td>1.09</td>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>80.08</td>
+      <td>140.38</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>D_true[20]</th>
       <td>-0.55</td>
+      <td>0.32</td>
+      <td>-1.09</td>
+      <td>-0.09</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>112.71</td>
+      <td>173.44</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>D_true[21]</th>
+      <td>-1.07</td>
+      <td>0.25</td>
+      <td>-1.46</td>
+      <td>-0.66</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>194.23</td>
-      <td>296.35</td>
+      <td>247.93</td>
+      <td>289.62</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>D_true[22]</th>
+      <td>-0.27</td>
+      <td>0.24</td>
+      <td>-0.68</td>
+      <td>0.10</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>292.74</td>
+      <td>316.58</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>D_true[23]</th>
+      <td>-1.01</td>
+      <td>0.29</td>
+      <td>-1.44</td>
+      <td>-0.54</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>268.20</td>
+      <td>257.79</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[24]</th>
-      <td>0.40</td>
-      <td>0.38</td>
+      <td>0.42</td>
+      <td>0.39</td>
       <td>-0.15</td>
-      <td>1.03</td>
+      <td>1.08</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>122.19</td>
-      <td>217.66</td>
+      <td>118.65</td>
+      <td>189.34</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[25]</th>
-      <td>-0.01</td>
-      <td>0.30</td>
-      <td>-0.56</td>
-      <td>0.39</td>
+      <td>-0.04</td>
+      <td>0.31</td>
+      <td>-0.54</td>
+      <td>0.42</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>194.59</td>
-      <td>311.48</td>
+      <td>206.82</td>
+      <td>311.67</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[26]</th>
-      <td>-0.01</td>
-      <td>0.48</td>
-      <td>-0.71</td>
+      <td>0.01</td>
+      <td>0.44</td>
+      <td>-0.62</td>
       <td>0.77</td>
-      <td>0.04</td>
+      <td>0.05</td>
       <td>0.03</td>
-      <td>122.27</td>
-      <td>177.94</td>
-      <td>1.00</td>
+      <td>99.68</td>
+      <td>135.73</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[27]</th>
-      <td>-0.14</td>
-      <td>0.38</td>
-      <td>-0.75</td>
+      <td>-0.15</td>
+      <td>0.39</td>
+      <td>-0.82</td>
       <td>0.42</td>
-      <td>0.04</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>120.26</td>
-      <td>245.74</td>
-      <td>1.01</td>
+      <td>129.64</td>
+      <td>163.25</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[28]</th>
-      <td>-0.27</td>
-      <td>0.50</td>
-      <td>-1.07</td>
-      <td>0.56</td>
+      <td>-0.22</td>
+      <td>0.53</td>
+      <td>-1.03</td>
+      <td>0.63</td>
+      <td>0.09</td>
       <td>0.06</td>
-      <td>0.04</td>
-      <td>69.61</td>
-      <td>124.43</td>
-      <td>1.05</td>
+      <td>38.06</td>
+      <td>109.70</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>D_true[29]</th>
-      <td>-1.82</td>
-      <td>0.24</td>
-      <td>-2.14</td>
-      <td>-1.43</td>
+      <td>-1.79</td>
+      <td>0.23</td>
+      <td>-2.17</td>
+      <td>-1.44</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>282.22</td>
-      <td>342.19</td>
+      <td>393.53</td>
+      <td>474.39</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>D_true[30]</th>
-      <td>0.18</td>
-      <td>0.44</td>
-      <td>-0.55</td>
-      <td>0.79</td>
+      <td>0.20</td>
+      <td>0.43</td>
+      <td>-0.40</td>
+      <td>0.97</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>124.05</td>
-      <td>154.77</td>
-      <td>1.02</td>
-    </tr>
-    <tr>
-      <th>D_true[31]</th>
-      <td>-1.67</td>
-      <td>0.17</td>
-      <td>-1.97</td>
-      <td>-1.41</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>570.94</td>
-      <td>270.93</td>
+      <td>93.76</td>
+      <td>151.43</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>D_true[32]</th>
-      <td>0.14</td>
-      <td>0.25</td>
-      <td>-0.28</td>
-      <td>0.50</td>
-      <td>0.02</td>
+      <th>D_true[31]</th>
+      <td>-1.65</td>
+      <td>0.17</td>
+      <td>-1.93</td>
+      <td>-1.38</td>
       <td>0.01</td>
-      <td>255.65</td>
-      <td>218.55</td>
+      <td>0.00</td>
+      <td>802.23</td>
+      <td>330.77</td>
       <td>1.00</td>
     </tr>
     <tr>
-      <th>D_true[33]</th>
+      <th>D_true[32]</th>
+      <td>0.10</td>
+      <td>0.24</td>
+      <td>-0.28</td>
+      <td>0.47</td>
       <td>0.01</td>
-      <td>0.51</td>
-      <td>-0.89</td>
-      <td>0.76</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>83.20</td>
-      <td>154.87</td>
+      <td>0.01</td>
+      <td>394.26</td>
+      <td>549.62</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>D_true[33]</th>
+      <td>0.14</td>
+      <td>0.52</td>
+      <td>-0.68</td>
+      <td>0.89</td>
+      <td>0.09</td>
+      <td>0.07</td>
+      <td>32.91</td>
+      <td>104.81</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[34]</th>
-      <td>-0.11</td>
-      <td>0.23</td>
-      <td>-0.44</td>
-      <td>0.28</td>
+      <td>-0.12</td>
+      <td>0.24</td>
+      <td>-0.54</td>
+      <td>0.22</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>267.86</td>
-      <td>292.06</td>
-      <td>1.01</td>
+      <td>355.26</td>
+      <td>429.75</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>D_true[35]</th>
-      <td>1.22</td>
-      <td>0.36</td>
-      <td>0.72</td>
-      <td>1.87</td>
+      <td>1.28</td>
+      <td>0.42</td>
+      <td>0.56</td>
+      <td>1.90</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>175.96</td>
-      <td>246.72</td>
-      <td>1.03</td>
+      <td>111.90</td>
+      <td>190.69</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[36]</th>
-      <td>0.20</td>
-      <td>0.37</td>
-      <td>-0.44</td>
-      <td>0.71</td>
+      <td>0.28</td>
+      <td>0.35</td>
+      <td>-0.33</td>
+      <td>0.80</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>183.14</td>
-      <td>167.84</td>
-      <td>1.02</td>
+      <td>146.75</td>
+      <td>254.26</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>D_true[37]</th>
-      <td>-1.03</td>
-      <td>0.21</td>
-      <td>-1.34</td>
-      <td>-0.65</td>
+      <td>-1.02</td>
+      <td>0.23</td>
+      <td>-1.37</td>
+      <td>-0.68</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>336.63</td>
-      <td>312.05</td>
-      <td>1.01</td>
+      <td>304.88</td>
+      <td>324.81</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>D_true[38]</th>
-      <td>-0.94</td>
+      <td>-0.95</td>
       <td>0.55</td>
-      <td>-1.78</td>
-      <td>-0.13</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>82.22</td>
-      <td>128.45</td>
-      <td>1.01</td>
+      <td>-1.72</td>
+      <td>-0.04</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>61.30</td>
+      <td>84.20</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[39]</th>
-      <td>-0.66</td>
+      <td>-0.64</td>
       <td>0.32</td>
-      <td>-1.22</td>
-      <td>-0.20</td>
-      <td>0.03</td>
+      <td>-1.08</td>
+      <td>-0.10</td>
       <td>0.02</td>
-      <td>159.41</td>
-      <td>218.33</td>
+      <td>0.02</td>
+      <td>187.83</td>
+      <td>252.43</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>D_true[40]</th>
-      <td>0.35</td>
-      <td>0.57</td>
-      <td>-0.64</td>
-      <td>1.19</td>
-      <td>0.08</td>
+      <td>0.24</td>
+      <td>0.51</td>
+      <td>-0.69</td>
+      <td>0.95</td>
       <td>0.06</td>
-      <td>54.18</td>
-      <td>116.33</td>
-      <td>1.04</td>
+      <td>0.04</td>
+      <td>74.23</td>
+      <td>175.35</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[41]</th>
-      <td>0.74</td>
-      <td>0.33</td>
-      <td>0.29</td>
-      <td>1.29</td>
+      <td>0.69</td>
+      <td>0.34</td>
+      <td>0.03</td>
+      <td>1.15</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>160.06</td>
-      <td>251.05</td>
+      <td>185.81</td>
+      <td>259.27</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[42]</th>
       <td>0.19</td>
-      <td>0.18</td>
+      <td>0.19</td>
       <td>-0.09</td>
-      <td>0.45</td>
+      <td>0.47</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>402.82</td>
-      <td>388.42</td>
+      <td>657.33</td>
+      <td>558.54</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>D_true[43]</th>
-      <td>0.78</td>
-      <td>0.38</td>
-      <td>0.19</td>
-      <td>1.37</td>
+      <td>0.84</td>
+      <td>0.43</td>
+      <td>0.17</td>
+      <td>1.51</td>
+      <td>0.06</td>
       <td>0.04</td>
-      <td>0.03</td>
-      <td>88.78</td>
-      <td>129.41</td>
-      <td>1.02</td>
+      <td>48.33</td>
+      <td>166.86</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>D_true[44]</th>
-      <td>-0.47</td>
-      <td>0.54</td>
-      <td>-1.41</td>
-      <td>0.29</td>
-      <td>0.10</td>
-      <td>0.09</td>
-      <td>29.30</td>
-      <td>39.27</td>
-      <td>1.08</td>
+      <td>-0.50</td>
+      <td>0.53</td>
+      <td>-1.32</td>
+      <td>0.37</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>62.53</td>
+      <td>146.91</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[45]</th>
-      <td>-0.37</td>
-      <td>0.28</td>
-      <td>-0.79</td>
-      <td>0.08</td>
-      <td>0.02</td>
+      <td>-0.36</td>
+      <td>0.25</td>
+      <td>-0.83</td>
+      <td>-0.02</td>
       <td>0.01</td>
-      <td>278.32</td>
-      <td>232.27</td>
+      <td>0.01</td>
+      <td>290.13</td>
+      <td>449.16</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[46]</th>
-      <td>0.14</td>
-      <td>0.31</td>
-      <td>-0.37</td>
-      <td>0.62</td>
+      <td>0.17</td>
+      <td>0.29</td>
+      <td>-0.31</td>
+      <td>0.59</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>257.55</td>
-      <td>270.77</td>
+      <td>219.49</td>
+      <td>248.90</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[47]</th>
-      <td>0.59</td>
-      <td>0.46</td>
-      <td>-0.05</td>
-      <td>1.36</td>
+      <td>0.65</td>
+      <td>0.48</td>
+      <td>-0.16</td>
+      <td>1.35</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>73.80</td>
-      <td>195.48</td>
-      <td>1.00</td>
+      <td>87.88</td>
+      <td>193.88</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>D_true[48]</th>
-      <td>-0.64</td>
+      <td>-0.63</td>
       <td>0.28</td>
-      <td>-1.03</td>
-      <td>-0.17</td>
+      <td>-1.12</td>
+      <td>-0.23</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>246.27</td>
-      <td>338.06</td>
+      <td>254.83</td>
+      <td>378.56</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>D_true[49]</th>
-      <td>1.00</td>
-      <td>0.52</td>
-      <td>0.23</td>
-      <td>1.82</td>
+      <td>0.99</td>
+      <td>0.55</td>
+      <td>0.12</td>
+      <td>1.86</td>
+      <td>0.08</td>
       <td>0.06</td>
-      <td>0.05</td>
-      <td>72.56</td>
-      <td>84.21</td>
-      <td>1.01</td>
+      <td>49.16</td>
+      <td>127.64</td>
+      <td>1.05</td>
     </tr>
   </tbody>
 </table>
@@ -1915,14 +1822,14 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan,
-       nan, nan, nan, nan, nan, nan, nan, nan, nan], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4.,  3.,  6.,  3.,  6.,  3.,  7.,  8.,  2.,  6., 10.,  5.,  9.,
+        6.,  6.,  2.,  1.,  3.,  1.,  9.,  2.,  1.,  1.,  5.,  3.,  4.,
+        6.,  6.,  0.,  6.,  3.,  2.,  4.,  3.,  7.,  6.,  2.,  8.,  5.,
+        1.,  6.,  4.,  6.,  5.,  2.,  8.,  8.,  9.,  7.,  8.,  2.,  5.,
+        3.,  2.,  4.,  8.,  3.,  4.,  5.,  5.,  4.,  2.,  5., 10.,  7.,
+        1.,  7.,  3.,  4.,  1.,  6.,  3.,  7.,  5.,  6.,  4.,  7.,  3.,
+        7.,  8.,  9.,  3.,  2.,  3.,  1.,  7.,  5.,  8.,  1.,  8.,  3.,
+        8.,  7.,  4.,  5.,  1.,  4.,  8.,  5.,  4.], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1943,14 +1850,14 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7.,  4., nan, nan, nan, nan,  1., nan,  2., nan,  6.,  4., nan,
-       nan, nan, nan, nan,  2.,  4., nan,  2., nan, nan, nan,  2., nan,
-       nan, nan,  1., nan,  3.,  3.,  7.,  4., nan,  5., nan,  1., nan,
-        4., nan,  0., nan, nan,  4., nan,  3., nan, nan,  3.,  1., nan,
-       nan,  5.,  7., nan, nan, nan, nan, nan, nan,  4.,  2., nan, nan,
-       nan,  4.,  3., nan,  4.,  6.,  4.,  3., nan,  3., nan, nan,  3.,
-        2.,  4., nan, nan,  3.,  7., nan, nan, nan,  5.,  7., nan, nan,
-       nan,  4.,  1.,  1., nan,  1.,  2., nan, nan], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4., nan,  6.,  3., nan,  3., nan, nan,  2., nan, nan,  5., nan,
+       nan, nan,  2.,  1.,  3.,  1., nan,  2., nan,  1.,  5., nan, nan,
+       nan,  6.,  0., nan,  3.,  2.,  4.,  3., nan, nan,  2., nan,  5.,
+        1.,  6., nan,  6.,  5.,  2., nan, nan, nan, nan, nan,  2.,  5.,
+        3.,  2., nan, nan,  3.,  4.,  5.,  5.,  4.,  2., nan, nan, nan,
+        1., nan, nan, nan,  1., nan,  3.,  7., nan, nan, nan, nan,  3.,
+       nan, nan, nan,  3.,  2.,  3.,  1., nan,  5., nan,  1., nan,  3.,
+       nan, nan,  4., nan,  1.,  4., nan, nan, nan], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -2071,27 +1978,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>1.27</td>
-      <td>0.02</td>
-      <td>1.23</td>
-      <td>1.31</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>71.83</td>
-      <td>301.69</td>
+      <td>1.08</td>
+      <td>0.03</td>
       <td>1.03</td>
+      <td>1.13</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>7.46</td>
+      <td>19.18</td>
+      <td>1.50</td>
     </tr>
     <tr>
       <th>betaS</th>
-      <td>0.68</td>
+      <td>0.57</td>
       <td>0.03</td>
-      <td>0.64</td>
-      <td>0.71</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>77.59</td>
-      <td>202.01</td>
-      <td>1.03</td>
+      <td>0.52</td>
+      <td>0.62</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>6.85</td>
+      <td>21.81</td>
+      <td>1.58</td>
     </tr>
   </tbody>
 </table>
@@ -2192,27 +2099,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>1.92</td>
-      <td>0.04</td>
-      <td>1.85</td>
-      <td>1.97</td>
+      <td>1.76</td>
+      <td>0.03</td>
+      <td>1.72</td>
+      <td>1.82</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>393.07</td>
-      <td>339.26</td>
+      <td>240.84</td>
+      <td>325.14</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>betaS</th>
-      <td>0.83</td>
+      <td>0.80</td>
       <td>0.03</td>
-      <td>0.79</td>
-      <td>0.89</td>
+      <td>0.75</td>
+      <td>0.84</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>340.86</td>
-      <td>365.29</td>
-      <td>1.01</td>
+      <td>238.84</td>
+      <td>315.98</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -2244,14 +2151,14 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([nan, nan,  6.,  5., nan,  7.,  5., nan, nan,  5., nan, nan,  9.,
-        8.,  8.,  6.,  6.,  5., nan,  5., nan,  8., nan, nan,  7.,  6.,
-        5., nan,  7., nan, nan,  7.,  5., nan, nan,  7.,  7.,  5., nan,
-       10.,  7., nan, 10., nan, nan, nan,  8., 10., nan, nan, nan, nan,
-        9.,  8.,  5.,  5.,  8., nan, nan, 10., nan, nan,  6.,  5.,  6.,
-       nan,  6.,  7.,  6.,  8., nan,  7.,  5.,  7.,  9.,  7., nan,  8.,
-        6.,  7., nan,  7.,  5.,  5.,  6., nan, nan,  5.,  8.,  6.,  7.,
-       nan,  6.,  5.,  6.,  6.,  8.,  5., nan,  5.], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7., nan, nan,  9.,  6.,  7.,  6., nan, nan,  5., nan, nan,  5.,
+       nan,  7.,  5.,  5.,  8.,  6.,  7., nan,  8., 10.,  7.,  5.,  5.,
+        8., nan, nan,  5., nan,  5.,  9.,  6.,  5., nan, nan, nan,  9.,
+        7.,  8.,  8.,  6., nan,  8.,  6.,  6.,  8.,  7., nan,  8.,  7.,
+       nan,  7.,  5., nan,  6., nan, nan,  5., nan,  6., nan,  6., nan,
+       nan,  8., nan,  7., nan, nan,  8., nan, nan,  8.,  8., nan,  5.,
+        6., nan, nan, nan,  7., nan,  6., nan,  8.,  9., nan, nan,  7.,
+       nan, nan,  8., nan, nan,  7.,  7.,  7., nan], dtype=float32)
 </pre></div>
 </div>
 </div>

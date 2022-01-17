@@ -562,8 +562,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:33:27.627080: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 21:33:27.627121: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:43:32.670634: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 22:43:32.670670: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -769,10 +769,10 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:33:30.356451: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 21:33:30.356488: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 21:33:30.356549: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 21:33:30.356934: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:43:34.723527: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 22:43:34.723559: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 22:43:34.723580: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
+2022-01-17 22:43:34.723861: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -800,80 +800,11 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1206</span><span class="sd">       raise ValueError(&#39;Must provide JAX PRNGKey as `dist.sample(seed=.)`&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1207</span><span class="sd">     sample_shape = ps.convert_to_shape_tensor(</span>
+<span class="ne">-&gt; </span><span class="mi">1208</span><span class="sd">         ps.cast(sample_shape, tf.int32), name=&#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1209</span><span class="sd">     sample_shape, n = self._expand_sample_shape_to_vector(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="sd">     samples = self._sample_n(</span>
-<span class="ne">-&gt; </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/uniform.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="sd">     high = tf.convert_to_tensor(self.high)</span>
-<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="sd">     shape = ps.concat([[n], self._batch_shape_tensor(</span>
-<span class="ne">--&gt; </span><span class="mi">155</span><span class="sd">         low=low, high=high)], 0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     samples = samplers.uniform(shape=shape, dtype=self.dtype, seed=seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd">     return low + self._range(low=low, high=high) * samples</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_batch_shape_tensor</span><span class="nt">(self, **parameter_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1012</span><span class="sd">     try:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1013</span><span class="sd">       return batch_shape_lib.inferred_batch_shape_tensor(</span>
-<span class="ne">-&gt; </span><span class="mi">1014</span><span class="sd">           self, **parameter_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1015</span><span class="sd">     except NotImplementedError:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1016</span><span class="sd">       raise NotImplementedError(&#39;Cannot compute batch shape of distribution &#39;</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">inferred_batch_shape_tensor</span><span class="nt">(batch_object, bijector_x_event_ndims, **parameter_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd">       bijector_x_event_ndims=bijector_x_event_ndims,</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="sd">       require_static=False,</span>
-<span class="ne">--&gt; </span><span class="mi">115</span><span class="sd">       **parameter_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span><span class="sd">   return functools.reduce(ps.broadcast_shape, tf.nest.flatten(batch_shapes), [])</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="sd"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">map_fn_over_parameters_with_event_ndims</span><span class="nt">(batch_object, fn, bijector_x_event_ndims, require_static, **parameter_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">361</span><span class="sd">     results[param_name] = nest.map_structure_up_to(</span>
-<span class="ne">--&gt; </span><span class="mi">362</span><span class="sd">         param, fn, param, param_event_ndims)</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="sd">   return results</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">map_structure_up_to</span><span class="nt">(shallow_tree, func, *inputs, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1378</span><span class="sd">       lambda _, *values: func(*values),  # Discards the path arg.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1379</span><span class="sd">       *inputs,</span>
-<span class="ne">-&gt; </span><span class="mi">1380</span><span class="sd">       **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1381</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1382</span><span class="sd"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">map_structure_with_tuple_paths_up_to</span><span class="nt">(shallow_tree, func, *inputs, **kwargs)</span>
-<span class="nn">   1473       path for path, _</span> in <span class="ni">_yield_flat_up_to</span><span class="nt">(shallow_tree, inputs[0], is_seq))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1474</span><span class="sd">   results = [</span>
-<span class="nn">-&gt; 1475       func(*args, **kwargs) for args</span> in <span class="ni">zip</span><span class="nt">(flat_path_gen, *flat_value_gen)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1476</span><span class="sd">   ]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1477</span><span class="sd">   return pack_sequence_as(structure=shallow_tree, flat_sequence=results,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="nn">   1473       path for path, _</span> in <span class="ni">_yield_flat_up_to</span><span class="nt">(shallow_tree, inputs[0], is_seq))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1474</span><span class="sd">   results = [</span>
-<span class="nn">-&gt; 1475       func(*args, **kwargs) for args</span> in <span class="ni">zip</span><span class="nt">(flat_path_gen, *flat_value_gen)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1476</span><span class="sd">   ]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1477</span><span class="sd">   return pack_sequence_as(structure=shallow_tree, flat_sequence=results,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(_, *values)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1376</span><span class="sd">   return map_structure_with_tuple_paths_up_to(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1377</span><span class="sd">       shallow_tree,</span>
-<span class="ne">-&gt; </span><span class="mi">1378</span><span class="sd">       lambda _, *values: func(*values),  # Discards the path arg.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1379</span><span class="sd">       *inputs,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1380</span><span class="sd">       **kwargs)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">get_batch_shape_tensor_part</span><span class="nt">(x, event_ndims)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span><span class="sd">   else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span><span class="sd">     base_shape = tf.shape(x)</span>
-<span class="ne">--&gt; </span><span class="mi">139</span><span class="sd">   return _truncate_shape_tensor(base_shape, event_ndims)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span><span class="sd"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">_truncate_shape_tensor</span><span class="nt">(shape, rightmost_ndims_to_truncate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="sd">       # actually has, if that&#39;s fewer than `event_ndims` (i.e.,</span>
-<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="sd">       # if it relies on broadcasting).</span>
-<span class="ne">--&gt; </span><span class="mi">185</span><span class="sd">       ps.minimum(rightmost_ndims_to_truncate, base_rank))]</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span><span class="sd"> </span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">148</span><span class="sd">     filtered_tb = None</span>
@@ -889,12 +820,68 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="sd">       except (TypeError, ValueError):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="sd">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/array_ops.py</span> in <span class="ni">_slice_helper</span><span class="nt">(tensor, slice_spec, var)</span>
-<span class="g g-Whitespace">    </span><span class="mi">964</span><span class="sd">       tf.newaxis or scalar int32/int64 tensors.</span>
-<span class="g g-Whitespace">    </span><span class="mi">965</span><span class="sd">   &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">966</span>   <span class="n">tensor</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">967</span>   <span class="c1"># TODO(wangpeng): Consider supporting var</span>
-<span class="g g-Whitespace">    </span><span class="mi">968</span>   <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ops</span><span class="o">.</span><span class="n">_numpy_style_slicing</span><span class="p">:</span>  <span class="c1"># pylint: disable=protected-access</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">convert_to_tensor_v2_with_dispatch</span><span class="nt">(value, dtype, dtype_hint, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1484</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1485</span>   <span class="k">return</span> <span class="n">convert_to_tensor_v2</span><span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">1486</span>       <span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">dtype_hint</span><span class="o">=</span><span class="n">dtype_hint</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1487</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1488</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">convert_to_tensor_v2</span><span class="nt">(value, dtype, dtype_hint, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1494</span>       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1495</span>       <span class="n">preferred_dtype</span><span class="o">=</span><span class="n">dtype_hint</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1496</span>       <span class="n">as_ref</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1497</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1498</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/profiler/trace.py</span> in <span class="ni">wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>         <span class="k">with</span> <span class="n">Trace</span><span class="p">(</span><span class="n">trace_name</span><span class="p">,</span> <span class="o">**</span><span class="n">trace_kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>           <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">163</span>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> 
+<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="k">return</span> <span class="n">wrapped</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">convert_to_tensor</span><span class="nt">(value, dtype, name, as_ref, preferred_dtype, dtype_hint, ctx, accepted_result_types)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1620</span>     <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1621</span>       <span class="n">ret</span> <span class="o">=</span> <span class="n">conversion_func</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">as_ref</span><span class="o">=</span><span class="n">as_ref</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1622</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1623</span>     <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="bp">NotImplemented</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/tensor_conversion_registry.py</span> in <span class="ni">_default_conversion_function</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="k">def</span> <span class="nf">_default_conversion_function</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span>   <span class="k">del</span> <span class="n">as_ref</span>  <span class="c1"># Unused.</span>
+<span class="ne">---&gt; </span><span class="mi">52</span>   <span class="k">return</span> <span class="n">constant_op</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+<span class="g g-Whitespace">     </span><span class="mi">54</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">constant</span><span class="nt">(value, dtype, shape, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span>   <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span><span class="sd">   return _constant_impl(value, dtype, shape, name, verify_shape=False,</span>
+<span class="ne">--&gt; </span><span class="mi">272</span><span class="sd">                         allow_broadcast=True)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">_constant_impl</span><span class="nt">(value, dtype, shape, name, verify_shape, allow_broadcast)</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span><span class="sd">       with trace.Trace(&quot;tf.constant&quot;):</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span><span class="sd">         return _constant_eager_impl(ctx, value, dtype, shape, verify_shape)</span>
+<span class="ne">--&gt; </span><span class="mi">283</span><span class="sd">     return _constant_eager_impl(ctx, value, dtype, shape, verify_shape)</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span><span class="sd">   g = ops.get_default_graph()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">_constant_eager_impl</span><span class="nt">(ctx, value, dtype, shape, verify_shape)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span><span class="sd"> def _constant_eager_impl(ctx, value, dtype, shape, verify_shape):</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span><span class="sd">   &quot;&quot;&quot;</span><span class="n">Creates</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">device</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">308</span><span class="s2">   t = convert_to_eager_tensor(value, ctx, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span><span class="s2">   if shape is None:</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span><span class="s2">     return t</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">convert_to_eager_tensor</span><span class="nt">(value, ctx, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="s2">       dtype = dtypes.as_dtype(dtype).as_datatype_enum</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span><span class="s2">   ctx.ensure_initialized()</span>
+<span class="ne">--&gt; </span><span class="mi">106</span><span class="s2">   return ops.EagerTensor(value, ctx.device_name, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2"> </span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

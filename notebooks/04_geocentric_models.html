@@ -295,366 +295,477 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports-and-utility-functions">
-   Imports and utility functions
+  <a class="reference internal nav-link" href="#why-normal-distributions-are-normal">
+   4.1 Why normal distributions are normal
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
-     Tensorflow MCMC sampling helpers
+    <a class="reference internal nav-link" href="#normal-by-addition">
+     4.1.1 Normal by addition
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-1">
+       Code 4.1
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dataset-urls">
-     Dataset URLs
+    <a class="reference internal nav-link" href="#normal-by-multiplication">
+     4.1.2 Normal by multiplication
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-2-4-3">
+       Code 4.2 &amp; 4.3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-4">
+       Code 4.4
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plotting-utilities">
-     Plotting utilities
+    <a class="reference internal nav-link" href="#normal-by-log-multiplication">
+     4.1.3 Normal by log-multiplication
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-5">
+       Code 4.5
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-language-for-describing-models">
+   4.2 A language for describing models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-4-6">
+     Code 4.6
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-1">
-   Code 4.1
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-2-4-3">
-   Code 4.2 &amp; 4.3
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-4">
-   Code 4.4
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-5">
-   Code 4.5
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-6">
-   Code 4.6
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-7-4-8">
-   Code 4.7, 4.8
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-9">
-   Code 4.9
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-10">
-   Code 4.10
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-11">
-   Code 4.11
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-12-4-13">
-   Code 4.12 &amp; 4.13
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-14">
-   Code 4.14
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-15">
-   Code 4.15
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-16">
-   Code 4.16
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-17">
-   Code 4.17
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-18">
-   Code 4.18
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-19-4-20">
-   Code 4.19 &amp; 4.20
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-21">
-   Code 4.21
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-22">
-   Code 4.22
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-23-code-4-24">
-   Code 4.23 &amp; Code 4.24
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-25">
-   Code 4.25
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-26">
-   Code 4.26
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-27">
-   Code 4.27
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-28">
-   Code 4.28
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-29">
-   Code 4.29
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-30">
-   Code 4.30
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-31">
-   Code 4.31
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-32">
-   Code 4.32
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-33">
-   Code 4.33
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-34">
-   Code 4.34
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-35">
-   Code 4.35
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-36">
-   Code 4.36
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-37">
-   Code 4.37
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-38-4-39">
-   Code 4.38, &amp; 4.39
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-40">
-   Code 4.40
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-41">
-   Code 4.41
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-42">
-   Code 4.42
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-43">
-   Code 4.43
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-44">
-   Code 4.44
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-45">
-   Code 4.45
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-46">
-   Code 4.46
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-47-todo-add-notes">
-   Code 4.47 TODO : Add notes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-48">
-   Code 4.48
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352">
-   Code 4.49  TODO : plot with more data i.e. N = 10,50,150,352
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-50-4-51">
-   Code 4.50 &amp; 4.51
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-52">
-   Code 4.52
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-53-4-54-4-55">
-   Code 4.53 &amp; 4.54 &amp; 4.55
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-56">
-   Code 4.56
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-57">
-   Code 4.57
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-58">
-   Code 4.58
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-59">
-   Code 4.59
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-60">
-   Code 4.60
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-61">
-   Code 4.61
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-62">
-   Code 4.62
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-63">
-   Code 4.63
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-64">
-   Code 4.64
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-65">
-   Code 4.65
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-66">
-   Code 4.66
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-67">
-   Code 4.67
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-68">
-   Code 4.68
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-69">
-   Code 4.69
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-70-4-71">
-   Code 4.70 &amp; 4.71
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-72">
-   Code 4.72
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-73">
-   Code 4.73
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-74">
-   Code 4.74
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-75">
-   Code 4.75
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-76">
-   Code 4.76
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-77">
-   Code 4.77
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-78">
-   Code 4.78
-  </a>
+  <a class="reference internal nav-link" href="#gaussian-model-of-height">
+   4.3 Gaussian model of height
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data">
+     4.3.1 The data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-7-4-8">
+       Code 4.7, 4.8
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-9">
+       Code 4.9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-10">
+       Code 4.10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-11">
+       Code 4.11
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model">
+     4.3.2 The model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-12-4-13">
+       Code 4.12 &amp; 4.13
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-14">
+       Code 4.14
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-15">
+       Code 4.15
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-approximation-of-the-posterior-distribution">
+     4.3.3 Grid approximation of the posterior distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-16">
+       Code 4.16
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-17">
+       Code 4.17
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-18">
+       Code 4.18
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling-from-the-posterior">
+     4.3.4 Sampling from the posterior
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-19-4-20">
+       Code 4.19 &amp; 4.20
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-21">
+       Code 4.21
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-22">
+       Code 4.22
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-23-code-4-24">
+       Code 4.23 &amp; Code 4.24
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-25">
+       Code 4.25
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-posterior-distribution-using-quap">
+     4.3.5 Finding the posterior distribution using quap
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-26">
+       Code 4.26
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-27">
+       Code 4.27
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-28">
+       Code 4.28
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-29">
+       Code 4.29
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-30">
+       Code 4.30
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-31">
+       Code 4.31
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-32">
+       Code 4.32
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-33">
+       Code 4.33
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-34">
+       Code 4.34
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-35">
+       Code 4.35
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-36">
+       Code 4.36
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-prediction">
+   4.4 Linear prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-4-37">
+     Code 4.37
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-linear-model-strategy">
+     4.4.1 The linear model strategy
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-38-4-39">
+       Code 4.38, &amp; 4.39
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-40">
+       Code 4.40
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-41">
+       Code 4.41
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-posterior-distribution">
+     4.4.2 Finding the posterior distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-42">
+       Code 4.42
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-43">
+       Code 4.43
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-the-posterior-distribution">
+     4.4.3 Interpreting the posterior distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-44">
+       Code 4.44
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-45">
+       Code 4.45
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-posterior-inference-against-the-data">
+       4.4.3.2 Plotting posterior inference against the data
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-46">
+         Code 4.46
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-47-todo-add-notes">
+         Code 4.47 TODO : Add notes
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-48">
+         Code 4.48
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352">
+         Code 4.49  TODO : plot with more data i.e. N = 10,50,150,352
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-50-4-51">
+         Code 4.50 &amp; 4.51
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-52">
+         Code 4.52
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-53-4-54-4-55">
+         Code 4.53 &amp; 4.54 &amp; 4.55
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-56">
+         Code 4.56
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-57">
+         Code 4.57
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-58">
+         Code 4.58
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-59">
+         Code 4.59
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-60">
+         Code 4.60
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-61">
+         Code 4.61
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-62">
+         Code 4.62
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-63">
+         Code 4.63
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#curves-from-lines">
+   4.5 Curves from lines
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polynomial-regression">
+     4.5.1 Polynomial regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-64">
+       Code 4.64
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-65">
+       Code 4.65
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-66">
+       Code 4.66
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-67">
+       Code 4.67
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-68">
+       Code 4.68
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-69">
+       Code 4.69
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-70-4-71">
+       Code 4.70 &amp; 4.71
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#splines">
+     4.5.2 Splines
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-72">
+       Code 4.72
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-73">
+       Code 4.73
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-74">
+       Code 4.74
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-75">
+       Code 4.75
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-76">
+       Code 4.76
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-77">
+       Code 4.77
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-78">
+       Code 4.78
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -677,366 +788,477 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports-and-utility-functions">
-   Imports and utility functions
+  <a class="reference internal nav-link" href="#why-normal-distributions-are-normal">
+   4.1 Why normal distributions are normal
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
-     Tensorflow MCMC sampling helpers
+    <a class="reference internal nav-link" href="#normal-by-addition">
+     4.1.1 Normal by addition
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-1">
+       Code 4.1
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dataset-urls">
-     Dataset URLs
+    <a class="reference internal nav-link" href="#normal-by-multiplication">
+     4.1.2 Normal by multiplication
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-2-4-3">
+       Code 4.2 &amp; 4.3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-4">
+       Code 4.4
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plotting-utilities">
-     Plotting utilities
+    <a class="reference internal nav-link" href="#normal-by-log-multiplication">
+     4.1.3 Normal by log-multiplication
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-5">
+       Code 4.5
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-language-for-describing-models">
+   4.2 A language for describing models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-4-6">
+     Code 4.6
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-1">
-   Code 4.1
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-2-4-3">
-   Code 4.2 &amp; 4.3
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-4">
-   Code 4.4
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-5">
-   Code 4.5
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-6">
-   Code 4.6
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-7-4-8">
-   Code 4.7, 4.8
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-9">
-   Code 4.9
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-10">
-   Code 4.10
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-11">
-   Code 4.11
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-12-4-13">
-   Code 4.12 &amp; 4.13
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-14">
-   Code 4.14
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-15">
-   Code 4.15
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-16">
-   Code 4.16
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-17">
-   Code 4.17
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-18">
-   Code 4.18
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-19-4-20">
-   Code 4.19 &amp; 4.20
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-21">
-   Code 4.21
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-22">
-   Code 4.22
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-23-code-4-24">
-   Code 4.23 &amp; Code 4.24
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-25">
-   Code 4.25
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-26">
-   Code 4.26
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-27">
-   Code 4.27
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-28">
-   Code 4.28
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-29">
-   Code 4.29
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-30">
-   Code 4.30
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-31">
-   Code 4.31
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-32">
-   Code 4.32
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-33">
-   Code 4.33
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-34">
-   Code 4.34
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-35">
-   Code 4.35
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-36">
-   Code 4.36
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-37">
-   Code 4.37
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-38-4-39">
-   Code 4.38, &amp; 4.39
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-40">
-   Code 4.40
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-41">
-   Code 4.41
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-42">
-   Code 4.42
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-43">
-   Code 4.43
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-44">
-   Code 4.44
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-45">
-   Code 4.45
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-46">
-   Code 4.46
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-47-todo-add-notes">
-   Code 4.47 TODO : Add notes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-48">
-   Code 4.48
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352">
-   Code 4.49  TODO : plot with more data i.e. N = 10,50,150,352
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-50-4-51">
-   Code 4.50 &amp; 4.51
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-52">
-   Code 4.52
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-53-4-54-4-55">
-   Code 4.53 &amp; 4.54 &amp; 4.55
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-56">
-   Code 4.56
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-57">
-   Code 4.57
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-58">
-   Code 4.58
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-59">
-   Code 4.59
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-60">
-   Code 4.60
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-61">
-   Code 4.61
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-62">
-   Code 4.62
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-63">
-   Code 4.63
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-64">
-   Code 4.64
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-65">
-   Code 4.65
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-66">
-   Code 4.66
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-67">
-   Code 4.67
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-68">
-   Code 4.68
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-69">
-   Code 4.69
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-70-4-71">
-   Code 4.70 &amp; 4.71
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-72">
-   Code 4.72
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-73">
-   Code 4.73
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-74">
-   Code 4.74
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-75">
-   Code 4.75
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-76">
-   Code 4.76
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-77">
-   Code 4.77
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-4-78">
-   Code 4.78
-  </a>
+  <a class="reference internal nav-link" href="#gaussian-model-of-height">
+   4.3 Gaussian model of height
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data">
+     4.3.1 The data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-7-4-8">
+       Code 4.7, 4.8
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-9">
+       Code 4.9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-10">
+       Code 4.10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-11">
+       Code 4.11
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model">
+     4.3.2 The model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-12-4-13">
+       Code 4.12 &amp; 4.13
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-14">
+       Code 4.14
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-15">
+       Code 4.15
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-approximation-of-the-posterior-distribution">
+     4.3.3 Grid approximation of the posterior distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-16">
+       Code 4.16
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-17">
+       Code 4.17
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-18">
+       Code 4.18
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling-from-the-posterior">
+     4.3.4 Sampling from the posterior
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-19-4-20">
+       Code 4.19 &amp; 4.20
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-21">
+       Code 4.21
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-22">
+       Code 4.22
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-23-code-4-24">
+       Code 4.23 &amp; Code 4.24
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-25">
+       Code 4.25
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-posterior-distribution-using-quap">
+     4.3.5 Finding the posterior distribution using quap
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-26">
+       Code 4.26
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-27">
+       Code 4.27
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-28">
+       Code 4.28
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-29">
+       Code 4.29
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-30">
+       Code 4.30
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-31">
+       Code 4.31
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-32">
+       Code 4.32
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-33">
+       Code 4.33
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-34">
+       Code 4.34
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-35">
+       Code 4.35
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-36">
+       Code 4.36
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-prediction">
+   4.4 Linear prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-4-37">
+     Code 4.37
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-linear-model-strategy">
+     4.4.1 The linear model strategy
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-38-4-39">
+       Code 4.38, &amp; 4.39
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-40">
+       Code 4.40
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-41">
+       Code 4.41
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-posterior-distribution">
+     4.4.2 Finding the posterior distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-42">
+       Code 4.42
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-43">
+       Code 4.43
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-the-posterior-distribution">
+     4.4.3 Interpreting the posterior distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-44">
+       Code 4.44
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-45">
+       Code 4.45
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-posterior-inference-against-the-data">
+       4.4.3.2 Plotting posterior inference against the data
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-46">
+         Code 4.46
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-47-todo-add-notes">
+         Code 4.47 TODO : Add notes
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-48">
+         Code 4.48
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352">
+         Code 4.49  TODO : plot with more data i.e. N = 10,50,150,352
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-50-4-51">
+         Code 4.50 &amp; 4.51
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-52">
+         Code 4.52
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-53-4-54-4-55">
+         Code 4.53 &amp; 4.54 &amp; 4.55
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-56">
+         Code 4.56
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-57">
+         Code 4.57
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-58">
+         Code 4.58
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-59">
+         Code 4.59
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-60">
+         Code 4.60
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-61">
+         Code 4.61
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-62">
+         Code 4.62
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#code-4-63">
+         Code 4.63
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#curves-from-lines">
+   4.5 Curves from lines
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polynomial-regression">
+     4.5.1 Polynomial regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-64">
+       Code 4.64
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-65">
+       Code 4.65
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-66">
+       Code 4.66
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-67">
+       Code 4.67
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-68">
+       Code 4.68
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-69">
+       Code 4.69
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-70-4-71">
+       Code 4.70 &amp; 4.71
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#splines">
+     4.5.2 Splines
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-72">
+       Code 4.72
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-73">
+       Code 4.73
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-74">
+       Code 4.74
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-75">
+       Code 4.75
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-76">
+       Code 4.76
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-77">
+       Code 4.77
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-4-78">
+       Code 4.78
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1050,19 +1272,14 @@
   <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/04_geocentric_models.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="tex2jax_ignore mathjax_ignore section" id="chapter-4-geocentric-models">
 <h1>Chapter 4 - Geocentric Models<a class="headerlink" href="#chapter-4-geocentric-models" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="imports-and-utility-functions">
-<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+  <span class="o">!</span>pip install watermark
 <span class="k">except</span><span class="p">:</span>
-  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-    <span class="o">!</span>pip install watermark
+  <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -1096,8 +1313,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:27:44.227483: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 21:27:44.227540: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:38:57.436440: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 22:38:57.436471: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1127,8 +1344,13 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
-<div class="section" id="tensorflow-mcmc-sampling-helpers">
-<h3>Tensorflow MCMC sampling helpers<a class="headerlink" href="#tensorflow-mcmc-sampling-helpers" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tensorflow MCMC sampling helpers</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
@@ -1256,9 +1478,13 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Dataset URLs</span>
+</pre></div>
 </div>
-<div class="section" id="dataset-urls">
-<h3>Dataset URLs<a class="headerlink" href="#dataset-urls" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
@@ -1270,9 +1496,13 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Plotting utilities</span>
+</pre></div>
 </div>
-<div class="section" id="plotting-utilities">
-<h3>Plotting utilities<a class="headerlink" href="#plotting-utilities" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a function to plot the density using arviz plot_kde function</span>
@@ -1284,10 +1514,12 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
-</div>
-</div>
+<div class="section" id="why-normal-distributions-are-normal">
+<h2>4.1 Why normal distributions are normal<a class="headerlink" href="#why-normal-distributions-are-normal" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="normal-by-addition">
+<h3>4.1.1 Normal by addition<a class="headerlink" href="#normal-by-addition" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-1">
-<h2>Code 4.1<a class="headerlink" href="#code-4-1" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.1<a class="headerlink" href="#code-4-1" title="Permalink to this headline">¶</a></h4>
 <p>This snippet is showing the notion of “Normal distribution by Addition”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1299,19 +1531,22 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:27:46.781489: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 21:27:46.781527: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 21:27:46.781553: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 21:27:46.782007: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:38:59.438287: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 22:38:59.438316: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 22:38:59.438335: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
+2022-01-17 22:38:59.438610: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_15_1.png" src="../_images/04_geocentric_models_15_1.png" />
+<img alt="../_images/04_geocentric_models_16_1.png" src="../_images/04_geocentric_models_16_1.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="normal-by-multiplication">
+<h3>4.1.2 Normal by multiplication<a class="headerlink" href="#normal-by-multiplication" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-2-4-3">
-<h2>Code 4.2 &amp; 4.3<a class="headerlink" href="#code-4-2-4-3" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.2 &amp; 4.3<a class="headerlink" href="#code-4-2-4-3" title="Permalink to this headline">¶</a></h4>
 <p>This snippet is showing the notion of “Normal distribution by Multiplication”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1323,12 +1558,12 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_17_0.png" src="../_images/04_geocentric_models_17_0.png" />
+<img alt="../_images/04_geocentric_models_19_0.png" src="../_images/04_geocentric_models_19_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-4">
-<h2>Code 4.4<a class="headerlink" href="#code-4-4" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.4<a class="headerlink" href="#code-4-4" title="Permalink to this headline">¶</a></h4>
 <p>Continuation of the notion of “Normal distribution by Multiplication”</p>
 <p>Author explains that - “The smaller the effect of a variable (locus in the example), the better the additive approximation will be”</p>
 <div class="cell docutils container">
@@ -1343,12 +1578,15 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_19_0.png" src="../_images/04_geocentric_models_19_0.png" />
+<img alt="../_images/04_geocentric_models_21_0.png" src="../_images/04_geocentric_models_21_0.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="normal-by-log-multiplication">
+<h3>4.1.3 Normal by log-multiplication<a class="headerlink" href="#normal-by-log-multiplication" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-5">
-<h2>Code 4.5<a class="headerlink" href="#code-4-5" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.5<a class="headerlink" href="#code-4-5" title="Permalink to this headline">¶</a></h4>
 <p>This snippet is showing the notion of “Normal distribution by log-multiplication”</p>
 <p>Author explains - “Large deviates that are multi- plied together do not produce Gaussian distributions, but they do tend to produce Gaussian distributions on the log scale. So even multiplicative interactions of large deviations can produce Gaussian distributions, once we measure the outcomes on the log scale.”</p>
 <div class="cell docutils container">
@@ -1359,8 +1597,12 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="a-language-for-describing-models">
+<h2>4.2 A language for describing models<a class="headerlink" href="#a-language-for-describing-models" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="code-4-6">
-<h2>Code 4.6<a class="headerlink" href="#code-4-6" title="Permalink to this headline">¶</a></h2>
+<h3>Code 4.6<a class="headerlink" href="#code-4-6" title="Permalink to this headline">¶</a></h3>
 <p>Here the globe tossing model is described again.</p>
 <p><span class="math notranslate nohighlight">\(w\)</span> = Observed count of water</p>
 <p><span class="math notranslate nohighlight">\(n\)</span> = Total number of tosses</p>
@@ -1388,12 +1630,17 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_23_1.png" src="../_images/04_geocentric_models_23_1.png" />
+<img alt="../_images/04_geocentric_models_27_1.png" src="../_images/04_geocentric_models_27_1.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="gaussian-model-of-height">
+<h2>4.3 Gaussian model of height<a class="headerlink" href="#gaussian-model-of-height" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-data">
+<h3>4.3.1 The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-7-4-8">
-<h2>Code 4.7, 4.8<a class="headerlink" href="#code-4-7-4-8" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.7, 4.8<a class="headerlink" href="#code-4-7-4-8" title="Permalink to this headline">¶</a></h4>
 <p>We are now building the Gaussian model of height</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1469,7 +1716,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="section" id="code-4-9">
-<h2>Code 4.9<a class="headerlink" href="#code-4-9" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.9<a class="headerlink" href="#code-4-9" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;list&quot;</span><span class="p">),</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;stats&quot;</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
@@ -1536,7 +1783,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="section" id="code-4-10">
-<h2>Code 4.10<a class="headerlink" href="#code-4-10" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.10<a class="headerlink" href="#code-4-10" title="Permalink to this headline">¶</a></h4>
 <p>For now we are going to work only with the height columns so let’s look at it</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1557,7 +1804,7 @@ Name: height, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-11">
-<h2>Code 4.11<a class="headerlink" href="#code-4-11" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.11<a class="headerlink" href="#code-4-11" title="Permalink to this headline">¶</a></h4>
 <p>We are only interested in the heights of adults only (for the time being; we will incorporate the whole dataset later)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1567,8 +1814,11 @@ Name: height, dtype: float64
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="the-model">
+<h3>4.3.2 The model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-12-4-13">
-<h2>Code 4.12 &amp; 4.13<a class="headerlink" href="#code-4-12-4-13" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.12 &amp; 4.13<a class="headerlink" href="#code-4-12-4-13" title="Permalink to this headline">¶</a></h4>
 <p>Author explains that whatever is your prior, it’s a very good idea to always plot it. This way we will have a better
 sense of our model.</p>
 <p>Here we have assumed certain values for our priors and as per the instruction plotting them</p>
@@ -1589,12 +1839,12 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_33_0.png" src="../_images/04_geocentric_models_33_0.png" />
+<img alt="../_images/04_geocentric_models_40_0.png" src="../_images/04_geocentric_models_40_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-14">
-<h2>Code 4.14<a class="headerlink" href="#code-4-14" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.14<a class="headerlink" href="#code-4-14" title="Permalink to this headline">¶</a></h4>
 <p>In the above section we have chosen priors for <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span> and even plotted them. It is also important to now see what kind of distribution these assumptions generate. This is called <strong>PRIOR PREDICTIVE simulation</strong> and is important part of modelling.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1610,12 +1860,12 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_35_0.png" src="../_images/04_geocentric_models_35_0.png" />
+<img alt="../_images/04_geocentric_models_42_0.png" src="../_images/04_geocentric_models_42_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-15">
-<h2>Code 4.15<a class="headerlink" href="#code-4-15" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.15<a class="headerlink" href="#code-4-15" title="Permalink to this headline">¶</a></h4>
 <p>As mentioned in above cell the prior predictive simulation is helpful in assigning sensible priors. Here we see if we change the scale for <em>sample_mu</em> to 100 (instead of using 20 as in the above cell)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1631,13 +1881,16 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_37_0.png" src="../_images/04_geocentric_models_37_0.png" />
+<img alt="../_images/04_geocentric_models_44_0.png" src="../_images/04_geocentric_models_44_0.png" />
 </div>
 </div>
 <p>Now, what the above plot is showing that there are about 4% of people that have a <strong>negative height</strong> and about 18% on the right side have height not common at all for humans to attain ! So clearly this choice of scale (i.e. 100) is not a good one as the prior.</p>
 </div>
+</div>
+<div class="section" id="grid-approximation-of-the-posterior-distribution">
+<h3>4.3.3 Grid approximation of the posterior distribution<a class="headerlink" href="#grid-approximation-of-the-posterior-distribution" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-16">
-<h2>Code 4.16<a class="headerlink" href="#code-4-16" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.16<a class="headerlink" href="#code-4-16" title="Permalink to this headline">¶</a></h4>
 <p>Here we are doing <strong>Grid approximation of the posterior distribution</strong>. A very crude technique that may work for small/simple models. It is customary to do it to make a point but later we will use well established inference methods based on MCMC and VI</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1692,7 +1945,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="section" id="code-4-17">
-<h2>Code 4.17<a class="headerlink" href="#code-4-17" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.17<a class="headerlink" href="#code-4-17" title="Permalink to this headline">¶</a></h4>
 <p>Make a contour plot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1702,12 +1955,12 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_43_0.png" src="../_images/04_geocentric_models_43_0.png" />
+<img alt="../_images/04_geocentric_models_51_0.png" src="../_images/04_geocentric_models_51_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-18">
-<h2>Code 4.18<a class="headerlink" href="#code-4-18" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.18<a class="headerlink" href="#code-4-18" title="Permalink to this headline">¶</a></h4>
 <p>Here we are plotting a heatmap instead of contour plot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1716,12 +1969,15 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_45_0.png" src="../_images/04_geocentric_models_45_0.png" />
+<img alt="../_images/04_geocentric_models_53_0.png" src="../_images/04_geocentric_models_53_0.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="sampling-from-the-posterior">
+<h3>4.3.4 Sampling from the posterior<a class="headerlink" href="#sampling-from-the-posterior" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-19-4-20">
-<h2>Code 4.19 &amp; 4.20<a class="headerlink" href="#code-4-19-4-20" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.19 &amp; 4.20<a class="headerlink" href="#code-4-19-4-20" title="Permalink to this headline">¶</a></h4>
 <p>We are at point of now <strong>Sampling from the Posterior</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1741,12 +1997,12 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_47_0.png" src="../_images/04_geocentric_models_47_0.png" />
+<img alt="../_images/04_geocentric_models_56_0.png" src="../_images/04_geocentric_models_56_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-21">
-<h2>Code 4.21<a class="headerlink" href="#code-4-21" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.21<a class="headerlink" href="#code-4-21" title="Permalink to this headline">¶</a></h4>
 <p>Time to summarize/describe the distribution of confidence in each combination of <span class="math notranslate nohighlight">\(\mu\)</span> &amp; <span class="math notranslate nohighlight">\(\sigma\)</span> using the samples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1761,14 +2017,14 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_49_0.png" src="../_images/04_geocentric_models_49_0.png" />
+<img alt="../_images/04_geocentric_models_58_0.png" src="../_images/04_geocentric_models_58_0.png" />
 </div>
 </div>
 <p>As should be clear from the plot, the densities here are very close <em>normal distribution</em>. As sample size increases, posterior densities show this behavior.</p>
 <p>Pay attention to sample_sigma, density of it has a <strong>longer right-hand tail</strong>. Author mentions here that this condition is very common for standard deviation parameters. No explanation about it at this point of time.</p>
 </div>
 <div class="section" id="code-4-22">
-<h2>Code 4.22<a class="headerlink" href="#code-4-22" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.22<a class="headerlink" href="#code-4-22" title="Permalink to this headline">¶</a></h4>
 <p>Now we want to summarize the widths of these densities with <strong>posterior compatibility intervals</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1778,15 +2034,15 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample_mu - [153.76884 155.32663]
-sample_sigma - [7.2211056 8.316583 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample_mu - [153.86935 155.37689]
+sample_sigma - [7.2110553 8.2763815]
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-23-code-4-24">
-<h2>Code 4.23 &amp; Code 4.24<a class="headerlink" href="#code-4-23-code-4-24" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.23 &amp; Code 4.24<a class="headerlink" href="#code-4-23-code-4-24" title="Permalink to this headline">¶</a></h4>
 <p>Author now wants to use Quadratic approximation but he wants to make a point about using it and impact of <span class="math notranslate nohighlight">\(\sigma\)</span> on this approximation.</p>
 <p>Here the above analysis of the height data is repeated but with only a fraction of original data. The reasoning behind is to demonstrate that, in principle, the posterior is not always Gaussian in shape.</p>
 <p>Author explains that for a Guassian <span class="math notranslate nohighlight">\(\mu\)</span> &amp; Gaussian likelihood the shape is always Gaussian irrespective of the sample size but it is the <span class="math notranslate nohighlight">\(\sigma\)</span> that causes problems.</p>
@@ -1834,12 +2090,12 @@ sample_sigma - [7.2211056 8.316583 ]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_56_0.png" src="../_images/04_geocentric_models_56_0.png" />
+<img alt="../_images/04_geocentric_models_65_0.png" src="../_images/04_geocentric_models_65_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-25">
-<h2>Code 4.25<a class="headerlink" href="#code-4-25" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.25<a class="headerlink" href="#code-4-25" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
@@ -1853,7 +2109,7 @@ sample_sigma - [7.2211056 8.316583 ]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_58_0.png" src="../_images/04_geocentric_models_58_0.png" />
+<img alt="../_images/04_geocentric_models_67_0.png" src="../_images/04_geocentric_models_67_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1865,12 +2121,15 @@ sample_sigma - [7.2211056 8.316583 ]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_59_0.png" src="../_images/04_geocentric_models_59_0.png" />
+<img alt="../_images/04_geocentric_models_68_0.png" src="../_images/04_geocentric_models_68_0.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="finding-the-posterior-distribution-using-quap">
+<h3>4.3.5 Finding the posterior distribution using quap<a class="headerlink" href="#finding-the-posterior-distribution-using-quap" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-26">
-<h2>Code 4.26<a class="headerlink" href="#code-4-26" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.26<a class="headerlink" href="#code-4-26" title="Permalink to this headline">¶</a></h4>
 <p>We will reload our data frame and start to use quadratic approximiation now</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2001,7 +2260,7 @@ sample_sigma - [7.2211056 8.316583 ]
 </div>
 </div>
 <div class="section" id="code-4-27">
-<h2>Code 4.27<a class="headerlink" href="#code-4-27" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.27<a class="headerlink" href="#code-4-27" title="Permalink to this headline">¶</a></h4>
 <p>We are now ready to define our model using tensorflow probability.</p>
 <p>There are few ways to define a model using tfp, I am going to use a variant
 of JointSequential that uses Coroutines (generator) based syntax. However, you can always
@@ -2035,7 +2294,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 </div>
 <div class="section" id="code-4-28">
-<h2>Code 4.28<a class="headerlink" href="#code-4-28" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.28<a class="headerlink" href="#code-4-28" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">posterior_4_1</span><span class="p">,</span> <span class="n">trace_4_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
@@ -2048,7 +2307,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 </div>
 <div class="section" id="code-4-29">
-<h2>Code 4.29<a class="headerlink" href="#code-4-29" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.29<a class="headerlink" href="#code-4-29" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
@@ -2057,7 +2316,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_67_0.png" src="../_images/04_geocentric_models_67_0.png" />
+<img alt="../_images/04_geocentric_models_77_0.png" src="../_images/04_geocentric_models_77_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2094,17 +2353,17 @@ define as a plain function and return log probs yourself. An example of plain fu
   <tbody>
     <tr>
       <th>mu[0]</th>
-      <td>175.98</td>
-      <td>2.24</td>
-      <td>172.98</td>
-      <td>179.96</td>
+      <td>154.67</td>
+      <td>0.39</td>
+      <td>154.02</td>
+      <td>155.19</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>27.24</td>
-      <td>6.65</td>
-      <td>20.08</td>
-      <td>34.95</td>
+      <td>7.81</td>
+      <td>0.29</td>
+      <td>7.36</td>
+      <td>8.28</td>
     </tr>
   </tbody>
 </table>
@@ -2113,7 +2372,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 <p>These numbers shown above provide Gaussian approximations for each parameter’s marginal distribution.</p>
 </div>
 <div class="section" id="code-4-30">
-<h2>Code 4.30<a class="headerlink" href="#code-4-30" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.30<a class="headerlink" href="#code-4-30" title="Permalink to this headline">¶</a></h4>
 <p>What should be the starting values for the sampling ?</p>
 <p>Author recommends that we could use the mean from the dataframe</p>
 <div class="cell docutils container">
@@ -2141,7 +2400,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 </div>
 <div class="section" id="code-4-31">
-<h2>Code 4.31<a class="headerlink" href="#code-4-31" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.31<a class="headerlink" href="#code-4-31" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_4_2</span><span class="p">():</span>
@@ -2191,17 +2450,17 @@ define as a plain function and return log probs yourself. An example of plain fu
   <tbody>
     <tr>
       <th>mu[0]</th>
-      <td>177.86</td>
+      <td>177.87</td>
       <td>0.10</td>
       <td>177.71</td>
       <td>178.03</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>24.73</td>
-      <td>0.94</td>
-      <td>22.93</td>
-      <td>25.87</td>
+      <td>24.90</td>
+      <td>0.98</td>
+      <td>23.38</td>
+      <td>26.49</td>
     </tr>
   </tbody>
 </table>
@@ -2211,7 +2470,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 <p>Notice that the estimate for μ has hardly moved off the prior. The prior was very concentrated around 178. So this is not surprising. But also notice that the estimate for σ has changed quite a lot, even though we didn’t change its prior at all. Once the golem is certain that the mean is near 178—as the prior insists—then the golem has to estimate σ conditional on that fact. This results in a different posterior for σ, even though all we changed is prior information about the other parameter.</p>
 </div>
 <div class="section" id="code-4-32">
-<h2>Code 4.32<a class="headerlink" href="#code-4-32" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.32<a class="headerlink" href="#code-4-32" title="Permalink to this headline">¶</a></h4>
 <p>Now this approximation of posterior is multi-dimension where <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are contributing a dimension each. In other words, we have a multi-dimensional gaussian distribution</p>
 <p>Since it is multi-dimensional, let’s see the covariances between the parameters</p>
 <div class="cell docutils container">
@@ -2226,15 +2485,15 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-array([[0.3485738, 0.4247751],
-       [0.4247751, 0.660663 ]], dtype=float32)&gt;
+array([[0.1530036 , 0.00150928],
+       [0.00150928, 0.09812467]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-33">
-<h2>Code 4.33<a class="headerlink" href="#code-4-33" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.33<a class="headerlink" href="#code-4-33" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diag_part</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">diag_part</span><span class="p">(</span><span class="n">vcov</span><span class="p">)</span>
@@ -2244,17 +2503,17 @@ array([[0.3485738, 0.4247751],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor([0.3485738 0.660663 ], shape=(2,), dtype=float32)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor([0.1530036  0.09812467], shape=(2,), dtype=float32)
 tf.Tensor(
-[[1.        0.8851598]
- [0.8851598 1.       ]], shape=(2, 2), dtype=float32)
+[[1.         0.01231772]
+ [0.01231772 1.        ]], shape=(2, 2), dtype=float32)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-34">
-<h2>Code 4.34<a class="headerlink" href="#code-4-34" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.34<a class="headerlink" href="#code-4-34" title="Permalink to this headline">¶</a></h4>
 <p>We did not use the quadratic approximation, instead we use a MCMC method to sample from the posterior. Thus, we already have samples. We can do something like</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2264,15 +2523,15 @@ tf.Tensor(
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([34.681942, 34.722637, 34.694145, 34.626846, 34.578865, 34.5153  ,
-       34.485622, 34.5743  , 34.53423 , 34.522995], dtype=float32)&gt;
+array([7.31427  , 7.6075835, 7.6075835, 8.18195  , 8.344839 , 8.344839 ,
+       8.344839 , 8.344839 , 8.093379 , 7.685422 ], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-35">
-<h2>Code 4.35<a class="headerlink" href="#code-4-35" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.35<a class="headerlink" href="#code-4-35" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">({</span>
@@ -2310,17 +2569,17 @@ array([34.681942, 34.722637, 34.694145, 34.626846, 34.578865, 34.5153  ,
   <tbody>
     <tr>
       <th>mu</th>
-      <td>174.82</td>
-      <td>0.59</td>
-      <td>173.98</td>
-      <td>175.79</td>
+      <td>154.66</td>
+      <td>0.39</td>
+      <td>154.02</td>
+      <td>155.19</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>33.84</td>
-      <td>0.81</td>
-      <td>32.67</td>
-      <td>34.79</td>
+      <td>7.83</td>
+      <td>0.31</td>
+      <td>7.43</td>
+      <td>8.46</td>
     </tr>
   </tbody>
 </table>
@@ -2328,7 +2587,7 @@ array([34.681942, 34.722637, 34.694145, 34.626846, 34.578865, 34.5153  ,
 </div>
 </div>
 <div class="section" id="code-4-36">
-<h2>Code 4.36<a class="headerlink" href="#code-4-36" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.36<a class="headerlink" href="#code-4-36" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">sample_mu</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2341,10 +2600,10 @@ array([34.681942, 34.722637, 34.694145, 34.626846, 34.578865, 34.5153  ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(174.81685595703124,
- 33.83909804153443,
- array([[0.34927245, 0.42562634],
-        [0.42562634, 0.66198701]]))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(154.65935397338868,
+ 7.8255443649292,
+ array([[0.15331016, 0.00151231],
+        [0.00151231, 0.09832126]]))
 </pre></div>
 </div>
 </div>
@@ -2366,20 +2625,24 @@ Instructions for updating:
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(1000, 2), dtype=float64, numpy=
-array([[176.05380831,  35.6802501 ],
-       [174.51610061,  33.42574423],
-       [174.86200605,  34.4321387 ],
+array([[154.26914779,   7.51515218],
+       [153.80844486,   7.78509847],
+       [153.82843787,   7.98138205],
        ...,
-       [174.48276556,  33.09811046],
-       [175.26699563,  34.52216982],
-       [175.72328856,  35.37953356]])&gt;
+       [154.83682426,   7.76750366],
+       [154.55834567,   8.38556951],
+       [154.68669189,   8.10475457]])&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="linear-prediction">
+<h2>4.4 Linear prediction<a class="headerlink" href="#linear-prediction" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="code-4-37">
-<h2>Code 4.37<a class="headerlink" href="#code-4-37" title="Permalink to this headline">¶</a></h2>
+<h3>Code 4.37<a class="headerlink" href="#code-4-37" title="Permalink to this headline">¶</a></h3>
 <p>So now let’s look at how height in these Kalahari foragers (the outcome variable) covaries with weight (the predictor variable).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2388,13 +2651,15 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_87_0.png" src="../_images/04_geocentric_models_87_0.png" />
+<img alt="../_images/04_geocentric_models_98_0.png" src="../_images/04_geocentric_models_98_0.png" />
 </div>
 </div>
 <p>The plot clearly shows a relationship between weight and height.</p>
 </div>
+<div class="section" id="the-linear-model-strategy">
+<h3>4.4.1 The linear model strategy<a class="headerlink" href="#the-linear-model-strategy" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-38-4-39">
-<h2>Code 4.38, &amp; 4.39<a class="headerlink" href="#code-4-38-4-39" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.38, &amp; 4.39<a class="headerlink" href="#code-4-38-4-39" title="Permalink to this headline">¶</a></h4>
 <p>This snippet is in the section titled - “The linear model strategy”. The section is a master piece and clearly explains the conceptual meaning of <em>intercept</em> and <em>slope</em> in linear models. Read the section thoroughly with a cup of tea and it will make your day !.</p>
 <p>In brief, we have now started to model the relation between height &amp; weight formally and the strategy is formally Linear Model and process is called Linear Regression.</p>
 <p>Here is the description of the model -</p>
@@ -2439,14 +2704,14 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_91_0.png" src="../_images/04_geocentric_models_91_0.png" />
+<img alt="../_images/04_geocentric_models_103_0.png" src="../_images/04_geocentric_models_103_0.png" />
 </div>
 </div>
 <p>‘—’ represents a zero - no one is shorter than this &amp; also is shown the line for world’s tallest person.</p>
 <p>Clearly, the lines are showing unnatural relationships therefore befoe we have even see the data, this is a bad model. Again prior predictive checks are coming in handy !</p>
 </div>
 <div class="section" id="code-4-40">
-<h2>Code 4.40<a class="headerlink" href="#code-4-40" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.40<a class="headerlink" href="#code-4-40" title="Permalink to this headline">¶</a></h4>
 <p>We use some common sense here, we know that average height increases with average weight (to some extent and to a certain point) therefore we must restrict it to positive values only.</p>
 <p>Earlier we used Normal distribution for beta but a better one is LogNormal</p>
 <p><span class="math notranslate nohighlight">\(\beta \sim LogNormal(0,1)\)</span></p>
@@ -2458,12 +2723,12 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_94_0.png" src="../_images/04_geocentric_models_94_0.png" />
+<img alt="../_images/04_geocentric_models_106_0.png" src="../_images/04_geocentric_models_106_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-41">
-<h2>Code 4.41<a class="headerlink" href="#code-4-41" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.41<a class="headerlink" href="#code-4-41" title="Permalink to this headline">¶</a></h4>
 <p>Doing the prior predictive check again where <span class="math notranslate nohighlight">\(\beta\)</span> is LogNormal</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2489,13 +2754,16 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_96_0.png" src="../_images/04_geocentric_models_96_0.png" />
+<img alt="../_images/04_geocentric_models_108_0.png" src="../_images/04_geocentric_models_108_0.png" />
 </div>
 </div>
 <p>Now this is much sensible plot; nearly all lines in the joint prior for <span class="math notranslate nohighlight">\(\alpha\)</span> &amp; <span class="math notranslate nohighlight">\(\beta\)</span> are now in human reason.</p>
 </div>
+</div>
+<div class="section" id="finding-the-posterior-distribution">
+<h3>4.4.2 Finding the posterior distribution<a class="headerlink" href="#finding-the-posterior-distribution" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-42">
-<h2>Code 4.42<a class="headerlink" href="#code-4-42" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.42<a class="headerlink" href="#code-4-42" title="Permalink to this headline">¶</a></h4>
 <p>Time to build the model again with all the new things we have discovered and updates discussed above</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2582,7 +2850,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="section" id="code-4-43">
-<h2>Code 4.43<a class="headerlink" href="#code-4-43" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.43<a class="headerlink" href="#code-4-43" title="Permalink to this headline">¶</a></h4>
 <p>Here the author talks about using log(<span class="math notranslate nohighlight">\(\beta\)</span>) instead of just <span class="math notranslate nohighlight">\(\beta\)</span> and says that the results will be same.</p>
 <p>But I did not find/understand the reason for it.</p>
 <div class="cell docutils container">
@@ -2611,14 +2879,17 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f20d8dfd3b0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f8f11aed830&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="interpreting-the-posterior-distribution">
+<h3>4.4.3 Interpreting the posterior distribution<a class="headerlink" href="#interpreting-the-posterior-distribution" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-44">
-<h2>Code 4.44<a class="headerlink" href="#code-4-44" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.44<a class="headerlink" href="#code-4-44" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace_4_3b</span><span class="p">,</span> <span class="n">round_to</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;stats&#39;</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
@@ -2678,7 +2949,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="section" id="code-4-45">
-<h2>Code 4.45<a class="headerlink" href="#code-4-45" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.45<a class="headerlink" href="#code-4-45" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">posterior_4_3</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
@@ -2726,8 +2997,10 @@ array([[176.05380831,  35.6802501 ],
 </div>
 <p>We see very little covariance among the parameters in this case. This lack of covariance among the parameters results from something called <strong>Centering</strong></p>
 </div>
+<div class="section" id="plotting-posterior-inference-against-the-data">
+<h4>4.4.3.2 Plotting posterior inference against the data<a class="headerlink" href="#plotting-posterior-inference-against-the-data" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="code-4-46">
-<h2>Code 4.46<a class="headerlink" href="#code-4-46" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.46<a class="headerlink" href="#code-4-46" title="Permalink to this headline">¶</a></h5>
 <p>This snippet appears in the section titled <strong>Plotting posterior inference against the data</strong>.</p>
 <p>Author examplins that plotting is extremely useful in see when key observations or patterns in the plotted data are not close to the model’s pediction.</p>
 <p>In this snippet, we start with the simple version of the task (i.e. plotting) by superimposing the posterior mean values over the height &amp; weight data. Later more and more information to prediction plots will be added until the entire posterior distribution is covered.</p>
@@ -2748,13 +3021,13 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_109_0.png" src="../_images/04_geocentric_models_109_0.png" />
+<img alt="../_images/04_geocentric_models_124_0.png" src="../_images/04_geocentric_models_124_0.png" />
 </div>
 </div>
 <p>Now above line is a good line, quite plausible line (model) actually. However, we must not forget that there are an infinite number of other highly plausible lines near it. So we would next try to get them as well !</p>
 </div>
 <div class="section" id="code-4-47-todo-add-notes">
-<h2>Code 4.47 TODO : Add notes<a class="headerlink" href="#code-4-47-todo-add-notes" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.47 TODO : Add notes<a class="headerlink" href="#code-4-47-todo-add-notes" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Looking at few values/samples from our posterior</span>
@@ -2828,7 +3101,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="section" id="code-4-48">
-<h2>Code 4.48<a class="headerlink" href="#code-4-48" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.48<a class="headerlink" href="#code-4-48" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
@@ -2845,7 +3118,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f20d8dfd3b0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f8f11aed830&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2900,7 +3173,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="section" id="code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352">
-<h2>Code 4.49  TODO : plot with more data i.e. N = 10,50,150,352<a class="headerlink" href="#code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.49  TODO : plot with more data i.e. N = 10,50,150,352<a class="headerlink" href="#code-4-49-todo-plot-with-more-data-i-e-n-10-50-150-352" title="Permalink to this headline">¶</a></h5>
 <p>Now let’s plot 20 of these lines, to see what the uncertainity looks like</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2926,12 +3199,12 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_116_0.png" src="../_images/04_geocentric_models_116_0.png" />
+<img alt="../_images/04_geocentric_models_131_0.png" src="../_images/04_geocentric_models_131_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-50-4-51">
-<h2>Code 4.50 &amp; 4.51<a class="headerlink" href="#code-4-50-4-51" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.50 &amp; 4.51<a class="headerlink" href="#code-4-50-4-51" title="Permalink to this headline">¶</a></h5>
 <p>Here we focus on a single weight value of 50 KG.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2942,12 +3215,12 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_118_0.png" src="../_images/04_geocentric_models_118_0.png" />
+<img alt="../_images/04_geocentric_models_133_0.png" src="../_images/04_geocentric_models_133_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-52">
-<h2>Code 4.52<a class="headerlink" href="#code-4-52" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.52<a class="headerlink" href="#code-4-52" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">hdi</span><span class="p">(</span><span class="n">mu_at_50</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
@@ -2962,7 +3235,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="section" id="code-4-53-4-54-4-55">
-<h2>Code 4.53 &amp; 4.54 &amp; 4.55<a class="headerlink" href="#code-4-53-4-54-4-55" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.53 &amp; 4.54 &amp; 4.55<a class="headerlink" href="#code-4-53-4-54-4-55" title="Permalink to this headline">¶</a></h5>
 <p>Above we picked the weight=50 but we need to repeat the above calculation for every weight value and not just 50Kg.</p>
 <p>The rethinking R package has a <em>link</em> method that does it automatically but here we will do it manually</p>
 <div class="cell docutils container">
@@ -2987,13 +3260,13 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_123_0.png" src="../_images/04_geocentric_models_123_0.png" />
+<img alt="../_images/04_geocentric_models_138_0.png" src="../_images/04_geocentric_models_138_0.png" />
 </div>
 </div>
 <p>There are 46 columns in <span class="math notranslate nohighlight">\(\mu\)</span> because we fed it 46 different values of weight.</p>
 </div>
 <div class="section" id="code-4-56">
-<h2>Code 4.56<a class="headerlink" href="#code-4-56" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.56<a class="headerlink" href="#code-4-56" title="Permalink to this headline">¶</a></h5>
 <p>Now we want to summarize the distribution for each weight value</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3011,7 +3284,7 @@ array([[176.05380831,  35.6802501 ],
 </div>
 </div>
 <div class="section" id="code-4-57">
-<h2>Code 4.57<a class="headerlink" href="#code-4-57" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.57<a class="headerlink" href="#code-4-57" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       
@@ -3029,17 +3302,17 @@ array([[176.05380831,  35.6802501 ],
   hdi_data = hdi(y, hdi_prob=hdi_prob, circular=circular, multimodal=False, **hdi_kwargs)
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_128_1.png" src="../_images/04_geocentric_models_128_1.png" />
+<img alt="../_images/04_geocentric_models_143_1.png" src="../_images/04_geocentric_models_143_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-58">
-<h2>Code 4.58<a class="headerlink" href="#code-4-58" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.58<a class="headerlink" href="#code-4-58" title="Permalink to this headline">¶</a></h5>
 <p>This snippet is showing the source code for the <em>link</em> function of R package. It is almost
 equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 <div class="section" id="code-4-59">
-<h2>Code 4.59<a class="headerlink" href="#code-4-59" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.59<a class="headerlink" href="#code-4-59" title="Permalink to this headline">¶</a></h5>
 <p>The task here now is to generate 89% prediction interval for actual heights, not just the average height <span class="math notranslate nohighlight">\(\mu\)</span></p>
 <p>i.e</p>
 <p><span class="math notranslate nohighlight">\(h_i \sim Normal(\mu_i, \sigma)\)</span></p>
@@ -3057,7 +3330,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_131_0.png" src="../_images/04_geocentric_models_131_0.png" />
+<img alt="../_images/04_geocentric_models_146_0.png" src="../_images/04_geocentric_models_146_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3088,7 +3361,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-60">
-<h2>Code 4.60<a class="headerlink" href="#code-4-60" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.60<a class="headerlink" href="#code-4-60" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">height_PI</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">sim_height</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">94.5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -3098,7 +3371,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-61">
-<h2>Code 4.61<a class="headerlink" href="#code-4-61" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.61<a class="headerlink" href="#code-4-61" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
@@ -3125,22 +3398,29 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_136_0.png" src="../_images/04_geocentric_models_136_0.png" />
+<img alt="../_images/04_geocentric_models_151_0.png" src="../_images/04_geocentric_models_151_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-62">
-<h2>Code 4.62<a class="headerlink" href="#code-4-62" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.62<a class="headerlink" href="#code-4-62" title="Permalink to this headline">¶</a></h5>
 <p>This snippet is re-running above but with more samples to see that the shaded boundary will smooth out some more</p>
 </div>
 <div class="section" id="code-4-63">
-<h2>Code 4.63<a class="headerlink" href="#code-4-63" title="Permalink to this headline">¶</a></h2>
+<h5>Code 4.63<a class="headerlink" href="#code-4-63" title="Permalink to this headline">¶</a></h5>
 <p>This snippet here is showing the internals of Author’s <em>sim</em> function in <em>R</em>.</p>
 <p>I have it implemented (naive version) in cell of 4.59</p>
 <p>This snippet here is showing the internals of Author’s <em>sim</em> function in <em>R</em></p>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="curves-from-lines">
+<h2>4.5 Curves from lines<a class="headerlink" href="#curves-from-lines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="polynomial-regression">
+<h3>4.5.1 Polynomial regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-64">
-<h2>Code 4.64<a class="headerlink" href="#code-4-64" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.64<a class="headerlink" href="#code-4-64" title="Permalink to this headline">¶</a></h4>
 <p>Here we start to look at polynomial regression and splines.</p>
 <p>Polynomial Regression is the first one. It helps to build curved associations. This time we will use full data instead of just adults</p>
 <div class="cell docutils container">
@@ -3239,7 +3519,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-65">
-<h2>Code 4.65<a class="headerlink" href="#code-4-65" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.65<a class="headerlink" href="#code-4-65" title="Permalink to this headline">¶</a></h4>
 <p>Most common polynomial regression is a parabolic (degree 2) model of the mean.</p>
 <p><span class="math notranslate nohighlight">\(\mu_i \sim \alpha + \beta_1x_i + \beta_2x_i^2\)</span></p>
 <p><strong>Standardization</strong> is important in general but it becomes even more important for polynomials. Think what happens when you square or cube big numbers. They will create large variations.</p>
@@ -3273,7 +3553,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-66">
-<h2>Code 4.66<a class="headerlink" href="#code-4-66" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.66<a class="headerlink" href="#code-4-66" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace_4_5</span><span class="p">,</span> <span class="n">round_to</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;stats&#39;</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
@@ -3340,7 +3620,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-67">
-<h2>Code 4.67<a class="headerlink" href="#code-4-67" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.67<a class="headerlink" href="#code-4-67" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_4_5</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -3386,7 +3666,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-68">
-<h2>Code 4.68<a class="headerlink" href="#code-4-68" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.68<a class="headerlink" href="#code-4-68" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
@@ -3412,12 +3692,12 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_150_0.png" src="../_images/04_geocentric_models_150_0.png" />
+<img alt="../_images/04_geocentric_models_167_0.png" src="../_images/04_geocentric_models_167_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-69">
-<h2>Code 4.69<a class="headerlink" href="#code-4-69" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.69<a class="headerlink" href="#code-4-69" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;weight_std3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">weight_std</span> <span class="o">**</span> <span class="mi">3</span>
@@ -3448,7 +3728,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-70-4-71">
-<h2>Code 4.70 &amp; 4.71<a class="headerlink" href="#code-4-70-4-71" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.70 &amp; 4.71<a class="headerlink" href="#code-4-70-4-71" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_4_6</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -3525,12 +3805,15 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_156_0.png" src="../_images/04_geocentric_models_156_0.png" />
+<img alt="../_images/04_geocentric_models_173_0.png" src="../_images/04_geocentric_models_173_0.png" />
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="splines">
+<h3>4.5.2 Splines<a class="headerlink" href="#splines" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="code-4-72">
-<h2>Code 4.72<a class="headerlink" href="#code-4-72" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.72<a class="headerlink" href="#code-4-72" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHERRY_BLOSSOMS_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -3707,7 +3990,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-73">
-<h2>Code 4.73<a class="headerlink" href="#code-4-73" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.73<a class="headerlink" href="#code-4-73" title="Permalink to this headline">¶</a></h4>
 <p>Knots are just values of the year that serve as pivots for our spline. We will be using 15 of these pivots.</p>
 <p>Now question is where should we place these knots ?. They can be put anywhere in principle. Finding the locations of them can be considered part of modelling (… so kind of like hyperparameters).</p>
 <p>Here we are placing them at different evenly spaced quantiles of the predictor variable (i.e year).</p>
@@ -3731,7 +4014,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="section" id="code-4-74">
-<h2>Code 4.74<a class="headerlink" href="#code-4-74" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.74<a class="headerlink" href="#code-4-74" title="Permalink to this headline">¶</a></h4>
 <p>Next we need to decide on the polynomial degree. This determines how basis functions combine.</p>
 <p>Degree 1 =&gt; 2 Basis functions combine at each point
 Degree 2 =&gt; 3 Basis functions combine at each point</p>
@@ -3759,7 +4042,7 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
 </div>
 </div>
 <div class="section" id="code-4-75">
-<h2>Code 4.75<a class="headerlink" href="#code-4-75" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.75<a class="headerlink" href="#code-4-75" title="Permalink to this headline">¶</a></h4>
 <p>Here we are plotting the basis functions. This means plot each column agaist year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3772,12 +4055,12 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_166_0.png" src="../_images/04_geocentric_models_166_0.png" />
+<img alt="../_images/04_geocentric_models_184_0.png" src="../_images/04_geocentric_models_184_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-76">
-<h2>Code 4.76<a class="headerlink" href="#code-4-76" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.76<a class="headerlink" href="#code-4-76" title="Permalink to this headline">¶</a></h4>
 <p>Time to actually define the model. The problem against is that <strong>Linear Regression</strong>.</p>
 <p>Columns in our B matrix will correspond to the variables (the synthetic variables !)</p>
 <p>We should always an intercept to capture the average temperature. [See the discussion earlier in the book why and how intercept indicates the average/mean]</p>
@@ -4019,7 +4302,7 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
 </div>
 </div>
 <div class="section" id="code-4-77">
-<h2>Code 4.77<a class="headerlink" href="#code-4-77" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.77<a class="headerlink" href="#code-4-77" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">posterior_4_7</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
@@ -4037,12 +4320,12 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_172_0.png" src="../_images/04_geocentric_models_172_0.png" />
+<img alt="../_images/04_geocentric_models_190_0.png" src="../_images/04_geocentric_models_190_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="code-4-78">
-<h2>Code 4.78<a class="headerlink" href="#code-4-78" title="Permalink to this headline">¶</a></h2>
+<h4>Code 4.78<a class="headerlink" href="#code-4-78" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>    
@@ -4062,7 +4345,9 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
   hdi_data = hdi(y, hdi_prob=hdi_prob, circular=circular, multimodal=False, **hdi_kwargs)
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_174_1.png" src="../_images/04_geocentric_models_174_1.png" />
+<img alt="../_images/04_geocentric_models_192_1.png" src="../_images/04_geocentric_models_192_1.png" />
+</div>
+</div>
 </div>
 </div>
 </div>

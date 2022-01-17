@@ -590,7 +590,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:32:48.663967: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:42:55.590125: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -792,16 +792,121 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 21:32:50.894965: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 21:32:50.895003: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:42:57.238356: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 22:42:57.238391: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2203</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2202</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> 
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="c1"># flip coin to generate proposal</span>
+<span class="ne">---&gt; </span><span class="mi">15</span>     <span class="n">bern</span> <span class="o">=</span> <span class="n">coin_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> 
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">proposal</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="p">(</span><span class="n">bern</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="sd">     with self._name_and_control_scope(name):</span>
+<span class="ne">-&gt; </span><span class="mi">1234</span><span class="sd">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="sd">     samples = self._sample_n(</span>
+<span class="ne">-&gt; </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/bernoulli.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="sd">     probs = self._probs_parameter_no_checks()</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span><span class="sd">     new_shape = ps.concat([[n], ps.shape(probs)], 0)</span>
+<span class="ne">--&gt; </span><span class="mi">113</span><span class="sd">     uniform = samplers.uniform(new_shape, seed=seed, dtype=probs.dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="sd">     sample = tf.less(uniform, probs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="sd">     return tf.cast(sample, self.dtype)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/samplers.py</span> in <span class="ni">uniform</span><span class="nt">(shape, minval, maxval, dtype, seed, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span><span class="sd">     seed = sanitize_seed(seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span><span class="sd">     return tf.random.stateless_uniform(</span>
+<span class="ne">--&gt; </span><span class="mi">284</span><span class="sd">         shape=shape, seed=seed, minval=minval, maxval=maxval, dtype=dtype)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="sd">     filtered_tb = None</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="sd">     try:</span>
+<span class="ne">--&gt; </span><span class="mi">150</span><span class="sd">       return fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="sd">     except Exception as e:</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="sd">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="sd">       # Fallback dispatch system (dispatch v1):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="sd">       try:</span>
+<span class="ne">-&gt; </span><span class="mi">1096</span><span class="sd">         return dispatch_target(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="sd">       except (TypeError, ValueError):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="sd">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/stateless_random_ops.py</span> in <span class="ni">stateless_random_uniform</span><span class="nt">(shape, seed, minval, maxval, dtype, name, alg)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd">   with ops.name_scope(name, &quot;stateless_random_uniform&quot;,</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd">                       [shape, seed, minval, maxval]) as name:</span>
+<span class="ne">--&gt; </span><span class="mi">344</span><span class="sd">     shape = tensor_util.shape_tensor(shape)</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span><span class="sd">     if dtype.is_integer and minval is None:</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span><span class="sd">       key, counter, alg = _get_key_counter_alg(seed, alg)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/tensor_util.py</span> in <span class="ni">shape_tensor</span><span class="nt">(shape)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1081</span><span class="sd">       # not convertible to Tensors because of mixed content.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1082</span><span class="sd">       shape = tuple(map(tensor_shape.dimension_value, shape))</span>
+<span class="ne">-&gt; </span><span class="mi">1083</span><span class="sd">   return ops.convert_to_tensor(shape, dtype=dtype, name=&quot;shape&quot;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1084</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1085</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/profiler/trace.py</span> in <span class="ni">wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="sd">         with Trace(trace_name, **trace_kwargs):</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span><span class="sd">           return func(*args, **kwargs)</span>
+<span class="ne">--&gt; </span><span class="mi">163</span><span class="sd">       return func(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span><span class="sd">     return wrapped</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">convert_to_tensor</span><span class="nt">(value, dtype, name, as_ref, preferred_dtype, dtype_hint, ctx, accepted_result_types)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1620</span><span class="sd">     if ret is None:</span>
+<span class="ne">-&gt; </span><span class="mi">1621</span><span class="sd">       ret = conversion_func(value, dtype=dtype, name=name, as_ref=as_ref)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1622</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1623</span><span class="sd">     if ret is NotImplemented:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/tensor_conversion_registry.py</span> in <span class="ni">_default_conversion_function</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span><span class="sd"> def _default_conversion_function(value, dtype, name, as_ref):</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span><span class="sd">   del as_ref  # Unused.</span>
+<span class="ne">---&gt; </span><span class="mi">52</span><span class="sd">   return constant_op.constant(value, dtype, name=name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">constant</span><span class="nt">(value, dtype, shape, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span>   <span class="k">return</span> <span class="n">_constant_impl</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">verify_shape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">272</span>                         <span class="n">allow_broadcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span> 
+<span class="g g-Whitespace">    </span><span class="mi">274</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">_constant_impl</span><span class="nt">(value, dtype, shape, name, verify_shape, allow_broadcast)</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>       <span class="k">with</span> <span class="n">trace</span><span class="o">.</span><span class="n">Trace</span><span class="p">(</span><span class="s2">&quot;tf.constant&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="k">return</span> <span class="n">_constant_eager_impl</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">verify_shape</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">283</span>     <span class="k">return</span> <span class="n">_constant_eager_impl</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">verify_shape</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span> 
+<span class="g g-Whitespace">    </span><span class="mi">285</span>   <span class="n">g</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">_constant_eager_impl</span><span class="nt">(ctx, value, dtype, shape, verify_shape)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="k">def</span> <span class="nf">_constant_eager_impl</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">verify_shape</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>   <span class="sd">&quot;&quot;&quot;Creates a constant on the current device.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">308</span>   <span class="n">t</span> <span class="o">=</span> <span class="n">convert_to_eager_tensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>   <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="k">return</span> <span class="n">t</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/constant_op.py</span> in <span class="ni">convert_to_eager_tensor</span><span class="nt">(value, ctx, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>       <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">as_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">as_datatype_enum</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>   <span class="n">ctx</span><span class="o">.</span><span class="n">ensure_initialized</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">106</span>   <span class="k">return</span> <span class="n">ops</span><span class="o">.</span><span class="n">EagerTensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">device_name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span> 
+<span class="g g-Whitespace">    </span><span class="mi">108</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
