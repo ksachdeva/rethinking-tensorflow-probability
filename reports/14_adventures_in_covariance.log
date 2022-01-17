@@ -22,7 +22,7 @@ az.plot_kde(rhos[1][:,0,1], bw=2);
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/tmp/ipykernel_2428/3075958100.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2498/3075958100.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0maz[0m[0;34m.[0m[0mplot_kde[0m[0;34m([0m[0mrhos[0m[0;34m[[0m[0;36m1[0m[0;34m][0m[0;34m[[0m[0;34m:[0m[0;34m,[0m[0;36m0[0m[0;34m,[0m[0;36m1[0m[0;34m][0m[0;34m,[0m [0mbw[0m[0;34m=[0m[0;36m2[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/plots/kdeplot.py[0m in [0;36mplot_kde[0;34m(values, values2, cumulative, rug, label, bw, adaptive, quantiles, rotated, contour, hdi_probs, fill_last, figsize, textsize, plot_kwargs, fill_kwargs, rug_kwargs, contour_kwargs, contourf_kwargs, pcolormesh_kwargs, is_circular, ax, legend, backend, backend_kwargs, show, return_glyph, **kwargs)[0m

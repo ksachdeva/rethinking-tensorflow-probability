@@ -292,337 +292,313 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Chapter 13 - Models with Memory
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-multilevel-tadpoles">
+   13.1 Example: Multilevel tadpoles
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#imports-and-utility-functions">
-     Imports and utility functions
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-1">
+     Code 13.1
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dataset-url-utils">
-     Dataset URL &amp; Utils
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-2">
+     Code 13.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-3">
+     Code 13.3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-4">
+     Code 13.4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-5">
+     Code 13.5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-6">
+     Code 13.6
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#varying-effects-and-the-underlying-overfitting-trade-off">
+   13.2 Varying effects and the underlying/overfitting trade-off
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-multilevel-tadpoles">
-     13.1 Example: Multilevel tadpoles
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model">
+     13.2.1 The model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assign-values-to-the-parameters">
+     13.2.2 Assign values to the parameters
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-1">
-       Code 13.1
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-7">
+       Code 13.7
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-2">
-       Code 13.2
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-8">
+       Code 13.8
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-3">
-       Code 13.3
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-9">
+       Code 13.9
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-4">
-       Code 13.4
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-5">
-       Code 13.5
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-6">
-       Code 13.6
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-10">
+       Code 13.10
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#varying-effects-and-the-underlying-overfitting-trade-off">
-     13.2 Varying effects and the underlying/overfitting trade-off
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulate-survivors">
+     13.2.3 Simulate survivors
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-model">
-       13.2.1 The model
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-11">
+       Code 13.11
       </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#assign-values-to-the-parameters">
-       13.2.2 Assign values to the parameters
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-7">
-         Code 13.7
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-8">
-         Code 13.8
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-9">
-         Code 13.9
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-10">
-         Code 13.10
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#simulate-survivors">
-       13.2.3 Simulate survivors
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-11">
-         Code 13.11
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-the-no-pooling-estimates">
-       13.2.4 Compute the no-pooling estimates
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-12">
-         Code 13.12
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-partial-pooling-estimates">
-       13.2.5 Compute partial pooling estimates
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-13">
-         Code 13.13
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-14">
-         Code 13.14
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-15">
-         Code 13.15
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-16">
-         Code 13.16
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-17">
-         Code 13.17
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-18">
-         Code 13.18
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-19">
-         Code 13.19
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#overthiking-repeating-the-pond-simulation">
-       Overthiking: Repeating the pond simulation
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-20">
-         Code 13.20
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#more-than-one-type-of-cluster">
-     13.3 More than one type of cluster
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-the-no-pooling-estimates">
+     13.2.4 Compute the no-pooling estimates
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multilevel-chimpanzees">
-       13.3.1 Multilevel chimpanzees
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-12">
+       Code 13.12
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-21">
-         Code 13.21
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-22">
-         Code 13.22
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-23">
-         Code 13.23
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-24">
-         Code 13.24
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#even-more-clusters">
-       13.3.2 Even more clusters
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-25">
-         Code 13.25
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#divergent-transitions-and-non-centered-priors">
-     13.4 Divergent transitions and non-centered priors
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-partial-pooling-estimates">
+     13.2.5 Compute partial pooling estimates
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-devil-s-funnel">
-       13.4.1 The Devil’s Funnel
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-13">
+       Code 13.13
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-26-todo-add-notes-on-divergence">
-         Code 13.26 (TODO - add notes on divergence)
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-27">
-         Code 13.27
-        </a>
-       </li>
-      </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#non-centered-chimpanzees">
-       13.4.2 Non-centered chimpanzees
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-14">
+       Code 13.14
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-28-todo-parameterize-the-target-accept-prob">
-         Code 13.28 [TODO - parameterize the target accept prob]
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-29">
-         Code 13.29
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-30-todo-do-not-how-to-compute-ess">
-         Code 13.30 [TODO - do not how to compute ess]
-        </a>
-       </li>
-      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-15">
+       Code 13.15
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-16">
+       Code 13.16
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-17">
+       Code 13.17
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-18">
+       Code 13.18
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-19">
+       Code 13.19
+      </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multilevel-posterior-predictions">
-     13.5 Multilevel posterior predictions
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overthiking-repeating-the-pond-simulation">
+     Overthiking: Repeating the pond simulation
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#posterior-prediction-for-same-clusters">
-       13.5.1 Posterior prediction for same clusters
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-20">
+       Code 13.20
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-31">
-         Code 13.31
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-32">
-         Code 13.32
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-33">
-         Code 13.33
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-34">
-         Code 13.34
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-35">
-         Code 13.35
-        </a>
-       </li>
-      </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#posterior-prediction-for-new-clusters">
-       13.5.2 Posterior prediction for new clusters
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-than-one-type-of-cluster">
+   13.3 More than one type of cluster
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilevel-chimpanzees">
+     13.3.1 Multilevel chimpanzees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-21">
+       Code 13.21
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-36">
-         Code 13.36
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-37">
-         Code 13.37
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-38">
-         Code 13.38
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-39">
-         Code 13.39
-        </a>
-       </li>
-      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-22">
+       Code 13.22
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-23">
+       Code 13.23
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-24">
+       Code 13.24
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#even-more-clusters">
+     13.3.2 Even more clusters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-25">
+       Code 13.25
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#divergent-transitions-and-non-centered-priors">
+   13.4 Divergent transitions and non-centered priors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-devil-s-funnel">
+     13.4.1 The Devil’s Funnel
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-26-todo-add-notes-on-divergence">
+       Code 13.26 (TODO - add notes on divergence)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-27">
+       Code 13.27
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-centered-chimpanzees">
+     13.4.2 Non-centered chimpanzees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-28-todo-parameterize-the-target-accept-prob">
+       Code 13.28 [TODO - parameterize the target accept prob]
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-29">
+       Code 13.29
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-30-todo-do-not-how-to-compute-ess">
+       Code 13.30 [TODO - do not how to compute ess]
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multilevel-posterior-predictions">
+   13.5 Multilevel posterior predictions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#posterior-prediction-for-same-clusters">
+     13.5.1 Posterior prediction for same clusters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-31">
+       Code 13.31
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-32">
+       Code 13.32
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-33">
+       Code 13.33
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-34">
+       Code 13.34
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-35">
+       Code 13.35
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#posterior-prediction-for-new-clusters">
+     13.5.2 Posterior prediction for new clusters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-36">
+       Code 13.36
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-37">
+       Code 13.37
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-38">
+       Code 13.38
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-39">
+       Code 13.39
+      </a>
      </li>
     </ul>
    </li>
@@ -648,337 +624,313 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Chapter 13 - Models with Memory
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-multilevel-tadpoles">
+   13.1 Example: Multilevel tadpoles
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#imports-and-utility-functions">
-     Imports and utility functions
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-1">
+     Code 13.1
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dataset-url-utils">
-     Dataset URL &amp; Utils
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-2">
+     Code 13.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-3">
+     Code 13.3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-4">
+     Code 13.4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-5">
+     Code 13.5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-13-6">
+     Code 13.6
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#varying-effects-and-the-underlying-overfitting-trade-off">
+   13.2 Varying effects and the underlying/overfitting trade-off
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-multilevel-tadpoles">
-     13.1 Example: Multilevel tadpoles
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model">
+     13.2.1 The model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assign-values-to-the-parameters">
+     13.2.2 Assign values to the parameters
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-1">
-       Code 13.1
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-7">
+       Code 13.7
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-2">
-       Code 13.2
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-8">
+       Code 13.8
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-3">
-       Code 13.3
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-9">
+       Code 13.9
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-4">
-       Code 13.4
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-5">
-       Code 13.5
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-13-6">
-       Code 13.6
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-10">
+       Code 13.10
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#varying-effects-and-the-underlying-overfitting-trade-off">
-     13.2 Varying effects and the underlying/overfitting trade-off
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulate-survivors">
+     13.2.3 Simulate survivors
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-model">
-       13.2.1 The model
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-11">
+       Code 13.11
       </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#assign-values-to-the-parameters">
-       13.2.2 Assign values to the parameters
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-7">
-         Code 13.7
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-8">
-         Code 13.8
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-9">
-         Code 13.9
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-10">
-         Code 13.10
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#simulate-survivors">
-       13.2.3 Simulate survivors
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-11">
-         Code 13.11
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-the-no-pooling-estimates">
-       13.2.4 Compute the no-pooling estimates
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-12">
-         Code 13.12
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-partial-pooling-estimates">
-       13.2.5 Compute partial pooling estimates
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-13">
-         Code 13.13
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-14">
-         Code 13.14
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-15">
-         Code 13.15
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-16">
-         Code 13.16
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-17">
-         Code 13.17
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-18">
-         Code 13.18
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-19">
-         Code 13.19
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#overthiking-repeating-the-pond-simulation">
-       Overthiking: Repeating the pond simulation
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-20">
-         Code 13.20
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#more-than-one-type-of-cluster">
-     13.3 More than one type of cluster
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-the-no-pooling-estimates">
+     13.2.4 Compute the no-pooling estimates
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multilevel-chimpanzees">
-       13.3.1 Multilevel chimpanzees
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-12">
+       Code 13.12
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-21">
-         Code 13.21
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-22">
-         Code 13.22
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-23">
-         Code 13.23
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-24">
-         Code 13.24
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#even-more-clusters">
-       13.3.2 Even more clusters
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-25">
-         Code 13.25
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#divergent-transitions-and-non-centered-priors">
-     13.4 Divergent transitions and non-centered priors
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-partial-pooling-estimates">
+     13.2.5 Compute partial pooling estimates
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-devil-s-funnel">
-       13.4.1 The Devil’s Funnel
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-13">
+       Code 13.13
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-26-todo-add-notes-on-divergence">
-         Code 13.26 (TODO - add notes on divergence)
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-27">
-         Code 13.27
-        </a>
-       </li>
-      </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#non-centered-chimpanzees">
-       13.4.2 Non-centered chimpanzees
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-14">
+       Code 13.14
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-28-todo-parameterize-the-target-accept-prob">
-         Code 13.28 [TODO - parameterize the target accept prob]
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-29">
-         Code 13.29
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-30-todo-do-not-how-to-compute-ess">
-         Code 13.30 [TODO - do not how to compute ess]
-        </a>
-       </li>
-      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-15">
+       Code 13.15
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-16">
+       Code 13.16
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-17">
+       Code 13.17
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-18">
+       Code 13.18
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-19">
+       Code 13.19
+      </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multilevel-posterior-predictions">
-     13.5 Multilevel posterior predictions
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overthiking-repeating-the-pond-simulation">
+     Overthiking: Repeating the pond simulation
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#posterior-prediction-for-same-clusters">
-       13.5.1 Posterior prediction for same clusters
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-20">
+       Code 13.20
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-31">
-         Code 13.31
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-32">
-         Code 13.32
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-33">
-         Code 13.33
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-34">
-         Code 13.34
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-35">
-         Code 13.35
-        </a>
-       </li>
-      </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#posterior-prediction-for-new-clusters">
-       13.5.2 Posterior prediction for new clusters
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-than-one-type-of-cluster">
+   13.3 More than one type of cluster
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilevel-chimpanzees">
+     13.3.1 Multilevel chimpanzees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-21">
+       Code 13.21
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-36">
-         Code 13.36
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-37">
-         Code 13.37
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-38">
-         Code 13.38
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-13-39">
-         Code 13.39
-        </a>
-       </li>
-      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-22">
+       Code 13.22
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-23">
+       Code 13.23
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-24">
+       Code 13.24
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#even-more-clusters">
+     13.3.2 Even more clusters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-25">
+       Code 13.25
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#divergent-transitions-and-non-centered-priors">
+   13.4 Divergent transitions and non-centered priors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-devil-s-funnel">
+     13.4.1 The Devil’s Funnel
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-26-todo-add-notes-on-divergence">
+       Code 13.26 (TODO - add notes on divergence)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-27">
+       Code 13.27
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-centered-chimpanzees">
+     13.4.2 Non-centered chimpanzees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-28-todo-parameterize-the-target-accept-prob">
+       Code 13.28 [TODO - parameterize the target accept prob]
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-29">
+       Code 13.29
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-30-todo-do-not-how-to-compute-ess">
+       Code 13.30 [TODO - do not how to compute ess]
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multilevel-posterior-predictions">
+   13.5 Multilevel posterior predictions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#posterior-prediction-for-same-clusters">
+     13.5.1 Posterior prediction for same clusters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-31">
+       Code 13.31
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-32">
+       Code 13.32
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-33">
+       Code 13.33
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-34">
+       Code 13.34
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-35">
+       Code 13.35
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#posterior-prediction-for-new-clusters">
+     13.5.2 Posterior prediction for new clusters
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-36">
+       Code 13.36
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-37">
+       Code 13.37
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-38">
+       Code 13.38
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-13-39">
+       Code 13.39
+      </a>
      </li>
     </ul>
    </li>
@@ -996,19 +948,14 @@
   <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/13_models_with_memory.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="tex2jax_ignore mathjax_ignore section" id="chapter-13-models-with-memory">
 <h1>Chapter 13 - Models with Memory<a class="headerlink" href="#chapter-13-models-with-memory" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="imports-and-utility-functions">
-<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+  <span class="o">!</span>pip install -q watermark
 <span class="k">except</span><span class="p">:</span>
-  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-    <span class="o">!</span>pip install -q watermark
+  <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -1042,8 +989,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:45:11.852172: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 22:45:11.852206: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:47:48.739754: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 23:47:48.739793: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1198,9 +1145,13 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dataset URL &amp; Utils</span>
+</pre></div>
 </div>
-<div class="section" id="dataset-url-utils">
-<h2>Dataset URL &amp; Utils<a class="headerlink" href="#dataset-url-utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
@@ -1237,10 +1188,6 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="example-multilevel-tadpoles">
 <h2>13.1 Example: Multilevel tadpoles<a class="headerlink" href="#example-multilevel-tadpoles" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="code-13-1">
@@ -1371,10 +1318,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:45:14.000270: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 22:45:14.000303: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 22:45:14.000325: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-17 22:45:14.000603: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:47:51.017974: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 23:47:51.018006: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 23:47:51.018027: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-17 23:47:51.018310: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1439,578 +1386,578 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>1.71</td>
-      <td>0.78</td>
-      <td>0.54</td>
-      <td>2.92</td>
+      <td>1.73</td>
+      <td>0.73</td>
+      <td>0.46</td>
+      <td>2.74</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>830.41</td>
-      <td>607.70</td>
+      <td>841.78</td>
+      <td>439.79</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>2.39</td>
-      <td>0.90</td>
-      <td>1.03</td>
+      <td>0.88</td>
+      <td>1.00</td>
       <td>3.85</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>507.92</td>
-      <td>277.28</td>
-      <td>1.00</td>
+      <td>567.26</td>
+      <td>321.47</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
       <td>0.75</td>
-      <td>0.65</td>
-      <td>-0.33</td>
-      <td>1.75</td>
-      <td>0.02</td>
-      <td>0.02</td>
-      <td>887.43</td>
-      <td>298.06</td>
-      <td>1.01</td>
+      <td>0.56</td>
+      <td>-0.09</td>
+      <td>1.62</td>
+      <td>0.03</td>
+      <td>0.03</td>
+      <td>550.28</td>
+      <td>180.63</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>2.39</td>
-      <td>0.86</td>
-      <td>1.02</td>
-      <td>3.70</td>
+      <td>2.48</td>
+      <td>0.93</td>
+      <td>1.05</td>
+      <td>3.87</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>410.65</td>
-      <td>497.63</td>
+      <td>514.68</td>
+      <td>487.95</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>1.68</td>
-      <td>0.74</td>
-      <td>0.34</td>
-      <td>2.71</td>
+      <td>1.69</td>
+      <td>0.72</td>
+      <td>0.57</td>
+      <td>2.87</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>607.31</td>
-      <td>443.17</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[5]</th>
-      <td>1.72</td>
-      <td>0.74</td>
-      <td>0.39</td>
-      <td>2.75</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>753.70</td>
-      <td>465.49</td>
+      <td>818.59</td>
+      <td>404.00</td>
       <td>1.00</td>
     </tr>
     <tr>
-      <th>alpha[6]</th>
-      <td>2.38</td>
-      <td>0.88</td>
-      <td>0.93</td>
-      <td>3.68</td>
-      <td>0.04</td>
+      <th>alpha[5]</th>
+      <td>1.64</td>
+      <td>0.74</td>
+      <td>0.45</td>
+      <td>2.68</td>
       <td>0.03</td>
-      <td>556.10</td>
-      <td>356.78</td>
+      <td>0.02</td>
+      <td>823.14</td>
+      <td>203.82</td>
       <td>1.01</td>
     </tr>
     <tr>
+      <th>alpha[6]</th>
+      <td>2.41</td>
+      <td>0.89</td>
+      <td>0.86</td>
+      <td>3.66</td>
+      <td>0.04</td>
+      <td>0.03</td>
+      <td>427.17</td>
+      <td>354.86</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
       <th>alpha[7]</th>
-      <td>1.72</td>
+      <td>1.67</td>
       <td>0.80</td>
-      <td>0.44</td>
-      <td>2.94</td>
+      <td>0.60</td>
+      <td>3.23</td>
       <td>0.03</td>
-      <td>0.03</td>
-      <td>673.10</td>
-      <td>395.26</td>
+      <td>0.02</td>
+      <td>686.11</td>
+      <td>269.99</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[8]</th>
-      <td>-0.35</td>
-      <td>0.60</td>
-      <td>-1.28</td>
+      <td>-0.36</td>
       <td>0.54</td>
+      <td>-1.16</td>
+      <td>0.53</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1009.74</td>
-      <td>409.11</td>
+      <td>1184.90</td>
+      <td>365.90</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[9]</th>
-      <td>1.76</td>
-      <td>0.80</td>
-      <td>0.46</td>
-      <td>2.94</td>
-      <td>0.04</td>
+      <td>1.75</td>
+      <td>0.79</td>
+      <td>0.63</td>
+      <td>3.22</td>
       <td>0.03</td>
-      <td>490.98</td>
-      <td>483.04</td>
-      <td>1.02</td>
-    </tr>
-    <tr>
-      <th>alpha[10]</th>
-      <td>0.76</td>
-      <td>0.62</td>
-      <td>-0.24</td>
-      <td>1.74</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>911.83</td>
-      <td>219.94</td>
+      <td>698.93</td>
+      <td>343.80</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>alpha[11]</th>
-      <td>0.40</td>
-      <td>0.62</td>
-      <td>-0.57</td>
-      <td>1.37</td>
+      <th>alpha[10]</th>
+      <td>0.71</td>
+      <td>0.63</td>
+      <td>-0.19</td>
+      <td>1.79</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1269.24</td>
-      <td>325.35</td>
+      <td>1113.22</td>
+      <td>363.77</td>
       <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[11]</th>
+      <td>0.37</td>
+      <td>0.66</td>
+      <td>-0.68</td>
+      <td>1.40</td>
+      <td>0.02</td>
+      <td>0.03</td>
+      <td>1175.16</td>
+      <td>263.96</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[12]</th>
       <td>0.74</td>
-      <td>0.61</td>
-      <td>-0.28</td>
-      <td>1.66</td>
+      <td>0.63</td>
+      <td>-0.29</td>
+      <td>1.62</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1257.29</td>
-      <td>521.91</td>
+      <td>1014.01</td>
+      <td>336.08</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[13]</th>
-      <td>0.01</td>
-      <td>0.57</td>
-      <td>-0.83</td>
-      <td>0.95</td>
+      <td>0.04</td>
+      <td>0.61</td>
+      <td>-1.05</td>
+      <td>0.94</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>1353.02</td>
-      <td>594.46</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[14]</th>
-      <td>1.76</td>
-      <td>0.77</td>
-      <td>0.58</td>
-      <td>2.88</td>
-      <td>0.03</td>
-      <td>0.03</td>
-      <td>555.14</td>
-      <td>272.54</td>
+      <td>0.04</td>
+      <td>1011.55</td>
+      <td>277.75</td>
       <td>1.00</td>
     </tr>
     <tr>
+      <th>alpha[14]</th>
+      <td>1.67</td>
+      <td>0.74</td>
+      <td>0.48</td>
+      <td>2.73</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>884.06</td>
+      <td>326.81</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
       <th>alpha[15]</th>
-      <td>1.74</td>
-      <td>0.77</td>
-      <td>0.63</td>
-      <td>3.09</td>
+      <td>1.67</td>
+      <td>0.78</td>
+      <td>0.49</td>
+      <td>2.87</td>
       <td>0.03</td>
-      <td>0.03</td>
-      <td>607.93</td>
-      <td>385.28</td>
+      <td>0.02</td>
+      <td>746.27</td>
+      <td>416.44</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[16]</th>
-      <td>2.56</td>
-      <td>0.67</td>
-      <td>1.50</td>
-      <td>3.55</td>
+      <td>2.57</td>
+      <td>0.71</td>
+      <td>1.47</td>
+      <td>3.72</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>810.15</td>
-      <td>401.44</td>
-      <td>1.01</td>
+      <td>832.56</td>
+      <td>327.26</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[17]</th>
-      <td>2.14</td>
-      <td>0.61</td>
-      <td>1.16</td>
-      <td>3.05</td>
+      <td>2.16</td>
+      <td>0.65</td>
+      <td>1.09</td>
+      <td>2.99</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1092.19</td>
-      <td>285.54</td>
+      <td>892.40</td>
+      <td>176.40</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[18]</th>
-      <td>1.81</td>
-      <td>0.56</td>
-      <td>0.73</td>
+      <td>1.80</td>
+      <td>0.53</td>
+      <td>1.02</td>
       <td>2.57</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>1598.88</td>
-      <td>205.47</td>
-      <td>1.03</td>
+      <td>1157.39</td>
+      <td>161.83</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[19]</th>
-      <td>3.05</td>
-      <td>0.76</td>
-      <td>1.89</td>
-      <td>4.14</td>
+      <td>3.09</td>
+      <td>0.81</td>
+      <td>1.81</td>
+      <td>4.29</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>759.42</td>
-      <td>490.98</td>
+      <td>636.66</td>
+      <td>465.68</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[20]</th>
-      <td>2.15</td>
-      <td>0.65</td>
-      <td>1.09</td>
-      <td>3.02</td>
-      <td>0.03</td>
+      <td>2.14</td>
+      <td>0.62</td>
+      <td>1.28</td>
+      <td>3.21</td>
       <td>0.02</td>
-      <td>738.64</td>
-      <td>182.79</td>
-      <td>1.00</td>
+      <td>0.02</td>
+      <td>1066.39</td>
+      <td>302.59</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[21]</th>
       <td>2.13</td>
-      <td>0.58</td>
-      <td>1.21</td>
-      <td>2.97</td>
+      <td>0.52</td>
+      <td>1.26</td>
+      <td>2.91</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1256.48</td>
-      <td>394.35</td>
+      <td>1199.24</td>
+      <td>302.87</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[22]</th>
-      <td>2.16</td>
-      <td>0.61</td>
-      <td>1.29</td>
-      <td>3.17</td>
+      <td>2.13</td>
+      <td>0.60</td>
+      <td>1.14</td>
+      <td>2.94</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1097.82</td>
-      <td>328.22</td>
+      <td>999.83</td>
+      <td>160.73</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[23]</th>
-      <td>1.54</td>
-      <td>0.50</td>
-      <td>0.77</td>
+      <td>1.56</td>
+      <td>0.49</td>
+      <td>0.67</td>
       <td>2.27</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>1853.58</td>
-      <td>32.17</td>
-      <td>1.07</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>1109.36</td>
+      <td>76.49</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[24]</th>
-      <td>-1.08</td>
-      <td>0.37</td>
-      <td>-1.63</td>
-      <td>-0.49</td>
+      <td>-1.10</td>
+      <td>0.43</td>
+      <td>-1.76</td>
+      <td>-0.47</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1036.96</td>
-      <td>159.62</td>
-      <td>1.02</td>
+      <td>1572.12</td>
+      <td>174.20</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[25]</th>
       <td>0.08</td>
-      <td>0.42</td>
-      <td>-0.54</td>
-      <td>0.73</td>
+      <td>0.41</td>
+      <td>-0.55</td>
+      <td>0.74</td>
       <td>0.01</td>
       <td>0.02</td>
-      <td>1362.72</td>
-      <td>322.08</td>
-      <td>1.02</td>
+      <td>1206.43</td>
+      <td>351.63</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[26]</th>
-      <td>-1.55</td>
-      <td>0.53</td>
-      <td>-2.34</td>
-      <td>-0.70</td>
+      <td>-1.53</td>
+      <td>0.50</td>
+      <td>-2.26</td>
+      <td>-0.72</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>1268.55</td>
-      <td>65.49</td>
-      <td>1.04</td>
+      <td>1024.70</td>
+      <td>95.93</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>alpha[27]</th>
-      <td>-0.55</td>
-      <td>0.40</td>
+      <td>-0.53</td>
+      <td>0.39</td>
       <td>-1.14</td>
-      <td>0.13</td>
+      <td>0.07</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1333.39</td>
-      <td>492.51</td>
+      <td>1322.86</td>
+      <td>340.20</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[28]</th>
-      <td>0.08</td>
-      <td>0.40</td>
-      <td>-0.48</td>
-      <td>0.83</td>
+      <td>0.07</td>
+      <td>0.37</td>
+      <td>-0.49</td>
+      <td>0.69</td>
       <td>0.01</td>
       <td>0.02</td>
-      <td>1194.13</td>
-      <td>308.58</td>
-      <td>1.02</td>
+      <td>1092.42</td>
+      <td>526.04</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[29]</th>
-      <td>1.29</td>
+      <td>1.31</td>
       <td>0.41</td>
-      <td>0.64</td>
-      <td>1.92</td>
+      <td>0.45</td>
+      <td>1.81</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1578.06</td>
-      <td>145.71</td>
-      <td>1.06</td>
+      <td>1473.77</td>
+      <td>37.82</td>
+      <td>1.11</td>
     </tr>
     <tr>
       <th>alpha[30]</th>
-      <td>-0.69</td>
-      <td>0.46</td>
-      <td>-1.43</td>
+      <td>-0.72</td>
+      <td>0.41</td>
+      <td>-1.28</td>
+      <td>0.00</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>0.02</td>
-      <td>1217.52</td>
-      <td>173.45</td>
-      <td>1.01</td>
+      <td>1562.81</td>
+      <td>278.05</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[31]</th>
-      <td>-0.40</td>
-      <td>0.48</td>
-      <td>-1.06</td>
-      <td>0.45</td>
-      <td>0.02</td>
-      <td>0.03</td>
-      <td>831.67</td>
-      <td>109.64</td>
-      <td>1.03</td>
+      <td>-0.38</td>
+      <td>0.42</td>
+      <td>-1.03</td>
+      <td>0.31</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>1391.93</td>
+      <td>415.73</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[32]</th>
-      <td>2.85</td>
-      <td>0.70</td>
-      <td>1.80</td>
-      <td>3.87</td>
+      <td>2.88</td>
+      <td>0.71</td>
+      <td>1.82</td>
+      <td>4.05</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>998.08</td>
-      <td>405.06</td>
-      <td>1.00</td>
+      <td>944.86</td>
+      <td>279.38</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[33]</th>
       <td>2.44</td>
-      <td>0.58</td>
-      <td>1.60</td>
+      <td>0.61</td>
+      <td>1.54</td>
       <td>3.36</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>1220.30</td>
-      <td>357.94</td>
-      <td>1.01</td>
+      <td>0.02</td>
+      <td>896.71</td>
+      <td>194.73</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[34]</th>
-      <td>2.48</td>
-      <td>0.59</td>
-      <td>1.53</td>
-      <td>3.40</td>
+      <td>2.47</td>
+      <td>0.58</td>
+      <td>1.54</td>
+      <td>3.37</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1114.17</td>
-      <td>276.51</td>
-      <td>1.02</td>
+      <td>1381.98</td>
+      <td>288.63</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[35]</th>
-      <td>1.89</td>
-      <td>0.40</td>
-      <td>1.28</td>
-      <td>2.49</td>
+      <td>1.90</td>
+      <td>0.53</td>
+      <td>1.10</td>
+      <td>2.74</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>1344.44</td>
-      <td>188.38</td>
-      <td>1.00</td>
+      <td>1297.31</td>
+      <td>48.18</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[36]</th>
       <td>1.90</td>
-      <td>0.52</td>
-      <td>1.09</td>
-      <td>2.70</td>
+      <td>0.46</td>
+      <td>1.16</td>
+      <td>2.61</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1657.97</td>
-      <td>80.59</td>
-      <td>1.01</td>
+      <td>1512.70</td>
+      <td>105.56</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[37]</th>
-      <td>3.34</td>
-      <td>0.77</td>
-      <td>2.12</td>
-      <td>4.61</td>
+      <td>3.42</td>
+      <td>0.81</td>
+      <td>2.15</td>
+      <td>4.56</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>804.32</td>
-      <td>367.61</td>
+      <td>586.74</td>
+      <td>306.79</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[38]</th>
       <td>2.45</td>
-      <td>0.56</td>
-      <td>1.52</td>
-      <td>3.25</td>
+      <td>0.53</td>
+      <td>1.61</td>
+      <td>3.26</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1372.17</td>
-      <td>423.57</td>
-      <td>1.00</td>
+      <td>1033.64</td>
+      <td>248.08</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[39]</th>
-      <td>2.16</td>
-      <td>0.52</td>
-      <td>1.39</td>
-      <td>2.93</td>
+      <td>2.17</td>
+      <td>0.50</td>
+      <td>1.40</td>
+      <td>3.01</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1644.83</td>
-      <td>188.00</td>
-      <td>1.03</td>
+      <td>1660.55</td>
+      <td>154.89</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[40]</th>
-      <td>-1.91</td>
-      <td>0.49</td>
-      <td>-2.75</td>
-      <td>-1.20</td>
-      <td>0.02</td>
-      <td>0.02</td>
-      <td>1205.33</td>
-      <td>106.87</td>
-      <td>1.03</td>
+      <td>-1.90</td>
+      <td>0.46</td>
+      <td>-2.66</td>
+      <td>-1.17</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>1510.58</td>
+      <td>117.14</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[41]</th>
-      <td>-0.66</td>
-      <td>0.36</td>
-      <td>-1.25</td>
-      <td>-0.13</td>
+      <td>-0.65</td>
+      <td>0.35</td>
+      <td>-1.23</td>
+      <td>-0.12</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>835.99</td>
-      <td>485.59</td>
+      <td>636.49</td>
+      <td>347.14</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[42]</th>
       <td>-0.51</td>
       <td>0.34</td>
-      <td>-1.01</td>
-      <td>0.03</td>
+      <td>-1.02</td>
+      <td>0.06</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>664.70</td>
-      <td>629.71</td>
+      <td>618.10</td>
+      <td>556.32</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[43]</th>
-      <td>-0.37</td>
-      <td>0.35</td>
-      <td>-0.88</td>
-      <td>0.22</td>
+      <td>-0.43</td>
+      <td>0.34</td>
+      <td>-0.96</td>
+      <td>0.10</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>691.12</td>
-      <td>681.61</td>
+      <td>554.53</td>
+      <td>601.96</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[44]</th>
-      <td>0.52</td>
-      <td>0.35</td>
-      <td>-0.07</td>
-      <td>1.01</td>
+      <td>0.51</td>
+      <td>0.34</td>
+      <td>-0.04</td>
+      <td>1.00</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>741.62</td>
-      <td>585.43</td>
+      <td>673.34</td>
+      <td>702.67</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[45]</th>
-      <td>-0.64</td>
-      <td>0.35</td>
-      <td>-1.18</td>
-      <td>-0.07</td>
+      <td>-0.65</td>
+      <td>0.36</td>
+      <td>-1.24</td>
+      <td>-0.15</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>669.26</td>
-      <td>520.21</td>
+      <td>636.02</td>
+      <td>546.01</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[46]</th>
-      <td>1.94</td>
-      <td>0.50</td>
-      <td>1.11</td>
-      <td>2.69</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>1563.45</td>
-      <td>146.76</td>
-      <td>1.06</td>
+      <td>1.93</td>
+      <td>0.51</td>
+      <td>0.97</td>
+      <td>2.65</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>1477.97</td>
+      <td>75.66</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[47]</th>
-      <td>-0.04</td>
+      <td>-0.06</td>
       <td>0.35</td>
-      <td>-0.64</td>
-      <td>0.45</td>
-      <td>0.02</td>
+      <td>-0.60</td>
+      <td>0.50</td>
       <td>0.01</td>
-      <td>504.66</td>
-      <td>502.67</td>
+      <td>0.01</td>
+      <td>584.87</td>
+      <td>467.13</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -2106,602 +2053,602 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>1.33</td>
-      <td>0.24</td>
-      <td>0.95</td>
-      <td>1.70</td>
+      <td>1.35</td>
+      <td>0.25</td>
+      <td>0.99</td>
+      <td>1.79</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>253.31</td>
-      <td>219.86</td>
+      <td>224.28</td>
+      <td>236.16</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.62</td>
-      <td>0.25</td>
-      <td>1.23</td>
-      <td>1.98</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>51.28</td>
-      <td>50.02</td>
-      <td>1.06</td>
+      <td>1.58</td>
+      <td>0.20</td>
+      <td>1.22</td>
+      <td>1.84</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>83.53</td>
+      <td>220.71</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[0]</th>
-      <td>2.05</td>
-      <td>0.90</td>
-      <td>0.76</td>
-      <td>3.56</td>
-      <td>0.10</td>
-      <td>0.08</td>
-      <td>78.77</td>
-      <td>135.70</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[1]</th>
-      <td>3.06</td>
-      <td>1.01</td>
-      <td>1.57</td>
-      <td>4.35</td>
-      <td>0.13</td>
-      <td>0.11</td>
-      <td>78.78</td>
-      <td>44.09</td>
-      <td>1.03</td>
-    </tr>
-    <tr>
-      <th>alpha[2]</th>
-      <td>1.13</td>
-      <td>0.68</td>
-      <td>0.02</td>
-      <td>2.19</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>118.05</td>
-      <td>225.51</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[3]</th>
-      <td>2.94</td>
-      <td>1.00</td>
-      <td>1.39</td>
-      <td>4.59</td>
-      <td>0.12</td>
-      <td>0.09</td>
-      <td>66.37</td>
-      <td>168.76</td>
-      <td>1.03</td>
-    </tr>
-    <tr>
-      <th>alpha[4]</th>
       <td>2.12</td>
+      <td>0.83</td>
       <td>0.85</td>
-      <td>0.91</td>
-      <td>3.39</td>
+      <td>3.34</td>
       <td>0.10</td>
       <td>0.07</td>
-      <td>84.42</td>
-      <td>146.05</td>
+      <td>69.03</td>
+      <td>109.02</td>
       <td>1.04</td>
     </tr>
     <tr>
-      <th>alpha[5]</th>
-      <td>2.16</td>
-      <td>0.91</td>
-      <td>0.75</td>
-      <td>3.50</td>
-      <td>0.10</td>
-      <td>0.07</td>
-      <td>82.21</td>
-      <td>116.18</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[6]</th>
-      <td>3.13</td>
-      <td>1.22</td>
-      <td>1.18</td>
-      <td>4.95</td>
-      <td>0.18</td>
+      <th>alpha[1]</th>
+      <td>2.92</td>
+      <td>1.06</td>
+      <td>1.06</td>
+      <td>4.28</td>
       <td>0.13</td>
-      <td>50.14</td>
-      <td>65.46</td>
+      <td>0.10</td>
+      <td>66.36</td>
+      <td>124.64</td>
       <td>1.02</td>
     </tr>
     <tr>
-      <th>alpha[7]</th>
-      <td>2.22</td>
-      <td>0.90</td>
-      <td>0.85</td>
-      <td>3.66</td>
-      <td>0.10</td>
+      <th>alpha[2]</th>
+      <td>1.04</td>
+      <td>0.70</td>
+      <td>-0.11</td>
+      <td>2.09</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>110.79</td>
+      <td>225.35</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[3]</th>
+      <td>3.10</td>
+      <td>1.18</td>
+      <td>1.27</td>
+      <td>4.76</td>
+      <td>0.18</td>
+      <td>0.13</td>
+      <td>47.96</td>
+      <td>115.30</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>alpha[4]</th>
+      <td>2.26</td>
+      <td>0.93</td>
+      <td>0.83</td>
+      <td>3.73</td>
+      <td>0.11</td>
       <td>0.08</td>
-      <td>80.33</td>
-      <td>93.74</td>
+      <td>73.40</td>
+      <td>86.44</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[5]</th>
+      <td>2.08</td>
+      <td>0.85</td>
+      <td>0.91</td>
+      <td>3.52</td>
+      <td>0.09</td>
+      <td>0.06</td>
+      <td>94.32</td>
+      <td>280.16</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
+      <th>alpha[6]</th>
+      <td>2.99</td>
+      <td>0.96</td>
+      <td>1.68</td>
+      <td>4.75</td>
+      <td>0.11</td>
+      <td>0.08</td>
+      <td>75.90</td>
+      <td>89.84</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>alpha[7]</th>
+      <td>2.17</td>
+      <td>0.83</td>
+      <td>0.82</td>
+      <td>3.45</td>
+      <td>0.08</td>
+      <td>0.06</td>
+      <td>114.41</td>
+      <td>122.09</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[8]</th>
-      <td>-0.15</td>
-      <td>0.56</td>
-      <td>-0.93</td>
-      <td>0.88</td>
-      <td>0.05</td>
-      <td>0.03</td>
-      <td>135.53</td>
-      <td>228.26</td>
-      <td>1.02</td>
-    </tr>
-    <tr>
-      <th>alpha[9]</th>
-      <td>2.07</td>
-      <td>0.87</td>
-      <td>0.85</td>
-      <td>3.39</td>
-      <td>0.10</td>
-      <td>0.07</td>
-      <td>76.85</td>
-      <td>87.02</td>
-      <td>1.02</td>
-    </tr>
-    <tr>
-      <th>alpha[10]</th>
-      <td>1.08</td>
-      <td>0.67</td>
-      <td>-0.07</td>
-      <td>2.06</td>
-      <td>0.06</td>
+      <td>-0.18</td>
+      <td>0.62</td>
+      <td>-1.17</td>
+      <td>0.80</td>
       <td>0.04</td>
-      <td>109.91</td>
-      <td>229.71</td>
+      <td>0.03</td>
+      <td>228.56</td>
+      <td>263.66</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>alpha[11]</th>
+      <th>alpha[9]</th>
+      <td>2.10</td>
+      <td>0.90</td>
       <td>0.57</td>
-      <td>0.65</td>
-      <td>-0.41</td>
-      <td>1.63</td>
+      <td>3.34</td>
+      <td>0.10</td>
+      <td>0.07</td>
+      <td>87.26</td>
+      <td>124.55</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[10]</th>
+      <td>1.13</td>
+      <td>0.69</td>
+      <td>-0.03</td>
+      <td>2.07</td>
+      <td>0.06</td>
+      <td>0.05</td>
+      <td>134.59</td>
+      <td>130.43</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
+      <th>alpha[11]</th>
+      <td>0.59</td>
+      <td>0.63</td>
+      <td>-0.50</td>
+      <td>1.51</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>158.35</td>
-      <td>311.14</td>
+      <td>170.88</td>
+      <td>209.40</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[12]</th>
+      <td>0.93</td>
+      <td>0.61</td>
+      <td>-0.11</td>
+      <td>1.83</td>
+      <td>0.04</td>
+      <td>0.03</td>
+      <td>184.07</td>
+      <td>279.70</td>
       <td>1.01</td>
-      <td>0.67</td>
-      <td>0.07</td>
-      <td>2.19</td>
-      <td>0.06</td>
-      <td>0.05</td>
-      <td>120.41</td>
-      <td>259.15</td>
-      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[13]</th>
-      <td>0.15</td>
-      <td>0.63</td>
-      <td>-0.81</td>
-      <td>1.16</td>
+      <td>0.21</td>
+      <td>0.61</td>
+      <td>-0.87</td>
+      <td>1.10</td>
       <td>0.05</td>
       <td>0.03</td>
-      <td>189.37</td>
-      <td>271.52</td>
-      <td>1.00</td>
+      <td>153.62</td>
+      <td>220.76</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[14]</th>
-      <td>1.88</td>
-      <td>0.74</td>
-      <td>0.74</td>
-      <td>2.91</td>
+      <td>2.22</td>
+      <td>0.90</td>
+      <td>0.78</td>
+      <td>3.59</td>
+      <td>0.10</td>
       <td>0.07</td>
-      <td>0.05</td>
-      <td>112.99</td>
-      <td>258.26</td>
-      <td>1.01</td>
+      <td>90.90</td>
+      <td>211.10</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[15]</th>
-      <td>2.05</td>
+      <td>2.11</td>
       <td>0.85</td>
-      <td>0.68</td>
-      <td>3.34</td>
+      <td>0.81</td>
+      <td>3.36</td>
       <td>0.11</td>
       <td>0.08</td>
-      <td>61.03</td>
-      <td>135.22</td>
+      <td>64.06</td>
+      <td>136.66</td>
       <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[16]</th>
-      <td>2.80</td>
-      <td>0.77</td>
-      <td>1.79</td>
-      <td>4.18</td>
+      <td>2.85</td>
+      <td>0.79</td>
+      <td>1.61</td>
+      <td>4.00</td>
       <td>0.09</td>
       <td>0.06</td>
-      <td>80.99</td>
-      <td>220.19</td>
+      <td>86.42</td>
+      <td>191.08</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[17]</th>
-      <td>2.44</td>
-      <td>0.69</td>
-      <td>1.28</td>
-      <td>3.46</td>
-      <td>0.06</td>
+      <td>2.37</td>
+      <td>0.62</td>
+      <td>1.52</td>
+      <td>3.48</td>
       <td>0.04</td>
-      <td>158.85</td>
-      <td>280.11</td>
-      <td>1.01</td>
+      <td>0.03</td>
+      <td>196.65</td>
+      <td>349.48</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[18]</th>
-      <td>1.98</td>
-      <td>0.56</td>
-      <td>1.11</td>
-      <td>2.82</td>
+      <td>1.94</td>
+      <td>0.55</td>
+      <td>1.13</td>
+      <td>2.78</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>215.14</td>
-      <td>250.33</td>
+      <td>220.81</td>
+      <td>365.16</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[19]</th>
-      <td>3.62</td>
-      <td>0.84</td>
-      <td>2.24</td>
-      <td>4.94</td>
-      <td>0.09</td>
-      <td>0.06</td>
-      <td>93.44</td>
-      <td>222.97</td>
-      <td>1.03</td>
+      <td>3.80</td>
+      <td>1.07</td>
+      <td>2.11</td>
+      <td>5.48</td>
+      <td>0.14</td>
+      <td>0.10</td>
+      <td>60.31</td>
+      <td>136.17</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[20]</th>
-      <td>2.47</td>
-      <td>0.64</td>
-      <td>1.52</td>
-      <td>3.53</td>
+      <td>2.33</td>
+      <td>0.61</td>
+      <td>1.19</td>
+      <td>3.10</td>
       <td>0.05</td>
-      <td>0.04</td>
-      <td>156.97</td>
-      <td>242.10</td>
+      <td>0.03</td>
+      <td>160.51</td>
+      <td>359.84</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[21]</th>
-      <td>2.40</td>
-      <td>0.69</td>
-      <td>1.37</td>
-      <td>3.54</td>
-      <td>0.06</td>
+      <td>2.36</td>
+      <td>0.61</td>
+      <td>1.48</td>
+      <td>3.45</td>
       <td>0.04</td>
-      <td>149.99</td>
-      <td>228.00</td>
-      <td>1.03</td>
+      <td>0.03</td>
+      <td>198.77</td>
+      <td>257.13</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[22]</th>
       <td>2.40</td>
-      <td>0.67</td>
-      <td>1.30</td>
-      <td>3.36</td>
+      <td>0.66</td>
+      <td>1.42</td>
+      <td>3.54</td>
       <td>0.05</td>
-      <td>0.04</td>
-      <td>189.80</td>
-      <td>244.87</td>
-      <td>1.01</td>
+      <td>0.03</td>
+      <td>182.02</td>
+      <td>246.75</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[23]</th>
-      <td>1.66</td>
-      <td>0.52</td>
-      <td>0.92</td>
-      <td>2.51</td>
+      <td>1.77</td>
+      <td>0.58</td>
+      <td>0.81</td>
+      <td>2.55</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.03</td>
-      <td>227.03</td>
-      <td>235.89</td>
+      <td>219.25</td>
+      <td>209.65</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[24]</th>
-      <td>-0.99</td>
-      <td>0.43</td>
-      <td>-1.72</td>
-      <td>-0.36</td>
+      <td>-1.00</td>
+      <td>0.44</td>
+      <td>-1.75</td>
+      <td>-0.37</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>389.57</td>
-      <td>535.09</td>
-      <td>1.01</td>
+      <td>419.61</td>
+      <td>427.90</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[25]</th>
-      <td>0.17</td>
+      <td>0.15</td>
       <td>0.38</td>
-      <td>-0.49</td>
-      <td>0.70</td>
+      <td>-0.47</td>
+      <td>0.71</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>474.62</td>
-      <td>391.58</td>
-      <td>1.00</td>
+      <td>511.95</td>
+      <td>552.59</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[26]</th>
-      <td>-1.42</td>
+      <td>-1.37</td>
       <td>0.51</td>
-      <td>-2.21</td>
-      <td>-0.64</td>
+      <td>-2.20</td>
+      <td>-0.58</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>296.92</td>
-      <td>339.51</td>
-      <td>1.00</td>
+      <td>272.80</td>
+      <td>296.84</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[27]</th>
-      <td>-0.47</td>
-      <td>0.40</td>
-      <td>-1.06</td>
-      <td>0.17</td>
+      <td>-0.45</td>
+      <td>0.41</td>
+      <td>-1.05</td>
+      <td>0.21</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>440.97</td>
-      <td>565.41</td>
+      <td>0.02</td>
+      <td>410.91</td>
+      <td>357.43</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[28]</th>
-      <td>0.17</td>
+      <td>0.15</td>
       <td>0.39</td>
-      <td>-0.49</td>
-      <td>0.76</td>
+      <td>-0.55</td>
+      <td>0.74</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>492.38</td>
-      <td>482.67</td>
+      <td>467.91</td>
+      <td>403.40</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[29]</th>
-      <td>1.46</td>
-      <td>0.50</td>
-      <td>0.76</td>
-      <td>2.29</td>
+      <td>1.47</td>
+      <td>0.47</td>
+      <td>0.71</td>
+      <td>2.20</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>335.49</td>
-      <td>396.58</td>
-      <td>1.01</td>
+      <td>319.41</td>
+      <td>441.17</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[30]</th>
-      <td>-0.65</td>
-      <td>0.42</td>
-      <td>-1.30</td>
-      <td>0.06</td>
+      <td>-0.62</td>
+      <td>0.40</td>
+      <td>-1.24</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>374.34</td>
-      <td>290.23</td>
+      <td>0.02</td>
+      <td>428.63</td>
+      <td>494.75</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[31]</th>
-      <td>-0.33</td>
-      <td>0.39</td>
-      <td>-1.01</td>
-      <td>0.18</td>
+      <td>-0.30</td>
+      <td>0.41</td>
+      <td>-0.91</td>
+      <td>0.32</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>488.98</td>
-      <td>517.81</td>
+      <td>500.54</td>
+      <td>469.25</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[32]</th>
-      <td>3.09</td>
-      <td>0.77</td>
-      <td>1.97</td>
-      <td>4.37</td>
-      <td>0.08</td>
+      <td>3.16</td>
+      <td>0.78</td>
+      <td>1.90</td>
+      <td>4.19</td>
+      <td>0.09</td>
       <td>0.06</td>
-      <td>104.97</td>
-      <td>163.42</td>
-      <td>1.03</td>
+      <td>78.89</td>
+      <td>115.01</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[33]</th>
-      <td>2.61</td>
-      <td>0.60</td>
+      <td>2.79</td>
+      <td>0.67</td>
       <td>1.72</td>
-      <td>3.53</td>
+      <td>3.75</td>
+      <td>0.05</td>
       <td>0.04</td>
-      <td>0.03</td>
-      <td>222.54</td>
-      <td>331.69</td>
-      <td>1.00</td>
+      <td>161.97</td>
+      <td>217.73</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[34]</th>
-      <td>2.73</td>
-      <td>0.61</td>
-      <td>1.82</td>
-      <td>3.70</td>
+      <td>2.69</td>
+      <td>0.59</td>
+      <td>1.76</td>
+      <td>3.57</td>
       <td>0.05</td>
-      <td>0.04</td>
-      <td>131.86</td>
-      <td>197.62</td>
+      <td>0.03</td>
+      <td>164.61</td>
+      <td>220.07</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[35]</th>
-      <td>2.03</td>
-      <td>0.49</td>
-      <td>1.33</td>
-      <td>2.86</td>
+      <td>2.08</td>
+      <td>0.53</td>
+      <td>1.17</td>
+      <td>2.81</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>281.35</td>
-      <td>284.43</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[36]</th>
-      <td>2.01</td>
-      <td>0.50</td>
-      <td>1.26</td>
-      <td>2.85</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>269.50</td>
-      <td>286.60</td>
+      <td>243.74</td>
+      <td>259.83</td>
       <td>1.00</td>
     </tr>
     <tr>
+      <th>alpha[36]</th>
+      <td>2.02</td>
+      <td>0.50</td>
+      <td>1.25</td>
+      <td>2.74</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>310.71</td>
+      <td>332.25</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
       <th>alpha[37]</th>
-      <td>3.81</td>
-      <td>0.83</td>
-      <td>2.56</td>
-      <td>5.14</td>
+      <td>3.71</td>
+      <td>0.88</td>
+      <td>2.40</td>
+      <td>5.10</td>
       <td>0.09</td>
       <td>0.07</td>
-      <td>89.82</td>
-      <td>140.48</td>
-      <td>1.04</td>
+      <td>90.78</td>
+      <td>142.97</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[38]</th>
-      <td>2.77</td>
-      <td>0.75</td>
-      <td>1.54</td>
-      <td>3.69</td>
-      <td>0.08</td>
-      <td>0.06</td>
-      <td>108.62</td>
-      <td>85.14</td>
+      <td>2.69</td>
+      <td>0.62</td>
+      <td>1.52</td>
+      <td>3.46</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>141.38</td>
+      <td>264.46</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[39]</th>
-      <td>2.29</td>
+      <td>2.33</td>
       <td>0.58</td>
-      <td>1.33</td>
-      <td>3.13</td>
+      <td>1.47</td>
+      <td>3.23</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>179.99</td>
-      <td>198.55</td>
-      <td>1.01</td>
+      <td>189.72</td>
+      <td>360.21</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[40]</th>
-      <td>-1.78</td>
+      <td>-1.81</td>
       <td>0.47</td>
-      <td>-2.46</td>
-      <td>-1.00</td>
+      <td>-2.57</td>
+      <td>-1.08</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>318.72</td>
-      <td>410.63</td>
-      <td>1.00</td>
+      <td>210.92</td>
+      <td>144.75</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[41]</th>
-      <td>-0.59</td>
-      <td>0.34</td>
-      <td>-1.11</td>
-      <td>-0.08</td>
+      <td>-0.57</td>
+      <td>0.35</td>
+      <td>-1.15</td>
+      <td>-0.03</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>603.97</td>
-      <td>562.96</td>
-      <td>1.00</td>
+      <td>655.72</td>
+      <td>528.76</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[42]</th>
-      <td>-0.47</td>
-      <td>0.35</td>
-      <td>-1.08</td>
-      <td>0.06</td>
+      <td>-0.44</td>
+      <td>0.33</td>
+      <td>-0.95</td>
+      <td>0.07</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>743.68</td>
-      <td>606.32</td>
+      <td>627.60</td>
+      <td>459.30</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[43]</th>
-      <td>-0.34</td>
-      <td>0.32</td>
-      <td>-0.85</td>
-      <td>0.15</td>
+      <td>-0.33</td>
+      <td>0.34</td>
+      <td>-0.79</td>
+      <td>0.27</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>712.18</td>
-      <td>617.06</td>
+      <td>787.82</td>
+      <td>657.03</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[44]</th>
       <td>0.58</td>
-      <td>0.35</td>
-      <td>-0.04</td>
-      <td>1.06</td>
+      <td>0.34</td>
+      <td>0.06</td>
+      <td>1.13</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>609.67</td>
-      <td>554.24</td>
+      <td>723.51</td>
+      <td>542.61</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[45]</th>
-      <td>-0.58</td>
-      <td>0.39</td>
-      <td>-1.24</td>
-      <td>0.03</td>
-      <td>0.02</td>
+      <td>-0.56</td>
+      <td>0.35</td>
+      <td>-1.13</td>
+      <td>-0.01</td>
       <td>0.01</td>
-      <td>632.65</td>
-      <td>496.53</td>
+      <td>0.01</td>
+      <td>705.57</td>
+      <td>496.97</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[46]</th>
-      <td>2.04</td>
+      <td>2.02</td>
       <td>0.50</td>
-      <td>1.23</td>
-      <td>2.86</td>
-      <td>0.04</td>
+      <td>1.19</td>
+      <td>2.78</td>
       <td>0.03</td>
-      <td>211.20</td>
-      <td>284.68</td>
-      <td>1.01</td>
+      <td>0.02</td>
+      <td>239.48</td>
+      <td>408.89</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[47]</th>
-      <td>0.02</td>
-      <td>0.35</td>
+      <td>0.01</td>
+      <td>0.34</td>
       <td>-0.53</td>
-      <td>0.57</td>
+      <td>0.56</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>622.39</td>
-      <td>446.58</td>
+      <td>711.21</td>
+      <td>657.80</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -2818,11 +2765,11 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>m13.2</th>
       <td>0</td>
-      <td>-106.140151</td>
-      <td>26.686007</td>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>3.885079</td>
+      <td>-108.684134</td>
+      <td>29.540179</td>
+      <td>0.00000</td>
+      <td>0.948182</td>
+      <td>4.249448</td>
       <td>0.000000</td>
       <td>True</td>
       <td>log</td>
@@ -2830,12 +2777,12 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>m13.1</th>
       <td>1</td>
-      <td>-117.767966</td>
-      <td>35.887653</td>
-      <td>11.627815</td>
-      <td>0.0</td>
-      <td>3.532946</td>
-      <td>3.659162</td>
+      <td>-114.443164</td>
+      <td>32.837991</td>
+      <td>5.75903</td>
+      <td>0.051818</td>
+      <td>2.743803</td>
+      <td>3.409313</td>
       <td>True</td>
       <td>log</td>
     </tr>
@@ -2877,7 +2824,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_28_0.png" src="../_images/13_models_with_memory_28_0.png" />
+<img alt="../_images/13_models_with_memory_26_0.png" src="../_images/13_models_with_memory_26_0.png" />
 </div>
 </div>
 <p>Here is how to read above plot -</p>
@@ -2914,8 +2861,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_31_0.png" src="../_images/13_models_with_memory_31_0.png" />
-<img alt="../_images/13_models_with_memory_31_1.png" src="../_images/13_models_with_memory_31_1.png" />
+<img alt="../_images/13_models_with_memory_29_0.png" src="../_images/13_models_with_memory_29_0.png" />
+<img alt="../_images/13_models_with_memory_29_1.png" src="../_images/13_models_with_memory_29_1.png" />
 </div>
 </div>
 </div>
@@ -2995,43 +2942,43 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
       <th>mean</th>
       <td>30.500000</td>
       <td>18.750000</td>
-      <td>1.474527</td>
+      <td>1.267252</td>
     </tr>
     <tr>
       <th>std</th>
       <td>17.464249</td>
       <td>12.024868</td>
-      <td>1.305505</td>
+      <td>1.641959</td>
     </tr>
     <tr>
       <th>min</th>
       <td>1.000000</td>
       <td>5.000000</td>
-      <td>-1.875095</td>
+      <td>-1.558607</td>
     </tr>
     <tr>
       <th>25%</th>
       <td>15.750000</td>
       <td>8.750000</td>
-      <td>0.569003</td>
+      <td>0.232180</td>
     </tr>
     <tr>
       <th>50%</th>
       <td>30.500000</td>
       <td>17.500000</td>
-      <td>1.203327</td>
+      <td>1.015178</td>
     </tr>
     <tr>
       <th>75%</th>
       <td>45.250000</td>
       <td>27.500000</td>
-      <td>2.442760</td>
+      <td>2.325797</td>
     </tr>
     <tr>
       <th>max</th>
       <td>60.000000</td>
       <td>35.000000</td>
-      <td>4.146458</td>
+      <td>4.888313</td>
     </tr>
   </tbody>
 </table>
@@ -3208,63 +3155,63 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>1.49</td>
-      <td>0.21</td>
-      <td>1.19</td>
-      <td>1.87</td>
+      <td>1.08</td>
+      <td>0.20</td>
+      <td>0.77</td>
+      <td>1.38</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>272.07</td>
-      <td>137.86</td>
-      <td>1.01</td>
+      <td>191.27</td>
+      <td>98.07</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.30</td>
-      <td>0.17</td>
-      <td>1.04</td>
-      <td>1.57</td>
-      <td>0.03</td>
+      <td>1.50</td>
+      <td>0.18</td>
+      <td>1.19</td>
+      <td>1.76</td>
       <td>0.02</td>
-      <td>33.97</td>
-      <td>62.46</td>
-      <td>1.07</td>
-    </tr>
-    <tr>
-      <th>alpha[0]</th>
-      <td>2.49</td>
-      <td>1.01</td>
-      <td>0.83</td>
-      <td>3.99</td>
-      <td>0.15</td>
-      <td>0.11</td>
-      <td>48.36</td>
-      <td>159.62</td>
-      <td>1.06</td>
-    </tr>
-    <tr>
-      <th>alpha[1]</th>
-      <td>0.24</td>
-      <td>0.78</td>
-      <td>-0.91</td>
-      <td>1.60</td>
-      <td>0.10</td>
-      <td>0.07</td>
-      <td>58.96</td>
-      <td>153.79</td>
+      <td>0.02</td>
+      <td>60.22</td>
+      <td>218.94</td>
       <td>1.05</td>
     </tr>
     <tr>
+      <th>alpha[0]</th>
+      <td>1.57</td>
+      <td>0.93</td>
+      <td>-0.01</td>
+      <td>2.93</td>
+      <td>0.10</td>
+      <td>0.07</td>
+      <td>85.02</td>
+      <td>139.68</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>alpha[1]</th>
+      <td>2.56</td>
+      <td>1.18</td>
+      <td>0.76</td>
+      <td>4.31</td>
+      <td>0.16</td>
+      <td>0.11</td>
+      <td>57.32</td>
+      <td>117.35</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
       <th>alpha[2]</th>
-      <td>2.35</td>
-      <td>0.96</td>
-      <td>0.61</td>
-      <td>3.68</td>
-      <td>0.13</td>
-      <td>0.09</td>
-      <td>60.28</td>
-      <td>99.25</td>
-      <td>1.04</td>
+      <td>1.39</td>
+      <td>0.73</td>
+      <td>0.15</td>
+      <td>2.49</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>115.24</td>
+      <td>204.60</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>...</th>
@@ -3280,63 +3227,63 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     </tr>
     <tr>
       <th>alpha[55]</th>
-      <td>2.23</td>
-      <td>0.50</td>
-      <td>1.54</td>
-      <td>3.09</td>
-      <td>0.03</td>
+      <td>1.22</td>
+      <td>0.42</td>
+      <td>0.58</td>
+      <td>1.89</td>
       <td>0.02</td>
-      <td>225.08</td>
-      <td>441.63</td>
-      <td>1.01</td>
+      <td>0.02</td>
+      <td>395.79</td>
+      <td>414.99</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[56]</th>
-      <td>0.14</td>
-      <td>0.32</td>
-      <td>-0.36</td>
-      <td>0.65</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>547.89</td>
-      <td>364.96</td>
+      <td>-1.60</td>
+      <td>0.45</td>
+      <td>-2.24</td>
+      <td>-0.82</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>230.95</td>
+      <td>200.60</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[57]</th>
-      <td>2.85</td>
-      <td>0.66</td>
-      <td>1.77</td>
-      <td>3.81</td>
-      <td>0.06</td>
-      <td>0.05</td>
-      <td>101.73</td>
-      <td>275.72</td>
-      <td>1.00</td>
+      <td>1.83</td>
+      <td>0.46</td>
+      <td>1.17</td>
+      <td>2.60</td>
+      <td>0.04</td>
+      <td>0.03</td>
+      <td>193.28</td>
+      <td>199.87</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[58]</th>
-      <td>-0.42</td>
-      <td>0.34</td>
-      <td>-0.93</td>
-      <td>0.16</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>529.71</td>
-      <td>349.80</td>
+      <td>-1.26</td>
+      <td>0.41</td>
+      <td>-1.84</td>
+      <td>-0.62</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>365.59</td>
+      <td>358.41</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[59]</th>
-      <td>0.49</td>
-      <td>0.34</td>
-      <td>-0.08</td>
-      <td>0.99</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>567.12</td>
-      <td>377.37</td>
-      <td>1.00</td>
+      <td>1.81</td>
+      <td>0.45</td>
+      <td>1.08</td>
+      <td>2.46</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>210.41</td>
+      <td>424.71</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -3388,7 +3335,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_66_0.png" src="../_images/13_models_with_memory_66_0.png" />
+<img alt="../_images/13_models_with_memory_64_0.png" src="../_images/13_models_with_memory_64_0.png" />
 </div>
 </div>
 </div>
@@ -3458,7 +3405,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_73_0.png" src="../_images/13_models_with_memory_73_0.png" />
+<img alt="../_images/13_models_with_memory_71_0.png" src="../_images/13_models_with_memory_71_0.png" />
 </div>
 </div>
 </div>
@@ -3548,7 +3495,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f0b7b8c1320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fd948abf320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -3595,242 +3542,242 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>0.84</td>
-      <td>0.81</td>
-      <td>-0.22</td>
-      <td>2.27</td>
-      <td>0.29</td>
-      <td>0.25</td>
-      <td>9.01</td>
-      <td>136.93</td>
-      <td>1.19</td>
+      <td>0.52</td>
+      <td>0.77</td>
+      <td>-0.74</td>
+      <td>1.72</td>
+      <td>0.14</td>
+      <td>0.10</td>
+      <td>30.03</td>
+      <td>21.57</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>sigma_a</th>
-      <td>2.06</td>
-      <td>0.74</td>
-      <td>1.01</td>
-      <td>2.74</td>
-      <td>0.16</td>
-      <td>0.11</td>
-      <td>20.55</td>
-      <td>29.45</td>
-      <td>1.10</td>
-    </tr>
-    <tr>
-      <th>sigma_g</th>
-      <td>0.27</td>
-      <td>0.17</td>
+      <td>2.10</td>
+      <td>0.62</td>
+      <td>1.14</td>
+      <td>3.07</td>
+      <td>0.09</td>
       <td>0.06</td>
-      <td>0.49</td>
-      <td>0.02</td>
-      <td>0.02</td>
-      <td>40.29</td>
-      <td>6.21</td>
-      <td>1.09</td>
-    </tr>
-    <tr>
-      <th>alpha[0]</th>
-      <td>-0.32</td>
-      <td>0.37</td>
-      <td>-0.83</td>
-      <td>0.31</td>
-      <td>0.05</td>
-      <td>0.03</td>
-      <td>66.63</td>
-      <td>63.43</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>alpha[1]</th>
-      <td>4.72</td>
-      <td>1.27</td>
-      <td>2.62</td>
-      <td>6.45</td>
-      <td>0.48</td>
-      <td>0.36</td>
-      <td>6.53</td>
-      <td>31.95</td>
-      <td>1.27</td>
-    </tr>
-    <tr>
-      <th>alpha[2]</th>
-      <td>-0.59</td>
-      <td>0.39</td>
-      <td>-1.18</td>
-      <td>-0.06</td>
-      <td>0.05</td>
-      <td>0.04</td>
-      <td>52.74</td>
-      <td>65.86</td>
+      <td>44.42</td>
+      <td>239.70</td>
       <td>1.03</td>
     </tr>
     <tr>
-      <th>alpha[3]</th>
-      <td>-0.57</td>
-      <td>0.35</td>
-      <td>-1.14</td>
-      <td>-0.02</td>
+      <th>sigma_g</th>
+      <td>0.23</td>
+      <td>0.15</td>
       <td>0.05</td>
+      <td>0.43</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>34.14</td>
+      <td>18.81</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>alpha[0]</th>
+      <td>-0.41</td>
+      <td>0.34</td>
+      <td>-0.96</td>
+      <td>0.11</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>58.20</td>
-      <td>175.20</td>
+      <td>76.05</td>
+      <td>100.26</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>alpha[1]</th>
+      <td>4.94</td>
+      <td>1.23</td>
+      <td>2.96</td>
+      <td>6.68</td>
+      <td>0.45</td>
+      <td>0.33</td>
+      <td>7.83</td>
+      <td>19.83</td>
+      <td>1.22</td>
+    </tr>
+    <tr>
+      <th>alpha[2]</th>
+      <td>-0.75</td>
+      <td>0.38</td>
+      <td>-1.31</td>
+      <td>-0.10</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>54.66</td>
+      <td>73.40</td>
+      <td>1.04</td>
+    </tr>
+    <tr>
+      <th>alpha[3]</th>
+      <td>-0.74</td>
+      <td>0.37</td>
+      <td>-1.25</td>
+      <td>-0.08</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>49.50</td>
+      <td>86.77</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.33</td>
-      <td>0.34</td>
-      <td>-0.74</td>
-      <td>0.31</td>
+      <td>-0.42</td>
+      <td>0.37</td>
+      <td>-0.98</td>
+      <td>0.22</td>
+      <td>0.05</td>
       <td>0.04</td>
-      <td>0.03</td>
-      <td>77.70</td>
-      <td>164.33</td>
+      <td>49.94</td>
+      <td>96.82</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.70</td>
+      <td>0.51</td>
       <td>0.39</td>
-      <td>0.14</td>
-      <td>1.21</td>
+      <td>-0.18</td>
+      <td>1.08</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>53.60</td>
-      <td>196.09</td>
-      <td>1.03</td>
+      <td>55.18</td>
+      <td>69.06</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>2.07</td>
+      <td>2.06</td>
       <td>0.46</td>
-      <td>1.43</td>
-      <td>2.80</td>
-      <td>0.11</td>
-      <td>0.08</td>
-      <td>18.07</td>
-      <td>302.91</td>
-      <td>1.10</td>
-    </tr>
-    <tr>
-      <th>gamma[0]</th>
-      <td>-0.23</td>
-      <td>0.23</td>
-      <td>-0.57</td>
-      <td>0.09</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>156.18</td>
-      <td>158.87</td>
+      <td>1.39</td>
+      <td>2.81</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>72.20</td>
+      <td>78.20</td>
       <td>1.03</td>
     </tr>
     <tr>
-      <th>gamma[1]</th>
-      <td>0.03</td>
-      <td>0.20</td>
-      <td>-0.30</td>
-      <td>0.36</td>
+      <th>gamma[0]</th>
+      <td>-0.19</td>
+      <td>0.23</td>
+      <td>-0.49</td>
+      <td>0.15</td>
       <td>0.02</td>
+      <td>0.02</td>
+      <td>99.82</td>
+      <td>99.78</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>gamma[1]</th>
+      <td>0.06</td>
+      <td>0.18</td>
+      <td>-0.17</td>
+      <td>0.36</td>
       <td>0.01</td>
-      <td>164.56</td>
-      <td>224.50</td>
+      <td>0.01</td>
+      <td>240.42</td>
+      <td>167.44</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>gamma[2]</th>
-      <td>0.08</td>
-      <td>0.21</td>
-      <td>-0.21</td>
-      <td>0.44</td>
+      <td>0.04</td>
+      <td>0.17</td>
+      <td>-0.17</td>
+      <td>0.36</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>214.42</td>
-      <td>231.96</td>
-      <td>1.07</td>
+      <td>341.10</td>
+      <td>192.47</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>gamma[3]</th>
       <td>0.01</td>
-      <td>0.22</td>
-      <td>-0.23</td>
-      <td>0.52</td>
-      <td>0.02</td>
+      <td>0.18</td>
+      <td>-0.22</td>
+      <td>0.36</td>
       <td>0.01</td>
-      <td>165.04</td>
-      <td>68.66</td>
-      <td>1.02</td>
+      <td>0.01</td>
+      <td>177.86</td>
+      <td>166.37</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>gamma[4]</th>
-      <td>-0.05</td>
-      <td>0.23</td>
-      <td>-0.54</td>
-      <td>0.22</td>
-      <td>0.02</td>
-      <td>0.02</td>
-      <td>165.53</td>
-      <td>79.34</td>
-      <td>1.11</td>
+      <td>-0.02</td>
+      <td>0.18</td>
+      <td>-0.28</td>
+      <td>0.29</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>326.07</td>
+      <td>457.14</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>gamma[5]</th>
-      <td>0.11</td>
-      <td>0.22</td>
-      <td>-0.15</td>
-      <td>0.46</td>
+      <td>0.13</td>
+      <td>0.20</td>
+      <td>-0.14</td>
+      <td>0.43</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>71.25</td>
-      <td>228.45</td>
+      <td>0.01</td>
+      <td>124.68</td>
+      <td>250.57</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>beta[0]</th>
-      <td>-0.18</td>
-      <td>0.28</td>
-      <td>-0.69</td>
-      <td>0.21</td>
+      <td>-0.07</td>
+      <td>0.32</td>
+      <td>-0.66</td>
+      <td>0.39</td>
+      <td>0.05</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>91.75</td>
-      <td>69.59</td>
-      <td>1.04</td>
+      <td>52.58</td>
+      <td>65.02</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta[1]</th>
-      <td>0.34</td>
-      <td>0.26</td>
-      <td>-0.09</td>
-      <td>0.70</td>
+      <td>0.47</td>
+      <td>0.31</td>
+      <td>-0.08</td>
+      <td>0.87</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>82.63</td>
-      <td>179.22</td>
+      <td>60.67</td>
+      <td>78.26</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>beta[2]</th>
-      <td>-0.52</td>
-      <td>0.28</td>
-      <td>-1.05</td>
-      <td>-0.13</td>
+      <td>-0.42</td>
+      <td>0.29</td>
+      <td>-0.82</td>
+      <td>0.10</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>99.50</td>
-      <td>78.09</td>
-      <td>1.06</td>
+      <td>67.03</td>
+      <td>80.30</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta[3]</th>
-      <td>0.27</td>
+      <td>0.34</td>
       <td>0.30</td>
-      <td>-0.17</td>
-      <td>0.71</td>
-      <td>0.05</td>
+      <td>-0.10</td>
+      <td>0.86</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>59.19</td>
-      <td>132.71</td>
+      <td>62.40</td>
+      <td>123.64</td>
       <td>1.03</td>
     </tr>
   </tbody>
@@ -3845,7 +3792,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_82_0.png" src="../_images/13_models_with_memory_82_0.png" />
+<img alt="../_images/13_models_with_memory_80_0.png" src="../_images/13_models_with_memory_80_0.png" />
 </div>
 </div>
 </div>
@@ -3902,7 +3849,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f0b7b8c1320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7fd948abf320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -3993,10 +3940,6 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:695: UserWarning: Estimated shape parameter of Pareto distribution is greater than 0.7 for one or more samples. You should consider using a more robust model, this is because importance sampling is less likely to work well if the marginal posterior and LOO posterior are very different. This is more likely to happen with a non-robust model and highly influential observations.
-  &quot;Estimated shape parameter of Pareto distribution is greater than 0.7 for &quot;
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4030,11 +3973,11 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>m13.5</th>
       <td>0</td>
-      <td>-266.011543</td>
-      <td>9.190352</td>
+      <td>-265.466596</td>
+      <td>8.194042</td>
       <td>0.000000</td>
-      <td>1.0</td>
-      <td>9.617698</td>
+      <td>0.899806</td>
+      <td>9.698302</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -4042,13 +3985,13 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>m13.4</th>
       <td>1</td>
-      <td>-267.292956</td>
-      <td>11.903016</td>
-      <td>1.281413</td>
-      <td>0.0</td>
-      <td>9.622599</td>
-      <td>1.171945</td>
-      <td>True</td>
+      <td>-265.873423</td>
+      <td>10.861002</td>
+      <td>0.406827</td>
+      <td>0.100194</td>
+      <td>9.743046</td>
+      <td>1.010143</td>
+      <td>False</td>
       <td>log</td>
     </tr>
   </tbody>
@@ -4135,8 +4078,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;m13.4&#39;: array([-0.18932997,  0.35598087, -0.5157989 ,  0.31619275], dtype=float32),
- &#39;m13.6&#39;: array([-0.22560139,  0.30744803, -0.56417376,  0.184374  ], dtype=float32)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;m13.4&#39;: array([-0.08186314,  0.46290812, -0.44963524,  0.31079933], dtype=float32),
+ &#39;m13.6&#39;: array([-0.08724398,  0.44375324, -0.40875104,  0.31180784], dtype=float32)}
 </pre></div>
 </div>
 </div>
@@ -4227,27 +4170,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>v</th>
-      <td>-1.990</td>
-      <td>1.24</td>
-      <td>-3.779</td>
-      <td>-0.017</td>
-      <td>0.609</td>
-      <td>0.520</td>
-      <td>4.0</td>
-      <td>20.0</td>
-      <td>1.51</td>
+      <td>-1.396</td>
+      <td>1.036</td>
+      <td>-2.431</td>
+      <td>-0.341</td>
+      <td>0.727</td>
+      <td>0.614</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.25</td>
     </tr>
     <tr>
       <th>x</th>
-      <td>0.053</td>
-      <td>0.45</td>
-      <td>-0.438</td>
-      <td>1.007</td>
-      <td>0.131</td>
-      <td>0.095</td>
-      <td>27.0</td>
-      <td>11.0</td>
-      <td>1.27</td>
+      <td>-0.465</td>
+      <td>0.658</td>
+      <td>-1.169</td>
+      <td>0.191</td>
+      <td>0.462</td>
+      <td>0.390</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>3.79</td>
     </tr>
   </tbody>
 </table>
@@ -4324,27 +4267,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>v</th>
-      <td>-0.036</td>
-      <td>2.900</td>
-      <td>-4.210</td>
-      <td>4.597</td>
-      <td>0.100</td>
-      <td>0.112</td>
-      <td>850.0</td>
-      <td>437.0</td>
-      <td>1.0</td>
+      <td>0.145</td>
+      <td>2.725</td>
+      <td>-4.100</td>
+      <td>4.043</td>
+      <td>0.096</td>
+      <td>0.104</td>
+      <td>806.0</td>
+      <td>543.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>z</th>
-      <td>-0.028</td>
-      <td>1.022</td>
-      <td>-1.565</td>
-      <td>1.563</td>
-      <td>0.065</td>
-      <td>0.046</td>
-      <td>254.0</td>
-      <td>447.0</td>
-      <td>1.0</td>
+      <td>0.116</td>
+      <td>0.997</td>
+      <td>-1.446</td>
+      <td>1.699</td>
+      <td>0.064</td>
+      <td>0.045</td>
+      <td>249.0</td>
+      <td>349.0</td>
+      <td>1.01</td>
     </tr>
   </tbody>
 </table>
@@ -4402,15 +4345,15 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7f0b7c190ef0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7fd94938eef0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-array([[-349.6485 , -351.73538],
-       [-206.80106, -208.88794]], dtype=float32)&gt;
+array([[-198.1441 , -197.89474],
+       [-260.19888, -259.94952]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -4486,243 +4429,243 @@ array([[-349.6485 , -351.73538],
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>0.610</td>
-      <td>0.639</td>
-      <td>-0.252</td>
-      <td>1.635</td>
-      <td>0.153</td>
-      <td>0.119</td>
-      <td>17.0</td>
-      <td>69.0</td>
-      <td>1.08</td>
+      <td>0.523</td>
+      <td>0.613</td>
+      <td>-0.448</td>
+      <td>1.506</td>
+      <td>0.186</td>
+      <td>0.135</td>
+      <td>11.0</td>
+      <td>31.0</td>
+      <td>1.17</td>
     </tr>
     <tr>
       <th>sigma_a</th>
-      <td>2.053</td>
-      <td>0.519</td>
-      <td>1.245</td>
-      <td>2.720</td>
-      <td>0.066</td>
-      <td>0.047</td>
-      <td>62.0</td>
-      <td>171.0</td>
-      <td>1.01</td>
+      <td>1.939</td>
+      <td>0.632</td>
+      <td>1.040</td>
+      <td>2.926</td>
+      <td>0.206</td>
+      <td>0.151</td>
+      <td>10.0</td>
+      <td>79.0</td>
+      <td>1.16</td>
     </tr>
     <tr>
       <th>sigma_g</th>
-      <td>0.159</td>
-      <td>0.113</td>
-      <td>0.007</td>
-      <td>0.306</td>
-      <td>0.022</td>
-      <td>0.016</td>
-      <td>25.0</td>
-      <td>48.0</td>
-      <td>1.07</td>
+      <td>0.218</td>
+      <td>0.174</td>
+      <td>0.005</td>
+      <td>0.429</td>
+      <td>0.057</td>
+      <td>0.042</td>
+      <td>9.0</td>
+      <td>40.0</td>
+      <td>1.21</td>
     </tr>
     <tr>
       <th>z[0]</th>
-      <td>-0.549</td>
-      <td>0.394</td>
-      <td>-1.219</td>
-      <td>-0.054</td>
-      <td>0.100</td>
-      <td>0.078</td>
-      <td>17.0</td>
-      <td>9.0</td>
-      <td>1.09</td>
-    </tr>
-    <tr>
-      <th>z[1]</th>
-      <td>2.103</td>
-      <td>0.555</td>
-      <td>1.159</td>
-      <td>2.866</td>
-      <td>0.087</td>
-      <td>0.062</td>
-      <td>38.0</td>
-      <td>66.0</td>
-      <td>1.08</td>
-    </tr>
-    <tr>
-      <th>z[2]</th>
-      <td>-0.692</td>
-      <td>0.421</td>
-      <td>-1.269</td>
-      <td>-0.063</td>
-      <td>0.099</td>
+      <td>-0.510</td>
+      <td>0.395</td>
+      <td>-1.221</td>
+      <td>0.035</td>
+      <td>0.103</td>
       <td>0.074</td>
-      <td>20.0</td>
-      <td>37.0</td>
-      <td>1.08</td>
-    </tr>
-    <tr>
-      <th>z[3]</th>
-      <td>-0.686</td>
-      <td>0.398</td>
-      <td>-1.311</td>
-      <td>-0.153</td>
-      <td>0.096</td>
-      <td>0.073</td>
-      <td>20.0</td>
-      <td>74.0</td>
-      <td>1.09</td>
-    </tr>
-    <tr>
-      <th>z[4]</th>
-      <td>-0.535</td>
-      <td>0.389</td>
-      <td>-1.044</td>
-      <td>0.046</td>
-      <td>0.096</td>
-      <td>0.075</td>
-      <td>17.0</td>
-      <td>36.0</td>
-      <td>1.07</td>
-    </tr>
-    <tr>
-      <th>z[5]</th>
-      <td>-0.045</td>
-      <td>0.348</td>
-      <td>-0.608</td>
-      <td>0.447</td>
-      <td>0.088</td>
-      <td>0.071</td>
-      <td>16.0</td>
-      <td>6.0</td>
-      <td>1.09</td>
-    </tr>
-    <tr>
-      <th>z[6]</th>
-      <td>0.737</td>
-      <td>0.385</td>
-      <td>0.148</td>
-      <td>1.267</td>
-      <td>0.070</td>
-      <td>0.050</td>
-      <td>27.0</td>
-      <td>47.0</td>
-      <td>1.06</td>
-    </tr>
-    <tr>
-      <th>x[0]</th>
-      <td>-0.854</td>
-      <td>0.770</td>
-      <td>-2.071</td>
-      <td>0.180</td>
-      <td>0.152</td>
-      <td>0.109</td>
-      <td>27.0</td>
-      <td>76.0</td>
-      <td>1.10</td>
-    </tr>
-    <tr>
-      <th>x[1]</th>
-      <td>0.413</td>
-      <td>0.757</td>
-      <td>-0.666</td>
-      <td>1.657</td>
-      <td>0.139</td>
-      <td>0.099</td>
-      <td>31.0</td>
-      <td>54.0</td>
-      <td>1.08</td>
-    </tr>
-    <tr>
-      <th>x[2]</th>
-      <td>0.190</td>
-      <td>0.884</td>
-      <td>-1.228</td>
-      <td>1.535</td>
-      <td>0.210</td>
-      <td>0.151</td>
-      <td>18.0</td>
-      <td>33.0</td>
+      <td>15.0</td>
+      <td>70.0</td>
       <td>1.15</td>
     </tr>
     <tr>
-      <th>x[3]</th>
-      <td>0.059</td>
-      <td>1.083</td>
-      <td>-1.865</td>
-      <td>1.328</td>
-      <td>0.452</td>
-      <td>0.337</td>
-      <td>7.0</td>
-      <td>47.0</td>
-      <td>1.27</td>
-    </tr>
-    <tr>
-      <th>x[4]</th>
-      <td>0.065</td>
-      <td>1.161</td>
-      <td>-2.138</td>
-      <td>1.551</td>
-      <td>0.580</td>
-      <td>0.444</td>
-      <td>4.0</td>
-      <td>11.0</td>
-      <td>1.43</td>
-    </tr>
-    <tr>
-      <th>x[5]</th>
-      <td>0.703</td>
-      <td>0.728</td>
-      <td>-0.422</td>
-      <td>1.785</td>
-      <td>0.256</td>
-      <td>0.188</td>
-      <td>8.0</td>
+      <th>z[1]</th>
+      <td>2.235</td>
+      <td>0.575</td>
+      <td>1.356</td>
+      <td>3.235</td>
+      <td>0.102</td>
+      <td>0.073</td>
+      <td>32.0</td>
       <td>54.0</td>
+      <td>1.07</td>
+    </tr>
+    <tr>
+      <th>z[2]</th>
+      <td>-0.690</td>
+      <td>0.430</td>
+      <td>-1.417</td>
+      <td>-0.068</td>
+      <td>0.127</td>
+      <td>0.092</td>
+      <td>11.0</td>
+      <td>41.0</td>
+      <td>1.17</td>
+    </tr>
+    <tr>
+      <th>z[3]</th>
+      <td>-0.687</td>
+      <td>0.421</td>
+      <td>-1.312</td>
+      <td>0.047</td>
+      <td>0.132</td>
+      <td>0.096</td>
+      <td>10.0</td>
+      <td>28.0</td>
       <td>1.18</td>
     </tr>
     <tr>
-      <th>b[0]</th>
-      <td>-0.095</td>
-      <td>0.282</td>
+      <th>z[4]</th>
+      <td>-0.502</td>
+      <td>0.386</td>
+      <td>-1.171</td>
+      <td>0.016</td>
+      <td>0.105</td>
+      <td>0.076</td>
+      <td>14.0</td>
+      <td>45.0</td>
+      <td>1.15</td>
+    </tr>
+    <tr>
+      <th>z[5]</th>
+      <td>0.031</td>
+      <td>0.339</td>
       <td>-0.537</td>
-      <td>0.348</td>
-      <td>0.029</td>
+      <td>0.512</td>
+      <td>0.074</td>
+      <td>0.053</td>
+      <td>22.0</td>
+      <td>146.0</td>
+      <td>1.10</td>
+    </tr>
+    <tr>
+      <th>z[6]</th>
+      <td>0.892</td>
+      <td>0.406</td>
+      <td>0.174</td>
+      <td>1.401</td>
+      <td>0.071</td>
+      <td>0.050</td>
+      <td>31.0</td>
+      <td>74.0</td>
+      <td>1.07</td>
+    </tr>
+    <tr>
+      <th>x[0]</th>
+      <td>-0.849</td>
+      <td>0.809</td>
+      <td>-1.909</td>
+      <td>0.666</td>
+      <td>0.151</td>
+      <td>0.126</td>
+      <td>30.0</td>
+      <td>34.0</td>
+      <td>1.08</td>
+    </tr>
+    <tr>
+      <th>x[1]</th>
+      <td>-0.136</td>
+      <td>0.858</td>
+      <td>-1.420</td>
+      <td>1.214</td>
+      <td>0.222</td>
+      <td>0.160</td>
+      <td>14.0</td>
+      <td>33.0</td>
+      <td>1.12</td>
+    </tr>
+    <tr>
+      <th>x[2]</th>
+      <td>-0.041</td>
+      <td>0.930</td>
+      <td>-1.336</td>
+      <td>1.448</td>
+      <td>0.192</td>
+      <td>0.138</td>
+      <td>24.0</td>
+      <td>45.0</td>
+      <td>1.13</td>
+    </tr>
+    <tr>
+      <th>x[3]</th>
       <td>0.021</td>
-      <td>95.0</td>
-      <td>192.0</td>
-      <td>1.02</td>
+      <td>0.789</td>
+      <td>-1.127</td>
+      <td>1.290</td>
+      <td>0.277</td>
+      <td>0.203</td>
+      <td>8.0</td>
+      <td>133.0</td>
+      <td>1.23</td>
+    </tr>
+    <tr>
+      <th>x[4]</th>
+      <td>-0.443</td>
+      <td>0.802</td>
+      <td>-1.818</td>
+      <td>0.799</td>
+      <td>0.289</td>
+      <td>0.213</td>
+      <td>8.0</td>
+      <td>19.0</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>x[5]</th>
+      <td>0.356</td>
+      <td>0.941</td>
+      <td>-0.999</td>
+      <td>1.880</td>
+      <td>0.176</td>
+      <td>0.125</td>
+      <td>29.0</td>
+      <td>56.0</td>
+      <td>1.06</td>
+    </tr>
+    <tr>
+      <th>b[0]</th>
+      <td>-0.107</td>
+      <td>0.298</td>
+      <td>-0.576</td>
+      <td>0.358</td>
+      <td>0.030</td>
+      <td>0.021</td>
+      <td>102.0</td>
+      <td>254.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>b[1]</th>
-      <td>0.430</td>
-      <td>0.260</td>
-      <td>-0.008</td>
-      <td>0.815</td>
+      <td>0.437</td>
+      <td>0.281</td>
+      <td>-0.015</td>
+      <td>0.891</td>
       <td>0.025</td>
       <td>0.018</td>
-      <td>110.0</td>
-      <td>204.0</td>
-      <td>1.03</td>
+      <td>127.0</td>
+      <td>287.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>b[2]</th>
-      <td>-0.444</td>
-      <td>0.271</td>
-      <td>-0.898</td>
-      <td>-0.047</td>
-      <td>0.026</td>
-      <td>0.021</td>
-      <td>97.0</td>
-      <td>266.0</td>
-      <td>1.05</td>
+      <td>-0.452</td>
+      <td>0.286</td>
+      <td>-0.968</td>
+      <td>-0.051</td>
+      <td>0.028</td>
+      <td>0.020</td>
+      <td>106.0</td>
+      <td>270.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>b[3]</th>
       <td>0.308</td>
-      <td>0.273</td>
-      <td>-0.092</td>
-      <td>0.743</td>
+      <td>0.291</td>
+      <td>-0.207</td>
+      <td>0.720</td>
       <td>0.027</td>
       <td>0.019</td>
-      <td>105.0</td>
-      <td>169.0</td>
-      <td>1.02</td>
+      <td>118.0</td>
+      <td>253.0</td>
+      <td>1.01</td>
     </tr>
   </tbody>
 </table>
@@ -4767,10 +4710,10 @@ array([[-349.6485 , -351.73538],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.9695124, 0.9810259, 0.9578369, 0.979127 ], dtype=float32)&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.9894351 , 0.99371016, 0.98530567, 0.99295056], dtype=float32)&gt;,
  &lt;tf.Tensor: shape=(2, 4), dtype=float32, numpy=
- array([[0.9272827 , 0.95965844, 0.8966886 , 0.9518876 ],
-        [0.99807006, 0.9988374 , 0.9964942 , 0.9985984 ]], dtype=float32)&gt;)
+ array([[0.9617724 , 0.9773899 , 0.9526148 , 0.973927  ],
+        [0.99960494, 0.999803  , 0.9994768 , 0.9997622 ]], dtype=float32)&gt;)
 </pre></div>
 </div>
 </div>
@@ -4785,17 +4728,17 @@ array([[-349.6485 , -351.73538],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a_bar&#39;: array([-0.86218536, -1.1750288 , -0.58346176, -0.58346176, -0.6605585 ],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a_bar&#39;: array([1.0677463 , 0.42185098, 0.12499792, 0.12499792, 0.11573292],
        dtype=float32),
- &#39;sigma_a&#39;: array([2.6673307, 1.8400775, 1.774417 , 1.774417 , 1.6594089],
+ &#39;sigma_a&#39;: array([1.6588907, 2.2564554, 2.8632576, 2.8632576, 2.1418784],
        dtype=float32),
- &#39;sigma_g&#39;: array([0.15588069, 0.13390149, 0.1708186 , 0.1708186 , 0.09614781],
+ &#39;sigma_g&#39;: array([0.19468193, 0.13453361, 0.1163654 , 0.1163654 , 0.10620489],
        dtype=float32),
- &#39;alpha&#39;: array([-0.59251857,  2.908419  , -1.1457721 , -1.1824671 , -0.5074427 ],
+ &#39;alpha&#39;: array([-0.34388384,  7.575192  , -0.71503747, -0.5730156 , -0.53504544],
        dtype=float32),
- &#39;gamma&#39;: array([-0.05571654,  0.20550655,  0.12533502, -0.00709183, -0.09070849],
+ &#39;gamma&#39;: array([-0.31448483, -0.03165346, -0.10083878,  0.19285497,  0.01571961],
        dtype=float32),
- &#39;beta&#39;: array([ 0.72357064,  0.77809346, -0.03914863,  0.67094135,  0.18950345],
+ &#39;beta&#39;: array([-0.2671553 ,  0.51415014, -0.4718427 ,  0.31507057, -0.16116044],
        dtype=float32)}
 </pre></div>
 </div>
@@ -4811,7 +4754,7 @@ array([[-349.6485 , -351.73538],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_119_0.png" src="../_images/13_models_with_memory_119_0.png" />
+<img alt="../_images/13_models_with_memory_117_0.png" src="../_images/13_models_with_memory_117_0.png" />
 </div>
 </div>
 </div>
@@ -4879,7 +4822,7 @@ array([[-349.6485 , -351.73538],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_129_0.png" src="../_images/13_models_with_memory_129_0.png" />
+<img alt="../_images/13_models_with_memory_127_0.png" src="../_images/13_models_with_memory_127_0.png" />
 </div>
 </div>
 </div>
@@ -4912,7 +4855,7 @@ array([[-349.6485 , -351.73538],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13_models_with_memory_133_0.png" src="../_images/13_models_with_memory_133_0.png" />
+<img alt="../_images/13_models_with_memory_131_0.png" src="../_images/13_models_with_memory_131_0.png" />
 </div>
 </div>
 </div>

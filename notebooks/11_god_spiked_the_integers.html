@@ -292,447 +292,416 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Chapter 11 - God Spiked the Integers
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binomial-regression">
+   11.1 Binomial regression
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#imports-and-utility-functions">
-     Imports and utility functions
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression-prosocial-chimpanzees">
+     11.1.1 Logistic regression: Prosocial chimpanzees
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
-       Tensorflow MCMC sampling helpers
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-1">
+       Code 11.1
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dataset-urls-utils">
-       Dataset URLS &amp; Utils
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-2">
+       Code 11.2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-3">
+       Code 11.3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-4">
+       Code 11.4
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-5">
+       Code 11.5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-6">
+       Code 11.6
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-7">
+       Code 11.7
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-8">
+       Code 11.8
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-9">
+       Code 11.9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-10">
+       Code 11.10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-11">
+       Code 11.11
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-12">
+       Code 11.12
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-13">
+       Code 11.13
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-14">
+       Code 11.14
       </a>
      </li>
     </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-11-15">
+   Code 11.15
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binomial-regression">
-     11.1 Binomial regression
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-16">
+     Code 11.16
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#logistic-regression-prosocial-chimpanzees">
-       11.1.1 Logistic regression: Prosocial chimpanzees
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-1">
-         Code 11.1
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-2">
-         Code 11.2
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-3">
-         Code 11.3
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-4">
-         Code 11.4
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-5">
-         Code 11.5
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-6">
-         Code 11.6
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-7">
-         Code 11.7
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-8">
-         Code 11.8
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-9">
-         Code 11.9
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-10">
-         Code 11.10
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-11">
-         Code 11.11
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-12">
-         Code 11.12
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-13">
-         Code 11.13
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-14">
-         Code 11.14
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-11-15">
-     Code 11.15
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-17">
+     Code 11.17
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-16">
-       Code 11.16
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-17">
-       Code 11.17
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-18">
-       Code 11.18
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-19">
-       Code 11.19
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-20">
-       Code 11.20
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#overthinking-adding-log-probability-calculations">
-       Overthinking: Adding log-probability calculations
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-21">
-         Code 11.21
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-22">
-         Code 11.22
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#relative-shark-and-absolute-penguin">
-       11.1.2 Relative shark and absolute penguin
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-23">
-         Code 11.23
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#aggregated-binomial-chimpanzees-again-condensed">
-       Aggregated binomial: Chimpanzees again,condensed
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-24">
-         Code 11.24
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-25">
-         Code 11.25
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-26-find-a-way-to-get-the-comparison-even-if-different-number-of-obs">
-         Code 11.26 (Find a way to get the comparison even if different number of obs)
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-27">
-         Code 11.27
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#aggregated-binomial-graduate-school-admissions">
-       11.1.4 Aggregated binomial: Graduate school admissions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-28">
-         Code 11.28
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-29">
-         Code 11.29
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-30">
-         Code 11.30
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-31">
-         Code 11.31
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-32">
-         Code 11.32
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-33">
-         Code 11.33
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-34">
-         Code 11.34
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#poisson-regression">
-     11.2 Poisson regression
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-18">
+     Code 11.18
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-35">
-       Code 11.35
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-36">
-       Code 11.36
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-37">
-       Code 11.37
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-38">
-       Code 11.38
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-39">
-       Code 11.39
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-40">
-       Code 11.40
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-41">
-       Code 11.41
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-42">
-       Code 11.42
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-43">
-       Code 11.43
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-44">
-       Code 11.44
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-45">
-       Code 11.45
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-46">
-       Code 11.46
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-47">
-       Code 11.47
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-48">
-       Code 11.48
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-49">
-       Code 11.49
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#negative-binomial-gamm-poisson-models">
-       11.2.2 Negative binomial (gamm-poisson) models
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-exposure-and-the-offset">
-       11.2.3 Example: Exposure and the offset
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-50">
-         Code 11.50
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-11-51">
-     Code 11.51
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-19">
+     Code 11.19
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-20">
+     Code 11.20
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overthinking-adding-log-probability-calculations">
+     Overthinking: Adding log-probability calculations
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-52">
-       Code 11.52
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-21">
+       Code 11.21
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-53">
-       Code 11.53
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-54">
-       Code 11.54
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-22">
+       Code 11.22
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multinomial-and-categorical-models">
-     11.3 Multinomial and categorical models
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relative-shark-and-absolute-penguin">
+     11.1.2 Relative shark and absolute penguin
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#predictors-matched-to-outcomes">
-       11.3.1 Predictors matched to outcomes
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-23">
+       Code 11.23
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-55">
-         Code 11.55
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-56">
-         Code 11.56
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-57-todo-not-able-to-make-it-work-with-2-chains">
-         Code 11.57 (TODO - not able to make it work with 2 chains)
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multinomial-in-disguise-as-poisson">
-       11.3.3 Multinomial in disguise as Poisson
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-60">
-         Code 11.60
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-61">
-         Code 11.61
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-62">
-         Code 11.62
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-63">
-         Code 11.63
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#censoring-and-survival">
-     11.4 Censoring and survival
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregated-binomial-chimpanzees-again-condensed">
+     Aggregated binomial: Chimpanzees again,condensed
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-64">
-       Code 11.64
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-24">
+       Code 11.24
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-65">
-       Code 11.65
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-25">
+       Code 11.25
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-66-11-69-todo">
-       Code 11.66  - 11.69 (TODO)
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-26-find-a-way-to-get-the-comparison-even-if-different-number-of-obs">
+       Code 11.26 (Find a way to get the comparison even if different number of obs)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-27">
+       Code 11.27
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregated-binomial-graduate-school-admissions">
+     11.1.4 Aggregated binomial: Graduate school admissions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-28">
+       Code 11.28
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-29">
+       Code 11.29
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-30">
+       Code 11.30
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-31">
+       Code 11.31
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-32">
+       Code 11.32
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-33">
+       Code 11.33
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-34">
+       Code 11.34
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-regression">
+   11.2 Poisson regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-35">
+     Code 11.35
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-36">
+     Code 11.36
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-37">
+     Code 11.37
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-38">
+     Code 11.38
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-39">
+     Code 11.39
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-40">
+     Code 11.40
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-41">
+     Code 11.41
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-42">
+     Code 11.42
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-43">
+     Code 11.43
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-44">
+     Code 11.44
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-45">
+     Code 11.45
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-46">
+     Code 11.46
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-47">
+     Code 11.47
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-48">
+     Code 11.48
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-49">
+     Code 11.49
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-binomial-gamm-poisson-models">
+     11.2.2 Negative binomial (gamm-poisson) models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-exposure-and-the-offset">
+     11.2.3 Example: Exposure and the offset
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-50">
+       Code 11.50
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-11-51">
+   Code 11.51
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-52">
+     Code 11.52
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-53">
+     Code 11.53
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-54">
+     Code 11.54
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multinomial-and-categorical-models">
+   11.3 Multinomial and categorical models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predictors-matched-to-outcomes">
+     11.3.1 Predictors matched to outcomes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-55">
+       Code 11.55
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-56">
+       Code 11.56
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-57-todo-not-able-to-make-it-work-with-2-chains">
+       Code 11.57 (TODO - not able to make it work with 2 chains)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multinomial-in-disguise-as-poisson">
+     11.3.3 Multinomial in disguise as Poisson
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-60">
+       Code 11.60
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-61">
+       Code 11.61
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-62">
+       Code 11.62
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-63">
+       Code 11.63
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#censoring-and-survival">
+   11.4 Censoring and survival
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-64">
+     Code 11.64
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-65">
+     Code 11.65
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-66-11-69-todo">
+     Code 11.66  - 11.69 (TODO)
+    </a>
    </li>
   </ul>
  </li>
@@ -756,447 +725,416 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Chapter 11 - God Spiked the Integers
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binomial-regression">
+   11.1 Binomial regression
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#imports-and-utility-functions">
-     Imports and utility functions
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression-prosocial-chimpanzees">
+     11.1.1 Logistic regression: Prosocial chimpanzees
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tensorflow-mcmc-sampling-helpers">
-       Tensorflow MCMC sampling helpers
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-1">
+       Code 11.1
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dataset-urls-utils">
-       Dataset URLS &amp; Utils
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-2">
+       Code 11.2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-3">
+       Code 11.3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-4">
+       Code 11.4
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-5">
+       Code 11.5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-6">
+       Code 11.6
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-7">
+       Code 11.7
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-8">
+       Code 11.8
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-9">
+       Code 11.9
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-10">
+       Code 11.10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-11">
+       Code 11.11
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-12">
+       Code 11.12
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-13">
+       Code 11.13
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-14">
+       Code 11.14
       </a>
      </li>
     </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-11-15">
+   Code 11.15
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binomial-regression">
-     11.1 Binomial regression
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-16">
+     Code 11.16
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#logistic-regression-prosocial-chimpanzees">
-       11.1.1 Logistic regression: Prosocial chimpanzees
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-1">
-         Code 11.1
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-2">
-         Code 11.2
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-3">
-         Code 11.3
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-4">
-         Code 11.4
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-5">
-         Code 11.5
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-6">
-         Code 11.6
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-7">
-         Code 11.7
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-8">
-         Code 11.8
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-9">
-         Code 11.9
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-10">
-         Code 11.10
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-11">
-         Code 11.11
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-12">
-         Code 11.12
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-13">
-         Code 11.13
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-14">
-         Code 11.14
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-11-15">
-     Code 11.15
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-17">
+     Code 11.17
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-16">
-       Code 11.16
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-17">
-       Code 11.17
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-18">
-       Code 11.18
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-19">
-       Code 11.19
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-20">
-       Code 11.20
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#overthinking-adding-log-probability-calculations">
-       Overthinking: Adding log-probability calculations
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-21">
-         Code 11.21
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-22">
-         Code 11.22
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#relative-shark-and-absolute-penguin">
-       11.1.2 Relative shark and absolute penguin
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-23">
-         Code 11.23
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#aggregated-binomial-chimpanzees-again-condensed">
-       Aggregated binomial: Chimpanzees again,condensed
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-24">
-         Code 11.24
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-25">
-         Code 11.25
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-26-find-a-way-to-get-the-comparison-even-if-different-number-of-obs">
-         Code 11.26 (Find a way to get the comparison even if different number of obs)
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-27">
-         Code 11.27
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#aggregated-binomial-graduate-school-admissions">
-       11.1.4 Aggregated binomial: Graduate school admissions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-28">
-         Code 11.28
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-29">
-         Code 11.29
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-30">
-         Code 11.30
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-31">
-         Code 11.31
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-32">
-         Code 11.32
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-33">
-         Code 11.33
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-34">
-         Code 11.34
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#poisson-regression">
-     11.2 Poisson regression
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-18">
+     Code 11.18
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-35">
-       Code 11.35
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-36">
-       Code 11.36
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-37">
-       Code 11.37
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-38">
-       Code 11.38
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-39">
-       Code 11.39
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-40">
-       Code 11.40
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-41">
-       Code 11.41
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-42">
-       Code 11.42
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-43">
-       Code 11.43
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-44">
-       Code 11.44
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-45">
-       Code 11.45
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-46">
-       Code 11.46
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-47">
-       Code 11.47
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-48">
-       Code 11.48
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-49">
-       Code 11.49
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#negative-binomial-gamm-poisson-models">
-       11.2.2 Negative binomial (gamm-poisson) models
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-exposure-and-the-offset">
-       11.2.3 Example: Exposure and the offset
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-50">
-         Code 11.50
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-11-51">
-     Code 11.51
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-19">
+     Code 11.19
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-20">
+     Code 11.20
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overthinking-adding-log-probability-calculations">
+     Overthinking: Adding log-probability calculations
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-52">
-       Code 11.52
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-21">
+       Code 11.21
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-53">
-       Code 11.53
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-54">
-       Code 11.54
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-22">
+       Code 11.22
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multinomial-and-categorical-models">
-     11.3 Multinomial and categorical models
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relative-shark-and-absolute-penguin">
+     11.1.2 Relative shark and absolute penguin
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#predictors-matched-to-outcomes">
-       11.3.1 Predictors matched to outcomes
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-23">
+       Code 11.23
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-55">
-         Code 11.55
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-56">
-         Code 11.56
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-57-todo-not-able-to-make-it-work-with-2-chains">
-         Code 11.57 (TODO - not able to make it work with 2 chains)
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multinomial-in-disguise-as-poisson">
-       11.3.3 Multinomial in disguise as Poisson
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-60">
-         Code 11.60
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-61">
-         Code 11.61
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-62">
-         Code 11.62
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#code-11-63">
-         Code 11.63
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#censoring-and-survival">
-     11.4 Censoring and survival
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregated-binomial-chimpanzees-again-condensed">
+     Aggregated binomial: Chimpanzees again,condensed
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-64">
-       Code 11.64
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-24">
+       Code 11.24
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-65">
-       Code 11.65
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-25">
+       Code 11.25
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#code-11-66-11-69-todo">
-       Code 11.66  - 11.69 (TODO)
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-26-find-a-way-to-get-the-comparison-even-if-different-number-of-obs">
+       Code 11.26 (Find a way to get the comparison even if different number of obs)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-27">
+       Code 11.27
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregated-binomial-graduate-school-admissions">
+     11.1.4 Aggregated binomial: Graduate school admissions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-28">
+       Code 11.28
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-29">
+       Code 11.29
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-30">
+       Code 11.30
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-31">
+       Code 11.31
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-32">
+       Code 11.32
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-33">
+       Code 11.33
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-34">
+       Code 11.34
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-regression">
+   11.2 Poisson regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-35">
+     Code 11.35
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-36">
+     Code 11.36
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-37">
+     Code 11.37
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-38">
+     Code 11.38
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-39">
+     Code 11.39
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-40">
+     Code 11.40
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-41">
+     Code 11.41
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-42">
+     Code 11.42
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-43">
+     Code 11.43
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-44">
+     Code 11.44
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-45">
+     Code 11.45
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-46">
+     Code 11.46
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-47">
+     Code 11.47
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-48">
+     Code 11.48
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-49">
+     Code 11.49
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-binomial-gamm-poisson-models">
+     11.2.2 Negative binomial (gamm-poisson) models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-exposure-and-the-offset">
+     11.2.3 Example: Exposure and the offset
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-50">
+       Code 11.50
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-11-51">
+   Code 11.51
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-52">
+     Code 11.52
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-53">
+     Code 11.53
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-54">
+     Code 11.54
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multinomial-and-categorical-models">
+   11.3 Multinomial and categorical models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predictors-matched-to-outcomes">
+     11.3.1 Predictors matched to outcomes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-55">
+       Code 11.55
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-56">
+       Code 11.56
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-57-todo-not-able-to-make-it-work-with-2-chains">
+       Code 11.57 (TODO - not able to make it work with 2 chains)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multinomial-in-disguise-as-poisson">
+     11.3.3 Multinomial in disguise as Poisson
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-60">
+       Code 11.60
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-61">
+       Code 11.61
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-62">
+       Code 11.62
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-11-63">
+       Code 11.63
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#censoring-and-survival">
+   11.4 Censoring and survival
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-64">
+     Code 11.64
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-65">
+     Code 11.65
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-11-66-11-69-todo">
+     Code 11.66  - 11.69 (TODO)
+    </a>
    </li>
   </ul>
  </li>
@@ -1212,19 +1150,14 @@
   <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/11_god_spiked_the_integers.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="tex2jax_ignore mathjax_ignore section" id="chapter-11-god-spiked-the-integers">
 <h1>Chapter 11 - God Spiked the Integers<a class="headerlink" href="#chapter-11-god-spiked-the-integers" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="imports-and-utility-functions">
-<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+  <span class="o">!</span>pip install -q watermark
 <span class="k">except</span><span class="p">:</span>
-  <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
-    <span class="o">!</span>pip install -q watermark
+  <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -1258,8 +1191,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:44:10.058187: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 22:44:10.058224: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:46:47.331838: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-17 23:46:47.331874: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1289,8 +1222,13 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
-<div class="section" id="tensorflow-mcmc-sampling-helpers">
-<h3>Tensorflow MCMC sampling helpers<a class="headerlink" href="#tensorflow-mcmc-sampling-helpers" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Tensorflow MCMC sampling helpers</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
@@ -1418,9 +1356,13 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Dataset URLS &amp; Utils</span>
+</pre></div>
 </div>
-<div class="section" id="dataset-urls-utils">
-<h3>Dataset URLS &amp; Utils<a class="headerlink" href="#dataset-urls-utils" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
@@ -1459,11 +1401,6 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="binomial-regression">
 <h2>11.1 Binomial regression<a class="headerlink" href="#binomial-regression" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="logistic-regression-prosocial-chimpanzees">
@@ -1688,10 +1625,10 @@ Name: index, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 22:44:12.348823: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 22:44:12.348863: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 22:44:12.348884: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-17 22:44:12.349067: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:46:49.748651: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-17 23:46:49.748685: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-17 23:46:49.748708: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-17 23:46:49.748895: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1708,7 +1645,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_28_0.png" src="../_images/11_god_spiked_the_integers_28_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_26_0.png" src="../_images/11_god_spiked_the_integers_26_0.png" />
 </div>
 </div>
 <p>Most of the probability mass in the above plot is piled up near zero or one. A flat prior in the logit space is not a flat prior in the outcome probability space.</p>
@@ -1724,7 +1661,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_30_0.png" src="../_images/11_god_spiked_the_integers_30_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_28_0.png" src="../_images/11_god_spiked_the_integers_28_0.png" />
 </div>
 </div>
 <p>A more concentrated Normal(0,1.5) prior produces something more reasonable</p>
@@ -1802,7 +1739,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_39_0.png" src="../_images/11_god_spiked_the_integers_39_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_37_0.png" src="../_images/11_god_spiked_the_integers_37_0.png" />
 </div>
 </div>
 </div>
@@ -1838,7 +1775,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09505204
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09980592
 </pre></div>
 </div>
 </div>
@@ -2066,40 +2003,40 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([-0.24205798, -0.393732  , -1.3404706 ,  0.5395472 ,  0.38050383,
-           -7.608915  , -0.23981822], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 0.14916563, -0.00229774, -0.21965764, -0.26751304], dtype=float32)&gt;,
+    array([ 3.1049387 ,  0.44414842, -2.5738637 ,  4.2349973 ,  0.8401302 ,
+           -1.5168803 , -0.10980813], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-0.52888614, -0.4315697 , -1.2577589 , -0.62368476], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([0., 0., 1., 0., 1., 1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 1., 0.,
-           0., 1., 1., 0., 1., 0., 0., 1., 1., 0., 0., 1., 0., 0., 1., 0., 0.,
-           1., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 1., 0., 0., 0.,
-           1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1., 0., 1., 0., 0., 0., 0.,
-           0., 1., 0., 1., 0., 1., 0., 0., 0., 1., 0., 1., 1., 0., 0., 1., 1.,
-           1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 1., 0., 0., 1., 0., 0., 0., 1., 1., 0., 1., 1., 1., 1., 0., 0.,
-           0., 1., 1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 1., 0., 0.,
-           0., 0., 0., 1., 0., 1., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 1.,
-           0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0.,
-           0., 1., 0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 1., 1., 0., 1.,
-           1., 1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1., 1., 0., 0., 1., 1.,
-           0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 1., 0., 1., 1., 1., 1., 0.,
-           0., 1., 0., 0., 0., 0., 1., 0., 1., 1., 1., 1., 1., 1., 0., 0., 1.,
-           1., 1., 0., 0., 1., 0., 1., 0., 1., 0., 1., 0., 0., 1., 1., 1., 0.,
-           1., 0., 1., 0., 0., 1., 0., 0., 1., 0., 1., 1., 1., 1., 1., 0., 0.,
-           1., 0., 0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1.,
-           1., 1., 1., 1., 0., 0., 0., 0., 0., 1., 1., 1., 0., 0., 1., 1., 0.,
-           1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 0., 0., 0., 1., 1., 0., 0.,
-           0., 1., 0., 1., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 1., 1.,
-           1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 1., 0., 0., 1., 1.,
-           1., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0., 1.,
-           0., 0., 1., 0., 1., 1., 1., 1., 0., 1., 0., 0., 1., 0., 0., 1., 0.,
-           0., 1., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0., 0., 0., 0., 1., 0.,
-           0., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0.], dtype=float32)&gt;
+    array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 0., 0., 0., 0., 1., 1., 1., 1., 0., 1., 0.,
+           1., 1., 0., 1., 0., 0., 1., 0., 0., 1., 1., 0., 0., 0., 1., 1., 1.,
+           1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 0.,
+           1., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 1., 1.,
+           0., 0., 1., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           0., 1., 0., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1.,
+           1., 0., 1., 0., 0., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 0., 0., 0., 0., 0., 1., 1., 0., 1., 0., 0., 1.,
+           1., 0., 1., 0., 1., 0., 0., 0., 1., 1., 1., 0., 1., 1., 0., 0., 0.,
+           1., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0.,
+           0., 1., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 0., 1., 0., 0.,
+           0., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 0., 0.,
+           0., 1., 0., 1., 0., 1., 1., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0.,
+           0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 1., 1., 0., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2167,134 +2104,134 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.457</td>
-      <td>0.325</td>
-      <td>-0.963</td>
-      <td>0.047</td>
+      <td>-0.444</td>
+      <td>0.324</td>
+      <td>-0.919</td>
+      <td>0.094</td>
       <td>0.016</td>
-      <td>0.011</td>
-      <td>428.0</td>
-      <td>520.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[1]</th>
-      <td>3.895</td>
-      <td>0.793</td>
-      <td>2.604</td>
-      <td>5.049</td>
-      <td>0.057</td>
-      <td>0.041</td>
-      <td>196.0</td>
-      <td>251.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[2]</th>
-      <td>-0.747</td>
-      <td>0.335</td>
-      <td>-1.281</td>
-      <td>-0.245</td>
-      <td>0.015</td>
-      <td>0.011</td>
-      <td>495.0</td>
-      <td>453.0</td>
+      <td>0.012</td>
+      <td>392.0</td>
+      <td>396.0</td>
       <td>1.00</td>
     </tr>
     <tr>
+      <th>alpha[1]</th>
+      <td>3.879</td>
+      <td>0.717</td>
+      <td>2.751</td>
+      <td>5.028</td>
+      <td>0.040</td>
+      <td>0.029</td>
+      <td>318.0</td>
+      <td>417.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[2]</th>
+      <td>-0.746</td>
+      <td>0.321</td>
+      <td>-1.253</td>
+      <td>-0.257</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>361.0</td>
+      <td>479.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
       <th>alpha[3]</th>
-      <td>-0.761</td>
-      <td>0.318</td>
-      <td>-1.188</td>
-      <td>-0.212</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>311.0</td>
-      <td>467.0</td>
+      <td>-0.744</td>
+      <td>0.324</td>
+      <td>-1.243</td>
+      <td>-0.232</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>384.0</td>
+      <td>496.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.461</td>
-      <td>0.311</td>
-      <td>-0.935</td>
-      <td>0.045</td>
-      <td>0.017</td>
+      <td>-0.462</td>
+      <td>0.321</td>
+      <td>-0.932</td>
+      <td>0.094</td>
+      <td>0.016</td>
       <td>0.012</td>
-      <td>361.0</td>
-      <td>574.0</td>
+      <td>385.0</td>
+      <td>375.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.479</td>
-      <td>0.340</td>
-      <td>-0.013</td>
-      <td>1.036</td>
-      <td>0.016</td>
+      <td>0.475</td>
+      <td>0.341</td>
+      <td>-0.022</td>
+      <td>1.038</td>
+      <td>0.017</td>
       <td>0.012</td>
-      <td>426.0</td>
-      <td>364.0</td>
-      <td>1.01</td>
+      <td>406.0</td>
+      <td>507.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.956</td>
-      <td>0.402</td>
-      <td>1.338</td>
-      <td>2.607</td>
-      <td>0.017</td>
-      <td>0.013</td>
-      <td>565.0</td>
-      <td>456.0</td>
-      <td>1.01</td>
+      <td>1.954</td>
+      <td>0.434</td>
+      <td>1.244</td>
+      <td>2.565</td>
+      <td>0.019</td>
+      <td>0.014</td>
+      <td>560.0</td>
+      <td>165.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[0]</th>
-      <td>-0.030</td>
-      <td>0.289</td>
-      <td>-0.475</td>
-      <td>0.427</td>
-      <td>0.016</td>
-      <td>0.011</td>
-      <td>319.0</td>
-      <td>481.0</td>
-      <td>1.01</td>
+      <td>-0.008</td>
+      <td>0.277</td>
+      <td>-0.419</td>
+      <td>0.449</td>
+      <td>0.018</td>
+      <td>0.013</td>
+      <td>228.0</td>
+      <td>290.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[1]</th>
-      <td>0.499</td>
-      <td>0.289</td>
-      <td>-0.000</td>
-      <td>0.924</td>
-      <td>0.022</td>
-      <td>0.015</td>
-      <td>171.0</td>
-      <td>305.0</td>
-      <td>1.02</td>
+      <td>0.512</td>
+      <td>0.275</td>
+      <td>0.067</td>
+      <td>0.970</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>261.0</td>
+      <td>265.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[2]</th>
-      <td>-0.377</td>
-      <td>0.276</td>
-      <td>-0.801</td>
-      <td>0.063</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>271.0</td>
-      <td>336.0</td>
+      <td>-0.376</td>
+      <td>0.291</td>
+      <td>-0.838</td>
+      <td>0.082</td>
+      <td>0.019</td>
+      <td>0.013</td>
+      <td>243.0</td>
+      <td>403.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>beta_treatment[3]</th>
-      <td>0.367</td>
-      <td>0.288</td>
-      <td>-0.032</td>
-      <td>0.819</td>
-      <td>0.018</td>
+      <td>0.376</td>
+      <td>0.286</td>
+      <td>-0.089</td>
+      <td>0.818</td>
+      <td>0.017</td>
       <td>0.013</td>
       <td>277.0</td>
-      <td>334.0</td>
+      <td>302.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -2315,7 +2252,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_51_0.png" src="../_images/11_god_spiked_the_integers_51_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_49_0.png" src="../_images/11_god_spiked_the_integers_49_0.png" />
 </div>
 </div>
 <p>What above plot shows is that 0,2,3,4 show preference for right lever.
@@ -2334,7 +2271,7 @@ Two chimps (1 &amp; 6) show strong preference for left lever and it is also refl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_54_0.png" src="../_images/11_god_spiked_the_integers_54_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_52_0.png" src="../_images/11_god_spiked_the_integers_52_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2354,7 +2291,7 @@ Two chimps (1 &amp; 6) show strong preference for left lever and it is also refl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_57_0.png" src="../_images/11_god_spiked_the_integers_57_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_55_0.png" src="../_images/11_god_spiked_the_integers_55_0.png" />
 </div>
 </div>
 <p>db13 is the difference between no-partner/partner treatments when the prosocial option was on the right.</p>
@@ -2508,7 +2445,7 @@ Name: 1, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_64_0.png" src="../_images/11_god_spiked_the_integers_64_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_62_0.png" src="../_images/11_god_spiked_the_integers_62_0.png" />
 </div>
 </div>
 </div>
@@ -2583,41 +2520,41 @@ Name: 1, dtype: float64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([ 2.0418274 , -1.1949657 ,  0.63487756,  2.6667678 , -0.2411415 ,
-            1.9059389 , -1.9905105 ], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([-0.0781179 , -0.87558657], dtype=float32)&gt;,
-  var2=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([-0.5872562 ,  0.74787205], dtype=float32)&gt;,
+    array([ 1.3062367 ,  0.11101   ,  0.19851023,  2.7834487 ,  0.55457294,
+            1.2883049 , -0.41666937], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([-0.21734335,  0.28986079], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([0.16870026, 0.40135196], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([1., 0., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 0., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1.,
-           1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
-           0., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 1., 1., 0., 0., 0., 1.,
-           0., 0., 0., 0., 1., 1., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
-           0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 1., 0., 0., 0., 0.,
-           0., 1., 1., 0., 1., 0., 1., 0., 0., 1., 1., 1., 1., 0., 0., 1., 1.,
-           0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 1., 1.,
-           1., 1., 0., 0., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
-           1., 0., 1., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 0., 1., 1., 1.,
-           1., 0., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1.,
-           0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
-           0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1.,
-           0., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 0., 0., 1.,
-           1., 1., 1., 0., 0., 0., 1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 0.,
-           1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 0., 1., 1.,
-           1., 1., 0., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 0., 0., 1., 0.,
+    array([1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1.,
+           1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1.,
            0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 1., 0.,
-           0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0.], dtype=float32)&gt;
+           0., 1., 0., 0., 1., 1., 1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1.,
+           1., 1., 0., 1., 1., 0., 1., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
+           0., 0., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 0., 0., 1., 0., 1.,
+           1., 1., 1., 0., 1., 1., 0., 0., 0., 1., 1., 0., 1., 1., 0., 0., 0.,
+           1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0.,
+           1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 0., 0., 0., 1., 1., 0., 1.,
+           1., 0., 0., 1., 1., 1., 0., 1., 0., 1., 0., 0., 0., 1., 0., 1., 0.,
+           1., 0., 1., 1., 1., 0., 0., 0., 1., 1., 1., 0., 0., 1., 1., 0., 1.,
+           1., 1., 0., 0., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 0., 0.,
+           0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 0., 1., 0., 0.,
+           1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
+           0., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 0., 1., 0., 0., 0.,
+           1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1.,
+           0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           1., 1., 1., 1., 0., 0., 0., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1.,
+           1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1.,
+           1., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 1., 0., 0., 0., 0., 1.,
+           1., 0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 0.,
+           1., 1., 1., 1., 1., 0., 0., 0., 1., 1., 1., 1., 1., 0., 0., 0., 0.,
+           0., 1., 1., 1., 1., 1., 1., 0., 0., 0., 0., 1., 1., 0., 0., 0., 1.,
+           0., 0., 0., 0., 0., 1., 1., 1., 0., 1., 0.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2684,134 +2621,134 @@ Name: 1, dtype: float64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.683</td>
-      <td>0.400</td>
-      <td>-1.339</td>
-      <td>-0.096</td>
-      <td>0.036</td>
-      <td>0.026</td>
-      <td>121.0</td>
-      <td>228.0</td>
+      <td>-0.627</td>
+      <td>0.448</td>
+      <td>-1.368</td>
+      <td>0.016</td>
+      <td>0.059</td>
+      <td>0.042</td>
+      <td>57.0</td>
+      <td>173.0</td>
       <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.647</td>
-      <td>0.782</td>
-      <td>2.300</td>
-      <td>4.709</td>
-      <td>0.101</td>
-      <td>0.077</td>
-      <td>73.0</td>
-      <td>172.0</td>
+      <td>3.662</td>
+      <td>0.795</td>
+      <td>2.279</td>
+      <td>4.818</td>
+      <td>0.113</td>
+      <td>0.081</td>
+      <td>50.0</td>
+      <td>102.0</td>
       <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.988</td>
-      <td>0.394</td>
-      <td>-1.678</td>
-      <td>-0.424</td>
-      <td>0.037</td>
-      <td>0.026</td>
-      <td>117.0</td>
-      <td>215.0</td>
+      <td>-0.926</td>
+      <td>0.448</td>
+      <td>-1.698</td>
+      <td>-0.335</td>
+      <td>0.060</td>
+      <td>0.042</td>
+      <td>54.0</td>
+      <td>165.0</td>
       <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.979</td>
-      <td>0.406</td>
-      <td>-1.560</td>
-      <td>-0.253</td>
-      <td>0.045</td>
-      <td>0.035</td>
-      <td>82.0</td>
-      <td>294.0</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>alpha[4]</th>
-      <td>-0.683</td>
-      <td>0.382</td>
-      <td>-1.315</td>
-      <td>-0.086</td>
-      <td>0.039</td>
-      <td>0.028</td>
-      <td>100.0</td>
-      <td>302.0</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>alpha[5]</th>
-      <td>0.238</td>
-      <td>0.403</td>
-      <td>-0.339</td>
-      <td>0.924</td>
-      <td>0.038</td>
-      <td>0.027</td>
-      <td>113.0</td>
-      <td>268.0</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>alpha[6]</th>
-      <td>1.758</td>
-      <td>0.471</td>
-      <td>0.935</td>
-      <td>2.459</td>
-      <td>0.069</td>
+      <td>-0.939</td>
+      <td>0.464</td>
+      <td>-1.610</td>
+      <td>-0.184</td>
+      <td>0.068</td>
       <td>0.049</td>
-      <td>46.0</td>
-      <td>268.0</td>
+      <td>44.0</td>
+      <td>137.0</td>
       <td>1.05</td>
     </tr>
     <tr>
+      <th>alpha[4]</th>
+      <td>-0.651</td>
+      <td>0.443</td>
+      <td>-1.297</td>
+      <td>0.118</td>
+      <td>0.063</td>
+      <td>0.045</td>
+      <td>47.0</td>
+      <td>130.0</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>alpha[5]</th>
+      <td>0.288</td>
+      <td>0.475</td>
+      <td>-0.398</td>
+      <td>1.054</td>
+      <td>0.068</td>
+      <td>0.048</td>
+      <td>43.0</td>
+      <td>114.0</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>alpha[6]</th>
+      <td>1.781</td>
+      <td>0.523</td>
+      <td>0.931</td>
+      <td>2.521</td>
+      <td>0.059</td>
+      <td>0.044</td>
+      <td>79.0</td>
+      <td>225.0</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
       <th>beta_side[0]</th>
-      <td>-0.173</td>
-      <td>0.328</td>
-      <td>-0.685</td>
-      <td>0.363</td>
-      <td>0.026</td>
-      <td>0.018</td>
-      <td>160.0</td>
-      <td>313.0</td>
-      <td>1.01</td>
+      <td>-0.182</td>
+      <td>0.349</td>
+      <td>-0.691</td>
+      <td>0.395</td>
+      <td>0.028</td>
+      <td>0.020</td>
+      <td>156.0</td>
+      <td>286.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>beta_side[1]</th>
-      <td>0.521</td>
-      <td>0.331</td>
-      <td>-0.003</td>
-      <td>1.041</td>
-      <td>0.025</td>
-      <td>0.018</td>
-      <td>175.0</td>
-      <td>253.0</td>
-      <td>1.02</td>
+      <td>0.506</td>
+      <td>0.337</td>
+      <td>-0.027</td>
+      <td>1.012</td>
+      <td>0.026</td>
+      <td>0.019</td>
+      <td>166.0</td>
+      <td>213.0</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>beta_cond[0]</th>
-      <td>0.295</td>
-      <td>0.297</td>
-      <td>-0.204</td>
-      <td>0.721</td>
-      <td>0.019</td>
-      <td>0.013</td>
-      <td>246.0</td>
-      <td>277.0</td>
-      <td>1.02</td>
+      <td>0.251</td>
+      <td>0.324</td>
+      <td>-0.298</td>
+      <td>0.714</td>
+      <td>0.031</td>
+      <td>0.022</td>
+      <td>111.0</td>
+      <td>268.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta_cond[1]</th>
-      <td>0.050</td>
-      <td>0.308</td>
-      <td>-0.426</td>
-      <td>0.526</td>
-      <td>0.020</td>
-      <td>0.014</td>
-      <td>244.0</td>
-      <td>220.0</td>
+      <td>0.017</td>
+      <td>0.331</td>
+      <td>-0.534</td>
+      <td>0.472</td>
+      <td>0.033</td>
+      <td>0.023</td>
+      <td>102.0</td>
+      <td>337.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -2924,11 +2861,11 @@ Name: 1, dtype: float64
     <tr>
       <th>m11.5</th>
       <td>0</td>
-      <td>-265.159152</td>
-      <td>7.451742</td>
+      <td>-265.831136</td>
+      <td>7.998873</td>
       <td>0.000000</td>
-      <td>1.0</td>
-      <td>9.583705</td>
+      <td>0.89489</td>
+      <td>9.541449</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -2936,12 +2873,12 @@ Name: 1, dtype: float64
     <tr>
       <th>m11.4</th>
       <td>1</td>
-      <td>-265.884215</td>
-      <td>8.259519</td>
-      <td>0.725063</td>
-      <td>0.0</td>
-      <td>9.479911</td>
-      <td>0.613093</td>
+      <td>-265.999477</td>
+      <td>8.387483</td>
+      <td>0.168341</td>
+      <td>0.10511</td>
+      <td>9.469091</td>
+      <td>0.653138</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -3321,77 +3258,77 @@ Coordinates:
   * draw                  (draw) int64 0 1 2 3 4 5 6 ... 494 495 496 497 498 499
   * log_likelihood_dim_0  (log_likelihood_dim_0) int64 0 1 2 3 ... 501 502 503
 Data variables:
-    mean_tree_accept      (chain, draw) float32 0.318 -0.9107 ... -0.02628
-    log_likelihood        (chain, draw, log_likelihood_dim_0) float32 -0.6347...
+    mean_tree_accept      (chain, draw) float32 0.08115 -1.996 ... 0.08157
+    log_likelihood        (chain, draw, log_likelihood_dim_0) float32 -0.4951...
 Attributes:
-    created_at:     2022-01-17T22:44:17.426557
-    arviz_version:  0.11.4</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-2b4a84f7-4441-4550-8b91-eddc0dcf25d9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2b4a84f7-4441-4550-8b91-eddc0dcf25d9' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 2</li><li><span class='xr-has-index'>draw</span>: 500</li><li><span class='xr-has-index'>log_likelihood_dim_0</span>: 504</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-c75bcb53-0af9-452a-9e9f-8c9e588eaa59' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c75bcb53-0af9-452a-9e9f-8c9e588eaa59' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1</div><input id='attrs-be63f289-25e8-4a80-8daa-68c9d43d2ac1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-be63f289-25e8-4a80-8daa-68c9d43d2ac1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-68142471-992a-40e3-986f-299df59618f3' class='xr-var-data-in' type='checkbox'><label for='data-68142471-992a-40e3-986f-299df59618f3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-00c8762b-ad6a-4b56-9bb6-68add7402e91' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-00c8762b-ad6a-4b56-9bb6-68add7402e91' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-25a5c861-db43-4023-9352-bd088542fea5' class='xr-var-data-in' type='checkbox'><label for='data-25a5c861-db43-4023-9352-bd088542fea5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>log_likelihood_dim_0</span></div><div class='xr-var-dims'>(log_likelihood_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 499 500 501 502 503</div><input id='attrs-6ef5d1ab-9a3f-4dd1-923e-6e5cbf46fbd8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6ef5d1ab-9a3f-4dd1-923e-6e5cbf46fbd8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-426b3624-b7da-44da-af38-6abd18ce153f' class='xr-var-data-in' type='checkbox'><label for='data-426b3624-b7da-44da-af38-6abd18ce153f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 501, 502, 503])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b685d7b5-8429-4766-b7bd-9aa4664b5e66' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b685d7b5-8429-4766-b7bd-9aa4664b5e66' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mean_tree_accept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.318 -0.9107 ... -0.4977 -0.02628</div><input id='attrs-2f47de36-cf42-412f-96ed-41d1eaa1f08a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2f47de36-cf42-412f-96ed-41d1eaa1f08a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7aad374a-9189-4f05-a998-03479bcd1fda' class='xr-var-data-in' type='checkbox'><label for='data-7aad374a-9189-4f05-a998-03479bcd1fda' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 3.18023682e-01, -9.10675049e-01, -7.68493652e-01,
-         4.44305420e-01, -3.46447754e+00,  1.20239258e-01,
-        -1.46633911e+00,  3.95965576e-01, -6.88659668e-01,
-        -1.04226685e+00, -6.97082520e-01,  3.36273193e-01,
-        -3.92477417e+00, -6.26525879e-02, -2.00811768e+00,
-        -1.61077881e+00, -7.68493652e-01,  1.44683838e+00,
-         4.26940918e-02,  2.34924316e-01, -1.20184326e+00,
-        -1.83105469e-02,  1.18887329e+00, -1.08367920e+00,
-        -5.69152832e-02,  1.25274658e-01,  4.66064453e-01,
-         5.39489746e-01, -4.14550781e-01, -4.64843750e-01,
-        -1.77301025e+00, -2.84362793e-01, -2.20800781e+00,
-        -4.83306885e-01,  2.99987793e-01, -4.90539551e-01,
-        -7.84637451e-01,  8.48999023e-01,  2.13836670e-01,
-        -1.88842773e-01, -3.48449707e-01,  5.25604248e-01,
-        -1.10684204e+00, -3.46496582e-01,  3.64868164e-01,
-        -2.85339355e-01, -4.87609863e-01, -6.15234375e-02,
-         4.11346436e-01, -5.98449707e-02,  7.16766357e-01,
-        -4.15466309e-01, -4.93499756e-01,  5.02624512e-02,
-        -4.94003296e+00,  7.24243164e-01, -2.18917847e+00,
-        -6.76025391e-01, -1.11300659e+00, -1.54135132e+00,
+    created_at:     2022-01-17T23:46:54.798786
+    arviz_version:  0.11.4</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3908db85-994e-4d0e-aaf3-9b4fb181ad13' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3908db85-994e-4d0e-aaf3-9b4fb181ad13' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 2</li><li><span class='xr-has-index'>draw</span>: 500</li><li><span class='xr-has-index'>log_likelihood_dim_0</span>: 504</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-d843ce16-530d-4b67-bef3-ce985b6905ae' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d843ce16-530d-4b67-bef3-ce985b6905ae' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1</div><input id='attrs-21e44a33-319d-497b-97ca-55992ea97cb1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-21e44a33-319d-497b-97ca-55992ea97cb1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a86f254b-08c2-4c75-8dc0-5a3bcadec6e3' class='xr-var-data-in' type='checkbox'><label for='data-a86f254b-08c2-4c75-8dc0-5a3bcadec6e3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-7d3c5208-0f0b-454c-ad6d-a7f79749d7ed' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7d3c5208-0f0b-454c-ad6d-a7f79749d7ed' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-20cfc63b-be83-42d4-ae33-475a496378de' class='xr-var-data-in' type='checkbox'><label for='data-20cfc63b-be83-42d4-ae33-475a496378de' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>log_likelihood_dim_0</span></div><div class='xr-var-dims'>(log_likelihood_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 499 500 501 502 503</div><input id='attrs-1c54fca4-999c-43d0-99ed-d0b3b1ff95ec' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1c54fca4-999c-43d0-99ed-d0b3b1ff95ec' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1719e0f4-08bc-4c02-a570-f0b1ca2a808a' class='xr-var-data-in' type='checkbox'><label for='data-1719e0f4-08bc-4c02-a570-f0b1ca2a808a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 501, 502, 503])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-af6795ec-6662-4511-9c50-8ceced6fb820' class='xr-section-summary-in' type='checkbox'  checked><label for='section-af6795ec-6662-4511-9c50-8ceced6fb820' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mean_tree_accept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.08115 -1.996 ... -0.1005 0.08157</div><input id='attrs-7c9fc08d-3d76-4f9b-8b8d-a4244014d261' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7c9fc08d-3d76-4f9b-8b8d-a4244014d261' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7cd2d33e-a6a5-4be3-92d9-18afcdec26fb' class='xr-var-data-in' type='checkbox'><label for='data-7cd2d33e-a6a5-4be3-92d9-18afcdec26fb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 8.11462402e-02, -1.99551392e+00, -8.80401611e-01,
+         1.99798584e-01, -1.54437256e+00, -1.54046631e+00,
+        -1.88751221e-01,  1.24475098e+00, -5.68450928e-01,
+        -5.51727295e-01, -1.77337646e-01, -8.28247070e-02,
+        -6.12182617e-01,  1.53320312e-01, -8.34655762e-02,
+         3.07922363e-01,  6.32263184e-01, -2.60437012e-01,
+        -1.10687256e-01, -6.42669678e-01,  0.00000000e+00,
+        -5.34454346e-01,  9.05090332e-01,  7.26318359e-02,
+        -1.66015625e-01, -3.36517334e-01,  1.88415527e-01,
+         3.26416016e-01, -4.14520264e-01, -1.19171143e-01,
+        -6.83197021e-01,  5.13885498e-01, -2.84295654e+00,
+        -2.58319092e+00, -1.44927979e+00,  7.00073242e-02,
+        -1.49789429e+00,  4.11071777e-01, -2.25158691e-01,
+        -9.08905029e-01, -9.48028564e-01,  2.27661133e-01,
+        -5.14526367e-01, -2.73834229e-01, -1.08959961e+00,
+         1.74713135e-01,  1.55148315e+00, -3.20800781e-01,
+        -1.58993530e+00, -1.10125732e+00,  1.11624146e+00,
+         8.09112549e-01, -1.03698730e-01, -6.25671387e-01,
+        -1.21969604e+00,  8.03161621e-01, -6.18652344e-01,
+        -1.21014404e+00,  1.48507690e+00, -6.75384521e-01,
 ...
-        -3.86505127e-01, -7.84454346e-01,  1.08883667e+00,
-        -3.06579590e+00,  5.29022217e-01, -1.43609619e+00,
-        -6.86492920e-01, -6.81091309e-01, -1.13201904e+00,
-        -2.65249634e+00, -5.74279785e-01,  1.12744141e+00,
-        -8.39233398e-01, -1.05838013e+00, -6.97448730e-01,
-         2.59246826e-01, -2.48565674e-01,  5.14404297e-01,
-        -2.27352905e+00, -5.68786621e-01,  4.43756104e-01,
-        -8.40698242e-01, -2.34994507e+00,  1.46994019e+00,
-        -1.75741577e+00, -7.97973633e-01,  4.39270020e-01,
-         8.13171387e-01, -2.20642090e-01,  6.28753662e-01,
-         2.73315430e-01, -1.62832642e+00, -1.73736572e-01,
-         7.19848633e-01, -1.77886963e+00, -2.61526489e+00,
-        -3.14361572e-01, -1.06167603e+00,  5.87005615e-01,
-        -6.41082764e-01,  2.64892578e-01,  1.72915649e+00,
-         6.73522949e-02, -8.61358643e-01,  2.87780762e-02,
-        -6.02844238e-01, -1.64434814e+00, -2.90893555e-01,
-        -9.97467041e-01, -3.38595581e+00,  7.05657959e-01,
-        -1.95791626e+00, -7.11059570e-02,  3.46252441e-01,
-        -2.28268433e+00, -1.26165771e+00,  1.18032837e+00,
-        -4.97680664e-01, -2.62756348e-02]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>log_likelihood</span></div><div class='xr-var-dims'>(chain, draw, log_likelihood_dim_0)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.6347 -0.7552 ... -0.232 -0.232</div><input id='attrs-81515892-f67e-4d4a-b513-5323ff2db78a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-81515892-f67e-4d4a-b513-5323ff2db78a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3ee05c41-5e1a-4a4c-8770-244e4a931be0' class='xr-var-data-in' type='checkbox'><label for='data-3ee05c41-5e1a-4a4c-8770-244e4a931be0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[[-0.63470215, -0.75522125, -0.771891  , ..., -0.13591756,
-         -0.13591756, -0.13591756],
-        [-0.63470215, -0.75522125, -0.771891  , ..., -0.13591756,
-         -0.13591756, -0.13591756],
-        [-0.6314181 , -0.7589389 , -0.67346436, ..., -0.23523636,
-         -0.23523636, -0.23523636],
+        -1.90460205e-01, -9.66003418e-01,  7.24182129e-02,
+         3.02673340e-01, -5.70281982e-01, -2.05682373e+00,
+        -1.31347656e-01, -5.13458252e-01,  2.60009766e-02,
+         1.07220459e+00,  7.74749756e-01, -3.60900879e-01,
+        -8.01147461e-01, -5.65734863e-01, -1.17031860e+00,
+        -1.56796265e+00, -1.53167725e-01, -9.15527344e-01,
+         7.90161133e-01, -6.88812256e-01, -9.61975098e-01,
+         1.23684692e+00, -7.70782471e-01, -1.70245361e+00,
+        -2.16464233e+00, -2.06298828e-01, -1.23016357e+00,
+        -4.67895508e-01, -7.05413818e-01, -9.49096680e-02,
+        -1.53839111e-01, -3.87573242e-01, -1.05895996e-01,
+         8.73413086e-02,  2.77069092e-01, -1.02166748e+00,
+        -6.55731201e-01,  3.39630127e-01, -2.64587402e-02,
+         8.15185547e-01, -3.97979736e-01,  1.79962158e-01,
+        -6.15020752e-01, -6.41632080e-01, -1.15011597e+00,
+        -8.70300293e-01,  2.74353027e-01, -8.47869873e-01,
+        -3.93341064e-01, -2.07614136e+00, -7.19268799e-01,
+        -7.79449463e-01, -3.31512451e-01, -8.56811523e-01,
+         9.39941406e-02,  3.07769775e-01, -3.53332520e-01,
+        -1.00494385e-01,  8.15734863e-02]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>log_likelihood</span></div><div class='xr-var-dims'>(chain, draw, log_likelihood_dim_0)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.4951 -0.9404 ... -0.3655 -0.3655</div><input id='attrs-84ad428f-94da-4d99-8d2b-8072811e305b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-84ad428f-94da-4d99-8d2b-8072811e305b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fea12c78-51e1-4b70-8302-b03c859dd509' class='xr-var-data-in' type='checkbox'><label for='data-fea12c78-51e1-4b70-8302-b03c859dd509' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[[-0.4950682 , -0.9404025 , -0.6511712 , ..., -0.11749589,
+         -0.11749589, -0.11749589],
+        [-0.4950682 , -0.9404025 , -0.6511712 , ..., -0.11749589,
+         -0.11749589, -0.11749589],
+        [-0.4950682 , -0.9404025 , -0.6511712 , ..., -0.11749589,
+         -0.11749589, -0.11749589],
         ...,
-        [-0.60316086, -0.792039  , -0.8624329 , ..., -0.19721872,
-         -0.19721872, -0.19721872],
-        [-0.60316086, -0.792039  , -0.8624329 , ..., -0.19721872,
-         -0.19721872, -0.19721872],
-        [-0.39796627, -1.1137807 , -0.7274105 , ..., -0.25496733,
-         -0.25496733, -0.25496733]],
+        [-0.48651916, -0.9538954 , -0.62271464, ..., -0.21801198,
+         -0.21801198, -0.21801198],
+        [-0.48213035, -0.9609392 , -0.7001641 , ..., -0.22928867,
+         -0.22928867, -0.22928867],
+        [-0.4815129 , -0.9619367 , -0.65250605, ..., -0.18859595,
+         -0.18859595, -0.18859595]],
 
-       [[-0.4696965 , -0.98134136, -0.85330176, ..., -0.2679358 ,
-         -0.2679358 , -0.2679358 ],
-        [-0.33131555, -1.2657722 , -0.61585826, ..., -0.0590524 ,
-         -0.0590524 , -0.0590524 ],
-        [-0.5698124 , -0.83386207, -0.87947303, ..., -0.2973405 ,
-         -0.2973405 , -0.2973405 ],
+       [[-0.5156006 , -0.90917075, -0.62238675, ..., -0.09778771,
+         -0.09778771, -0.09778771],
+        [-0.8228902 , -0.57832056, -0.9702812 , ..., -0.2773718 ,
+         -0.2773718 , -0.2773718 ],
+        [-0.5011579 , -0.93096983, -0.94037473, ..., -0.12329227,
+         -0.12329227, -0.12329227],
         ...,
-        [-0.43005082, -1.0511832 , -0.6009094 , ..., -0.21138985,
-         -0.21138985, -0.21138985],
-        [-0.6405024 , -0.74871826, -0.7501341 , ..., -0.22091796,
-         -0.22091796, -0.22091796],
-        [-0.65961164, -0.7278464 , -0.67878574, ..., -0.23202518,
-         -0.23202518, -0.23202518]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-df496f17-5962-43f9-a63a-078cdd6165df' class='xr-section-summary-in' type='checkbox'  checked><label for='section-df496f17-5962-43f9-a63a-078cdd6165df' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2022-01-17T22:44:17.426557</dd><dt><span>arviz_version :</span></dt><dd>0.11.4</dd></dl></div></li></ul></div></div></div></div>
+        [-0.5771385 , -0.8244019 , -0.77108574, ..., -0.334738  ,
+         -0.334738  , -0.334738  ],
+        [-0.5683984 , -0.8357064 , -0.7362879 , ..., -0.11930624,
+         -0.11930624, -0.11930624],
+        [-0.42548737, -1.0597317 , -0.47703874, ..., -0.3655135 ,
+         -0.3655135 , -0.3655135 ]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c2e5bdd5-94bc-4a60-865c-06ecb9ed323b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c2e5bdd5-94bc-4a60-865c-06ecb9ed323b' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2022-01-17T23:46:54.798786</dd><dt><span>arviz_version :</span></dt><dd>0.11.4</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </div>
 <div class="section" id="code-11-22">
@@ -3772,7 +3709,7 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;beta_treatment&#x27; ()&gt;
-array(0.9148602, dtype=float32)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta_treatment'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-b9207b10-7851-48d0-a275-f0e20076441b' class='xr-array-in' type='checkbox' checked><label for='section-b9207b10-7851-48d0-a275-f0e20076441b' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.9149</span></div><div class='xr-array-data'><pre>array(0.9148602, dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-1488160e-e4e1-487b-a724-d8f8097d41c9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1488160e-e4e1-487b-a724-d8f8097d41c9' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-59da1478-f4f8-42ce-b5bd-75f0b86f1f92' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-59da1478-f4f8-42ce-b5bd-75f0b86f1f92' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta_treatment'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-599771c9-6957-47f7-8e94-0a7b992ef127' class='xr-array-in' type='checkbox' checked><label for='section-599771c9-6957-47f7-8e94-0a7b992ef127' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.9057</span></div><div class='xr-array-data'><pre>array(0.905673, dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-d360aa0b-71e1-4739-a129-2c9db6ebcb44' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d360aa0b-71e1-4739-a129-2c9db6ebcb44' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-0757d327-8600-4753-bcb3-9d85bca0ab8c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0757d327-8600-4753-bcb3-9d85bca0ab8c' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 </div>
 </div>
@@ -4116,13 +4053,13 @@ array(0.9148602, dtype=float32)</pre><div class='xr-wrap' style='display:none'><
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([-1.3928527 ,  0.06171528,  3.6914742 ,  0.09076732, -0.5866548 ,
-            0.03002005,  0.83554125], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 0.11715411, -0.19269569, -0.34069914, -0.30291727], dtype=float32)&gt;,
+    array([-1.8475473 ,  0.4980441 ,  2.7124577 , -1.3021855 ,  0.9067939 ,
+           -0.51752573,  3.4091313 ], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 0.13444065, -0.8905647 , -1.4430355 , -0.18457796], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(28,), dtype=float32, numpy=
-    array([ 5., 10., 17.,  8.,  6.,  9., 11.,  3.,  9., 17.,  6.,  5., 11.,
-           10.,  0., 12., 16.,  9.,  7., 10.,  7.,  5.,  8., 17.,  7.,  4.,
-           10., 10.], dtype=float32)&gt;
+    array([ 4., 14., 15.,  7., 15.,  9., 18.,  0.,  4., 17.,  3., 13.,  4.,
+           15.,  0.,  0., 13.,  2.,  7.,  3., 15.,  3.,  8., 18.,  2., 13.,
+            4., 18.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -4190,134 +4127,134 @@ array(0.9148602, dtype=float32)</pre><div class='xr-wrap' style='display:none'><
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.439</td>
-      <td>0.346</td>
-      <td>-1.007</td>
-      <td>0.075</td>
-      <td>0.018</td>
-      <td>0.012</td>
-      <td>388.0</td>
-      <td>488.0</td>
-      <td>1.01</td>
+      <td>-0.442</td>
+      <td>0.313</td>
+      <td>-0.914</td>
+      <td>0.039</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>525.0</td>
+      <td>502.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.886</td>
-      <td>0.792</td>
-      <td>2.610</td>
-      <td>5.028</td>
-      <td>0.045</td>
-      <td>0.033</td>
-      <td>338.0</td>
-      <td>332.0</td>
+      <td>4.000</td>
+      <td>0.765</td>
+      <td>2.757</td>
+      <td>5.150</td>
+      <td>0.043</td>
+      <td>0.031</td>
+      <td>315.0</td>
+      <td>319.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.747</td>
-      <td>0.334</td>
-      <td>-1.315</td>
-      <td>-0.260</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>340.0</td>
-      <td>393.0</td>
-      <td>1.02</td>
+      <td>-0.735</td>
+      <td>0.323</td>
+      <td>-1.240</td>
+      <td>-0.232</td>
+      <td>0.015</td>
+      <td>0.010</td>
+      <td>489.0</td>
+      <td>361.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.746</td>
-      <td>0.355</td>
-      <td>-1.323</td>
-      <td>-0.222</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>406.0</td>
-      <td>486.0</td>
-      <td>1.01</td>
+      <td>-0.745</td>
+      <td>0.352</td>
+      <td>-1.262</td>
+      <td>-0.152</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>559.0</td>
+      <td>473.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.440</td>
-      <td>0.353</td>
-      <td>-0.995</td>
-      <td>0.120</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>361.0</td>
-      <td>533.0</td>
-      <td>1.01</td>
+      <td>-0.435</td>
+      <td>0.319</td>
+      <td>-0.922</td>
+      <td>0.082</td>
+      <td>0.015</td>
+      <td>0.010</td>
+      <td>481.0</td>
+      <td>428.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.486</td>
-      <td>0.353</td>
-      <td>-0.062</td>
-      <td>1.059</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>430.0</td>
-      <td>458.0</td>
+      <td>0.492</td>
+      <td>0.311</td>
+      <td>0.003</td>
+      <td>0.977</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>519.0</td>
+      <td>469.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.959</td>
-      <td>0.427</td>
-      <td>1.239</td>
-      <td>2.529</td>
-      <td>0.019</td>
-      <td>0.013</td>
-      <td>538.0</td>
-      <td>429.0</td>
+      <td>1.977</td>
+      <td>0.419</td>
+      <td>1.336</td>
+      <td>2.654</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>700.0</td>
+      <td>540.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[0]</th>
-      <td>-0.017</td>
-      <td>0.297</td>
+      <td>-0.082</td>
+      <td>0.281</td>
       <td>-0.503</td>
-      <td>0.447</td>
+      <td>0.381</td>
       <td>0.020</td>
       <td>0.014</td>
-      <td>212.0</td>
-      <td>453.0</td>
-      <td>1.01</td>
+      <td>193.0</td>
+      <td>379.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[1]</th>
-      <td>0.518</td>
-      <td>0.291</td>
-      <td>0.079</td>
-      <td>0.991</td>
-      <td>0.018</td>
+      <td>0.448</td>
+      <td>0.276</td>
+      <td>0.043</td>
+      <td>0.920</td>
+      <td>0.019</td>
       <td>0.013</td>
-      <td>258.0</td>
-      <td>510.0</td>
-      <td>1.01</td>
+      <td>233.0</td>
+      <td>334.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[2]</th>
-      <td>-0.370</td>
-      <td>0.298</td>
-      <td>-0.845</td>
-      <td>0.091</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>328.0</td>
-      <td>479.0</td>
-      <td>1.01</td>
+      <td>-0.416</td>
+      <td>0.296</td>
+      <td>-0.869</td>
+      <td>0.090</td>
+      <td>0.022</td>
+      <td>0.016</td>
+      <td>180.0</td>
+      <td>457.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>beta_treatment[3]</th>
-      <td>0.392</td>
-      <td>0.302</td>
-      <td>-0.082</td>
-      <td>0.856</td>
-      <td>0.019</td>
-      <td>0.013</td>
-      <td>265.0</td>
-      <td>507.0</td>
+      <td>0.330</td>
+      <td>0.282</td>
+      <td>-0.059</td>
+      <td>0.819</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>331.0</td>
+      <td>605.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -4653,27 +4590,27 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.22</td>
+      <td>-0.23</td>
       <td>0.04</td>
       <td>-0.28</td>
-      <td>-0.16</td>
+      <td>-0.15</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td>2638.17</td>
-      <td>357.48</td>
+      <td>522.62</td>
+      <td>405.96</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.79</td>
-      <td>0.05</td>
-      <td>-0.85</td>
-      <td>-0.71</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>4.20</td>
-      <td>11.08</td>
-      <td>1.43</td>
+      <td>-0.81</td>
+      <td>0.04</td>
+      <td>-0.88</td>
+      <td>-0.75</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>11.32</td>
+      <td>43.81</td>
+      <td>1.14</td>
     </tr>
   </tbody>
 </table>
@@ -4731,51 +4668,51 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.220</td>
-      <td>0.040</td>
-      <td>-0.282</td>
-      <td>-0.158</td>
+      <td>-0.226</td>
+      <td>0.041</td>
+      <td>-0.283</td>
+      <td>-0.154</td>
+      <td>0.002</td>
       <td>0.001</td>
-      <td>0.001</td>
-      <td>2638.0</td>
-      <td>357.0</td>
+      <td>523.0</td>
+      <td>406.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.787</td>
-      <td>0.051</td>
-      <td>-0.854</td>
-      <td>-0.710</td>
-      <td>0.027</td>
-      <td>0.020</td>
-      <td>4.0</td>
+      <td>-0.810</td>
+      <td>0.044</td>
+      <td>-0.881</td>
+      <td>-0.747</td>
+      <td>0.013</td>
+      <td>0.010</td>
       <td>11.0</td>
-      <td>1.43</td>
+      <td>44.0</td>
+      <td>1.14</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>0.567</td>
-      <td>0.066</td>
-      <td>0.473</td>
-      <td>0.666</td>
-      <td>0.028</td>
-      <td>0.022</td>
-      <td>6.0</td>
-      <td>13.0</td>
-      <td>1.25</td>
+      <td>0.585</td>
+      <td>0.062</td>
+      <td>0.486</td>
+      <td>0.677</td>
+      <td>0.012</td>
+      <td>0.009</td>
+      <td>27.0</td>
+      <td>95.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>diff_p</th>
-      <td>0.132</td>
-      <td>0.015</td>
-      <td>0.109</td>
-      <td>0.152</td>
-      <td>0.006</td>
-      <td>0.005</td>
-      <td>6.0</td>
-      <td>13.0</td>
-      <td>1.22</td>
+      <td>0.136</td>
+      <td>0.014</td>
+      <td>0.113</td>
+      <td>0.157</td>
+      <td>0.002</td>
+      <td>0.002</td>
+      <td>35.0</td>
+      <td>172.0</td>
+      <td>1.06</td>
     </tr>
   </tbody>
 </table>
@@ -4805,7 +4742,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7f596ca57f80&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7f00d4c6eef0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -4831,7 +4768,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_108_0.png" src="../_images/11_god_spiked_the_integers_108_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_106_0.png" src="../_images/11_god_spiked_the_integers_106_0.png" />
 </div>
 </div>
 <p>What above plot shows is that only for departments C &amp; E, there was a lower rate of admissions for females. Now this is not in sync with what we observed earlier where the model was telling that females should expect an overall 14% lower chance of admission.</p>
@@ -4890,7 +4827,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f596c183320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f00d439ea70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -4925,99 +4862,99 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.384</td>
-      <td>0.537</td>
-      <td>-1.262</td>
-      <td>0.445</td>
-      <td>0.173</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>54.0</td>
-      <td>1.16</td>
+      <td>-0.531</td>
+      <td>0.553</td>
+      <td>-1.417</td>
+      <td>0.417</td>
+      <td>0.114</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.289</td>
-      <td>0.536</td>
-      <td>-1.208</td>
-      <td>0.500</td>
-      <td>0.172</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>51.0</td>
-      <td>1.16</td>
+      <td>-0.436</td>
+      <td>0.553</td>
+      <td>-1.287</td>
+      <td>0.554</td>
+      <td>0.115</td>
+      <td>0.083</td>
+      <td>24.0</td>
+      <td>86.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[0]</th>
-      <td>0.962</td>
-      <td>0.541</td>
+      <td>1.114</td>
+      <td>0.556</td>
+      <td>0.313</td>
+      <td>2.127</td>
       <td>0.114</td>
-      <td>1.851</td>
-      <td>0.174</td>
-      <td>0.127</td>
-      <td>10.0</td>
-      <td>56.0</td>
-      <td>1.16</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[1]</th>
-      <td>0.918</td>
-      <td>0.543</td>
-      <td>0.038</td>
-      <td>1.766</td>
-      <td>0.175</td>
-      <td>0.127</td>
-      <td>10.0</td>
-      <td>69.0</td>
-      <td>1.15</td>
+      <td>1.069</td>
+      <td>0.560</td>
+      <td>0.201</td>
+      <td>2.024</td>
+      <td>0.115</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>92.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[2]</th>
-      <td>-0.294</td>
-      <td>0.536</td>
-      <td>-1.085</td>
-      <td>0.601</td>
-      <td>0.173</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>58.0</td>
-      <td>1.16</td>
+      <td>-0.149</td>
+      <td>0.555</td>
+      <td>-1.108</td>
+      <td>0.733</td>
+      <td>0.115</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>89.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[3]</th>
-      <td>-0.327</td>
-      <td>0.538</td>
-      <td>-1.175</td>
-      <td>0.552</td>
-      <td>0.173</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>55.0</td>
-      <td>1.15</td>
+      <td>-0.179</td>
+      <td>0.558</td>
+      <td>-1.013</td>
+      <td>0.840</td>
+      <td>0.115</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[4]</th>
-      <td>-0.770</td>
-      <td>0.538</td>
-      <td>-1.578</td>
-      <td>0.141</td>
-      <td>0.171</td>
-      <td>0.124</td>
-      <td>10.0</td>
-      <td>57.0</td>
-      <td>1.15</td>
+      <td>-0.625</td>
+      <td>0.559</td>
+      <td>-1.549</td>
+      <td>0.282</td>
+      <td>0.114</td>
+      <td>0.082</td>
+      <td>25.0</td>
+      <td>90.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[5]</th>
-      <td>-2.319</td>
-      <td>0.553</td>
-      <td>-3.105</td>
-      <td>-1.349</td>
-      <td>0.176</td>
-      <td>0.128</td>
-      <td>10.0</td>
-      <td>62.0</td>
-      <td>1.15</td>
+      <td>-2.178</td>
+      <td>0.568</td>
+      <td>-3.086</td>
+      <td>-1.224</td>
+      <td>0.115</td>
+      <td>0.085</td>
+      <td>25.0</td>
+      <td>97.0</td>
+      <td>1.07</td>
     </tr>
   </tbody>
 </table>
@@ -5074,122 +5011,122 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.384</td>
-      <td>0.537</td>
-      <td>-1.262</td>
-      <td>0.445</td>
-      <td>0.173</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>54.0</td>
-      <td>1.16</td>
+      <td>-0.531</td>
+      <td>0.553</td>
+      <td>-1.417</td>
+      <td>0.417</td>
+      <td>0.114</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.289</td>
-      <td>0.536</td>
-      <td>-1.208</td>
-      <td>0.500</td>
-      <td>0.172</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>51.0</td>
-      <td>1.16</td>
+      <td>-0.436</td>
+      <td>0.553</td>
+      <td>-1.287</td>
+      <td>0.554</td>
+      <td>0.115</td>
+      <td>0.083</td>
+      <td>24.0</td>
+      <td>86.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[0]</th>
-      <td>0.962</td>
-      <td>0.541</td>
+      <td>1.114</td>
+      <td>0.556</td>
+      <td>0.313</td>
+      <td>2.127</td>
       <td>0.114</td>
-      <td>1.851</td>
-      <td>0.174</td>
-      <td>0.127</td>
-      <td>10.0</td>
-      <td>56.0</td>
-      <td>1.16</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[1]</th>
-      <td>0.918</td>
-      <td>0.543</td>
-      <td>0.038</td>
-      <td>1.766</td>
-      <td>0.175</td>
-      <td>0.127</td>
-      <td>10.0</td>
-      <td>69.0</td>
-      <td>1.15</td>
+      <td>1.069</td>
+      <td>0.560</td>
+      <td>0.201</td>
+      <td>2.024</td>
+      <td>0.115</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>92.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[2]</th>
-      <td>-0.294</td>
-      <td>0.536</td>
-      <td>-1.085</td>
-      <td>0.601</td>
-      <td>0.173</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>58.0</td>
-      <td>1.16</td>
+      <td>-0.149</td>
+      <td>0.555</td>
+      <td>-1.108</td>
+      <td>0.733</td>
+      <td>0.115</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>89.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[3]</th>
-      <td>-0.327</td>
-      <td>0.538</td>
-      <td>-1.175</td>
-      <td>0.552</td>
-      <td>0.173</td>
-      <td>0.126</td>
-      <td>10.0</td>
-      <td>55.0</td>
-      <td>1.15</td>
+      <td>-0.179</td>
+      <td>0.558</td>
+      <td>-1.013</td>
+      <td>0.840</td>
+      <td>0.115</td>
+      <td>0.082</td>
+      <td>24.0</td>
+      <td>88.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[4]</th>
-      <td>-0.770</td>
-      <td>0.538</td>
-      <td>-1.578</td>
-      <td>0.141</td>
-      <td>0.171</td>
-      <td>0.124</td>
-      <td>10.0</td>
-      <td>57.0</td>
-      <td>1.15</td>
+      <td>-0.625</td>
+      <td>0.559</td>
+      <td>-1.549</td>
+      <td>0.282</td>
+      <td>0.114</td>
+      <td>0.082</td>
+      <td>25.0</td>
+      <td>90.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>delta[5]</th>
-      <td>-2.319</td>
-      <td>0.553</td>
-      <td>-3.105</td>
-      <td>-1.349</td>
-      <td>0.176</td>
-      <td>0.128</td>
-      <td>10.0</td>
-      <td>62.0</td>
-      <td>1.15</td>
+      <td>-2.178</td>
+      <td>0.568</td>
+      <td>-3.086</td>
+      <td>-1.224</td>
+      <td>0.115</td>
+      <td>0.085</td>
+      <td>25.0</td>
+      <td>97.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>diff_a</th>
       <td>-0.095</td>
-      <td>0.076</td>
-      <td>-0.215</td>
-      <td>0.026</td>
-      <td>0.003</td>
+      <td>0.079</td>
+      <td>-0.237</td>
+      <td>0.019</td>
       <td>0.002</td>
-      <td>714.0</td>
-      <td>766.0</td>
+      <td>0.002</td>
+      <td>1142.0</td>
+      <td>1296.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>diff_p</th>
-      <td>-0.022</td>
+      <td>-0.021</td>
       <td>0.018</td>
-      <td>-0.049</td>
-      <td>0.008</td>
+      <td>-0.052</td>
+      <td>0.005</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>674.0</td>
-      <td>702.0</td>
+      <td>1051.0</td>
+      <td>1031.0</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -5277,10 +5214,10 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 12 calls to &lt;function _random_binomial at 0x7f596ca57f80&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 12 calls to &lt;function _random_binomial at 0x7f00d4c6eef0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.99735, 0.999263)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.99687, 1.0019401)
 </pre></div>
 </div>
 </div>
@@ -5435,7 +5372,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_128_0.png" src="../_images/11_god_spiked_the_integers_128_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_126_0.png" src="../_images/11_god_spiked_the_integers_126_0.png" />
 </div>
 </div>
 </div>
@@ -5450,7 +5387,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=95610600000000.0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=1094852200000.0&gt;
 </pre></div>
 </div>
 </div>
@@ -5466,7 +5403,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_132_0.png" src="../_images/11_god_spiked_the_integers_132_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_130_0.png" src="../_images/11_god_spiked_the_integers_130_0.png" />
 </div>
 </div>
 </div>
@@ -5485,7 +5422,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_134_0.png" src="../_images/11_god_spiked_the_integers_134_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_132_0.png" src="../_images/11_god_spiked_the_integers_132_0.png" />
 </div>
 </div>
 </div>
@@ -5504,7 +5441,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_136_0.png" src="../_images/11_god_spiked_the_integers_136_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_134_0.png" src="../_images/11_god_spiked_the_integers_134_0.png" />
 </div>
 </div>
 </div>
@@ -5523,7 +5460,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_138_0.png" src="../_images/11_god_spiked_the_integers_138_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_136_0.png" src="../_images/11_god_spiked_the_integers_136_0.png" />
 </div>
 </div>
 </div>
@@ -5538,7 +5475,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_140_0.png" src="../_images/11_god_spiked_the_integers_140_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_138_0.png" src="../_images/11_god_spiked_the_integers_138_0.png" />
 </div>
 </div>
 </div>
@@ -5605,7 +5542,7 @@ Instructions for updating:
 The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_zero_outside_support` (with the opposite sense).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f596c183320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f00d439ea70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -5765,24 +5702,24 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     <tr>
       <th>m11.10</th>
       <td>0</td>
-      <td>-42.190439</td>
-      <td>6.60466</td>
+      <td>-43.780280</td>
+      <td>7.968153</td>
       <td>0.000000</td>
-      <td>0.935067</td>
-      <td>6.507951</td>
-      <td>0.000000</td>
+      <td>0.957199</td>
+      <td>6.209099</td>
+      <td>0.00000</td>
       <td>True</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m11.9</th>
       <td>1</td>
-      <td>-70.764130</td>
-      <td>8.33618</td>
-      <td>28.573691</td>
-      <td>0.064933</td>
-      <td>15.962931</td>
-      <td>16.007717</td>
+      <td>-70.356914</td>
+      <td>7.714122</td>
+      <td>26.576634</td>
+      <td>0.042801</td>
+      <td>15.787923</td>
+      <td>14.60391</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -5837,7 +5774,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
   &quot;Estimated shape parameter of Pareto distribution is greater than 0.7 for &quot;
 </pre></div>
 </div>
-<img alt="../_images/11_god_spiked_the_integers_152_1.png" src="../_images/11_god_spiked_the_integers_152_1.png" />
+<img alt="../_images/11_god_spiked_the_integers_150_1.png" src="../_images/11_god_spiked_the_integers_150_1.png" />
 </div>
 </div>
 <p>Open points are low contact societies and closed points are the high contact ones. Dashed curve is the posterior mean for low contact societies.</p>
@@ -5881,7 +5818,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_155_0.png" src="../_images/11_god_spiked_the_integers_155_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_153_0.png" src="../_images/11_god_spiked_the_integers_153_0.png" />
 </div>
 </div>
 </div>
@@ -5985,19 +5922,19 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>3.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6015,13 +5952,13 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>5</th>
-      <td>2.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>1.0</td>
+      <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6033,7 +5970,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>8</th>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6045,7 +5982,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>10</th>
-      <td>1.0</td>
+      <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6057,37 +5994,37 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>12</th>
-      <td>0.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>15</th>
       <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
+      <th>13</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
       <th>16</th>
-      <td>6.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>2.0</td>
+      <td>4.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6099,7 +6036,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>19</th>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6111,25 +6048,25 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>21</th>
-      <td>3.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>0.0</td>
+      <td>5.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>3.0</td>
+      <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>1.0</td>
+      <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6141,37 +6078,37 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>26</th>
-      <td>2.0</td>
+      <td>4.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>0.0</td>
+      <td>4.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>1.0</td>
+      <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>2.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>2.0</td>
+      <td>3.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>2.0</td>
+      <td>7.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
@@ -6296,27 +6233,27 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
   <tbody>
     <tr>
       <th>lambda_old</th>
-      <td>1.667</td>
-      <td>0.201</td>
-      <td>1.345</td>
-      <td>1.966</td>
-      <td>0.083</td>
-      <td>0.062</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>1.24</td>
+      <td>1.716</td>
+      <td>0.219</td>
+      <td>1.36</td>
+      <td>2.041</td>
+      <td>0.013</td>
+      <td>0.009</td>
+      <td>279.0</td>
+      <td>386.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>lambda_new</th>
-      <td>0.457</td>
-      <td>0.125</td>
-      <td>0.254</td>
-      <td>0.648</td>
-      <td>0.027</td>
-      <td>0.020</td>
-      <td>25.0</td>
-      <td>77.0</td>
-      <td>1.07</td>
+      <td>0.621</td>
+      <td>0.134</td>
+      <td>0.39</td>
+      <td>0.799</td>
+      <td>0.006</td>
+      <td>0.004</td>
+      <td>407.0</td>
+      <td>152.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -6425,11 +6362,11 @@ p (2, 3, 1)
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-    array([[-0.09817903, -0.5895946 ],
-           [ 0.644195  ,  0.32438332]], dtype=float32)&gt;,
+    array([[ 0.29666856, -0.51377624],
+           [-0.15199618, -0.18207188]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[0.4175836 ],
-           [0.47821438]], dtype=float32)&gt;,
+    array([[0.40725192],
+           [0.1746672 ]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 3), dtype=int32, numpy=
     array([[0, 0, 0],
            [0, 0, 0]], dtype=int32)&gt;
@@ -6704,7 +6641,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 7 calls to &lt;function random_poisson at 0x7f596c709cb0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 7 calls to &lt;function random_poisson at 0x7f00d4920c20&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -6720,7 +6657,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.9946377&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.9947735&gt;
 </pre></div>
 </div>
 </div>
@@ -6741,7 +6678,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.38789308&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.38384652&gt;
 </pre></div>
 </div>
 </div>
@@ -6764,10 +6701,10 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([14.599558, 57.353012, 44.964756, ..., 13.539787, 12.478117,
-        39.192158], dtype=float32),
- array([ 2.5156949, 23.60119  , 42.848534 , ...,  7.1756864,  5.675074 ,
-         2.2267888], dtype=float32))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([41.01544  , 36.24167  ,  3.973585 , ..., 80.17999  , 59.808323 ,
+         2.9909854], dtype=float32),
+ array([12.330867, 37.39497 , 32.579926, ..., 57.37626 , 14.657174,
+         6.550856], dtype=float32))
 </pre></div>
 </div>
 </div>
