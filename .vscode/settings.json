@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "./env/bin/python3.7",
-    "python.formatting.provider": "autopep8",
-    "python.dataScience.useNotebookEditor": false
+    "python.pythonPath": "~/rethinkingtfp/bin/python3",
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance"
 }

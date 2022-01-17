@@ -1,5 +1,5 @@
-tf-nightly
-tfp-nightly
+tensorflow
+tensorflow-probability
 arviz
 pandas
 matplotlib
@@ -8,6 +8,6 @@ watermark
 scipy
 daft
 causalgraphicalmodels
+statsmodels
 jax
 jaxlib
-statsmodels
