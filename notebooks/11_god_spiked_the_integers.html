@@ -1156,6 +1156,7 @@
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
   <span class="o">!</span>pip install -q watermark
+  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -1183,6 +1184,10 @@
 <span class="c1"># visualization </span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">dataframe_to_tensors</span>
+<span class="kn">from</span> <span class="nn">rethinking.mcmc</span> <span class="kn">import</span> <span class="n">sample_posterior</span>
+
 <span class="c1"># aliases</span>
 <span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
 <span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
@@ -1191,15 +1196,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:46:47.331838: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 23:46:47.331874: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:30:44.079309: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:30:44.079346: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas,rethinking
 </pre></div>
 </div>
 </div>
@@ -1210,6 +1215,7 @@ tensorflow_probability: 0.15.0
 arviz                 : 0.11.4
 scipy                 : 1.7.3
 pandas                : 1.3.5
+rethinking            : 0.1.0
 </pre></div>
 </div>
 </div>
@@ -1218,147 +1224,6 @@ pandas                : 1.3.5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Tensorflow MCMC sampling helpers</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
-<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
-
-<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
-        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
-        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
-        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
-        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-              <span class="n">bijectors</span><span class="p">,</span> 
-              <span class="n">step_size</span><span class="p">,</span> 
-              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
-              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
-              <span class="p">):</span>    
-
-    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-        <span class="p">)</span>
-
-    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
-                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
-                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
-                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
-
-    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
-        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
-
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
-        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
-        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
-        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-    <span class="p">)</span>    
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
-        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
-        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
-        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
-
-<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
-              <span class="n">observed_data</span><span class="p">,</span> 
-              <span class="n">params</span><span class="p">,</span> 
-              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
-        
-    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
-
-    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-                                  <span class="n">bijectors</span><span class="p">,</span>
-                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
-                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
-                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
-                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
-
-    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
-    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
-        
-    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
-        
-        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
-
-    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
-
-    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
-                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Dataset URLS &amp; Utils</span>
 </pre></div>
 </div>
 </div>
@@ -1376,31 +1241,6 @@ pandas                : 1.3.5
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A utility method to convert data (columns) from pandas dataframe</span>
-<span class="c1"># into tensors with appropriate type</span>
-<span class="k">def</span> <span class="nf">df_to_tensors</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">default_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; name : Name of the dataset</span>
-<span class="sd">        df : pandas dataframe</span>
-<span class="sd">        colums : a list of names that have the same type or</span>
-<span class="sd">                 a dictionary where keys are the column names and values are the tensorflow type (e.g. tf.float32)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>    
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span>        
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">default_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">column_names</span><span class="p">]</span>    
-        
-    <span class="c1"># build the cls</span>
-    <span class="n">tuple_cls</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">column_names</span><span class="p">)</span>    
-    <span class="c1"># build the obj</span>
-    <span class="k">return</span> <span class="n">tuple_cls</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="binomial-regression">
 <h2>11.1 Binomial regression<a class="headerlink" href="#binomial-regression" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="logistic-regression-prosocial-chimpanzees">
@@ -1414,7 +1254,7 @@ pandas                : 1.3.5
 <p><strong>Poisson Regression</strong> -: model the outcome (count) when the maximum count is unknown.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHIMPANZEES_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Chimpanzees</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1625,10 +1465,10 @@ Name: index, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:46:49.748651: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 23:46:49.748685: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 23:46:49.748708: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 23:46:49.748895: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:30:46.489292: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:30:46.489340: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:30:46.489364: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:30:46.489567: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1645,7 +1485,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_26_0.png" src="../_images/11_god_spiked_the_integers_26_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_22_0.png" src="../_images/11_god_spiked_the_integers_22_0.png" />
 </div>
 </div>
 <p>Most of the probability mass in the above plot is piled up near zero or one. A flat prior in the logit space is not a flat prior in the outcome probability space.</p>
@@ -1661,7 +1501,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_28_0.png" src="../_images/11_god_spiked_the_integers_28_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_24_0.png" src="../_images/11_god_spiked_the_integers_24_0.png" />
 </div>
 </div>
 <p>A more concentrated Normal(0,1.5) prior produces something more reasonable</p>
@@ -1670,7 +1510,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <h4>Code 11.7<a class="headerlink" href="#code-11-7" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;treatment&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span>
 <span class="p">})</span>
 </pre></div>
@@ -1739,7 +1579,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_37_0.png" src="../_images/11_god_spiked_the_integers_37_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_33_0.png" src="../_images/11_god_spiked_the_integers_33_0.png" />
 </div>
 </div>
 </div>
@@ -1775,7 +1615,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09980592
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.093719244
 </pre></div>
 </div>
 </div>
@@ -1966,7 +1806,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;pulled_left&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s1">&#39;treatment&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
     <span class="s1">&#39;actor_id&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span>
@@ -2003,40 +1843,40 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([ 3.1049387 ,  0.44414842, -2.5738637 ,  4.2349973 ,  0.8401302 ,
-           -1.5168803 , -0.10980813], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-0.52888614, -0.4315697 , -1.2577589 , -0.62368476], dtype=float32)&gt;,
+    array([-0.8952429 ,  1.0404499 , -1.2278067 , -0.35891566,  1.3568593 ,
+           -0.7533673 , -1.3655872 ], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-0.02643737, -0.8693516 ,  0.04131063, -0.15602691], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 0., 0., 0., 0., 1., 1., 1., 1., 0., 1., 0.,
-           1., 1., 0., 1., 0., 0., 1., 0., 0., 1., 1., 0., 0., 0., 1., 1., 1.,
-           1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 0.,
-           1., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 1., 1.,
-           0., 0., 1., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
-           0., 1., 0., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1.,
-           1., 0., 1., 0., 0., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 0., 0., 0., 0., 0., 0., 1., 1., 0., 1., 0., 0., 1.,
-           1., 0., 1., 0., 1., 0., 0., 0., 1., 1., 1., 0., 1., 1., 0., 0., 0.,
-           1., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0.,
-           0., 1., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 0., 1., 0., 0.,
-           0., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 0., 0.,
-           0., 1., 0., 1., 0., 1., 1., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0.,
-           0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 1., 1., 0., 0., 0., 0.,
-           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)&gt;
+    array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 1., 0.,
+           0., 1., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1., 1.,
+           0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 0., 1., 0., 0., 1., 1., 0.,
+           0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 0.,
+           1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 0.,
+           1., 0., 0., 0., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 0.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 0.,
+           1., 1., 1., 1., 1., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
+           0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 1., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 1.,
+           1., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1.,
+           0., 0., 1., 0., 1., 0., 1., 1., 1., 0., 0., 0., 0., 0., 0., 1., 1.,
+           0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 1., 0., 1., 0., 0.,
+           0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0.,
+           1., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0.,
+           0., 1., 0., 0., 1., 1., 1., 1., 0., 0., 1., 1., 0., 1., 1., 0., 0.,
+           1., 1., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1., 0.,
+           0., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 0., 0., 1.,
+           1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1.,
+           0., 1., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 0., 1., 1., 0., 1., 0., 0., 1., 0., 1., 1., 0., 0., 0.,
+           0., 0., 1., 1., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 1.,
+           1., 0., 1., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1.,
+           1., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0.,
+           0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 0.,
+           0., 0., 0., 1., 0., 1., 0., 1., 0., 0., 0.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2044,7 +1884,9 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBER_OF_CHAINS</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span> <span class="mi">7</span><span class="p">]),</span>
     <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="p">]</span>
@@ -2104,135 +1946,135 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.444</td>
-      <td>0.324</td>
-      <td>-0.919</td>
-      <td>0.094</td>
-      <td>0.016</td>
-      <td>0.012</td>
-      <td>392.0</td>
-      <td>396.0</td>
+      <td>-0.439</td>
+      <td>0.337</td>
+      <td>-0.938</td>
+      <td>0.088</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>509.0</td>
+      <td>480.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.879</td>
-      <td>0.717</td>
-      <td>2.751</td>
-      <td>5.028</td>
-      <td>0.040</td>
-      <td>0.029</td>
-      <td>318.0</td>
-      <td>417.0</td>
+      <td>3.780</td>
+      <td>0.681</td>
+      <td>2.734</td>
+      <td>4.900</td>
+      <td>0.038</td>
+      <td>0.027</td>
+      <td>328.0</td>
+      <td>497.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.746</td>
-      <td>0.321</td>
-      <td>-1.253</td>
-      <td>-0.257</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>361.0</td>
-      <td>479.0</td>
-      <td>1.01</td>
+      <td>-0.756</td>
+      <td>0.331</td>
+      <td>-1.281</td>
+      <td>-0.247</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>459.0</td>
+      <td>370.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.744</td>
-      <td>0.324</td>
-      <td>-1.243</td>
-      <td>-0.232</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>384.0</td>
-      <td>496.0</td>
+      <td>-0.745</td>
+      <td>0.328</td>
+      <td>-1.274</td>
+      <td>-0.230</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>515.0</td>
+      <td>477.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.462</td>
-      <td>0.321</td>
-      <td>-0.932</td>
-      <td>0.094</td>
-      <td>0.016</td>
-      <td>0.012</td>
-      <td>385.0</td>
-      <td>375.0</td>
-      <td>1.01</td>
+      <td>-0.449</td>
+      <td>0.343</td>
+      <td>-1.033</td>
+      <td>0.044</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>493.0</td>
+      <td>407.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.475</td>
-      <td>0.341</td>
-      <td>-0.022</td>
-      <td>1.038</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>406.0</td>
-      <td>507.0</td>
+      <td>0.478</td>
+      <td>0.323</td>
+      <td>-0.031</td>
+      <td>0.987</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>541.0</td>
+      <td>308.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.954</td>
-      <td>0.434</td>
-      <td>1.244</td>
-      <td>2.565</td>
-      <td>0.019</td>
-      <td>0.014</td>
-      <td>560.0</td>
-      <td>165.0</td>
+      <td>1.960</td>
+      <td>0.395</td>
+      <td>1.370</td>
+      <td>2.560</td>
+      <td>0.016</td>
+      <td>0.012</td>
+      <td>588.0</td>
+      <td>443.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[0]</th>
-      <td>-0.008</td>
-      <td>0.277</td>
-      <td>-0.419</td>
-      <td>0.449</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>228.0</td>
-      <td>290.0</td>
-      <td>1.00</td>
+      <td>-0.056</td>
+      <td>0.294</td>
+      <td>-0.516</td>
+      <td>0.406</td>
+      <td>0.020</td>
+      <td>0.014</td>
+      <td>214.0</td>
+      <td>564.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[1]</th>
-      <td>0.512</td>
-      <td>0.275</td>
-      <td>0.067</td>
-      <td>0.970</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>261.0</td>
-      <td>265.0</td>
+      <td>0.469</td>
+      <td>0.276</td>
+      <td>0.007</td>
+      <td>0.877</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>311.0</td>
+      <td>456.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[2]</th>
-      <td>-0.376</td>
-      <td>0.291</td>
-      <td>-0.838</td>
-      <td>0.082</td>
-      <td>0.019</td>
-      <td>0.013</td>
-      <td>243.0</td>
-      <td>403.0</td>
+      <td>-0.387</td>
+      <td>0.289</td>
+      <td>-0.802</td>
+      <td>0.063</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>295.0</td>
+      <td>417.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>beta_treatment[3]</th>
-      <td>0.376</td>
-      <td>0.286</td>
-      <td>-0.089</td>
-      <td>0.818</td>
+      <td>0.360</td>
+      <td>0.273</td>
+      <td>-0.086</td>
+      <td>0.771</td>
       <td>0.017</td>
-      <td>0.013</td>
-      <td>277.0</td>
-      <td>302.0</td>
-      <td>1.01</td>
+      <td>0.012</td>
+      <td>263.0</td>
+      <td>318.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -2252,7 +2094,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_49_0.png" src="../_images/11_god_spiked_the_integers_49_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_45_0.png" src="../_images/11_god_spiked_the_integers_45_0.png" />
 </div>
 </div>
 <p>What above plot shows is that 0,2,3,4 show preference for right lever.
@@ -2271,7 +2113,7 @@ Two chimps (1 &amp; 6) show strong preference for left lever and it is also refl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_52_0.png" src="../_images/11_god_spiked_the_integers_52_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_48_0.png" src="../_images/11_god_spiked_the_integers_48_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2291,7 +2133,7 @@ Two chimps (1 &amp; 6) show strong preference for left lever and it is also refl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_55_0.png" src="../_images/11_god_spiked_the_integers_55_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_51_0.png" src="../_images/11_god_spiked_the_integers_51_0.png" />
 </div>
 </div>
 <p>db13 is the difference between no-partner/partner treatments when the prosocial option was on the right.</p>
@@ -2445,7 +2287,7 @@ Name: 1, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_62_0.png" src="../_images/11_god_spiked_the_integers_62_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_58_0.png" src="../_images/11_god_spiked_the_integers_58_0.png" />
 </div>
 </div>
 </div>
@@ -2488,7 +2330,7 @@ Name: 1, dtype: float64
 <h3>Code 11.19<a class="headerlink" href="#code-11-19" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;pulled_left&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;actor_id&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
     <span class="s2">&quot;side&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
@@ -2520,41 +2362,41 @@ Name: 1, dtype: float64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([ 1.3062367 ,  0.11101   ,  0.19851023,  2.7834487 ,  0.55457294,
-            1.2883049 , -0.41666937], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([-0.21734335,  0.28986079], dtype=float32)&gt;,
-  var2=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([0.16870026, 0.40135196], dtype=float32)&gt;,
+    array([ 0.51455367, -0.7588786 ,  2.5371156 ,  3.5687194 , -0.39532638,
+           -0.81107724,  1.4139163 ], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([0.13807863, 0.7671622 ], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([-1.1736109 , -0.13078701], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1.,
-           1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1.,
-           0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1.,
-           0., 1., 0., 0., 1., 1., 1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1.,
-           1., 1., 0., 1., 1., 0., 1., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
-           0., 0., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 0., 0., 1., 0., 1.,
-           1., 1., 1., 0., 1., 1., 0., 0., 0., 1., 1., 0., 1., 1., 0., 0., 0.,
-           1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0.,
-           1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 0., 0., 0., 1., 1., 0., 1.,
-           1., 0., 0., 1., 1., 1., 0., 1., 0., 1., 0., 0., 0., 1., 0., 1., 0.,
-           1., 0., 1., 1., 1., 0., 0., 0., 1., 1., 1., 0., 0., 1., 1., 0., 1.,
-           1., 1., 0., 0., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 0., 0.,
-           0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
-           1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 0., 1., 0., 0.,
-           1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
-           0., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 0., 1., 0., 0., 0.,
-           1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1.,
-           0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
-           1., 1., 1., 1., 0., 0., 0., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1.,
-           1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1.,
-           1., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 1., 0., 0., 0., 0., 1.,
-           1., 0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 0.,
-           1., 1., 1., 1., 1., 0., 0., 0., 1., 1., 1., 1., 1., 0., 0., 0., 0.,
-           0., 1., 1., 1., 1., 1., 1., 0., 0., 0., 0., 1., 1., 0., 0., 0., 1.,
-           0., 0., 0., 0., 0., 1., 1., 1., 0., 1., 0.], dtype=float32)&gt;
+    array([0., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0.,
+           1., 0., 1., 0., 0., 0., 1., 1., 0., 0., 0., 0., 1., 0., 0., 0., 1.,
+           0., 0., 0., 1., 1., 0., 1., 1., 1., 1., 1., 1., 0., 0., 1., 0., 0.,
+           1., 1., 0., 1., 1., 1., 0., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1.,
+           0., 1., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0., 0.,
+           0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0.,
+           0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1.,
+           1., 0., 1., 0., 1., 0., 0., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
+           0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0.,
+           1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0.,
+           0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0.,
+           0., 0., 1., 1., 1., 0., 1., 1., 0., 0., 0., 0., 0., 1., 1., 0., 1.,
+           0., 0., 1., 0., 0., 0., 0., 1., 0., 1., 1., 0., 0., 0., 1., 0., 0.,
+           1., 0., 1., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
+           0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 1.,
+           1., 0., 1., 1., 0., 0., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1.,
+           1., 0., 1., 1., 0., 1., 0., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1.,
+           0., 1., 1., 1., 0., 0., 0., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2621,134 +2463,134 @@ Name: 1, dtype: float64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.627</td>
-      <td>0.448</td>
-      <td>-1.368</td>
-      <td>0.016</td>
-      <td>0.059</td>
-      <td>0.042</td>
-      <td>57.0</td>
-      <td>173.0</td>
-      <td>1.04</td>
+      <td>-0.607</td>
+      <td>0.460</td>
+      <td>-1.390</td>
+      <td>0.103</td>
+      <td>0.055</td>
+      <td>0.039</td>
+      <td>70.0</td>
+      <td>207.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.662</td>
-      <td>0.795</td>
-      <td>2.279</td>
-      <td>4.818</td>
-      <td>0.113</td>
-      <td>0.081</td>
-      <td>50.0</td>
-      <td>102.0</td>
-      <td>1.05</td>
-    </tr>
-    <tr>
-      <th>alpha[2]</th>
-      <td>-0.926</td>
-      <td>0.448</td>
-      <td>-1.698</td>
-      <td>-0.335</td>
-      <td>0.060</td>
-      <td>0.042</td>
-      <td>54.0</td>
-      <td>165.0</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>alpha[3]</th>
-      <td>-0.939</td>
-      <td>0.464</td>
-      <td>-1.610</td>
-      <td>-0.184</td>
-      <td>0.068</td>
-      <td>0.049</td>
-      <td>44.0</td>
-      <td>137.0</td>
-      <td>1.05</td>
-    </tr>
-    <tr>
-      <th>alpha[4]</th>
-      <td>-0.651</td>
-      <td>0.443</td>
-      <td>-1.297</td>
-      <td>0.118</td>
-      <td>0.063</td>
-      <td>0.045</td>
-      <td>47.0</td>
-      <td>130.0</td>
-      <td>1.05</td>
-    </tr>
-    <tr>
-      <th>alpha[5]</th>
-      <td>0.288</td>
-      <td>0.475</td>
-      <td>-0.398</td>
-      <td>1.054</td>
-      <td>0.068</td>
-      <td>0.048</td>
-      <td>43.0</td>
-      <td>114.0</td>
-      <td>1.05</td>
-    </tr>
-    <tr>
-      <th>alpha[6]</th>
-      <td>1.781</td>
-      <td>0.523</td>
-      <td>0.931</td>
-      <td>2.521</td>
-      <td>0.059</td>
-      <td>0.044</td>
-      <td>79.0</td>
-      <td>225.0</td>
+      <td>3.747</td>
+      <td>0.835</td>
+      <td>2.302</td>
+      <td>4.906</td>
+      <td>0.119</td>
+      <td>0.088</td>
+      <td>52.0</td>
+      <td>63.0</td>
       <td>1.02</td>
     </tr>
     <tr>
+      <th>alpha[2]</th>
+      <td>-0.908</td>
+      <td>0.467</td>
+      <td>-1.683</td>
+      <td>-0.174</td>
+      <td>0.053</td>
+      <td>0.038</td>
+      <td>76.0</td>
+      <td>233.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[3]</th>
+      <td>-0.911</td>
+      <td>0.459</td>
+      <td>-1.697</td>
+      <td>-0.243</td>
+      <td>0.054</td>
+      <td>0.038</td>
+      <td>74.0</td>
+      <td>228.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[4]</th>
+      <td>-0.602</td>
+      <td>0.466</td>
+      <td>-1.287</td>
+      <td>0.175</td>
+      <td>0.053</td>
+      <td>0.038</td>
+      <td>76.0</td>
+      <td>190.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[5]</th>
+      <td>0.318</td>
+      <td>0.466</td>
+      <td>-0.361</td>
+      <td>1.093</td>
+      <td>0.054</td>
+      <td>0.038</td>
+      <td>75.0</td>
+      <td>173.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[6]</th>
+      <td>1.812</td>
+      <td>0.513</td>
+      <td>1.007</td>
+      <td>2.588</td>
+      <td>0.059</td>
+      <td>0.042</td>
+      <td>76.0</td>
+      <td>275.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
       <th>beta_side[0]</th>
-      <td>-0.182</td>
-      <td>0.349</td>
-      <td>-0.691</td>
-      <td>0.395</td>
-      <td>0.028</td>
+      <td>-0.215</td>
+      <td>0.334</td>
+      <td>-0.751</td>
+      <td>0.338</td>
+      <td>0.029</td>
       <td>0.020</td>
-      <td>156.0</td>
-      <td>286.0</td>
-      <td>1.03</td>
+      <td>137.0</td>
+      <td>404.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_side[1]</th>
-      <td>0.506</td>
-      <td>0.337</td>
-      <td>-0.027</td>
-      <td>1.012</td>
-      <td>0.026</td>
-      <td>0.019</td>
-      <td>166.0</td>
-      <td>213.0</td>
-      <td>1.04</td>
+      <td>0.468</td>
+      <td>0.332</td>
+      <td>-0.116</td>
+      <td>0.938</td>
+      <td>0.029</td>
+      <td>0.021</td>
+      <td>130.0</td>
+      <td>264.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta_cond[0]</th>
-      <td>0.251</td>
-      <td>0.324</td>
-      <td>-0.298</td>
-      <td>0.714</td>
-      <td>0.031</td>
-      <td>0.022</td>
-      <td>111.0</td>
-      <td>268.0</td>
+      <td>0.274</td>
+      <td>0.327</td>
+      <td>-0.234</td>
+      <td>0.838</td>
+      <td>0.027</td>
+      <td>0.019</td>
+      <td>156.0</td>
+      <td>370.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>beta_cond[1]</th>
-      <td>0.017</td>
-      <td>0.331</td>
-      <td>-0.534</td>
-      <td>0.472</td>
-      <td>0.033</td>
-      <td>0.023</td>
-      <td>102.0</td>
-      <td>337.0</td>
+      <td>0.028</td>
+      <td>0.327</td>
+      <td>-0.481</td>
+      <td>0.539</td>
+      <td>0.027</td>
+      <td>0.019</td>
+      <td>146.0</td>
+      <td>396.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -2861,24 +2703,24 @@ Name: 1, dtype: float64
     <tr>
       <th>m11.5</th>
       <td>0</td>
-      <td>-265.831136</td>
-      <td>7.998873</td>
+      <td>-265.471875</td>
+      <td>7.785879</td>
       <td>0.000000</td>
-      <td>0.89489</td>
-      <td>9.541449</td>
-      <td>0.000000</td>
+      <td>1.0</td>
+      <td>9.553009</td>
+      <td>0.00000</td>
       <td>False</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m11.4</th>
       <td>1</td>
-      <td>-265.999477</td>
-      <td>8.387483</td>
-      <td>0.168341</td>
-      <td>0.10511</td>
-      <td>9.469091</td>
-      <td>0.653138</td>
+      <td>-266.056953</td>
+      <td>8.270529</td>
+      <td>0.585078</td>
+      <td>0.0</td>
+      <td>9.445925</td>
+      <td>0.66427</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -3258,77 +3100,77 @@ Coordinates:
   * draw                  (draw) int64 0 1 2 3 4 5 6 ... 494 495 496 497 498 499
   * log_likelihood_dim_0  (log_likelihood_dim_0) int64 0 1 2 3 ... 501 502 503
 Data variables:
-    mean_tree_accept      (chain, draw) float32 0.08115 -1.996 ... 0.08157
-    log_likelihood        (chain, draw, log_likelihood_dim_0) float32 -0.4951...
+    mean_tree_accept      (chain, draw) float32 -0.5426 0.2435 ... 0.8591
+    log_likelihood        (chain, draw, log_likelihood_dim_0) float32 -0.6647...
 Attributes:
-    created_at:     2022-01-17T23:46:54.798786
-    arviz_version:  0.11.4</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3908db85-994e-4d0e-aaf3-9b4fb181ad13' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3908db85-994e-4d0e-aaf3-9b4fb181ad13' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 2</li><li><span class='xr-has-index'>draw</span>: 500</li><li><span class='xr-has-index'>log_likelihood_dim_0</span>: 504</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-d843ce16-530d-4b67-bef3-ce985b6905ae' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d843ce16-530d-4b67-bef3-ce985b6905ae' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1</div><input id='attrs-21e44a33-319d-497b-97ca-55992ea97cb1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-21e44a33-319d-497b-97ca-55992ea97cb1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a86f254b-08c2-4c75-8dc0-5a3bcadec6e3' class='xr-var-data-in' type='checkbox'><label for='data-a86f254b-08c2-4c75-8dc0-5a3bcadec6e3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-7d3c5208-0f0b-454c-ad6d-a7f79749d7ed' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7d3c5208-0f0b-454c-ad6d-a7f79749d7ed' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-20cfc63b-be83-42d4-ae33-475a496378de' class='xr-var-data-in' type='checkbox'><label for='data-20cfc63b-be83-42d4-ae33-475a496378de' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>log_likelihood_dim_0</span></div><div class='xr-var-dims'>(log_likelihood_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 499 500 501 502 503</div><input id='attrs-1c54fca4-999c-43d0-99ed-d0b3b1ff95ec' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1c54fca4-999c-43d0-99ed-d0b3b1ff95ec' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1719e0f4-08bc-4c02-a570-f0b1ca2a808a' class='xr-var-data-in' type='checkbox'><label for='data-1719e0f4-08bc-4c02-a570-f0b1ca2a808a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 501, 502, 503])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-af6795ec-6662-4511-9c50-8ceced6fb820' class='xr-section-summary-in' type='checkbox'  checked><label for='section-af6795ec-6662-4511-9c50-8ceced6fb820' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mean_tree_accept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.08115 -1.996 ... -0.1005 0.08157</div><input id='attrs-7c9fc08d-3d76-4f9b-8b8d-a4244014d261' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7c9fc08d-3d76-4f9b-8b8d-a4244014d261' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7cd2d33e-a6a5-4be3-92d9-18afcdec26fb' class='xr-var-data-in' type='checkbox'><label for='data-7cd2d33e-a6a5-4be3-92d9-18afcdec26fb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 8.11462402e-02, -1.99551392e+00, -8.80401611e-01,
-         1.99798584e-01, -1.54437256e+00, -1.54046631e+00,
-        -1.88751221e-01,  1.24475098e+00, -5.68450928e-01,
-        -5.51727295e-01, -1.77337646e-01, -8.28247070e-02,
-        -6.12182617e-01,  1.53320312e-01, -8.34655762e-02,
-         3.07922363e-01,  6.32263184e-01, -2.60437012e-01,
-        -1.10687256e-01, -6.42669678e-01,  0.00000000e+00,
-        -5.34454346e-01,  9.05090332e-01,  7.26318359e-02,
-        -1.66015625e-01, -3.36517334e-01,  1.88415527e-01,
-         3.26416016e-01, -4.14520264e-01, -1.19171143e-01,
-        -6.83197021e-01,  5.13885498e-01, -2.84295654e+00,
-        -2.58319092e+00, -1.44927979e+00,  7.00073242e-02,
-        -1.49789429e+00,  4.11071777e-01, -2.25158691e-01,
-        -9.08905029e-01, -9.48028564e-01,  2.27661133e-01,
-        -5.14526367e-01, -2.73834229e-01, -1.08959961e+00,
-         1.74713135e-01,  1.55148315e+00, -3.20800781e-01,
-        -1.58993530e+00, -1.10125732e+00,  1.11624146e+00,
-         8.09112549e-01, -1.03698730e-01, -6.25671387e-01,
-        -1.21969604e+00,  8.03161621e-01, -6.18652344e-01,
-        -1.21014404e+00,  1.48507690e+00, -6.75384521e-01,
+    created_at:     2022-01-18T02:30:51.571100
+    arviz_version:  0.11.4</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-cafe3d31-ad3a-4326-a1cf-d366ca449a65' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-cafe3d31-ad3a-4326-a1cf-d366ca449a65' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 2</li><li><span class='xr-has-index'>draw</span>: 500</li><li><span class='xr-has-index'>log_likelihood_dim_0</span>: 504</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-3cd46227-36a5-40a7-8189-fcd8fa9cf8f1' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3cd46227-36a5-40a7-8189-fcd8fa9cf8f1' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1</div><input id='attrs-56a73b09-403a-40ba-b7eb-0a67c7e182e0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-56a73b09-403a-40ba-b7eb-0a67c7e182e0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4fd14d34-9fe4-4074-9627-09addc81b970' class='xr-var-data-in' type='checkbox'><label for='data-4fd14d34-9fe4-4074-9627-09addc81b970' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-4263e43c-aeb8-4ae8-8566-2bbe0e880e7a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4263e43c-aeb8-4ae8-8566-2bbe0e880e7a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8cbed535-5885-4f93-9057-6d1dacf2d543' class='xr-var-data-in' type='checkbox'><label for='data-8cbed535-5885-4f93-9057-6d1dacf2d543' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>log_likelihood_dim_0</span></div><div class='xr-var-dims'>(log_likelihood_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 499 500 501 502 503</div><input id='attrs-a16b7b6f-0660-4558-a194-c98351a38e9a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a16b7b6f-0660-4558-a194-c98351a38e9a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a1fb4d36-9e23-4d05-b245-1982adb20103' class='xr-var-data-in' type='checkbox'><label for='data-a1fb4d36-9e23-4d05-b245-1982adb20103' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 501, 502, 503])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-53da2f0d-5d11-40c3-ad40-1d0d74192336' class='xr-section-summary-in' type='checkbox'  checked><label for='section-53da2f0d-5d11-40c3-ad40-1d0d74192336' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mean_tree_accept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.5426 0.2435 ... -0.7576 0.8591</div><input id='attrs-a037c491-c67d-4f9b-80c2-f460a2a36892' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a037c491-c67d-4f9b-80c2-f460a2a36892' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-77e2108a-0472-4615-b9f8-6f7d2fbb7802' class='xr-var-data-in' type='checkbox'><label for='data-77e2108a-0472-4615-b9f8-6f7d2fbb7802' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[-5.42602539e-01,  2.43499756e-01,  3.36669922e-01,
+        -6.13983154e-01,  1.06628418e-01, -8.65509033e-01,
+        -8.84826660e-01, -1.55242920e-01, -1.11053467e-01,
+         7.14324951e-01, -5.84869385e-01, -1.24688721e+00,
+        -1.94335938e-01,  1.15447998e-01, -7.02636719e-01,
+        -1.23031616e+00, -4.97344971e-01, -2.52288818e-01,
+         5.38787842e-01, -2.68341064e-01, -1.33514404e+00,
+        -7.65991211e-01, -2.78656006e-01,  5.39276123e-01,
+        -2.03613281e-01, -1.63009644e+00, -3.29498291e-01,
+         2.12127686e-01, -1.78906250e+00,  5.66040039e-01,
+        -9.22882080e-01, -9.99694824e-01,  4.04846191e-01,
+        -9.14001465e-01, -7.40417480e-01, -3.64288330e-01,
+         1.27850342e+00,  1.78985596e-01, -4.00421143e-01,
+         4.30511475e-01, -1.42669678e-01, -7.24365234e-01,
+         2.58148193e-01, -7.24487305e-02, -1.55761719e-01,
+        -1.12649536e+00,  5.98022461e-01, -5.36193848e-01,
+        -1.47756958e+00, -1.32312012e+00,  1.63211060e+00,
+        -1.05938721e+00,  5.97564697e-01,  2.48596191e-01,
+        -9.97467041e-01, -8.91113281e-02, -5.47943115e-01,
+         4.38964844e-01,  3.65295410e-02, -1.28933716e+00,
 ...
-        -1.90460205e-01, -9.66003418e-01,  7.24182129e-02,
-         3.02673340e-01, -5.70281982e-01, -2.05682373e+00,
-        -1.31347656e-01, -5.13458252e-01,  2.60009766e-02,
-         1.07220459e+00,  7.74749756e-01, -3.60900879e-01,
-        -8.01147461e-01, -5.65734863e-01, -1.17031860e+00,
-        -1.56796265e+00, -1.53167725e-01, -9.15527344e-01,
-         7.90161133e-01, -6.88812256e-01, -9.61975098e-01,
-         1.23684692e+00, -7.70782471e-01, -1.70245361e+00,
-        -2.16464233e+00, -2.06298828e-01, -1.23016357e+00,
-        -4.67895508e-01, -7.05413818e-01, -9.49096680e-02,
-        -1.53839111e-01, -3.87573242e-01, -1.05895996e-01,
-         8.73413086e-02,  2.77069092e-01, -1.02166748e+00,
-        -6.55731201e-01,  3.39630127e-01, -2.64587402e-02,
-         8.15185547e-01, -3.97979736e-01,  1.79962158e-01,
-        -6.15020752e-01, -6.41632080e-01, -1.15011597e+00,
-        -8.70300293e-01,  2.74353027e-01, -8.47869873e-01,
-        -3.93341064e-01, -2.07614136e+00, -7.19268799e-01,
-        -7.79449463e-01, -3.31512451e-01, -8.56811523e-01,
-         9.39941406e-02,  3.07769775e-01, -3.53332520e-01,
-        -1.00494385e-01,  8.15734863e-02]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>log_likelihood</span></div><div class='xr-var-dims'>(chain, draw, log_likelihood_dim_0)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.4951 -0.9404 ... -0.3655 -0.3655</div><input id='attrs-84ad428f-94da-4d99-8d2b-8072811e305b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-84ad428f-94da-4d99-8d2b-8072811e305b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fea12c78-51e1-4b70-8302-b03c859dd509' class='xr-var-data-in' type='checkbox'><label for='data-fea12c78-51e1-4b70-8302-b03c859dd509' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[[-0.4950682 , -0.9404025 , -0.6511712 , ..., -0.11749589,
-         -0.11749589, -0.11749589],
-        [-0.4950682 , -0.9404025 , -0.6511712 , ..., -0.11749589,
-         -0.11749589, -0.11749589],
-        [-0.4950682 , -0.9404025 , -0.6511712 , ..., -0.11749589,
-         -0.11749589, -0.11749589],
+        -2.34481812e+00,  1.33984375e+00, -2.16644287e-01,
+        -5.73181152e-01, -1.66513062e+00, -9.37500000e-01,
+         8.34075928e-01,  1.49749756e-01,  5.36499023e-01,
+        -3.38775635e+00, -2.88726807e-01,  2.58361816e-01,
+        -1.82464600e-01, -1.37384033e+00, -2.48931885e-01,
+         1.38525391e+00, -2.64221191e-01, -1.18692017e+00,
+        -2.24151611e-01, -5.76843262e-01, -1.13098145e+00,
+         8.46557617e-02, -2.21307373e+00,  1.18746948e+00,
+        -2.48648071e+00,  1.51641846e-01, -4.54833984e+00,
+        -2.78533936e-01, -9.16564941e-01, -2.70324707e-01,
+         1.09069824e-01, -1.45788574e+00,  6.41662598e-01,
+        -7.34436035e-01,  1.90124512e-02, -5.49957275e-01,
+        -3.72222900e-01, -1.54083252e-01,  2.29431152e-01,
+        -2.60498047e-01, -2.30743408e-01, -1.64611816e-01,
+         1.06869507e+00, -3.10028076e-01,  1.20666504e-01,
+        -2.74810791e-01,  8.45336914e-02, -8.67706299e-01,
+         4.83703613e-01,  6.23016357e-01, -3.75061035e-01,
+         8.71429443e-01,  1.75415039e-01, -4.95819092e-01,
+        -1.51144409e+00,  1.36273193e+00, -5.71350098e-01,
+        -7.57568359e-01,  8.59130859e-01]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>log_likelihood</span></div><div class='xr-var-dims'>(chain, draw, log_likelihood_dim_0)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.6647 -0.7224 ... -0.2465 -0.2465</div><input id='attrs-04dbd985-0a8c-4456-9122-6be4d8c11699' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-04dbd985-0a8c-4456-9122-6be4d8c11699' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6a2253c9-972d-4175-b924-971480f0329a' class='xr-var-data-in' type='checkbox'><label for='data-6a2253c9-972d-4175-b924-971480f0329a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[[-0.66472656, -0.72239923, -0.7587697 , ..., -0.19209687,
+         -0.19209687, -0.19209687],
+        [-0.5801428 , -0.82056797, -0.69523424, ..., -0.13760822,
+         -0.13760822, -0.13760822],
+        [-0.37660983, -1.1589477 , -0.5398373 , ..., -0.20095032,
+         -0.20095032, -0.20095032],
         ...,
-        [-0.48651916, -0.9538954 , -0.62271464, ..., -0.21801198,
-         -0.21801198, -0.21801198],
-        [-0.48213035, -0.9609392 , -0.7001641 , ..., -0.22928867,
-         -0.22928867, -0.22928867],
-        [-0.4815129 , -0.9619367 , -0.65250605, ..., -0.18859595,
-         -0.18859595, -0.18859595]],
+        [-0.5026867 , -0.92862463, -0.8176941 , ..., -0.18577507,
+         -0.18577507, -0.18577507],
+        [-0.5026867 , -0.92862463, -0.8176941 , ..., -0.18577507,
+         -0.18577507, -0.18577507],
+        [-0.59231704, -0.8052959 , -0.8022905 , ..., -0.1707619 ,
+         -0.1707619 , -0.1707619 ]],
 
-       [[-0.5156006 , -0.90917075, -0.62238675, ..., -0.09778771,
-         -0.09778771, -0.09778771],
-        [-0.8228902 , -0.57832056, -0.9702812 , ..., -0.2773718 ,
-         -0.2773718 , -0.2773718 ],
-        [-0.5011579 , -0.93096983, -0.94037473, ..., -0.12329227,
-         -0.12329227, -0.12329227],
+       [[-0.419023  , -1.0720359 , -0.649274  , ..., -0.1687573 ,
+         -0.1687573 , -0.1687573 ],
+        [-0.419023  , -1.0720359 , -0.649274  , ..., -0.1687573 ,
+         -0.1687573 , -0.1687573 ],
+        [-0.419023  , -1.0720359 , -0.649274  , ..., -0.1687573 ,
+         -0.1687573 , -0.1687573 ],
         ...,
-        [-0.5771385 , -0.8244019 , -0.77108574, ..., -0.334738  ,
-         -0.334738  , -0.334738  ],
-        [-0.5683984 , -0.8357064 , -0.7362879 , ..., -0.11930624,
-         -0.11930624, -0.11930624],
-        [-0.42548737, -1.0597317 , -0.47703874, ..., -0.3655135 ,
-         -0.3655135 , -0.3655135 ]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c2e5bdd5-94bc-4a60-865c-06ecb9ed323b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c2e5bdd5-94bc-4a60-865c-06ecb9ed323b' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2022-01-17T23:46:54.798786</dd><dt><span>arviz_version :</span></dt><dd>0.11.4</dd></dl></div></li></ul></div></div></div></div>
+        [-0.5326435 , -0.88443124, -0.83725655, ..., -0.25447398,
+         -0.25447398, -0.25447398],
+        [-0.5326435 , -0.88443124, -0.83725655, ..., -0.25447398,
+         -0.25447398, -0.25447398],
+        [-0.41541505, -1.0790046 , -0.5679456 , ..., -0.24654633,
+         -0.24654633, -0.24654633]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-225bb5d1-ec01-47e5-9fe7-aa8f434d6dcc' class='xr-section-summary-in' type='checkbox'  checked><label for='section-225bb5d1-ec01-47e5-9fe7-aa8f434d6dcc' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2022-01-18T02:30:51.571100</dd><dt><span>arviz_version :</span></dt><dd>0.11.4</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </div>
 <div class="section" id="code-11-22">
@@ -3709,7 +3551,7 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;beta_treatment&#x27; ()&gt;
-array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta_treatment'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-599771c9-6957-47f7-8e94-0a7b992ef127' class='xr-array-in' type='checkbox' checked><label for='section-599771c9-6957-47f7-8e94-0a7b992ef127' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.9057</span></div><div class='xr-array-data'><pre>array(0.905673, dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-d360aa0b-71e1-4739-a129-2c9db6ebcb44' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d360aa0b-71e1-4739-a129-2c9db6ebcb44' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-0757d327-8600-4753-bcb3-9d85bca0ab8c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0757d327-8600-4753-bcb3-9d85bca0ab8c' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+array(0.9305886, dtype=float32)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta_treatment'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-4a3dc81a-051c-461b-b713-e8bc6efdbd99' class='xr-array-in' type='checkbox' checked><label for='section-4a3dc81a-051c-461b-b713-e8bc6efdbd99' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.9306</span></div><div class='xr-array-data'><pre>array(0.9305886, dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-7653c351-39f6-4dd9-a2ec-48545dccd666' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-7653c351-39f6-4dd9-a2ec-48545dccd666' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-3e5125df-fccb-4939-a99f-b57c7c1ce819' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3e5125df-fccb-4939-a99f-b57c7c1ce819' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 </div>
 </div>
@@ -3719,7 +3561,7 @@ array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><d
 <h4>Code 11.24<a class="headerlink" href="#code-11-24" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHIMPANZEES_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Chimpanzees</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">prosoc_left</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">condition</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;side&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">prosoc_left</span>  <span class="c1"># right 0, left 1</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;cond&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">condition</span>  <span class="c1"># no partner 0, partner 1</span>
@@ -4022,9 +3864,7 @@ array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><d
 <h4>Code 11.25<a class="headerlink" href="#code-11-25" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dat = dict(zip(d_aggregated.columns, d_aggregated.values.T))</span>
-
-<span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d_aggregated</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Chimpanzee&quot;</span><span class="p">,</span> <span class="n">d_aggregated</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;actor_id&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
     <span class="s2">&quot;treatment&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
     <span class="s2">&quot;left_pulls&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
@@ -4053,13 +3893,13 @@ array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><d
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([-1.8475473 ,  0.4980441 ,  2.7124577 , -1.3021855 ,  0.9067939 ,
-           -0.51752573,  3.4091313 ], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 0.13444065, -0.8905647 , -1.4430355 , -0.18457796], dtype=float32)&gt;,
+    array([ 1.7284758 ,  0.59893966,  2.3112924 , -0.41676217, -1.6612222 ,
+            0.9722655 , -0.00344782], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([1.1592054 , 0.4882575 , 0.637314  , 0.10145736], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(28,), dtype=float32, numpy=
-    array([ 4., 14., 15.,  7., 15.,  9., 18.,  0.,  4., 17.,  3., 13.,  4.,
-           15.,  0.,  0., 13.,  2.,  7.,  3., 15.,  3.,  8., 18.,  2., 13.,
-            4., 18.], dtype=float32)&gt;
+    array([17., 14., 18., 11.,  3., 15., 14., 14., 13., 18.,  8.,  6., 14.,
+           10., 17., 14., 15., 10.,  4., 14., 11., 16., 10., 17.,  6.,  2.,
+           15., 12.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -4127,135 +3967,135 @@ array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><d
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.442</td>
-      <td>0.313</td>
-      <td>-0.914</td>
-      <td>0.039</td>
-      <td>0.014</td>
+      <td>-0.455</td>
+      <td>0.329</td>
+      <td>-1.014</td>
+      <td>0.016</td>
+      <td>0.015</td>
       <td>0.010</td>
-      <td>525.0</td>
-      <td>502.0</td>
+      <td>491.0</td>
+      <td>354.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>4.000</td>
-      <td>0.765</td>
-      <td>2.757</td>
-      <td>5.150</td>
-      <td>0.043</td>
-      <td>0.031</td>
-      <td>315.0</td>
-      <td>319.0</td>
+      <td>3.916</td>
+      <td>0.724</td>
+      <td>2.771</td>
+      <td>5.005</td>
+      <td>0.040</td>
+      <td>0.029</td>
+      <td>331.0</td>
+      <td>294.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.735</td>
-      <td>0.323</td>
-      <td>-1.240</td>
-      <td>-0.232</td>
-      <td>0.015</td>
-      <td>0.010</td>
-      <td>489.0</td>
-      <td>361.0</td>
+      <td>-0.757</td>
+      <td>0.327</td>
+      <td>-1.296</td>
+      <td>-0.261</td>
+      <td>0.016</td>
+      <td>0.012</td>
+      <td>419.0</td>
+      <td>467.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.745</td>
-      <td>0.352</td>
-      <td>-1.262</td>
-      <td>-0.152</td>
+      <td>-0.757</td>
+      <td>0.317</td>
+      <td>-1.288</td>
+      <td>-0.317</td>
       <td>0.015</td>
       <td>0.011</td>
-      <td>559.0</td>
-      <td>473.0</td>
-      <td>1.00</td>
+      <td>457.0</td>
+      <td>476.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.435</td>
-      <td>0.319</td>
-      <td>-0.922</td>
-      <td>0.082</td>
+      <td>-0.450</td>
+      <td>0.320</td>
+      <td>-0.881</td>
+      <td>0.121</td>
       <td>0.015</td>
-      <td>0.010</td>
-      <td>481.0</td>
-      <td>428.0</td>
+      <td>0.011</td>
+      <td>458.0</td>
+      <td>421.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.492</td>
-      <td>0.311</td>
-      <td>0.003</td>
-      <td>0.977</td>
-      <td>0.014</td>
-      <td>0.010</td>
-      <td>519.0</td>
-      <td>469.0</td>
+      <td>0.493</td>
+      <td>0.323</td>
+      <td>0.054</td>
+      <td>1.091</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>428.0</td>
+      <td>511.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.977</td>
-      <td>0.419</td>
-      <td>1.336</td>
-      <td>2.654</td>
-      <td>0.016</td>
-      <td>0.011</td>
-      <td>700.0</td>
-      <td>540.0</td>
+      <td>1.947</td>
+      <td>0.370</td>
+      <td>1.300</td>
+      <td>2.438</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>478.0</td>
+      <td>413.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[0]</th>
-      <td>-0.082</td>
+      <td>-0.065</td>
       <td>0.281</td>
-      <td>-0.503</td>
-      <td>0.381</td>
-      <td>0.020</td>
+      <td>-0.535</td>
+      <td>0.322</td>
+      <td>0.019</td>
       <td>0.014</td>
-      <td>193.0</td>
-      <td>379.0</td>
-      <td>1.02</td>
+      <td>214.0</td>
+      <td>484.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta_treatment[1]</th>
-      <td>0.448</td>
-      <td>0.276</td>
-      <td>0.043</td>
-      <td>0.920</td>
-      <td>0.019</td>
+      <td>0.485</td>
+      <td>0.278</td>
+      <td>0.051</td>
+      <td>0.927</td>
+      <td>0.018</td>
       <td>0.013</td>
-      <td>233.0</td>
-      <td>334.0</td>
-      <td>1.02</td>
+      <td>238.0</td>
+      <td>314.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[2]</th>
-      <td>-0.416</td>
-      <td>0.296</td>
-      <td>-0.869</td>
-      <td>0.090</td>
-      <td>0.022</td>
-      <td>0.016</td>
-      <td>180.0</td>
-      <td>457.0</td>
-      <td>1.03</td>
+      <td>-0.368</td>
+      <td>0.290</td>
+      <td>-0.871</td>
+      <td>0.056</td>
+      <td>0.018</td>
+      <td>0.014</td>
+      <td>255.0</td>
+      <td>280.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta_treatment[3]</th>
-      <td>0.330</td>
-      <td>0.282</td>
-      <td>-0.059</td>
-      <td>0.819</td>
-      <td>0.016</td>
-      <td>0.011</td>
-      <td>331.0</td>
-      <td>605.0</td>
-      <td>1.01</td>
+      <td>0.369</td>
+      <td>0.275</td>
+      <td>-0.068</td>
+      <td>0.813</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>277.0</td>
+      <td>330.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -4312,10 +4152,6 @@ array(0.905673, dtype=float32)</pre><div class='xr-wrap' style='display:none'><d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:695: UserWarning: Estimated shape parameter of Pareto distribution is greater than 0.7 for one or more samples. You should consider using a more robust model, this is because importance sampling is less likely to work well if the marginal posterior and LOO posterior are very different. This is more likely to happen with a non-robust model and highly influential observations.
-  &quot;Estimated shape parameter of Pareto distribution is greater than 0.7 for &quot;
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/ipykernel_launcher.py:10: UserWarning: 
 ValueError: The number of observations should be the same across all models
   # Remove the CWD from sys.path while we load stuff.
@@ -4355,7 +4191,7 @@ ValueError: The number of observations should be the same across all models
 <p>Evaluate if there is a gender bias in admissions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">UCBADMIT_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">UCBadmit</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;gid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;applicant.gender&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;male&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">d</span>
 </pre></div>
@@ -4504,7 +4340,7 @@ ValueError: The number of observations should be the same across all models
 <p>There are 12 rows in the above dataset however they collectively represent 4526 applications. Counting the rows in the data table is not a sensible way to assess sample size</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;gid&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
     <span class="s2">&quot;applications&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;admit&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
@@ -4590,27 +4426,27 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.23</td>
+      <td>-0.22</td>
       <td>0.04</td>
       <td>-0.28</td>
-      <td>-0.15</td>
+      <td>-0.16</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td>522.62</td>
-      <td>405.96</td>
-      <td>1.00</td>
+      <td>1729.02</td>
+      <td>368.52</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.81</td>
+      <td>-0.83</td>
       <td>0.04</td>
       <td>-0.88</td>
-      <td>-0.75</td>
+      <td>-0.77</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>11.32</td>
-      <td>43.81</td>
-      <td>1.14</td>
+      <td>6.96</td>
+      <td>38.97</td>
+      <td>1.23</td>
     </tr>
   </tbody>
 </table>
@@ -4668,51 +4504,51 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.226</td>
-      <td>0.041</td>
-      <td>-0.283</td>
-      <td>-0.154</td>
-      <td>0.002</td>
+      <td>-0.221</td>
+      <td>0.038</td>
+      <td>-0.277</td>
+      <td>-0.157</td>
       <td>0.001</td>
-      <td>523.0</td>
-      <td>406.0</td>
-      <td>1.00</td>
+      <td>0.001</td>
+      <td>1729.0</td>
+      <td>369.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.810</td>
-      <td>0.044</td>
-      <td>-0.881</td>
-      <td>-0.747</td>
-      <td>0.013</td>
+      <td>-0.828</td>
+      <td>0.036</td>
+      <td>-0.883</td>
+      <td>-0.770</td>
+      <td>0.014</td>
       <td>0.010</td>
-      <td>11.0</td>
-      <td>44.0</td>
-      <td>1.14</td>
+      <td>7.0</td>
+      <td>39.0</td>
+      <td>1.23</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>0.585</td>
-      <td>0.062</td>
-      <td>0.486</td>
-      <td>0.677</td>
-      <td>0.012</td>
-      <td>0.009</td>
-      <td>27.0</td>
+      <td>0.607</td>
+      <td>0.054</td>
+      <td>0.522</td>
+      <td>0.695</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>12.0</td>
       <td>95.0</td>
-      <td>1.07</td>
+      <td>1.12</td>
     </tr>
     <tr>
       <th>diff_p</th>
-      <td>0.136</td>
-      <td>0.014</td>
-      <td>0.113</td>
-      <td>0.157</td>
+      <td>0.141</td>
+      <td>0.012</td>
+      <td>0.121</td>
+      <td>0.160</td>
+      <td>0.003</td>
       <td>0.002</td>
-      <td>0.002</td>
-      <td>35.0</td>
-      <td>172.0</td>
-      <td>1.06</td>
+      <td>15.0</td>
+      <td>108.0</td>
+      <td>1.10</td>
     </tr>
   </tbody>
 </table>
@@ -4742,7 +4578,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7f00d4c6eef0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7f9d01a890e0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -4768,7 +4604,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_106_0.png" src="../_images/11_god_spiked_the_integers_106_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_102_0.png" src="../_images/11_god_spiked_the_integers_102_0.png" />
 </div>
 </div>
 <p>What above plot shows is that only for departments C &amp; E, there was a lower rate of admissions for females. Now this is not in sync with what we observed earlier where the model was telling that females should expect an overall 14% lower chance of admission.</p>
@@ -4827,7 +4663,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f00d439ea70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f9d011b5710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -4862,99 +4698,99 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.531</td>
-      <td>0.553</td>
-      <td>-1.417</td>
-      <td>0.417</td>
-      <td>0.114</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>88.0</td>
-      <td>1.07</td>
+      <td>-0.558</td>
+      <td>0.540</td>
+      <td>-1.387</td>
+      <td>0.346</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>45.0</td>
+      <td>71.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.436</td>
-      <td>0.553</td>
-      <td>-1.287</td>
-      <td>0.554</td>
-      <td>0.115</td>
-      <td>0.083</td>
-      <td>24.0</td>
-      <td>86.0</td>
-      <td>1.07</td>
+      <td>-0.465</td>
+      <td>0.539</td>
+      <td>-1.398</td>
+      <td>0.331</td>
+      <td>0.081</td>
+      <td>0.058</td>
+      <td>47.0</td>
+      <td>76.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[0]</th>
-      <td>1.114</td>
-      <td>0.556</td>
-      <td>0.313</td>
-      <td>2.127</td>
-      <td>0.114</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>88.0</td>
-      <td>1.07</td>
+      <td>1.141</td>
+      <td>0.543</td>
+      <td>0.213</td>
+      <td>1.949</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>45.0</td>
+      <td>77.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[1]</th>
-      <td>1.069</td>
-      <td>0.560</td>
-      <td>0.201</td>
-      <td>2.024</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>24.0</td>
+      <td>1.095</td>
+      <td>0.545</td>
+      <td>0.233</td>
+      <td>1.954</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>46.0</td>
       <td>92.0</td>
-      <td>1.07</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[2]</th>
-      <td>-0.149</td>
-      <td>0.555</td>
-      <td>-1.108</td>
-      <td>0.733</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>89.0</td>
-      <td>1.07</td>
+      <td>-0.121</td>
+      <td>0.544</td>
+      <td>-0.926</td>
+      <td>0.816</td>
+      <td>0.084</td>
+      <td>0.060</td>
+      <td>45.0</td>
+      <td>77.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[3]</th>
-      <td>-0.179</td>
-      <td>0.558</td>
-      <td>-1.013</td>
-      <td>0.840</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>88.0</td>
-      <td>1.07</td>
+      <td>-0.153</td>
+      <td>0.543</td>
+      <td>-0.988</td>
+      <td>0.751</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>45.0</td>
+      <td>73.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[4]</th>
-      <td>-0.625</td>
-      <td>0.559</td>
-      <td>-1.549</td>
-      <td>0.282</td>
-      <td>0.114</td>
-      <td>0.082</td>
-      <td>25.0</td>
-      <td>90.0</td>
-      <td>1.07</td>
+      <td>-0.598</td>
+      <td>0.547</td>
+      <td>-1.438</td>
+      <td>0.320</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>46.0</td>
+      <td>77.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[5]</th>
-      <td>-2.178</td>
-      <td>0.568</td>
-      <td>-3.086</td>
-      <td>-1.224</td>
-      <td>0.115</td>
-      <td>0.085</td>
-      <td>25.0</td>
-      <td>97.0</td>
-      <td>1.07</td>
+      <td>-2.151</td>
+      <td>0.553</td>
+      <td>-3.064</td>
+      <td>-1.292</td>
+      <td>0.084</td>
+      <td>0.060</td>
+      <td>46.0</td>
+      <td>95.0</td>
+      <td>1.05</td>
     </tr>
   </tbody>
 </table>
@@ -5011,122 +4847,122 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.531</td>
-      <td>0.553</td>
-      <td>-1.417</td>
-      <td>0.417</td>
-      <td>0.114</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>88.0</td>
-      <td>1.07</td>
+      <td>-0.558</td>
+      <td>0.540</td>
+      <td>-1.387</td>
+      <td>0.346</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>45.0</td>
+      <td>71.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.436</td>
-      <td>0.553</td>
-      <td>-1.287</td>
-      <td>0.554</td>
-      <td>0.115</td>
-      <td>0.083</td>
-      <td>24.0</td>
-      <td>86.0</td>
-      <td>1.07</td>
+      <td>-0.465</td>
+      <td>0.539</td>
+      <td>-1.398</td>
+      <td>0.331</td>
+      <td>0.081</td>
+      <td>0.058</td>
+      <td>47.0</td>
+      <td>76.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[0]</th>
-      <td>1.114</td>
-      <td>0.556</td>
-      <td>0.313</td>
-      <td>2.127</td>
-      <td>0.114</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>88.0</td>
-      <td>1.07</td>
+      <td>1.141</td>
+      <td>0.543</td>
+      <td>0.213</td>
+      <td>1.949</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>45.0</td>
+      <td>77.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[1]</th>
-      <td>1.069</td>
-      <td>0.560</td>
-      <td>0.201</td>
-      <td>2.024</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>24.0</td>
+      <td>1.095</td>
+      <td>0.545</td>
+      <td>0.233</td>
+      <td>1.954</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>46.0</td>
       <td>92.0</td>
-      <td>1.07</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[2]</th>
-      <td>-0.149</td>
-      <td>0.555</td>
-      <td>-1.108</td>
-      <td>0.733</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>89.0</td>
-      <td>1.07</td>
+      <td>-0.121</td>
+      <td>0.544</td>
+      <td>-0.926</td>
+      <td>0.816</td>
+      <td>0.084</td>
+      <td>0.060</td>
+      <td>45.0</td>
+      <td>77.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[3]</th>
-      <td>-0.179</td>
-      <td>0.558</td>
-      <td>-1.013</td>
-      <td>0.840</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>24.0</td>
-      <td>88.0</td>
-      <td>1.07</td>
+      <td>-0.153</td>
+      <td>0.543</td>
+      <td>-0.988</td>
+      <td>0.751</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>45.0</td>
+      <td>73.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[4]</th>
-      <td>-0.625</td>
-      <td>0.559</td>
-      <td>-1.549</td>
-      <td>0.282</td>
-      <td>0.114</td>
-      <td>0.082</td>
-      <td>25.0</td>
-      <td>90.0</td>
-      <td>1.07</td>
+      <td>-0.598</td>
+      <td>0.547</td>
+      <td>-1.438</td>
+      <td>0.320</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>46.0</td>
+      <td>77.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>delta[5]</th>
-      <td>-2.178</td>
-      <td>0.568</td>
-      <td>-3.086</td>
-      <td>-1.224</td>
-      <td>0.115</td>
-      <td>0.085</td>
-      <td>25.0</td>
-      <td>97.0</td>
-      <td>1.07</td>
+      <td>-2.151</td>
+      <td>0.553</td>
+      <td>-3.064</td>
+      <td>-1.292</td>
+      <td>0.084</td>
+      <td>0.060</td>
+      <td>46.0</td>
+      <td>95.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>-0.095</td>
-      <td>0.079</td>
-      <td>-0.237</td>
-      <td>0.019</td>
-      <td>0.002</td>
-      <td>0.002</td>
-      <td>1142.0</td>
-      <td>1296.0</td>
+      <td>-0.093</td>
+      <td>0.081</td>
+      <td>-0.221</td>
+      <td>0.036</td>
+      <td>0.004</td>
+      <td>0.003</td>
+      <td>488.0</td>
+      <td>701.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>diff_p</th>
       <td>-0.021</td>
       <td>0.018</td>
-      <td>-0.052</td>
-      <td>0.005</td>
+      <td>-0.050</td>
+      <td>0.009</td>
       <td>0.001</td>
-      <td>0.000</td>
-      <td>1051.0</td>
-      <td>1031.0</td>
+      <td>0.001</td>
+      <td>429.0</td>
+      <td>665.0</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -5214,10 +5050,10 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 12 calls to &lt;function _random_binomial at 0x7f00d4c6eef0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 12 calls to &lt;function _random_binomial at 0x7f9d01a890e0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.99687, 1.0019401)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.00347, 0.997598)
 </pre></div>
 </div>
 </div>
@@ -5229,7 +5065,7 @@ ValueError: The number of observations should be the same across all models
 <p>Counts of unique tool types for 10 historical Oceanic societies</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">KLINE_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Kline</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span>
 </pre></div>
 </div>
@@ -5372,7 +5208,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_126_0.png" src="../_images/11_god_spiked_the_integers_126_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_122_0.png" src="../_images/11_god_spiked_the_integers_122_0.png" />
 </div>
 </div>
 </div>
@@ -5387,7 +5223,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=1094852200000.0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=238433200000.0&gt;
 </pre></div>
 </div>
 </div>
@@ -5403,7 +5239,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_130_0.png" src="../_images/11_god_spiked_the_integers_130_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_126_0.png" src="../_images/11_god_spiked_the_integers_126_0.png" />
 </div>
 </div>
 </div>
@@ -5422,7 +5258,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_132_0.png" src="../_images/11_god_spiked_the_integers_132_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_128_0.png" src="../_images/11_god_spiked_the_integers_128_0.png" />
 </div>
 </div>
 </div>
@@ -5441,7 +5277,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_134_0.png" src="../_images/11_god_spiked_the_integers_134_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_130_0.png" src="../_images/11_god_spiked_the_integers_130_0.png" />
 </div>
 </div>
 </div>
@@ -5460,7 +5296,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_136_0.png" src="../_images/11_god_spiked_the_integers_136_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_132_0.png" src="../_images/11_god_spiked_the_integers_132_0.png" />
 </div>
 </div>
 </div>
@@ -5475,7 +5311,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_138_0.png" src="../_images/11_god_spiked_the_integers_138_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_134_0.png" src="../_images/11_god_spiked_the_integers_134_0.png" />
 </div>
 </div>
 </div>
@@ -5497,7 +5333,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Kline&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Kline&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;total_tools&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;P&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;cid&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span>
@@ -5542,7 +5378,7 @@ Instructions for updating:
 The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_zero_outside_support` (with the opposite sense).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f00d439ea70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f9d011b5710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -5702,24 +5538,24 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     <tr>
       <th>m11.10</th>
       <td>0</td>
-      <td>-43.780280</td>
-      <td>7.968153</td>
+      <td>-42.188448</td>
+      <td>6.464446</td>
       <td>0.000000</td>
-      <td>0.957199</td>
-      <td>6.209099</td>
-      <td>0.00000</td>
+      <td>0.992772</td>
+      <td>6.048315</td>
+      <td>0.000000</td>
       <td>True</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m11.9</th>
       <td>1</td>
-      <td>-70.356914</td>
-      <td>7.714122</td>
-      <td>26.576634</td>
-      <td>0.042801</td>
-      <td>15.787923</td>
-      <td>14.60391</td>
+      <td>-70.542625</td>
+      <td>8.137113</td>
+      <td>28.354177</td>
+      <td>0.007228</td>
+      <td>15.763441</td>
+      <td>15.639499</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -5774,7 +5610,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
   &quot;Estimated shape parameter of Pareto distribution is greater than 0.7 for &quot;
 </pre></div>
 </div>
-<img alt="../_images/11_god_spiked_the_integers_150_1.png" src="../_images/11_god_spiked_the_integers_150_1.png" />
+<img alt="../_images/11_god_spiked_the_integers_146_1.png" src="../_images/11_god_spiked_the_integers_146_1.png" />
 </div>
 </div>
 <p>Open points are low contact societies and closed points are the high contact ones. Dashed curve is the posterior mean for low contact societies.</p>
@@ -5818,7 +5654,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11_god_spiked_the_integers_153_0.png" src="../_images/11_god_spiked_the_integers_153_0.png" />
+<img alt="../_images/11_god_spiked_the_integers_149_0.png" src="../_images/11_god_spiked_the_integers_149_0.png" />
 </div>
 </div>
 </div>
@@ -5826,7 +5662,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <h3>Code 11.49<a class="headerlink" href="#code-11-49" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Kline&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Kline&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;total_tools&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;population&quot;</span>  <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;cid&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span>
@@ -5928,25 +5764,25 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
       <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>2</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
       <td>2.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -5958,7 +5794,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>6</th>
-      <td>3.0</td>
+      <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -5970,25 +5806,25 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>8</th>
-      <td>0.0</td>
+      <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>1.0</td>
+      <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>3.0</td>
+      <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>2.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6024,7 +5860,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>17</th>
-      <td>4.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -6042,85 +5878,85 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>20</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>5.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>3.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>4.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>4.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>3.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>29</th>
       <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>21</th>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26</th>
       <td>3.0</td>
-      <td>7</td>
       <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>31</th>
-      <td>7.0</td>
-      <td>7</td>
+      <th>27</th>
+      <td>0.0</td>
       <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>32</th>
+      <th>28</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>30</th>
       <td>4.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
     <tr>
+      <th>31</th>
+      <td>5.0</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>6.0</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+    <tr>
       <th>33</th>
-      <td>2.0</td>
+      <td>6.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
@@ -6136,7 +5972,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the offset</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;log_days&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
 
-<span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Monastry&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
+<span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Monastry&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;log_days&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;monastery&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;y&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
@@ -6233,27 +6069,27 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
   <tbody>
     <tr>
       <th>lambda_old</th>
-      <td>1.716</td>
-      <td>0.219</td>
-      <td>1.36</td>
-      <td>2.041</td>
-      <td>0.013</td>
-      <td>0.009</td>
-      <td>279.0</td>
-      <td>386.0</td>
-      <td>1.0</td>
+      <td>1.073</td>
+      <td>0.191</td>
+      <td>0.774</td>
+      <td>1.357</td>
+      <td>0.010</td>
+      <td>0.007</td>
+      <td>348.0</td>
+      <td>196.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>lambda_new</th>
-      <td>0.621</td>
-      <td>0.134</td>
-      <td>0.39</td>
-      <td>0.799</td>
+      <td>0.747</td>
+      <td>0.154</td>
+      <td>0.489</td>
+      <td>0.979</td>
+      <td>0.008</td>
       <td>0.006</td>
-      <td>0.004</td>
-      <td>407.0</td>
-      <td>152.0</td>
-      <td>1.0</td>
+      <td>346.0</td>
+      <td>155.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -6362,11 +6198,11 @@ p (2, 3, 1)
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-    array([[ 0.29666856, -0.51377624],
-           [-0.15199618, -0.18207188]], dtype=float32)&gt;,
+    array([[ 0.68775296,  0.36823305],
+           [ 0.14611629, -0.7873784 ]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[0.40725192],
-           [0.1746672 ]], dtype=float32)&gt;,
+    array([[0.8873467],
+           [0.2298085]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 3), dtype=int32, numpy=
     array([[0, 0, 0],
            [0, 0, 0]], dtype=int32)&gt;
@@ -6417,7 +6253,7 @@ p (2, 3, 1)
 <p>It is computationally easier to use Poisson rather than multinomial likelihoods</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">UCBADMIT_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">UCBadmit</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 
 <span class="n">d</span>
 </pre></div>
@@ -6552,7 +6388,7 @@ p (2, 3, 1)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>    
     <span class="s2">&quot;applications&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s2">&quot;admit&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> 
     <span class="s2">&quot;reject&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
@@ -6641,7 +6477,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 7 calls to &lt;function random_poisson at 0x7f00d4920c20&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 7 calls to &lt;function random_poisson at 0x7f9d01737dd0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -6657,7 +6493,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.9947735&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.99463284&gt;
 </pre></div>
 </div>
 </div>
@@ -6678,7 +6514,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.38384652&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.38812736&gt;
 </pre></div>
 </div>
 </div>
@@ -6701,10 +6537,10 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([41.01544  , 36.24167  ,  3.973585 , ..., 80.17999  , 59.808323 ,
-         2.9909854], dtype=float32),
- array([12.330867, 37.39497 , 32.579926, ..., 57.37626 , 14.657174,
-         6.550856], dtype=float32))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([11.011718 , 43.932    , 19.108074 , ...,  7.6593094, 96.57467  ,
+        24.825937 ], dtype=float32),
+ array([16.865501, 10.624562, 26.222977, ..., 10.803523,  3.4213  ,
+        30.339111], dtype=float32))
 </pre></div>
 </div>
 </div>
@@ -6726,8 +6562,7 @@ p (2, 3, 1)
 <h3>Code 11.66  - 11.69 (TODO)<a class="headerlink" href="#code-11-66-11-69-todo" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">AUSTIN_CATS_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">AustinCats</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;adopt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">out_event</span> <span class="o">==</span> <span class="s2">&quot;Adoption&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">dat</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">days_to_event</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">days_to_event</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
            <span class="n">color_id</span><span class="o">=</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">color</span> <span class="o">!=</span> <span class="s2">&quot;Black&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>

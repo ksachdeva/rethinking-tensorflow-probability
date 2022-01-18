@@ -1278,6 +1278,7 @@
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
   <span class="o">!</span>pip install watermark
+  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -1305,6 +1306,11 @@
 <span class="c1"># visualization </span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">dataframe_to_tensors</span>
+<span class="kn">from</span> <span class="nn">rethinking.mcmc</span> <span class="kn">import</span> <span class="n">sample_posterior</span>
+
+
 <span class="c1"># aliases</span>
 <span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
 <span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
@@ -1313,15 +1319,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:41:31.521388: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 23:41:31.521425: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:25:26.557115: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:25:26.557149: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas,rethinking
 </pre></div>
 </div>
 </div>
@@ -1332,6 +1338,7 @@ tensorflow_probability: 0.15.0
 arviz                 : 0.11.4
 scipy                 : 1.7.3
 pandas                : 1.3.5
+rethinking            : 0.1.0
 </pre></div>
 </div>
 </div>
@@ -1340,165 +1347,6 @@ pandas                : 1.3.5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tensorflow MCMC sampling helpers</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
-<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
-
-<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
-        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
-        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
-        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
-        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-              <span class="n">bijectors</span><span class="p">,</span> 
-              <span class="n">step_size</span><span class="p">,</span> 
-              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
-              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
-              <span class="p">):</span>    
-
-    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-        <span class="p">)</span>
-
-    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
-                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
-                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
-                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
-
-    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
-        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
-
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
-        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
-        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
-        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-    <span class="p">)</span>    
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
-        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
-        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
-        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
-
-<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
-              <span class="n">observed_data</span><span class="p">,</span> 
-              <span class="n">params</span><span class="p">,</span> 
-              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
-        
-    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
-
-    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-                                  <span class="n">bijectors</span><span class="p">,</span>
-                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
-                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
-                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
-                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
-
-    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
-    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
-        
-    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
-        
-        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
-
-    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
-
-    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
-                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Dataset URLs</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
-<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/Experimental/data&quot;</span>
-
-<span class="n">HOWELL_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Howell1.csv&quot;</span>
-<span class="n">CHERRY_BLOSSOMS_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/cherry_blossoms.csv&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Plotting utilities</span>
 </pre></div>
 </div>
 </div>
@@ -1531,14 +1379,14 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:41:33.617264: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 23:41:33.617297: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 23:41:33.617318: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 23:41:33.617625: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:25:28.667122: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:25:28.667151: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:25:28.667174: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:25:28.667484: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_16_1.png" src="../_images/04_geocentric_models_16_1.png" />
+<img alt="../_images/04_geocentric_models_11_1.png" src="../_images/04_geocentric_models_11_1.png" />
 </div>
 </div>
 </div>
@@ -1558,7 +1406,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_19_0.png" src="../_images/04_geocentric_models_19_0.png" />
+<img alt="../_images/04_geocentric_models_14_0.png" src="../_images/04_geocentric_models_14_0.png" />
 </div>
 </div>
 </div>
@@ -1578,7 +1426,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_21_0.png" src="../_images/04_geocentric_models_21_0.png" />
+<img alt="../_images/04_geocentric_models_16_0.png" src="../_images/04_geocentric_models_16_0.png" />
 </div>
 </div>
 </div>
@@ -1630,7 +1478,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_27_1.png" src="../_images/04_geocentric_models_27_1.png" />
+<img alt="../_images/04_geocentric_models_22_1.png" src="../_images/04_geocentric_models_22_1.png" />
 </div>
 </div>
 </div>
@@ -1644,7 +1492,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <p>We are now building the Gaussian model of height</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">HOWELL_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Howell1</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1839,7 +1687,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_40_0.png" src="../_images/04_geocentric_models_40_0.png" />
+<img alt="../_images/04_geocentric_models_35_0.png" src="../_images/04_geocentric_models_35_0.png" />
 </div>
 </div>
 </div>
@@ -1860,7 +1708,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_42_0.png" src="../_images/04_geocentric_models_42_0.png" />
+<img alt="../_images/04_geocentric_models_37_0.png" src="../_images/04_geocentric_models_37_0.png" />
 </div>
 </div>
 </div>
@@ -1881,7 +1729,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_44_0.png" src="../_images/04_geocentric_models_44_0.png" />
+<img alt="../_images/04_geocentric_models_39_0.png" src="../_images/04_geocentric_models_39_0.png" />
 </div>
 </div>
 <p>Now, what the above plot is showing that there are about 4% of people that have a <strong>negative height</strong> and about 18% on the right side have height not common at all for humans to attain ! So clearly this choice of scale (i.e. 100) is not a good one as the prior.</p>
@@ -1955,7 +1803,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_51_0.png" src="../_images/04_geocentric_models_51_0.png" />
+<img alt="../_images/04_geocentric_models_46_0.png" src="../_images/04_geocentric_models_46_0.png" />
 </div>
 </div>
 </div>
@@ -1969,7 +1817,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_53_0.png" src="../_images/04_geocentric_models_53_0.png" />
+<img alt="../_images/04_geocentric_models_48_0.png" src="../_images/04_geocentric_models_48_0.png" />
 </div>
 </div>
 </div>
@@ -1997,7 +1845,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_56_0.png" src="../_images/04_geocentric_models_56_0.png" />
+<img alt="../_images/04_geocentric_models_51_0.png" src="../_images/04_geocentric_models_51_0.png" />
 </div>
 </div>
 </div>
@@ -2017,7 +1865,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_58_0.png" src="../_images/04_geocentric_models_58_0.png" />
+<img alt="../_images/04_geocentric_models_53_0.png" src="../_images/04_geocentric_models_53_0.png" />
 </div>
 </div>
 <p>As should be clear from the plot, the densities here are very close <em>normal distribution</em>. As sample size increases, posterior densities show this behavior.</p>
@@ -2034,7 +1882,7 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample_mu - [153.81909 155.32663]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample_mu - [153.86935 155.37689]
 sample_sigma - [7.231156 8.316583]
 </pre></div>
 </div>
@@ -2090,7 +1938,7 @@ sample_sigma - [7.231156 8.316583]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_65_0.png" src="../_images/04_geocentric_models_65_0.png" />
+<img alt="../_images/04_geocentric_models_60_0.png" src="../_images/04_geocentric_models_60_0.png" />
 </div>
 </div>
 </div>
@@ -2109,7 +1957,7 @@ sample_sigma - [7.231156 8.316583]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_67_0.png" src="../_images/04_geocentric_models_67_0.png" />
+<img alt="../_images/04_geocentric_models_62_0.png" src="../_images/04_geocentric_models_62_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2121,7 +1969,7 @@ sample_sigma - [7.231156 8.316583]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_68_0.png" src="../_images/04_geocentric_models_68_0.png" />
+<img alt="../_images/04_geocentric_models_63_0.png" src="../_images/04_geocentric_models_63_0.png" />
 </div>
 </div>
 </div>
@@ -2133,7 +1981,7 @@ sample_sigma - [7.231156 8.316583]
 <p>We will reload our data frame and start to use quadratic approximiation now</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">HOWELL_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Howell1</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
 <span class="n">d2</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">]</span>
@@ -2316,7 +2164,7 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_77_0.png" src="../_images/04_geocentric_models_77_0.png" />
+<img alt="../_images/04_geocentric_models_72_0.png" src="../_images/04_geocentric_models_72_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2353,17 +2201,17 @@ define as a plain function and return log probs yourself. An example of plain fu
   <tbody>
     <tr>
       <th>mu[0]</th>
-      <td>154.7</td>
-      <td>0.42</td>
-      <td>154.02</td>
-      <td>155.35</td>
+      <td>154.66</td>
+      <td>0.40</td>
+      <td>154.05</td>
+      <td>155.27</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>7.8</td>
-      <td>0.27</td>
+      <td>7.79</td>
+      <td>0.28</td>
       <td>7.37</td>
-      <td>8.26</td>
+      <td>8.24</td>
     </tr>
   </tbody>
 </table>
@@ -2451,16 +2299,16 @@ define as a plain function and return log probs yourself. An example of plain fu
     <tr>
       <th>mu[0]</th>
       <td>177.87</td>
-      <td>0.10</td>
-      <td>177.71</td>
+      <td>0.11</td>
+      <td>177.69</td>
       <td>178.03</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>24.65</td>
-      <td>0.86</td>
-      <td>23.36</td>
-      <td>26.06</td>
+      <td>24.66</td>
+      <td>0.97</td>
+      <td>23.04</td>
+      <td>25.94</td>
     </tr>
   </tbody>
 </table>
@@ -2485,8 +2333,8 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-array([[ 0.16752042, -0.00050491],
-       [-0.00050491,  0.07639313]], dtype=float32)&gt;
+array([[ 0.14446329, -0.00023427],
+       [-0.00023427,  0.06927266]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -2503,10 +2351,10 @@ array([[ 0.16752042, -0.00050491],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor([0.16752042 0.07639313], shape=(2,), dtype=float32)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor([0.14446329 0.06927266], shape=(2,), dtype=float32)
 tf.Tensor(
-[[ 1.         -0.00446331]
- [-0.00446331  1.        ]], shape=(2, 2), dtype=float32)
+[[ 1.         -0.00234185]
+ [-0.00234185  1.        ]], shape=(2, 2), dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -2523,8 +2371,8 @@ tf.Tensor(
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([8.151758 , 8.233589 , 8.307807 , 8.088284 , 8.105533 , 7.988879 ,
-       7.8897505, 8.257726 , 7.892543 , 7.9046435], dtype=float32)&gt;
+array([7.4819794, 7.4819794, 7.5820866, 7.5187445, 7.9234605, 7.652619 ,
+       7.5164247, 7.5164247, 7.5164247, 7.7264996], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -2569,17 +2417,17 @@ array([8.151758 , 8.233589 , 8.307807 , 8.088284 , 8.105533 , 7.988879 ,
   <tbody>
     <tr>
       <th>mu</th>
-      <td>154.73</td>
-      <td>0.41</td>
-      <td>154.02</td>
-      <td>155.35</td>
+      <td>154.68</td>
+      <td>0.38</td>
+      <td>154.07</td>
+      <td>155.23</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>7.81</td>
-      <td>0.28</td>
-      <td>7.43</td>
-      <td>8.29</td>
+      <td>7.79</td>
+      <td>0.26</td>
+      <td>7.41</td>
+      <td>8.22</td>
     </tr>
   </tbody>
 </table>
@@ -2600,10 +2448,10 @@ array([8.151758 , 8.233589 , 8.307807 , 8.088284 , 8.105533 , 7.988879 ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(154.73447650146485,
- 7.806289497375488,
- array([[ 0.1678561 , -0.00050593],
-        [-0.00050593,  0.0765462 ]]))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(154.68332263183595,
+ 7.7903014755249025,
+ array([[ 0.14475275, -0.00023474],
+        [-0.00023474,  0.06941149]]))
 </pre></div>
 </div>
 </div>
@@ -2625,13 +2473,13 @@ Instructions for updating:
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(1000, 2), dtype=float64, numpy=
-array([[154.27310597,   7.47780495],
-       [154.51941157,   7.29524192],
-       [153.8513677 ,   7.85818207],
+array([[154.55183166,   7.65606761],
+       [154.65513164,   7.67919853],
+       [154.28469653,   8.24004098],
        ...,
-       [155.09690656,   7.89930434],
-       [154.82696311,   8.01876297],
-       [154.28198037,   8.00833606]])&gt;
+       [154.9857469 ,   7.79686255],
+       [154.79525326,   8.00185642],
+       [154.10135341,   7.14937769]])&gt;
 </pre></div>
 </div>
 </div>
@@ -2651,7 +2499,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_98_0.png" src="../_images/04_geocentric_models_98_0.png" />
+<img alt="../_images/04_geocentric_models_93_0.png" src="../_images/04_geocentric_models_93_0.png" />
 </div>
 </div>
 <p>The plot clearly shows a relationship between weight and height.</p>
@@ -2704,7 +2552,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_103_0.png" src="../_images/04_geocentric_models_103_0.png" />
+<img alt="../_images/04_geocentric_models_98_0.png" src="../_images/04_geocentric_models_98_0.png" />
 </div>
 </div>
 <p>‘—’ represents a zero - no one is shorter than this &amp; also is shown the line for world’s tallest person.</p>
@@ -2723,7 +2571,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_106_0.png" src="../_images/04_geocentric_models_106_0.png" />
+<img alt="../_images/04_geocentric_models_101_0.png" src="../_images/04_geocentric_models_101_0.png" />
 </div>
 </div>
 </div>
@@ -2754,7 +2602,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_108_0.png" src="../_images/04_geocentric_models_108_0.png" />
+<img alt="../_images/04_geocentric_models_103_0.png" src="../_images/04_geocentric_models_103_0.png" />
 </div>
 </div>
 <p>Now this is much sensible plot; nearly all lines in the joint prior for <span class="math notranslate nohighlight">\(\alpha\)</span> &amp; <span class="math notranslate nohighlight">\(\beta\)</span> are now in human reason.</p>
@@ -2768,7 +2616,7 @@ array([[154.27310597,   7.47780495],
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read the data set</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">HOWELL_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Howell1</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d2</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">]</span>
 
 <span class="c1"># define the average height</span>
@@ -2879,7 +2727,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f8acb155320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f26f8621710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -3021,7 +2869,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_124_0.png" src="../_images/04_geocentric_models_124_0.png" />
+<img alt="../_images/04_geocentric_models_119_0.png" src="../_images/04_geocentric_models_119_0.png" />
 </div>
 </div>
 <p>Now above line is a good line, quite plausible line (model) actually. However, we must not forget that there are an infinite number of other highly plausible lines near it. So we would next try to get them as well !</p>
@@ -3118,7 +2966,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f8acb155320&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f26f8621710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -3199,7 +3047,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_131_0.png" src="../_images/04_geocentric_models_131_0.png" />
+<img alt="../_images/04_geocentric_models_126_0.png" src="../_images/04_geocentric_models_126_0.png" />
 </div>
 </div>
 </div>
@@ -3215,7 +3063,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_133_0.png" src="../_images/04_geocentric_models_133_0.png" />
+<img alt="../_images/04_geocentric_models_128_0.png" src="../_images/04_geocentric_models_128_0.png" />
 </div>
 </div>
 </div>
@@ -3260,7 +3108,7 @@ array([[154.27310597,   7.47780495],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_138_0.png" src="../_images/04_geocentric_models_138_0.png" />
+<img alt="../_images/04_geocentric_models_133_0.png" src="../_images/04_geocentric_models_133_0.png" />
 </div>
 </div>
 <p>There are 46 columns in <span class="math notranslate nohighlight">\(\mu\)</span> because we fed it 46 different values of weight.</p>
@@ -3302,7 +3150,7 @@ array([[154.27310597,   7.47780495],
   hdi_data = hdi(y, hdi_prob=hdi_prob, circular=circular, multimodal=False, **hdi_kwargs)
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_143_1.png" src="../_images/04_geocentric_models_143_1.png" />
+<img alt="../_images/04_geocentric_models_138_1.png" src="../_images/04_geocentric_models_138_1.png" />
 </div>
 </div>
 </div>
@@ -3330,7 +3178,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_146_0.png" src="../_images/04_geocentric_models_146_0.png" />
+<img alt="../_images/04_geocentric_models_141_0.png" src="../_images/04_geocentric_models_141_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3398,7 +3246,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_151_0.png" src="../_images/04_geocentric_models_151_0.png" />
+<img alt="../_images/04_geocentric_models_146_0.png" src="../_images/04_geocentric_models_146_0.png" />
 </div>
 </div>
 </div>
@@ -3425,8 +3273,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 <p>Polynomial Regression is the first one. It helps to build curved associations. This time we will use full data instead of just adults</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">HOWELL_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Howell1</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3692,7 +3539,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_167_0.png" src="../_images/04_geocentric_models_167_0.png" />
+<img alt="../_images/04_geocentric_models_162_0.png" src="../_images/04_geocentric_models_162_0.png" />
 </div>
 </div>
 </div>
@@ -3805,7 +3652,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_173_0.png" src="../_images/04_geocentric_models_173_0.png" />
+<img alt="../_images/04_geocentric_models_168_0.png" src="../_images/04_geocentric_models_168_0.png" />
 </div>
 </div>
 </div>
@@ -3816,7 +3663,7 @@ equivalent to what you see above in Code 4.53 until 4.56</p>
 <h4>Code 4.72<a class="headerlink" href="#code-4-72" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHERRY_BLOSSOMS_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">CherryBlossoms</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 
 <span class="n">d</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
@@ -4055,7 +3902,7 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_184_0.png" src="../_images/04_geocentric_models_184_0.png" />
+<img alt="../_images/04_geocentric_models_179_0.png" src="../_images/04_geocentric_models_179_0.png" />
 </div>
 </div>
 </div>
@@ -4320,7 +4167,7 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_geocentric_models_190_0.png" src="../_images/04_geocentric_models_190_0.png" />
+<img alt="../_images/04_geocentric_models_185_0.png" src="../_images/04_geocentric_models_185_0.png" />
 </div>
 </div>
 </div>
@@ -4345,7 +4192,7 @@ Degree 2 =&gt; 3 Basis functions combine at each point</p>
   hdi_data = hdi(y, hdi_prob=hdi_prob, circular=circular, multimodal=False, **hdi_kwargs)
 </pre></div>
 </div>
-<img alt="../_images/04_geocentric_models_192_1.png" src="../_images/04_geocentric_models_192_1.png" />
+<img alt="../_images/04_geocentric_models_187_1.png" src="../_images/04_geocentric_models_187_1.png" />
 </div>
 </div>
 </div>

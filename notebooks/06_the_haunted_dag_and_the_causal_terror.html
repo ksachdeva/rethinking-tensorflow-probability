@@ -854,6 +854,7 @@
   <span class="o">!</span>pip install --upgrade -q daft
   <span class="o">!</span>pip install -q causalgraphicalmodels
   <span class="o">!</span>pip install -q watermark
+  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -884,6 +885,10 @@
 <span class="kn">import</span> <span class="nn">daft</span>
 <span class="kn">from</span> <span class="nn">causalgraphicalmodels</span> <span class="kn">import</span> <span class="n">CausalGraphicalModel</span>
 
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">dataframe_to_tensors</span>
+<span class="kn">from</span> <span class="nn">rethinking.mcmc</span> <span class="kn">import</span> <span class="n">sample_posterior</span>
+
 <span class="c1"># aliases</span>
 <span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
 <span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
@@ -892,15 +897,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:43:14.066915: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 23:43:14.066951: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:27:07.726211: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:27:07.726248: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas,statsmodels,daft,causalgraphicalmodels
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas,statsmodels,daft,causalgraphicalmodels,rethinking
 </pre></div>
 </div>
 </div>
@@ -914,6 +919,7 @@ pandas                : 1.3.5
 statsmodels           : 0.13.1
 daft                  : 0.1.2
 causalgraphicalmodels : 0.0.4
+rethinking            : 0.1.0
 </pre></div>
 </div>
 </div>
@@ -922,184 +928,6 @@ causalgraphicalmodels : 0.0.4
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Tensorflow MCMC sampling helpers</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
-<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
-
-<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
-        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
-        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
-        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
-        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-              <span class="n">bijectors</span><span class="p">,</span> 
-              <span class="n">step_size</span><span class="p">,</span> 
-              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
-              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
-              <span class="p">):</span>    
-
-    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-        <span class="p">)</span>
-
-    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
-                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
-                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
-                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
-
-    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
-        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
-
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
-        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
-        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
-        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-    <span class="p">)</span>    
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
-        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
-        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
-        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
-
-<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
-              <span class="n">observed_data</span><span class="p">,</span> 
-              <span class="n">params</span><span class="p">,</span> 
-              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
-        
-    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
-
-    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-                                  <span class="n">bijectors</span><span class="p">,</span>
-                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
-                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
-                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
-                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
-
-    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
-    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
-        
-    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
-        
-        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
-
-    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
-
-    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
-                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### DATASET URLS &amp; Utils</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
-<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/master/data&quot;</span>
-
-<span class="n">WAFFLE_DIVORCE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/WaffleDivorce.csv&quot;</span>
-<span class="n">MILK_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/milk.csv&quot;</span>
-<span class="n">HOWELL_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Howell1.csv&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A utility method to convert data (columns) from pandas dataframe</span>
-<span class="c1"># into tensors with appropriate type</span>
-<span class="k">def</span> <span class="nf">df_to_tensors</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">default_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; name : Name of the dataset</span>
-<span class="sd">        df : pandas dataframe</span>
-<span class="sd">        colums : a list of names that have the same type or</span>
-<span class="sd">                 a dictionary where keys are the column names and values are the tensorflow type (e.g. tf.float32)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>    
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">column_names</span> <span class="o">=</span> <span class="n">columns</span>        
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">default_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">column_names</span><span class="p">]</span>    
-        
-    <span class="c1"># build the cls</span>
-    <span class="n">tuple_cls</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">column_names</span><span class="p">)</span>    
-    <span class="c1"># build the obj</span>
-    <span class="k">return</span> <span class="n">tuple_cls</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1155,10 +983,10 @@ causalgraphicalmodels : 0.0.4
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:43:16.288237: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 23:43:16.288274: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 23:43:16.288296: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 23:43:16.288618: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:27:09.917046: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:27:09.917083: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:27:09.917106: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:27:09.918398: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1295,7 +1123,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <p>Very vague and bad priors are used in the model here so that we can be sure that priors are not responsible for what we are about to observe</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedHeight&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;leg_left&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_right&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedHeight&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;leg_left&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_right&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">])</span>
 
 <span class="k">def</span> <span class="nf">model_6_1</span><span class="p">(</span><span class="n">leg_left_data</span><span class="p">,</span> <span class="n">leg_right_data</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
@@ -1392,50 +1220,50 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.362</td>
-      <td>0.351</td>
-      <td>-0.178</td>
-      <td>0.936</td>
-      <td>0.048</td>
+      <td>0.220</td>
+      <td>0.358</td>
+      <td>-0.355</td>
+      <td>0.773</td>
+      <td>0.051</td>
       <td>0.036</td>
-      <td>53.0</td>
-      <td>80.0</td>
-      <td>1.03</td>
+      <td>50.0</td>
+      <td>137.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>-0.564</td>
-      <td>0.729</td>
-      <td>-1.605</td>
-      <td>0.726</td>
-      <td>0.177</td>
-      <td>0.127</td>
-      <td>18.0</td>
-      <td>28.0</td>
-      <td>1.05</td>
+      <td>1.953</td>
+      <td>0.684</td>
+      <td>0.616</td>
+      <td>2.893</td>
+      <td>0.277</td>
+      <td>0.209</td>
+      <td>6.0</td>
+      <td>21.0</td>
+      <td>1.28</td>
     </tr>
     <tr>
       <th>betaR</th>
-      <td>2.717</td>
-      <td>0.754</td>
-      <td>1.431</td>
-      <td>3.862</td>
-      <td>0.182</td>
-      <td>0.131</td>
-      <td>18.0</td>
-      <td>28.0</td>
-      <td>1.04</td>
+      <td>0.232</td>
+      <td>0.686</td>
+      <td>-0.851</td>
+      <td>1.480</td>
+      <td>0.279</td>
+      <td>0.208</td>
+      <td>6.0</td>
+      <td>16.0</td>
+      <td>1.27</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.661</td>
-      <td>0.048</td>
-      <td>0.589</td>
-      <td>0.740</td>
+      <td>0.664</td>
+      <td>0.047</td>
+      <td>0.584</td>
+      <td>0.733</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1144.0</td>
-      <td>1311.0</td>
+      <td>1045.0</td>
+      <td>2604.0</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -1450,7 +1278,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_25_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_25_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_20_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_20_0.png" />
 </div>
 </div>
 </div>
@@ -1469,7 +1297,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_27_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_27_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_22_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_22_0.png" />
 </div>
 </div>
 </div>
@@ -1484,7 +1312,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_29_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_29_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_24_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_24_0.png" />
 </div>
 </div>
 </div>
@@ -1585,38 +1413,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.214</td>
-      <td>0.346</td>
-      <td>-0.382</td>
-      <td>0.734</td>
+      <td>0.315</td>
+      <td>0.382</td>
+      <td>-0.268</td>
+      <td>0.949</td>
+      <td>0.048</td>
       <td>0.034</td>
-      <td>0.024</td>
-      <td>103.0</td>
-      <td>196.0</td>
-      <td>1.03</td>
+      <td>65.0</td>
+      <td>141.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>2.186</td>
-      <td>0.074</td>
-      <td>2.074</td>
-      <td>2.311</td>
+      <td>2.165</td>
+      <td>0.083</td>
+      <td>2.036</td>
+      <td>2.297</td>
+      <td>0.010</td>
       <td>0.007</td>
-      <td>0.005</td>
-      <td>105.0</td>
-      <td>194.0</td>
-      <td>1.03</td>
+      <td>64.0</td>
+      <td>130.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.663</td>
-      <td>0.049</td>
+      <td>0.664</td>
+      <td>0.047</td>
       <td>0.587</td>
-      <td>0.742</td>
+      <td>0.735</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1444.0</td>
-      <td>729.0</td>
+      <td>2239.0</td>
+      <td>3308.0</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -1635,7 +1463,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <p>Loading the dataset and creating new standardized (centered) columns</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">MILK_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Milk</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;kcal.per.g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;F&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;perc.fat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
@@ -1646,7 +1474,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s2">&quot;Milk&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Milk&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1796,39 +1624,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.016</td>
-      <td>0.084</td>
-      <td>-0.109</td>
-      <td>0.149</td>
-      <td>0.008</td>
-      <td>0.006</td>
-      <td>99.0</td>
-      <td>110.0</td>
+      <td>-0.005</td>
+      <td>0.088</td>
+      <td>-0.116</td>
+      <td>0.168</td>
+      <td>0.010</td>
+      <td>0.007</td>
+      <td>83.0</td>
+      <td>144.0</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>betaF</th>
-      <td>0.858</td>
-      <td>0.090</td>
-      <td>0.704</td>
-      <td>0.988</td>
-      <td>0.009</td>
+      <td>0.861</td>
+      <td>0.093</td>
+      <td>0.701</td>
+      <td>1.002</td>
       <td>0.007</td>
-      <td>81.0</td>
-      <td>356.0</td>
-      <td>1.04</td>
+      <td>0.005</td>
+      <td>168.0</td>
+      <td>229.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.486</td>
-      <td>0.068</td>
-      <td>0.379</td>
-      <td>0.585</td>
+      <td>0.491</td>
+      <td>0.061</td>
+      <td>0.399</td>
+      <td>0.582</td>
+      <td>0.003</td>
       <td>0.002</td>
-      <td>0.002</td>
-      <td>687.0</td>
-      <td>148.0</td>
-      <td>1.01</td>
+      <td>737.0</td>
+      <td>198.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -1873,39 +1701,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.004</td>
-      <td>0.075</td>
-      <td>-0.111</td>
-      <td>0.132</td>
+      <td>0.003</td>
+      <td>0.063</td>
+      <td>-0.117</td>
+      <td>0.093</td>
       <td>0.006</td>
       <td>0.005</td>
-      <td>135.0</td>
-      <td>172.0</td>
-      <td>1.00</td>
+      <td>108.0</td>
+      <td>132.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>-0.900</td>
-      <td>0.081</td>
-      <td>-1.021</td>
-      <td>-0.774</td>
-      <td>0.007</td>
+      <td>-0.911</td>
+      <td>0.074</td>
+      <td>-1.034</td>
+      <td>-0.805</td>
       <td>0.005</td>
-      <td>154.0</td>
-      <td>202.0</td>
+      <td>0.004</td>
+      <td>187.0</td>
+      <td>309.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.412</td>
-      <td>0.058</td>
-      <td>0.337</td>
-      <td>0.496</td>
-      <td>0.003</td>
+      <td>0.413</td>
+      <td>0.060</td>
+      <td>0.325</td>
+      <td>0.503</td>
       <td>0.002</td>
-      <td>541.0</td>
-      <td>227.0</td>
-      <td>1.03</td>
+      <td>0.001</td>
+      <td>975.0</td>
+      <td>202.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -1973,7 +1801,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f1da680fa70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fea6284c710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2008,51 +1836,51 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>-0.003</td>
-      <td>0.070</td>
-      <td>-0.107</td>
-      <td>0.113</td>
-      <td>0.005</td>
-      <td>0.003</td>
-      <td>223.0</td>
-      <td>345.0</td>
+      <td>-0.001</td>
+      <td>0.073</td>
+      <td>-0.132</td>
+      <td>0.094</td>
+      <td>0.006</td>
+      <td>0.004</td>
+      <td>166.0</td>
+      <td>225.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>betaF</th>
-      <td>0.235</td>
-      <td>0.194</td>
-      <td>-0.071</td>
-      <td>0.529</td>
-      <td>0.013</td>
-      <td>0.009</td>
-      <td>182.0</td>
-      <td>80.0</td>
+      <td>0.243</td>
+      <td>0.204</td>
+      <td>-0.051</td>
+      <td>0.558</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>185.0</td>
+      <td>160.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>-0.701</td>
-      <td>0.186</td>
-      <td>-1.020</td>
-      <td>-0.420</td>
-      <td>0.014</td>
-      <td>0.011</td>
-      <td>184.0</td>
-      <td>62.0</td>
+      <td>-0.682</td>
+      <td>0.207</td>
+      <td>-1.083</td>
+      <td>-0.441</td>
+      <td>0.016</td>
+      <td>0.012</td>
+      <td>169.0</td>
+      <td>192.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.411</td>
-      <td>0.060</td>
-      <td>0.325</td>
-      <td>0.502</td>
+      <td>0.417</td>
+      <td>0.059</td>
+      <td>0.336</td>
+      <td>0.513</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>369.0</td>
-      <td>131.0</td>
-      <td>1.01</td>
+      <td>357.0</td>
+      <td>235.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -2071,7 +1899,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_51_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_51_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_46_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_46_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2089,7 +1917,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <h4>Code 6.12<a class="headerlink" href="#code-6-12" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">MILK_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Milk</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">simcoll</span><span class="p">(</span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">):</span>
     
@@ -2120,28 +1948,28 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2130</span><span class="o">/</span><span class="mf">2851539633.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1936</span><span class="o">/</span><span class="mf">814816206.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">21</span>     <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">repsimcoll</span> <span class="p">(</span><span class="n">r</span><span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">))</span>
 <span class="g g-Whitespace">     </span><span class="mi">22</span> 
 <span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">lista</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_2130/2851539633.py</span> in <span class="ni">repsimcoll</span><span class="nt">(r, N)</span>
+<span class="nn">/tmp/ipykernel_1936/814816206.py</span> in <span class="ni">repsimcoll</span><span class="nt">(r, N)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> 
 <span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">def</span> <span class="nf">repsimcoll</span><span class="p">(</span><span class="n">r</span><span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">16</span>     <span class="n">stddev</span> <span class="o">=</span> <span class="p">[</span><span class="n">simcoll</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">stddev</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> 
 
-<span class="nn">/tmp/ipykernel_2130/2851539633.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="nn">/tmp/ipykernel_1936/814816206.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> 
 <span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">def</span> <span class="nf">repsimcoll</span><span class="p">(</span><span class="n">r</span><span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">16</span>     <span class="n">stddev</span> <span class="o">=</span> <span class="p">[</span><span class="n">simcoll</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">stddev</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> 
 
-<span class="nn">/tmp/ipykernel_2130/2851539633.py</span> in <span class="ni">simcoll</span><span class="nt">(r)</span>
+<span class="nn">/tmp/ipykernel_1936/814816206.py</span> in <span class="ni">simcoll</span><span class="nt">(r)</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;perc.fat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> 
 <span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sd</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
@@ -2149,81 +1977,88 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;perc.fat&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">))</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="s2">     with self._name_and_control_scope(name):</span>
-<span class="ne">-&gt; </span><span class="mi">1234</span><span class="s2">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="s2">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="sd">     with self._name_and_control_scope(name):</span>
+<span class="ne">-&gt; </span><span class="mi">1234</span><span class="sd">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="s2">         sample_shape, &#39;sample_shape&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="s2">     samples = self._sample_n(</span>
-<span class="ne">-&gt; </span><span class="mi">1212</span><span class="s2">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="s2">     samples = tf.nest.map_structure(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="s2">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
+<span class="ne">-&gt; </span><span class="mi">1215</span><span class="sd">         samples)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1216</span><span class="sd">     return self._set_sample_static_shape(samples, sample_shape)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1217</span><span class="sd"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/normal.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span><span class="s2">                       axis=0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span><span class="s2">     sampled = samplers.normal(</span>
-<span class="ne">--&gt; </span><span class="mi">180</span><span class="s2">         shape=shape, mean=0., stddev=1., dtype=self.dtype, seed=seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span><span class="s2">     return sampled * scale + loc</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span><span class="s2"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">map_structure</span><span class="nt">(func, *structure, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span><span class="sd">   return pack_sequence_as(</span>
+<span class="ne">--&gt; </span><span class="mi">869</span><span class="sd">       structure[0], [func(*x) for x in entries],</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span><span class="sd">       expand_composites=expand_composites)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span><span class="sd"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/samplers.py</span> in <span class="ni">normal</span><span class="nt">(shape, mean, stddev, dtype, seed, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span><span class="s2">     if is_stateful_seed(seed):</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span><span class="s2">       return tf.random.normal(</span>
-<span class="ne">--&gt; </span><span class="mi">240</span><span class="s2">           shape=shape, seed=seed, mean=mean, stddev=stddev, dtype=dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">242</span><span class="s2">     seed = sanitize_seed(seed)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span><span class="sd">   return pack_sequence_as(</span>
+<span class="ne">--&gt; </span><span class="mi">869</span><span class="sd">       structure[0], [func(*x) for x in entries],</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span><span class="sd">       expand_composites=expand_composites)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span><span class="sd"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="s2">     filtered_tb = None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">     try:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span><span class="s2">       return fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">     except Exception as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
+<span class="ne">-&gt; </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1215</span><span class="sd">         samples)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1216</span><span class="sd">     return self._set_sample_static_shape(samples, sample_shape)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="s2">       # Fallback dispatch system (dispatch v1):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="s2">       try:</span>
-<span class="ne">-&gt; </span><span class="mi">1096</span><span class="s2">         return dispatch_target(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="s2">       except (TypeError, ValueError):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="s2">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span><span class="sd">             if not kwsyntax:</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="sd">                 args, kw = fix(args, kw, sig)</span>
+<span class="ne">--&gt; </span><span class="mi">232</span><span class="sd">             return caller(func, *(extras + args), **kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="sd">     fun.__name__ = func.__name__</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="sd">     fun.__doc__ = func.__doc__</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/random_ops.py</span> in <span class="ni">random_normal</span><span class="nt">(shape, mean, stddev, dtype, seed, name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span><span class="s2">         shape_tensor, dtype, seed=seed1, seed2=seed2)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span><span class="s2">     mul = rnd * stddev_tensor</span>
-<span class="ne">---&gt; </span><span class="mi">97</span><span class="s2">     value = math_ops.add(mul, mean_tensor, name=name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="s2">     tensor_util.maybe_set_static_shape(value, shape)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span><span class="s2">     return value</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/prefer_static.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="nn">     78                      for arg, arg_</span> in <span class="ni">zip</span><span class="nt">(flat_args, flat_args_))</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span><span class="sd">     if all_static:</span>
+<span class="ne">---&gt; </span><span class="mi">80</span><span class="sd">       [args_, kwargs_] = tf.nest.pack_sequence_as([args, kwargs], flat_args_)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span><span class="sd">       return static_fn(*args_, **kwargs_)</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="sd">     return original_fn(*args, **kwargs)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="s2">     filtered_tb = None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">     try:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span><span class="s2">       return fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">     except Exception as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">pack_sequence_as</span><span class="nt">(structure, flat_sequence, expand_composites)</span>
+<span class="g g-Whitespace">    </span><span class="mi">755</span><span class="sd">     TypeError: `structure` is or contains a dict with non-sortable keys.</span>
+<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">757</span>   <span class="k">return</span> <span class="n">_pack_sequence_as</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">flat_sequence</span><span class="p">,</span> <span class="n">expand_composites</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">758</span> 
+<span class="g g-Whitespace">    </span><span class="mi">759</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="s2">       # Fallback dispatch system (dispatch v1):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="s2">       try:</span>
-<span class="ne">-&gt; </span><span class="mi">1096</span><span class="s2">         return dispatch_target(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="s2">       except (TypeError, ValueError):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="s2">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_pack_sequence_as</span><span class="nt">(structure, flat_sequence, expand_composites, sequence_fn)</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>   <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">final_index</span><span class="p">,</span> <span class="n">packed</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">flat_sequence</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">633</span>                                                     <span class="mi">0</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span> <span class="n">sequence_fn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span>     <span class="k">if</span> <span class="n">final_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_sequence</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span>       <span class="k">raise</span> <span class="ne">IndexError</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py</span> in <span class="ni">add</span><span class="nt">(x, y, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3988</span><span class="s2">       return gen_math_ops.add(x, y, name=name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3989</span><span class="s2">     else:</span>
-<span class="ne">-&gt; </span><span class="mi">3990</span><span class="s2">       return gen_math_ops.add_v2(x, y, name=name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3991</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">3992</span><span class="s2"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_packed_nest_with_indices</span><span class="nt">(structure, flat, index, is_seq, sequence_fn)</span>
+<span class="g g-Whitespace">    </span><span class="mi">595</span>     <span class="k">if</span> <span class="n">is_seq</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span>       <span class="n">new_index</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">flat</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">597</span>                                                    <span class="n">sequence_fn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">598</span>       <span class="n">packed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence_fn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>       <span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gen_math_ops.py</span> in <span class="ni">add_v2</span><span class="nt">(x, y, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span><span class="s2">     try:</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span><span class="s2">       _result = pywrap_tfe.TFE_Py_FastPathExecute(</span>
-<span class="ne">--&gt; </span><span class="mi">463</span><span class="s2">         _ctx, &quot;AddV2&quot;, name, x, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span><span class="s2">       return _result</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span><span class="s2">     except _core._NotOkStatusException as e:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_packed_nest_with_indices</span><span class="nt">(structure, flat, index, is_seq, sequence_fn)</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span>       <span class="n">new_index</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">flat</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span>                                                    <span class="n">sequence_fn</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">598</span>       <span class="n">packed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence_fn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>       <span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_sequence_like</span><span class="nt">(instance, args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span>       <span class="n">instance_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>     <span class="k">return</span> <span class="n">instance_type</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">194</span>   <span class="k">elif</span> <span class="n">_is_composite_tensor</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span>     <span class="n">spec</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_type_spec</span>  <span class="c1"># pylint: disable=protected-access</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2340,7 +2175,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedTreatment&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;fungus&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedTreatment&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;fungus&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2386,10 +2221,10 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>sim_p</th>
-      <td>1.028</td>
-      <td>0.257</td>
-      <td>0.614</td>
-      <td>1.403</td>
+      <td>1.034</td>
+      <td>0.264</td>
+      <td>0.636</td>
+      <td>1.435</td>
     </tr>
   </tbody>
 </table>
@@ -2447,7 +2282,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x14cbd20e0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x14a4ed440&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2482,26 +2317,26 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>p</th>
-      <td>1.357</td>
+      <td>1.356</td>
       <td>0.019</td>
-      <td>1.327</td>
-      <td>1.387</td>
+      <td>1.326</td>
+      <td>1.388</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>1515.0</td>
-      <td>1562.0</td>
+      <td>1242.0</td>
+      <td>1248.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.903</td>
+      <td>1.896</td>
       <td>0.137</td>
-      <td>1.681</td>
-      <td>2.117</td>
+      <td>1.675</td>
+      <td>2.094</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>1321.0</td>
-      <td>1623.0</td>
+      <td>1164.0</td>
+      <td>1622.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2603,48 +2438,48 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
       <th>a</th>
       <td>1.454</td>
       <td>0.029</td>
-      <td>1.416</td>
-      <td>1.508</td>
+      <td>1.412</td>
+      <td>1.504</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1076.0</td>
-      <td>1183.0</td>
+      <td>1096.0</td>
+      <td>1167.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bt</th>
       <td>-0.011</td>
-      <td>0.034</td>
-      <td>-0.066</td>
+      <td>0.033</td>
+      <td>-0.061</td>
       <td>0.040</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1163.0</td>
-      <td>1033.0</td>
+      <td>1284.0</td>
+      <td>1281.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bf</th>
-      <td>-0.275</td>
-      <td>0.034</td>
-      <td>-0.327</td>
-      <td>-0.218</td>
+      <td>-0.276</td>
+      <td>0.035</td>
+      <td>-0.329</td>
+      <td>-0.219</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1309.0</td>
-      <td>1630.0</td>
+      <td>1225.0</td>
+      <td>1267.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.385</td>
-      <td>0.097</td>
-      <td>1.233</td>
-      <td>1.537</td>
+      <td>1.392</td>
+      <td>0.107</td>
+      <td>1.226</td>
+      <td>1.560</td>
       <td>0.005</td>
-      <td>0.003</td>
-      <td>430.0</td>
-      <td>809.0</td>
+      <td>0.004</td>
+      <td>400.0</td>
+      <td>754.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2751,37 +2586,37 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>a</th>
       <td>1.288</td>
-      <td>0.025</td>
-      <td>1.251</td>
-      <td>1.330</td>
+      <td>0.026</td>
+      <td>1.247</td>
+      <td>1.329</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>2037.0</td>
-      <td>1479.0</td>
+      <td>1961.0</td>
+      <td>1592.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bt</th>
       <td>0.133</td>
-      <td>0.035</td>
-      <td>0.075</td>
-      <td>0.186</td>
+      <td>0.036</td>
+      <td>0.077</td>
+      <td>0.192</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>3748.0</td>
-      <td>1747.0</td>
+      <td>3087.0</td>
+      <td>1343.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.789</td>
-      <td>0.126</td>
-      <td>1.599</td>
-      <td>1.994</td>
+      <td>1.796</td>
+      <td>0.127</td>
+      <td>1.592</td>
+      <td>1.983</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>928.0</td>
-      <td>1665.0</td>
+      <td>1064.0</td>
+      <td>1749.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2816,7 +2651,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_79_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_79_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_74_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_74_0.png" />
 </div>
 </div>
 <p>The graph clearly shows how treatment’s (T) impact on height (H1) is <strong>blocked</strong> by fungus (F)</p>
@@ -2836,9 +2671,9 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;T&#39;, &#39;H1&#39;, {&#39;F&#39;})
-(&#39;T&#39;, &#39;H0&#39;, set())
-(&#39;F&#39;, &#39;H0&#39;, set())
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;T&#39;, &#39;H0&#39;, set())
+(&#39;T&#39;, &#39;H1&#39;, {&#39;F&#39;})
+(&#39;H0&#39;, &#39;F&#39;, set())
 </pre></div>
 </div>
 </div>
@@ -3110,7 +2945,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2</span><span class="p">[</span><span class="s2">&quot;mid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d2</span><span class="o">.</span><span class="n">married</span>
 
-<span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedHappiness&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="p">{</span>
+<span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedHappiness&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;mid&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
     <span class="s1">&#39;A&#39;</span>   <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
     <span class="s1">&#39;happiness&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
@@ -3199,51 +3034,51 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a[0]</th>
-      <td>-0.186</td>
+      <td>-0.191</td>
       <td>0.063</td>
-      <td>-0.287</td>
-      <td>-0.089</td>
+      <td>-0.293</td>
+      <td>-0.090</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1057.0</td>
-      <td>1553.0</td>
-      <td>1.0</td>
+      <td>896.0</td>
+      <td>1438.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>a[1]</th>
-      <td>1.341</td>
-      <td>0.088</td>
-      <td>1.209</td>
-      <td>1.483</td>
+      <td>1.334</td>
+      <td>0.087</td>
+      <td>1.196</td>
+      <td>1.477</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>928.0</td>
-      <td>1255.0</td>
-      <td>1.0</td>
+      <td>784.0</td>
+      <td>1273.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>bA</th>
-      <td>-0.837</td>
-      <td>0.112</td>
-      <td>-1.008</td>
-      <td>-0.648</td>
+      <td>-0.830</td>
+      <td>0.113</td>
+      <td>-1.019</td>
+      <td>-0.664</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>792.0</td>
-      <td>1200.0</td>
-      <td>1.0</td>
+      <td>720.0</td>
+      <td>1276.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.989</td>
-      <td>0.022</td>
-      <td>0.956</td>
+      <td>0.023</td>
+      <td>0.952</td>
       <td>1.025</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>1540.0</td>
-      <td>2012.0</td>
-      <td>1.0</td>
+      <td>1823.0</td>
+      <td>1919.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -3340,38 +3175,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a</th>
-      <td>-0.001</td>
-      <td>0.078</td>
-      <td>-0.133</td>
-      <td>0.115</td>
+      <td>-0.002</td>
+      <td>0.077</td>
+      <td>-0.120</td>
+      <td>0.122</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>825.0</td>
-      <td>1563.0</td>
+      <td>867.0</td>
+      <td>1569.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bA</th>
-      <td>0.002</td>
-      <td>0.134</td>
-      <td>-0.192</td>
-      <td>0.231</td>
       <td>0.005</td>
-      <td>0.004</td>
-      <td>704.0</td>
-      <td>1357.0</td>
+      <td>0.134</td>
+      <td>-0.206</td>
+      <td>0.218</td>
+      <td>0.005</td>
+      <td>0.003</td>
+      <td>787.0</td>
+      <td>1503.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.218</td>
-      <td>0.028</td>
-      <td>1.173</td>
-      <td>1.262</td>
+      <td>1.215</td>
+      <td>0.027</td>
+      <td>1.169</td>
+      <td>1.255</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>702.0</td>
-      <td>1048.0</td>
+      <td>1275.0</td>
+      <td>1621.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3540,7 +3375,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">df_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedEducation&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;SimulatedEducation&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -3637,50 +3472,50 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a</th>
-      <td>0.057</td>
-      <td>0.095</td>
-      <td>-0.097</td>
-      <td>0.210</td>
+      <td>0.054</td>
+      <td>0.097</td>
+      <td>-0.092</td>
+      <td>0.212</td>
       <td>0.001</td>
       <td>0.002</td>
-      <td>7634.0</td>
-      <td>1317.0</td>
+      <td>10035.0</td>
+      <td>2366.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bPC</th>
       <td>1.817</td>
       <td>0.045</td>
-      <td>1.743</td>
-      <td>1.887</td>
+      <td>1.746</td>
+      <td>1.892</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>3660.0</td>
-      <td>3336.0</td>
+      <td>2998.0</td>
+      <td>3612.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bGC</th>
-      <td>-0.896</td>
-      <td>0.100</td>
-      <td>-1.053</td>
-      <td>-0.737</td>
+      <td>-0.900</td>
+      <td>0.105</td>
+      <td>-1.060</td>
+      <td>-0.725</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>6555.0</td>
-      <td>1740.0</td>
+      <td>7303.0</td>
+      <td>2192.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.378</td>
-      <td>0.068</td>
-      <td>1.268</td>
+      <td>1.379</td>
+      <td>0.070</td>
+      <td>1.264</td>
       <td>1.484</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1320.0</td>
-      <td>2157.0</td>
+      <td>1614.0</td>
+      <td>2231.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3789,62 +3624,62 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a</th>
-      <td>-0.058</td>
+      <td>-0.056</td>
       <td>0.074</td>
-      <td>-0.170</td>
-      <td>0.063</td>
+      <td>-0.168</td>
+      <td>0.064</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>7160.0</td>
-      <td>1837.0</td>
+      <td>7764.0</td>
+      <td>2416.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bPC</th>
       <td>0.929</td>
-      <td>0.077</td>
-      <td>0.804</td>
-      <td>1.051</td>
+      <td>0.080</td>
+      <td>0.801</td>
+      <td>1.052</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>973.0</td>
-      <td>1625.0</td>
+      <td>1096.0</td>
+      <td>1863.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bGC</th>
-      <td>0.077</td>
-      <td>0.109</td>
-      <td>-0.096</td>
-      <td>0.254</td>
+      <td>0.078</td>
+      <td>0.110</td>
+      <td>-0.092</td>
+      <td>0.256</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>1222.0</td>
-      <td>1988.0</td>
+      <td>1344.0</td>
+      <td>2261.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bU</th>
-      <td>2.141</td>
-      <td>0.168</td>
-      <td>1.880</td>
-      <td>2.424</td>
-      <td>0.006</td>
+      <td>2.139</td>
+      <td>0.173</td>
+      <td>1.846</td>
+      <td>2.396</td>
+      <td>0.005</td>
       <td>0.004</td>
-      <td>902.0</td>
-      <td>1268.0</td>
+      <td>1021.0</td>
+      <td>1672.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.033</td>
-      <td>0.051</td>
-      <td>0.946</td>
-      <td>1.108</td>
+      <td>1.031</td>
+      <td>0.053</td>
+      <td>0.943</td>
+      <td>1.112</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>6467.0</td>
-      <td>2768.0</td>
+      <td>8903.0</td>
+      <td>1817.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3883,7 +3718,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_119_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_119_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_114_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_114_0.png" />
 </div>
 </div>
 <p>Fork is a classic confounder. Z is common cause of X &amp; Y. Learning X tells us nothing about Y</p>
@@ -3905,7 +3740,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_122_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_122_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_117_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_117_0.png" />
 </div>
 </div>
 <p>If we condition on Z we block the path from X to Y. Recall the treatment &amp; fungus experiment</p>
@@ -3927,7 +3762,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_125_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_125_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_120_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_120_0.png" />
 </div>
 </div>
 <p>Conditioning on collider i.e Z opens the path i.e info flows between X and Y</p>
@@ -3949,7 +3784,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_128_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_128_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_123_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_123_0.png" />
 </div>
 </div>
 <p>Here is D is the descendant variable. if we condition on it then it will be similar to closig the pipe.</p>
@@ -3981,7 +3816,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_132_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_132_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_127_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_127_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3995,8 +3830,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;A&#39;})
-frozenset({&#39;C&#39;})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;C&#39;})
+frozenset({&#39;A&#39;})
 </pre></div>
 </div>
 </div>
@@ -4040,7 +3875,7 @@ frozenset({&#39;C&#39;})
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_137_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_137_0.png" />
+<img alt="../_images/06_the_haunted_dag_and_the_causal_terror_132_0.png" src="../_images/06_the_haunted_dag_and_the_causal_terror_132_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4054,7 +3889,7 @@ frozenset({&#39;C&#39;})
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;S&#39;})
-frozenset({&#39;A&#39;, &#39;M&#39;})
+frozenset({&#39;M&#39;, &#39;A&#39;})
 </pre></div>
 </div>
 </div>
@@ -4076,9 +3911,9 @@ frozenset({&#39;A&#39;, &#39;M&#39;})
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;S&#39;, &#39;D&#39;, {&#39;W&#39;, &#39;A&#39;, &#39;M&#39;})
-(&#39;A&#39;, &#39;W&#39;, {&#39;S&#39;})
-(&#39;M&#39;, &#39;W&#39;, {&#39;S&#39;})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;D&#39;, &#39;S&#39;, {&#39;M&#39;, &#39;A&#39;, &#39;W&#39;})
+(&#39;W&#39;, &#39;M&#39;, {&#39;S&#39;})
+(&#39;W&#39;, &#39;A&#39;, {&#39;S&#39;})
 </pre></div>
 </div>
 </div>

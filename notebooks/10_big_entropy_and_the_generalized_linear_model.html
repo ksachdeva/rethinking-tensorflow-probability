@@ -487,7 +487,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="o">!</span>pip install -q watermark
+  <span class="o">!</span>pip install -q watermark    
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -519,8 +519,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:46:09.695104: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 23:46:09.695138: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:30:05.821205: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:30:05.821242: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -722,79 +722,72 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:46:11.781400: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 23:46:11.781431: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 23:46:11.781451: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 23:46:11.781746: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:30:08.011067: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:30:08.011099: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:30:08.011122: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:30:08.011433: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-KeyboardInterrupt                         Traceback (most recent call last)
-/tmp/ipykernel_2323/2183151899.py in &lt;module&gt;
-      4 
-      5 for rep in range(10**5):
-----&gt; 6     h, p_ = sim_p()
-      7     H.append(h)
-      8     p[rep] = p_
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2148</span><span class="o">/</span><span class="mf">2183151899.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">h</span><span class="p">,</span> <span class="n">p_</span> <span class="o">=</span> <span class="n">sim_p</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">p</span><span class="p">[</span><span class="n">rep</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_</span>
 
-/tmp/ipykernel_2323/1738301079.py in sim_p(G)
-      1 def sim_p(G=1.4):
-----&gt; 2     x123 = tfd.Uniform(low=0., high=1.).sample(3).numpy()
-      3     x4 = (G * np.sum(x123) - x123[1] - x123[2]) / (2 - G)
-      4     x1234 = np.concatenate((x123, [x4]))
-      5     z = np.sum(x1234)
+<span class="nn">/tmp/ipykernel_2148/1738301079.py</span> in <span class="ni">sim_p</span><span class="nt">(G)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">sim_p</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">1.4</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">x123</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">x4</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x123</span><span class="p">)</span> <span class="o">-</span> <span class="n">x123</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x123</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">G</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">x1234</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x123</span><span class="p">,</span> <span class="p">[</span><span class="n">x4</span><span class="p">]))</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x1234</span><span class="p">)</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in sample(self, sample_shape, seed, name, **kwargs)
-   1232     &quot;&quot;&quot;
-   1233     with self._name_and_control_scope(name):
--&gt; 1234       return self._call_sample_n(sample_shape, seed, **kwargs)
-   1235 
-   1236   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>                 <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">232</span>             <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _call_sample_n(self, sample_shape, seed, **kwargs)
-   1208         ps.cast(sample_shape, tf.int32), name=&#39;sample_shape&#39;)
-   1209     sample_shape, n = self._expand_sample_shape_to_vector(
--&gt; 1210         sample_shape, &#39;sample_shape&#39;)
-   1211     samples = self._sample_n(
-   1212         n, seed=seed() if callable(seed) else seed, **kwargs)
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">wrapped_init</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">340</span>       <span class="c1"># called, here is the place to do it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span>       <span class="n">self_</span><span class="o">.</span><span class="n">_parameters</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">342</span>       <span class="n">default_init</span><span class="p">(</span><span class="n">self_</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>       <span class="c1"># Note: if we ever want to override things set in `self` by subclass</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>       <span class="c1"># `__init__`, here is the place to do it.</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _expand_sample_shape_to_vector(self, x, name)
-   2012   def _expand_sample_shape_to_vector(self, x, name):
-   2013     &quot;&quot;&quot;Helper to `sample` which ensures input is 1D.&quot;&quot;&quot;
--&gt; 2014     prod = ps.reduce_prod(x)
-   2015     x = distribution_util.expand_to_vector(x, tensor_name=name)
-   2016     return x, prod
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/uniform.py</span> in <span class="ni">__init__</span><span class="nt">(self, low, high, validate_args, allow_nan_stats, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>           <span class="n">allow_nan_stats</span><span class="o">=</span><span class="n">allow_nan_stats</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>           <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>           <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> 
+<span class="g g-Whitespace">    </span><span class="mi">116</span>   <span class="nd">@classmethod</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py in fun(*args, **kw)
-    229         def fun(*args, **kw):
-    230             if not kwsyntax:
---&gt; 231                 args, kw = fix(args, kw, sig)
-    232             return caller(func, *(extras + args), **kw)
-    233     fun.__name__ = func.__name__
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">__init__</span><span class="nt">(self, dtype, reparameterization_type, validate_args, allow_nan_stats, parameters, graph_parents, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_dependency</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parameters_sanitized</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_graph_parents</span> <span class="o">=</span> <span class="n">graph_parents</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_defer_all_assertions</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>         <span class="n">auto_composite_tensor</span><span class="o">.</span><span class="n">is_deferred_assertion_context</span><span class="p">())</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py in fix(args, kwargs, sig)
-    203     ba = sig.bind(*args, **kwargs)
-    204     ba.apply_defaults()  # needed for test_dan_schult
---&gt; 205     return ba.args, ba.kwargs
-    206 
-    207 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py</span> in <span class="ni">__setattr__</span><span class="nt">(self, name, value)</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_self_setattr_tracking&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span>       <span class="n">value</span> <span class="o">=</span> <span class="n">data_structures</span><span class="o">.</span><span class="n">sticky_attribute_assignment</span><span class="p">(</span>
+<span class="ne">---&gt; </span><span class="mi">82</span>           <span class="n">trackable</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="nb">super</span><span class="p">(</span><span class="n">AutoTrackable</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span> 
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/inspect.py in args(self)
-   2629                 break
-   2630             else:
--&gt; 2631                 if param.kind == _VAR_POSITIONAL:
-   2632                     # *args
-   2633                     args.extend(arg)
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/training/tracking/data_structures.py</span> in <span class="ni">sticky_attribute_assignment</span><span class="nt">(trackable, name, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> 
+<span class="g g-Whitespace">    </span><span class="mi">135</span> 
+<span class="ne">--&gt; </span><span class="mi">136</span> <span class="nd">@tf_export</span><span class="p">(</span><span class="s2">&quot;__internal__.tracking.sticky_attribute_assignment&quot;</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="p">[])</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="k">def</span> <span class="nf">sticky_attribute_assignment</span><span class="p">(</span><span class="n">trackable</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>   <span class="s2">&quot;&quot;&quot;Adds dependencies, generally called from __setattr__.</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/inspect.py in kind(self)
-   2527         return self._annotation
-   2528 
--&gt; 2529     @property
-   2530     def kind(self):
-   2531         return self._kind
-
-KeyboardInterrupt: 
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

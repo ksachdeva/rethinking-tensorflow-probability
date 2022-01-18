@@ -609,7 +609,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="o">!</span>pip install -q watermark
+  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -637,6 +637,10 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span><span class="p">,</span> <span class="n">transforms</span>
 
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
+<span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">dataframe_to_tensors</span>
+<span class="kn">from</span> <span class="nn">rethinking.mcmc</span> <span class="kn">import</span> <span class="n">sample_posterior</span>
+
 <span class="c1"># aliases</span>
 <span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
 <span class="n">tfb</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">bijectors</span>
@@ -645,15 +649,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:48:38.537215: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-17 23:48:38.537253: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:32:37.505860: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:32:37.505896: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -p numpy,tensorflow,tensorflow_probability,arviz,scipy,pandas,rethinking
 </pre></div>
 </div>
 </div>
@@ -664,6 +668,7 @@ tensorflow_probability: 0.15.0
 arviz                 : 0.11.4
 scipy                 : 1.7.3
 pandas                : 1.3.5
+rethinking            : 0.1.0
 </pre></div>
 </div>
 </div>
@@ -672,163 +677,6 @@ pandas                : 1.3.5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Tensorflow MCMC Sampling helpers</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">USE_XLA</span> <span class="o">=</span> <span class="kc">False</span>              <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_CHAINS</span>  <span class="o">=</span> <span class="mi">2</span>        <span class="c1">#@param </span>
-<span class="n">NUMBER_OF_BURNIN</span>  <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_SAMPLES</span> <span class="o">=</span> <span class="mi">500</span>      <span class="c1">#@param</span>
-<span class="n">NUMBER_OF_LEAPFROG_STEPS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
-
-<span class="k">def</span> <span class="nf">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">sample_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">observed_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">prior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">posterior_predictive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">trace</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-                 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">sample_stats</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sample_stats</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">sample_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sample_stats</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">prior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">prior_predictive</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prior_predictive</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">if</span> <span class="n">posterior_predictive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">az</span><span class="o">.</span><span class="n">InferenceData</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inplace</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">return</span> <span class="n">az</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-        <span class="n">posterior</span><span class="o">=</span><span class="n">trace</span><span class="p">,</span>
-        <span class="n">sample_stats</span><span class="o">=</span><span class="n">sample_stats</span><span class="p">,</span>
-        <span class="n">prior_predictive</span><span class="o">=</span><span class="n">prior_predictive</span><span class="p">,</span>
-        <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">posterior_predictive</span><span class="p">,</span>
-        <span class="n">observed_data</span><span class="o">=</span><span class="n">observed_data</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">autograph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">experimental_compile</span><span class="o">=</span><span class="n">USE_XLA</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-              <span class="n">bijectors</span><span class="p">,</span> 
-              <span class="n">step_size</span><span class="p">,</span> 
-              <span class="n">target_log_prob_fn</span><span class="p">,</span> 
-              <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">NUMBER_OF_LEAPFROG_STEPS</span><span class="p">,</span>
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span>
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">,</span>
-              <span class="p">):</span>    
-
-    <span class="k">def</span> <span class="nf">_trace_fn_transitioned</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">pkr</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-        <span class="p">)</span>
-
-    <span class="n">hmc_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">HamiltonianMonteCarlo</span><span class="p">(</span>
-                    <span class="n">target_log_prob_fn</span><span class="p">,</span>
-                    <span class="n">num_leapfrog_steps</span><span class="o">=</span><span class="n">num_leapfrog_steps</span><span class="p">,</span>
-                    <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>         
-
-    <span class="n">inner_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">TransformedTransitionKernel</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">hmc_kernel</span><span class="p">,</span>
-        <span class="n">bijector</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>       
-
-    <span class="n">kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">SimpleStepSizeAdaptation</span><span class="p">(</span>
-        <span class="n">inner_kernel</span><span class="o">=</span><span class="n">inner_kernel</span><span class="p">,</span>
-        <span class="n">target_accept_prob</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
-        <span class="n">num_adaptation_steps</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">burnin</span><span class="p">),</span>
-        <span class="n">log_accept_prob_getter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pkr</span><span class="p">:</span> <span class="n">pkr</span><span class="o">.</span><span class="n">inner_results</span><span class="o">.</span><span class="n">log_accept_ratio</span>
-    <span class="p">)</span>    
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
-        <span class="n">num_results</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-        <span class="n">num_burnin_steps</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
-        <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-        <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
-        <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">sampler_stat</span>    
-
-<span class="k">def</span> <span class="nf">sample_posterior</span><span class="p">(</span><span class="n">jdc</span><span class="p">,</span> 
-              <span class="n">observed_data</span><span class="p">,</span> 
-              <span class="n">params</span><span class="p">,</span> 
-              <span class="n">init_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">bijectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-              <span class="n">step_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-              <span class="n">num_chains</span><span class="o">=</span><span class="n">NUMBER_OF_CHAINS</span><span class="p">,</span>                  
-              <span class="n">num_samples</span><span class="o">=</span><span class="n">NUMBER_OF_SAMPLES</span><span class="p">,</span> 
-              <span class="n">burnin</span><span class="o">=</span><span class="n">NUMBER_OF_BURNIN</span><span class="p">):</span>
-        
-    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jdc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_chains</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="n">bijectors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
-
-    <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>  
-
-    <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span>
-                                  <span class="n">bijectors</span><span class="p">,</span>
-                                  <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
-                                  <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>                                      
-                                  <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span> 
-                                  <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">)</span>
-
-    <span class="n">stat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean_tree_accept&#39;</span><span class="p">]</span>
-    <span class="n">sampler_stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat_names</span><span class="p">,</span> <span class="p">[</span><span class="n">sample_stats</span><span class="p">]))</span>      
-        
-    <span class="n">transposed_results</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>        
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">transposed_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> 
-        
-        <span class="n">transposed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">transposed_shape</span><span class="p">))</span>
-
-    <span class="n">posterior</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transposed_results</span><span class="p">))</span>        
-
-    <span class="n">az_trace</span> <span class="o">=</span> <span class="n">_trace_to_arviz</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> 
-                           <span class="n">sample_stats</span><span class="o">=</span><span class="n">sampler_stats</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">az_trace</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dataset URLs</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You could change base url to local dir or a remoate raw github content</span>
-<span class="n">_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/rmcelreath/rethinking/master/data&quot;</span>
-
-<span class="n">CHIMPANZEE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/chimpanzees.csv&quot;</span>
-<span class="n">KOSTER_LECKIE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/KosterLeckie.csv&quot;</span>
-<span class="n">ISLANDS_DISTMATRIX_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/islandsDistMatrix.csv&quot;</span>
-<span class="n">KLINE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Kline2.csv&quot;</span>
-<span class="n">PRIMATES301_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Primates301.csv&quot;</span>
-<span class="n">PRIMATES301_VCOV_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Primates301_vcov_matrix.csv&quot;</span>
-<span class="n">PRIMATES301_DISTANCE_DATASET_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_BASE_URL</span><span class="si">}</span><span class="s2">/Primates301_distance_matrix.csv&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -861,10 +709,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-17 23:48:40.621918: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-17 23:48:40.621956: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-17 23:48:40.621975: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-17 23:48:40.622292: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:32:39.596488: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:32:39.596520: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:32:39.596543: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:32:39.596853: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -994,7 +842,7 @@ array([[ 1.  , -0.35],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_adventures_in_covariance_31_0.png" src="../_images/14_adventures_in_covariance_31_0.png" />
+<img alt="../_images/14_adventures_in_covariance_27_0.png" src="../_images/14_adventures_in_covariance_27_0.png" />
 </div>
 </div>
 </div>
@@ -1122,7 +970,7 @@ array([[ 1.  , -0.35],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_adventures_in_covariance_37_0.png" src="../_images/14_adventures_in_covariance_37_0.png" />
+<img alt="../_images/14_adventures_in_covariance_33_0.png" src="../_images/14_adventures_in_covariance_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1406,44 +1254,12 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2498</span><span class="o">/</span><span class="mf">3075958100.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">rhos</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">bw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/plots/kdeplot.py</span> in <span class="ni">plot_kde</span><span class="nt">(values, values2, cumulative, rug, label, bw, adaptive, quantiles, rotated, contour, hdi_probs, fill_last, figsize, textsize, plot_kwargs, fill_kwargs, rug_kwargs, contour_kwargs, contourf_kwargs, pcolormesh_kwargs, is_circular, ax, legend, backend, backend_kwargs, show, return_glyph, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>                 <span class="n">bw</span> <span class="o">=</span> <span class="s2">&quot;experimental&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span> 
-<span class="ne">--&gt; </span><span class="mi">261</span>         <span class="n">grid</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">is_circular</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span> <span class="n">adaptive</span><span class="o">=</span><span class="n">adaptive</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="n">cumulative</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">grid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/density_utils.py</span> in <span class="ni">kde</span><span class="nt">(x, circular, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">478</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">479</span><span class="sd">     x = x[np.isfinite(x)]</span>
-<span class="ne">--&gt; </span><span class="mi">480</span><span class="sd">     if x.size == 0 or np.all(x == x[0]):</span>
-<span class="g g-Whitespace">    </span><span class="mi">481</span><span class="sd">         warnings.warn(&quot;Your data appears to have a single value or no finite values&quot;)</span>
-<span class="g g-Whitespace">    </span><span class="mi">482</span><span class="sd"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span><span class="sd">         If you are looking for numpy-related methods, please run the following:</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span><span class="sd">         from tensorflow.python.ops.numpy_ops import np_config</span>
-<span class="ne">--&gt; </span><span class="mi">441</span><span class="sd">         np_config.enable_numpy_behavior()&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="bp">self</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">443</span> 
-
-<span class="ne">AttributeError</span>: 
-        <span class="s1">&#39;EagerTensor&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;size&#39;</span><span class="o">.</span>
-        <span class="n">If</span> <span class="n">you</span> <span class="n">are</span> <span class="n">looking</span> <span class="k">for</span> <span class="n">numpy</span><span class="o">-</span><span class="n">related</span> <span class="n">methods</span><span class="p">,</span> <span class="n">please</span> <span class="n">run</span> <span class="n">the</span> <span class="n">following</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">tensorflow.python.ops.numpy_ops</span> <span class="kn">import</span> <span class="n">np_config</span>
-        <span class="n">np_config</span><span class="o">.</span><span class="n">enable_numpy_behavior</span><span class="p">()</span>
-</pre></div>
-</div>
+<img alt="../_images/14_adventures_in_covariance_44_0.png" src="../_images/14_adventures_in_covariance_44_0.png" />
 </div>
 </div>
 </div>
@@ -1474,7 +1290,7 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_adventures_in_covariance_50_0.png" src="../_images/14_adventures_in_covariance_50_0.png" />
+<img alt="../_images/14_adventures_in_covariance_46_0.png" src="../_images/14_adventures_in_covariance_46_0.png" />
 </div>
 </div>
 </div>
@@ -1511,7 +1327,7 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_adventures_in_covariance_52_0.png" src="../_images/14_adventures_in_covariance_52_0.png" />
+<img alt="../_images/14_adventures_in_covariance_48_0.png" src="../_images/14_adventures_in_covariance_48_0.png" />
 </div>
 </div>
 </div>
@@ -1542,7 +1358,7 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_adventures_in_covariance_54_0.png" src="../_images/14_adventures_in_covariance_54_0.png" />
+<img alt="../_images/14_adventures_in_covariance_50_0.png" src="../_images/14_adventures_in_covariance_50_0.png" />
 </div>
 </div>
 </div>
@@ -1580,7 +1396,7 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14_adventures_in_covariance_56_0.png" src="../_images/14_adventures_in_covariance_56_0.png" />
+<img alt="../_images/14_adventures_in_covariance_52_0.png" src="../_images/14_adventures_in_covariance_52_0.png" />
 </div>
 </div>
 </div>
@@ -1592,7 +1408,7 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 <h3>Code 14.18<a class="headerlink" href="#code-14-18" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CHIMPANZEE_DATASET_PATH</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">RethinkingDataset</span><span class="o">.</span><span class="n">Chimpanzees</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">()</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;block_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">block</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">prosoc_left</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">condition</span>
 
@@ -1675,77 +1491,87 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-(7, 4)
-(7, 4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 4)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
-  var0=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-0.5014254 ,  0.74232   ,  0.4499971 ,  0.76490015], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.31832603, 0.47213277, 0.28802052, 5.721535  ], dtype=float32)&gt;,
+  var0=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-0.80727583,  0.61552143,  0.38840222, -0.59561455], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.4553671 , 0.84067655, 1.599556  , 0.6624421 ], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
-    array([[ 1.        ,  0.04274065,  0.21720065,  0.3427556 ],
-           [ 0.04274065,  1.        ,  0.13831937, -0.1113151 ],
-           [ 0.21720065,  0.13831937,  1.        ,  0.4894933 ],
-           [ 0.3427556 , -0.1113151 ,  0.4894933 ,  1.        ]],
+    array([[ 1.        ,  0.28686655, -0.14782421, -0.04544666],
+           [ 0.28686655,  1.        ,  0.15916914,  0.12452224],
+           [-0.14782421,  0.15916914,  1.        , -0.68510693],
+           [-0.04544666,  0.12452224, -0.68510693,  1.        ]],
           dtype=float32)&gt;,
-  var3=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.00137686, 0.28870302, 1.2713518 , 0.75674313], dtype=float32)&gt;,
+  var3=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.99101084, 0.662579  , 0.0035584 , 0.6435361 ], dtype=float32)&gt;,
   var4=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
-    array([[ 1.        , -0.6184058 , -0.32602987,  0.147812  ],
-           [-0.6184058 ,  1.        ,  0.20703457,  0.06719287],
-           [-0.32602987,  0.20703457,  1.        , -0.3049771 ],
-           [ 0.147812  ,  0.06719287, -0.3049771 ,  1.        ]],
+    array([[ 1.        ,  0.39802462, -0.13975878,  0.1300976 ],
+           [ 0.39802462,  1.        , -0.15651903,  0.6356942 ],
+           [-0.13975878, -0.15651903,  1.        ,  0.13758628],
+           [ 0.1300976 ,  0.6356942 ,  0.13758628,  1.        ]],
           dtype=float32)&gt;,
   var5=&lt;tf.Tensor: shape=(7, 4), dtype=float32, numpy=
-    array([[ 0.6302743 , -0.5363723 , -0.07518335, 15.145892  ],
-           [ 0.11294036, -0.15341198,  0.5445305 , 10.76273   ],
-           [-0.14775464, -0.19655983,  0.25711694, -0.5218694 ],
-           [ 0.37437737,  0.26977664,  0.15452878, -0.30596495],
-           [-0.18130596,  0.32749844, -0.26742986, -3.6027462 ],
-           [ 0.8370365 ,  0.3294301 ,  0.15910186, 13.008111  ],
-           [-0.20101161, -0.30880588, -0.15883592, -8.388695  ]],
+    array([[ 0.15415111, -0.25976393,  0.03859375, -0.11749208],
+           [-0.26222134, -0.24383077,  0.6700518 ,  1.1298437 ],
+           [-0.29137915,  1.7085508 , -0.89473087,  0.6634308 ],
+           [ 0.01091475,  0.7683808 , -0.93105215,  0.34543222],
+           [-0.10011505,  0.27426618,  0.65752864,  1.9204733 ],
+           [-0.1416837 ,  0.6230522 ,  0.7648462 ,  0.02151901],
+           [-0.35215992, -0.19589104, -1.6252097 ,  1.0083439 ]],
           dtype=float32)&gt;,
   var6=&lt;tf.Tensor: shape=(6, 4), dtype=float32, numpy=
-    array([[-6.1072106e-04, -3.1334347e-01, -1.7209022e+00,  9.8799431e-01],
-           [ 2.5450452e-03, -5.9288430e-01, -2.1505771e+00,  1.0472307e+00],
-           [ 2.8115786e-03, -3.6377683e-01, -1.3972664e+00,  4.4514343e-01],
-           [ 3.7121904e-04,  7.6736458e-02,  1.7643657e-01, -1.1165903e+00],
-           [-8.3132523e-05, -2.1002574e-01,  1.0349289e+00, -2.0302877e-02],
-           [-5.3229812e-04,  1.5425898e-02, -5.7022110e-02, -6.0530847e-01]],
+    array([[ 8.4322256e-01, -7.4768537e-01,  5.6685898e-03, -4.1009977e-01],
+           [ 2.6758891e-02,  1.0470179e+00,  2.6456028e-04, -1.2967741e-01],
+           [-5.0622100e-01, -5.6426620e-01,  3.0645698e-03, -2.7039108e-01],
+           [ 1.9863398e-01, -6.1620015e-01,  5.8572530e-04, -2.3324995e-01],
+           [-1.0893668e+00, -2.1070799e-01,  1.4400762e-04, -2.7986500e-01],
+           [ 9.9617416e-01, -5.2842677e-01,  2.1571515e-04, -5.0732094e-01]],
           dtype=float32)&gt;,
   var7=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([1., 1., 0., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
-           0., 0., 1., 1., 1., 0., 1., 1., 1., 0., 0., 0., 1., 0., 0., 1., 1.,
-           1., 0., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1., 1., 1., 1., 0., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1.,
-           1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 0., 0., 1.,
-           0., 1., 1., 1., 0., 1., 0., 0., 0., 1., 1., 0., 1., 0., 1., 1., 1.,
-           1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 0., 1., 0., 0., 0., 0., 1., 1., 1., 0., 0.,
-           0., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 1., 0., 0., 0.,
-           1., 0., 1., 1., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 0., 0., 1., 1., 0., 1., 0., 1., 1., 1., 0., 1.,
-           0., 0., 1., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 1., 1.,
-           0., 0., 1., 0., 0., 0., 1., 0., 1., 1., 1., 1., 0., 0., 1., 0., 1.,
-           0., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 1., 0., 1., 1., 0., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 1., 0., 1., 0., 0.,
-           1., 0., 1., 1., 0., 1., 0., 0., 0., 0., 1., 0., 0., 1., 1., 0., 1.,
-           0., 1., 1., 1., 1., 0., 0., 1., 0., 0., 1., 0., 1., 0., 1., 0., 0.,
-           1., 1., 0., 1., 0., 1., 0., 0., 1., 0., 1., 0., 1., 0., 1., 0., 0.,
-           1., 1., 1., 1., 0., 0., 1., 1., 1., 0., 1., 0., 1., 0., 1., 0., 1.,
-           0., 0., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1., 1., 0.,
-           0., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
-           1., 1., 1., 1., 0., 1., 1., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 0., 1.,
-           1., 0., 1., 1., 1., 1., 0., 1., 1., 0., 1., 0., 0., 1., 1., 0., 1.,
-           0., 1., 1., 1., 0., 1., 0., 1., 0., 1., 0., 1., 1., 1., 0., 0., 0.,
-           1., 0., 0., 0., 0., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0.,
-           1., 0., 1., 1., 1., 0., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0.,
-           1., 0., 0., 0., 0., 1., 1., 1., 1., 0., 1.], dtype=float32)&gt;
+    array([0., 0., 1., 0., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1.,
+           0., 1., 1., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 0., 1., 0., 1.,
+           0., 1., 0., 0., 0., 1., 0., 1., 0., 0., 1., 1., 0., 0., 1., 0., 0.,
+           0., 0., 1., 1., 0., 0., 0., 0., 1., 0., 1., 0., 1., 1., 1., 1., 0.,
+           1., 1., 1., 1., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 1., 0., 0.,
+           0., 1., 1., 1., 1., 0., 0., 1., 0., 1., 1., 0., 0., 0., 0., 1., 1.,
+           1., 0., 0., 1., 1., 0., 0., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 0., 0., 1., 1., 1.,
+           1., 0., 0., 1., 0., 0., 0., 1., 1., 1., 0., 1., 0., 1., 1., 0., 1.,
+           1., 0., 0., 1., 0., 0., 0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 1.,
+           1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 0., 0., 1., 1., 1., 0., 1.,
+           1., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1., 0., 0., 1., 0., 1., 1.,
+           1., 0., 1., 1., 0., 0., 1., 1., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
+           0., 0., 1., 1., 0., 0., 1., 1., 1., 0., 1., 1., 0., 1., 1., 0., 1.,
+           1., 1., 1., 1., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 1., 0.,
+           1., 0., 1., 0., 1., 1., 0., 1., 0., 1., 1., 1., 0., 1., 0., 0., 0.,
+           1., 0., 0., 1., 0., 0., 0., 1., 0., 0., 1., 1., 1., 0., 1., 1., 0.,
+           1., 0., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 0., 0., 1., 0.,
+           1., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 1., 0., 0., 0., 1., 0.,
+           0., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1., 0., 0., 1., 0., 0., 0.,
+           0., 1., 1., 1., 1., 0., 1., 0., 0., 0., 1., 1., 0., 1., 0., 1., 1.,
+           1., 0., 0., 1., 1., 0., 0., 1., 1., 1., 1., 0., 1., 1., 0., 0., 1.,
+           1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 1., 1., 0., 0., 0., 1., 0.,
+           0., 0., 1., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0.,
+           1., 0., 1., 0., 0., 0., 1., 1., 1., 0., 0., 0., 0., 0., 1., 1., 0.,
+           1., 0., 1., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1.,
+           0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 1.], dtype=float32)&gt;
 )
 </pre></div>
 </div>

@@ -32,7 +32,7 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['d = pd.read_csv(MILK_DATASET_PATH, sep=";")', '', 'def simcoll(r = 0.9):', '    ', '    mean = r * d["perc.fat"].values']
+['d = RethinkingDataset.Milk.get_dataset()', '', 'def simcoll(r = 0.9):', '    ', '    mean = r * d["perc.fat"].values']
 ...
 ['    lista.append(repsimcoll (r= i, N = 100))', '', 'plt.plot(np.arange(start = 0, stop = 0.99, step = 0.01), lista)', "plt.xlabel('correlation', fontsize=14)", "plt.ylabel('stddev', fontsize=14);"]
 -------------------
