@@ -307,11 +307,6 @@
        Code 2.1
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#observed-variables">
-       2.3.2.1 Observed variables
-      </a>
-     </li>
     </ul>
    </li>
   </ul>
@@ -322,9 +317,16 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-2-2">
-     Code 2.2
+    <a class="reference internal nav-link" href="#observed-variables">
+     2.3.2.1 Observed variables
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-2-2">
+       Code 2.2
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -426,11 +428,6 @@
        Code 2.1
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#observed-variables">
-       2.3.2.1 Observed variables
-      </a>
-     </li>
     </ul>
    </li>
   </ul>
@@ -441,9 +438,16 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-2-2">
-     Code 2.2
+    <a class="reference internal nav-link" href="#observed-variables">
+     2.3.2.1 Observed variables
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-2-2">
+       Code 2.2
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -546,7 +550,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
@@ -560,8 +563,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:38:26.864745: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:38:26.864786: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:27:55.353002: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 17:27:55.353051: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -609,10 +612,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:38:29.300180: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:38:29.300227: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:38:29.300257: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az132-324): /proc/driver/nvidia/version does not exist
-2022-01-18 03:38:29.300631: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:27:57.980071: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 17:27:57.980131: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 17:27:57.980156: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
+2022-01-18 17:27:57.980524: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -622,16 +625,15 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 </div>
-<div class="section" id="observed-variables">
-<h4>2.3.2.1 Observed variables<a class="headerlink" href="#observed-variables" title="Permalink to this headline">¶</a></h4>
-<p>Consider a globe of the earth that we toss into the air nine times. We want to compute the probability that our right index finger will land on water six times out of nine. We can use the binomial distribution to compute this, using a probability of 0.5 of landing on water on each toss.</p>
-</div>
 </div>
 </div>
 <div class="section" id="components-of-the-model">
 <h2>2.3 Components of the model<a class="headerlink" href="#components-of-the-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="observed-variables">
+<h3>2.3.2.1 Observed variables<a class="headerlink" href="#observed-variables" title="Permalink to this headline">¶</a></h3>
+<p>Consider a globe of the earth that we toss into the air nine times. We want to compute the probability that our right index finger will land on water six times out of nine. We can use the binomial distribution to compute this, using a probability of 0.5 of landing on water on each toss.</p>
 <div class="section" id="code-2-2">
-<h3>Code 2.2<a class="headerlink" href="#code-2-2" title="Permalink to this headline">¶</a></h3>
+<h4>Code 2.2<a class="headerlink" href="#code-2-2" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
@@ -644,6 +646,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.16406254&gt;
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -833,7 +836,7 @@ standard deviation:  tf.Tensor([[0.15718359]], shape=(1, 1), dtype=float32)
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">):</span>
     <span class="n">p_new</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">p_new</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">p_new</span> <span class="o">=</span> <span class="o">-</span><span class="n">p_new</span>
+        <span class="n">p_new</span> <span class="o">=</span> <span class="n">p_new</span>
     <span class="k">if</span> <span class="n">p_new</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">p_new</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">p_new</span>
     <span class="n">q0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="n">W</span><span class="o">+</span><span class="n">L</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">W</span><span class="p">))</span>
@@ -851,30 +854,6 @@ standard deviation:  tf.Tensor([[0.15718359]], shape=(1, 1), dtype=float32)
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># using built-in functions for mcmc</span>
-
-<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
-<span class="k">def</span> <span class="nf">do_sampling</span><span class="p">():</span>
-  <span class="k">def</span> <span class="nf">get_model_log_prob</span><span class="p">(</span><span class="n">probs</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="n">W</span> <span class="o">+</span> <span class="n">L</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probs</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
-
-  <span class="n">sampling_kernel</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">RandomWalkMetropolis</span><span class="p">(</span><span class="n">get_model_log_prob</span><span class="p">)</span>
-
-  <span class="k">return</span> <span class="n">tfp</span><span class="o">.</span><span class="n">mcmc</span><span class="o">.</span><span class="n">sample_chain</span><span class="p">(</span>
-      <span class="n">num_results</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
-      <span class="n">current_state</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
-      <span class="n">kernel</span><span class="o">=</span><span class="n">sampling_kernel</span><span class="p">,</span>
-      <span class="n">num_burnin_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">trace_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-  <span class="p">)</span>
-
-<span class="n">samples</span> <span class="o">=</span> <span class="n">do_sampling</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="code-2-9">
 <h4>Code 2.9<a class="headerlink" href="#code-2-9" title="Permalink to this headline">¶</a></h4>
@@ -883,7 +862,7 @@ standard deviation:  tf.Tensor([[0.15718359]], shape=(1, 1), dtype=float32)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Metropolis approximation&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Metropolis approximation&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True posterior&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -891,7 +870,7 @@ standard deviation:  tf.Tensor([[0.15718359]], shape=(1, 1), dtype=float32)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02_small_worlds_and_large_worlds_37_0.png" src="../_images/02_small_worlds_and_large_worlds_37_0.png" />
+<img alt="../_images/02_small_worlds_and_large_worlds_36_0.png" src="../_images/02_small_worlds_and_large_worlds_36_0.png" />
 </div>
 </div>
 </div>
