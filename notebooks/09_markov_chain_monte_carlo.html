@@ -553,7 +553,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:43:41.725979: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:43:38.173452: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -623,109 +623,82 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:43:43.371363: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:43:43.371398: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:43:40.103690: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:43:40.103746: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-KeyboardInterrupt                         Traceback (most recent call last)
-/tmp/ipykernel_2252/4073096055.py in &lt;module&gt;
-     23     # move?
-     24     prob_move = proposal / current
----&gt; 25     unif = proposal_dist.sample().numpy()
-     26     current = np.where(unif &lt; prob_move, proposal, current)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2373</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="c1"># move?</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
+<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in sample(self, sample_shape, seed, name, **kwargs)
-   1232     &quot;&quot;&quot;
-   1233     with self._name_and_control_scope(name):
--&gt; 1234       return self._call_sample_n(sample_shape, seed, **kwargs)
-   1235 
-   1236   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="sd">     with self._name_and_control_scope(name):</span>
+<span class="ne">-&gt; </span><span class="mi">1234</span><span class="sd">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _call_sample_n(self, sample_shape, seed, **kwargs)
-   1214         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),
-   1215         samples)
--&gt; 1216     return self._set_sample_static_shape(samples, sample_shape)
-   1217 
-   1218   def sample(self, sample_shape=(), seed=None, name=&#39;sample&#39;, **kwargs):
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="sd">     samples = self._sample_n(</span>
+<span class="ne">-&gt; </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _set_sample_static_shape(self, x, sample_shape)
-   2018   def _set_sample_static_shape(self, x, sample_shape):
-   2019     &quot;&quot;&quot;Helper to `sample`; sets static shape info.&quot;&quot;&quot;
--&gt; 2020     batch_shape = self.batch_shape
-   2021     if (tf.nest.is_nested(self.dtype)
-   2022         and not tf.nest.is_nested(batch_shape)):
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/uniform.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="sd">     high = tf.convert_to_tensor(self.high)</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="sd">     shape = ps.concat([[n], self._batch_shape_tensor(</span>
+<span class="ne">--&gt; </span><span class="mi">155</span><span class="sd">         low=low, high=high)], 0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     samples = samplers.uniform(shape=shape, dtype=self.dtype, seed=seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd">     return low + self._range(low=low, high=high) * samples</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in batch_shape(self)
-   1106       # because runtime changes to parameter shapes can only affect
-   1107       # `batch_shape_tensor`, never `batch_shape`.
--&gt; 1108       batch_shape = self._batch_shape()
-   1109 
-   1110       # See comment in `batch_shape_tensor()` on structured batch shapes. If
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_batch_shape_tensor</span><span class="nt">(self, **parameter_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span><span class="sd">     try:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span><span class="sd">       return batch_shape_lib.inferred_batch_shape_tensor(</span>
+<span class="ne">-&gt; </span><span class="mi">1014</span><span class="sd">           self, **parameter_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span><span class="sd">     except NotImplementedError:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span><span class="sd">       raise NotImplementedError(&#39;Cannot compute batch shape of distribution &#39;</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _batch_shape(self)
-   1084     &quot;&quot;&quot;
-   1085     try:
--&gt; 1086       return batch_shape_lib.inferred_batch_shape(self)
-   1087     except NotImplementedError:
-   1088       # If a distribution doesn&#39;t implement `_parameter_properties` or its own
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py</span> in <span class="ni">inferred_batch_shape_tensor</span><span class="nt">(batch_object, bijector_x_event_ndims, **parameter_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="sd">       require_static=False,</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="sd">       **parameter_kwargs)</span>
+<span class="ne">--&gt; </span><span class="mi">116</span><span class="sd">   return functools.reduce(ps.broadcast_shape, tf.nest.flatten(batch_shapes), [])</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span><span class="sd"> </span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py in inferred_batch_shape(batch_object, bijector_x_event_ndims)
-     70       get_batch_shape_part,
-     71       require_static=True,
----&gt; 72       bijector_x_event_ndims=bijector_x_event_ndims)
-     73   return functools.reduce(tf.broadcast_static_shape,
-     74                           tf.nest.flatten(batch_shapes),
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/prefer_static.py</span> in <span class="ni">broadcast_shape</span><span class="nt">(x_shape, y_shape)</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span>   <span class="n">x_shape_static</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_static_value</span><span class="p">(</span><span class="n">x_shape</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">225</span>   <span class="n">y_shape_static</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_static_value</span><span class="p">(</span><span class="n">y_shape</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>   <span class="k">if</span> <span class="p">(</span><span class="n">x_shape_static</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y_shape_static</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">broadcast_dynamic_shape</span><span class="p">(</span><span class="n">x_shape</span><span class="p">,</span> <span class="n">y_shape</span><span class="p">)</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py in map_fn_over_parameters_with_event_ndims(batch_object, fn, bijector_x_event_ndims, require_static, **parameter_kwargs)
-    360 
-    361     results[param_name] = nest.map_structure_up_to(
---&gt; 362         param, fn, param, param_event_ndims)
-    363   return results
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/tensor_util.py</span> in <span class="ni">constant_value</span><span class="nt">(tensor, partial)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>   <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">ops</span><span class="o">.</span><span class="n">EagerTensor</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>       <span class="k">return</span> <span class="n">tensor</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>     <span class="k">except</span> <span class="n">errors_impl</span><span class="o">.</span><span class="n">UnimplementedError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>       <span class="c1"># Some EagerTensors may not implement .numpy/resolve, e.g. parallel</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py in map_structure_up_to(shallow_tree, func, *inputs, **kwargs)
-   1378       lambda _, *values: func(*values),  # Discards the path arg.
-   1379       *inputs,
--&gt; 1380       **kwargs)
-   1381 
-   1382 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">numpy</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1147</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1148</span><span class="s2">     # TODO(slebedev): Consider avoiding a copy for non-CPU or remote tensors.</span>
+<span class="ne">-&gt; </span><span class="mi">1149</span><span class="s2">     maybe_arr = self._numpy()  # pylint: disable=protected-access</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span><span class="s2">     return maybe_arr.copy() if isinstance(maybe_arr, np.ndarray) else maybe_arr</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span><span class="s2"> </span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py in map_structure_with_tuple_paths_up_to(shallow_tree, func, *inputs, **kwargs)
-   1473       path for path, _ in _yield_flat_up_to(shallow_tree, inputs[0], is_seq))
-   1474   results = [
--&gt; 1475       func(*args, **kwargs) for args in zip(flat_path_gen, *flat_value_gen)
-   1476   ]
-   1477   return pack_sequence_as(structure=shallow_tree, flat_sequence=results,
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">_numpy</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span><span class="s2">   def _numpy(self):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1114</span><span class="s2">     try:</span>
+<span class="ne">-&gt; </span><span class="mi">1115</span><span class="s2">       return self._numpy_internal()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1116</span><span class="s2">     except core._NotOkStatusException as e:  # pylint: disable=protected-access</span>
+<span class="g g-Whitespace">   </span><span class="mi">1117</span><span class="s2">       raise core._status_to_exception(e) from None  # pylint: disable=protected-access</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py in &lt;listcomp&gt;(.0)
-   1473       path for path, _ in _yield_flat_up_to(shallow_tree, inputs[0], is_seq))
-   1474   results = [
--&gt; 1475       func(*args, **kwargs) for args in zip(flat_path_gen, *flat_value_gen)
-   1476   ]
-   1477   return pack_sequence_as(structure=shallow_tree, flat_sequence=results,
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py in &lt;lambda&gt;(_, *values)
-   1376   return map_structure_with_tuple_paths_up_to(
-   1377       shallow_tree,
--&gt; 1378       lambda _, *values: func(*values),  # Discards the path arg.
-   1379       *inputs,
-   1380       **kwargs)
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/batch_shape_lib.py in get_batch_shape_part(x, event_ndims)
-    166     base_shape = tf.TensorShape(base_shape)
-    167   elif hasattr(x, &#39;shape&#39;):  # `x` is a Tensor or ndarray.
---&gt; 168     base_shape = tf.TensorShape(x.shape)
-    169     # `x` is a Python list, tuple, or literal.
-    170   else:
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py in __init__(self, dims)
-    763   __slots__ = [&quot;_dims&quot;]
-    764 
---&gt; 765   def __init__(self, dims):
-    766     &quot;&quot;&quot;Creates a new TensorShape with the given dimensions.
-    767 
-
-KeyboardInterrupt: 
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

@@ -1319,8 +1319,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:39:47.003300: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:39:47.003338: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:38:59.098166: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:38:59.098210: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1379,10 +1379,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:39:48.966840: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:39:48.966872: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:39:48.966895: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az173-245): /proc/driver/nvidia/version does not exist
-2022-01-18 03:39:48.967201: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:39:01.582955: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:39:01.582998: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:39:01.583027: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az132-324): /proc/driver/nvidia/version does not exist
+2022-01-18 03:39:01.583392: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1882,8 +1882,8 @@ sense of our model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample_mu - [153.76884 155.32663]
-sample_sigma - [7.1909547 8.2763815]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample_mu - [153.86935 155.37689]
+sample_sigma - [7.2211056 8.316583 ]
 </pre></div>
 </div>
 </div>
@@ -2201,17 +2201,17 @@ define as a plain function and return log probs yourself. An example of plain fu
   <tbody>
     <tr>
       <th>mu[0]</th>
-      <td>154.67</td>
-      <td>0.44</td>
-      <td>153.90</td>
-      <td>155.32</td>
+      <td>154.65</td>
+      <td>0.43</td>
+      <td>153.96</td>
+      <td>155.27</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>7.81</td>
+      <td>7.80</td>
       <td>0.31</td>
-      <td>7.24</td>
-      <td>8.22</td>
+      <td>7.36</td>
+      <td>8.36</td>
     </tr>
   </tbody>
 </table>
@@ -2298,17 +2298,17 @@ define as a plain function and return log probs yourself. An example of plain fu
   <tbody>
     <tr>
       <th>mu[0]</th>
-      <td>177.87</td>
-      <td>0.10</td>
-      <td>177.71</td>
+      <td>177.86</td>
+      <td>0.11</td>
+      <td>177.69</td>
       <td>178.03</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>24.58</td>
+      <td>24.67</td>
       <td>0.92</td>
-      <td>23.08</td>
-      <td>25.97</td>
+      <td>23.39</td>
+      <td>26.17</td>
     </tr>
   </tbody>
 </table>
@@ -2333,8 +2333,8 @@ define as a plain function and return log probs yourself. An example of plain fu
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-array([[ 0.17708908, -0.00058373],
-       [-0.00058373,  0.09354498]], dtype=float32)&gt;
+array([[ 0.16363345, -0.00437882],
+       [-0.00437882,  0.08830525]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -2351,10 +2351,10 @@ array([[ 0.17708908, -0.00058373],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor([0.17708908 0.09354498], shape=(2,), dtype=float32)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor([0.16363345 0.08830525], shape=(2,), dtype=float32)
 tf.Tensor(
-[[ 1.         -0.00453529]
- [-0.00453529  1.        ]], shape=(2, 2), dtype=float32)
+[[ 1.         -0.03642739]
+ [-0.03642739  1.        ]], shape=(2, 2), dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -2371,8 +2371,8 @@ tf.Tensor(
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([8.027664 , 7.985726 , 7.985726 , 8.211496 , 8.2070055, 8.340094 ,
-       7.656537 , 7.8926926, 7.632608 , 7.6556215], dtype=float32)&gt;
+array([7.6329546, 7.6329546, 7.6329546, 7.8096313, 7.8096313, 7.625202 ,
+       7.6483474, 7.661841 , 7.821766 , 7.9749947], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -2417,17 +2417,17 @@ array([8.027664 , 7.985726 , 7.985726 , 8.211496 , 8.2070055, 8.340094 ,
   <tbody>
     <tr>
       <th>mu</th>
-      <td>154.65</td>
-      <td>0.42</td>
-      <td>154.04</td>
-      <td>155.41</td>
+      <td>154.66</td>
+      <td>0.4</td>
+      <td>154.09</td>
+      <td>155.32</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>7.78</td>
-      <td>0.31</td>
-      <td>7.31</td>
-      <td>8.28</td>
+      <td>0.3</td>
+      <td>7.35</td>
+      <td>8.25</td>
     </tr>
   </tbody>
 </table>
@@ -2448,10 +2448,10 @@ array([8.027664 , 7.985726 , 7.985726 , 8.211496 , 8.2070055, 8.340094 ,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(154.64824798583984,
- 7.784227578163147,
- array([[ 0.17744387, -0.0005849 ],
-        [-0.0005849 ,  0.09373243]]))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(154.65507110595703,
+ 7.77559850025177,
+ array([[ 0.16396135, -0.0043876 ],
+        [-0.0043876 ,  0.08848225]]))
 </pre></div>
 </div>
 </div>
@@ -2473,13 +2473,13 @@ Instructions for updating:
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(1000, 2), dtype=float64, numpy=
-array([[154.51582616,   7.75416215],
-       [155.13635481,   7.99210638],
-       [154.8894053 ,   8.09364647],
+array([[155.04571856,   7.53875008],
+       [154.61380536,   7.61600738],
+       [154.76025447,   8.09309638],
        ...,
-       [154.58784702,   7.87860638],
-       [154.8561886 ,   8.33246397],
-       [154.57982826,   8.07908084]])&gt;
+       [154.5251538 ,   7.60026688],
+       [154.71605651,   7.58193638],
+       [154.4482535 ,   8.37339112]])&gt;
 </pre></div>
 </div>
 </div>
@@ -2727,7 +2727,7 @@ array([[154.51582616,   7.75416215],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fdd19522710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f1943da97a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -2966,7 +2966,7 @@ array([[154.51582616,   7.75416215],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7fdd19522710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f1943da97a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>

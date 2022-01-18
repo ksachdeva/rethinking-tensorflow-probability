@@ -930,8 +930,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:42:25.104681: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:42:25.104726: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:42:11.805588: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:42:11.805632: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1087,10 +1087,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:42:27.528495: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:42:27.528531: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:42:27.528554: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az173-245): /proc/driver/nvidia/version does not exist
-2022-01-18 03:42:27.528858: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:42:14.491188: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:42:14.491229: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:42:14.491257: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az132-324): /proc/driver/nvidia/version does not exist
+2022-01-18 03:42:14.491604: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1198,39 +1198,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.528</td>
-      <td>0.107</td>
-      <td>0.361</td>
-      <td>0.684</td>
+      <td>0.526</td>
+      <td>0.106</td>
+      <td>0.370</td>
+      <td>0.690</td>
+      <td>0.002</td>
       <td>0.001</td>
-      <td>0.001</td>
-      <td>6639.0</td>
-      <td>2834.0</td>
-      <td>1.0</td>
+      <td>2218.0</td>
+      <td>3618.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta</th>
       <td>0.168</td>
-      <td>0.118</td>
-      <td>0.003</td>
-      <td>0.353</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>6397.0</td>
-      <td>3287.0</td>
-      <td>1.0</td>
+      <td>0.120</td>
+      <td>-0.009</td>
+      <td>0.349</td>
+      <td>0.002</td>
+      <td>0.002</td>
+      <td>3272.0</td>
+      <td>3321.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>-1.399</td>
-      <td>0.374</td>
-      <td>-1.990</td>
-      <td>-0.822</td>
-      <td>0.012</td>
-      <td>0.009</td>
-      <td>847.0</td>
-      <td>628.0</td>
-      <td>1.0</td>
+      <td>-1.389</td>
+      <td>0.379</td>
+      <td>-1.908</td>
+      <td>-0.751</td>
+      <td>0.028</td>
+      <td>0.026</td>
+      <td>188.0</td>
+      <td>29.0</td>
+      <td>1.01</td>
     </tr>
   </tbody>
 </table>
@@ -1336,7 +1336,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5339334846635939
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5313347744083584
 </pre></div>
 </div>
 </div>
@@ -1613,11 +1613,6 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="n">posterior_7_5</span><span class="p">,</span> <span class="n">trace_7_5</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">jdc_7_5</span><span class="p">)</span>
 
 <span class="n">posterior_7_6</span><span class="p">,</span> <span class="n">trace_7_6</span> <span class="o">=</span> <span class="n">compute_posterior_for_76_simulation</span><span class="p">(</span><span class="n">jdc_7_6</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f35846c7c20&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>

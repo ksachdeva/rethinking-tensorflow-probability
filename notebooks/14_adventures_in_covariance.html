@@ -649,8 +649,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:46:43.972492: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:46:43.972527: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:47:06.933577: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:47:06.933620: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -709,10 +709,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:46:45.945086: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:46:45.945122: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:46:45.945143: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az173-245): /proc/driver/nvidia/version does not exist
-2022-01-18 03:46:45.945474: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:47:09.265849: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:47:09.265892: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:47:09.265919: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az132-324): /proc/driver/nvidia/version does not exist
+2022-01-18 03:47:09.266279: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1163,35 +1163,35 @@ array([[[1., 0.],
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 4000, 2, 2), dtype=float32, numpy=
-array([[[[ 1.        , -0.5191445 ],
-         [-0.5191445 ,  0.9999999 ]],
+array([[[[ 1.        , -0.51914454],
+         [-0.51914454,  0.99999994]],
 
-        [[ 1.        , -0.44894338],
-         [-0.44894338,  0.9999999 ]],
+        [[ 1.        , -0.4489434 ],
+         [-0.4489434 ,  0.99999994]],
 
         [[ 1.        , -0.57372105],
          [-0.57372105,  0.9999999 ]],
 
         ...,
 
-        [[ 1.        , -0.87136114],
-         [-0.87136114,  1.        ]],
+        [[ 1.        , -0.8713611 ],
+         [-0.8713611 ,  1.        ]],
 
-        [[ 1.        , -0.8623171 ],
-         [-0.8623171 ,  1.        ]],
+        [[ 1.        , -0.862317  ],
+         [-0.862317  ,  1.        ]],
 
-        [[ 1.        , -0.86074287],
-         [-0.86074287,  1.        ]]],
+        [[ 1.        , -0.86074275],
+         [-0.86074275,  1.        ]]],
 
 
-       [[[ 1.        , -0.60459495],
-         [-0.60459495,  1.        ]],
+       [[[ 1.        , -0.604595  ],
+         [-0.604595  ,  1.0000001 ]],
 
-        [[ 1.        , -0.592773  ],
-         [-0.592773  ,  1.        ]],
+        [[ 1.        , -0.59277296],
+         [-0.59277296,  1.        ]],
 
         [[ 1.        , -0.69023496],
-         [-0.69023496,  0.9999999 ]],
+         [-0.69023496,  1.        ]],
 
         ...,
 
@@ -1201,8 +1201,8 @@ array([[[[ 1.        , -0.5191445 ],
         [[ 1.        , -0.4906618 ],
          [-0.4906618 ,  1.        ]],
 
-        [[ 1.        , -0.5256052 ],
-         [-0.5256052 ,  1.        ]]]], dtype=float32)&gt;
+        [[ 1.        , -0.52560526],
+         [-0.52560526,  1.        ]]]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -1215,25 +1215,25 @@ array([[[[ 1.        , -0.5191445 ],
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(4000, 2, 2), dtype=float32, numpy=
-array([[[ 1.        , -0.5191445 ],
-        [-0.5191445 ,  0.9999999 ]],
+array([[[ 1.        , -0.51914454],
+        [-0.51914454,  0.99999994]],
 
-       [[ 1.        , -0.44894338],
-        [-0.44894338,  0.9999999 ]],
+       [[ 1.        , -0.4489434 ],
+        [-0.4489434 ,  0.99999994]],
 
        [[ 1.        , -0.57372105],
         [-0.57372105,  0.9999999 ]],
 
        ...,
 
-       [[ 1.        , -0.87136114],
-        [-0.87136114,  1.        ]],
+       [[ 1.        , -0.8713611 ],
+        [-0.8713611 ,  1.        ]],
 
-       [[ 1.        , -0.8623171 ],
-        [-0.8623171 ,  1.        ]],
+       [[ 1.        , -0.862317  ],
+        [-0.862317  ,  1.        ]],
 
-       [[ 1.        , -0.86074287],
-        [-0.86074287,  1.        ]]], dtype=float32)&gt;
+       [[ 1.        , -0.86074275],
+        [-0.86074275,  1.        ]]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -1246,8 +1246,8 @@ array([[[ 1.        , -0.5191445 ],
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(4000,), dtype=float32, numpy=
-array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
-       -0.4906618 , -0.5256052 ], dtype=float32)&gt;
+array([-0.604595  , -0.59277296, -0.69023496, ..., -0.7170182 ,
+       -0.4906618 , -0.52560526], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
