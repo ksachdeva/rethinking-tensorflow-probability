@@ -649,8 +649,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:09:05.665739: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:09:05.665778: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:33:47.958614: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:33:47.958654: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -709,10 +709,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:09:07.930083: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:09:07.930143: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:09:07.930167: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az269-271): /proc/driver/nvidia/version does not exist
-2022-01-18 03:09:07.930569: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:33:50.014571: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:33:50.014603: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:33:50.014624: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-18 03:33:50.014935: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1513,16 +1513,16 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
   var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.4553671 , 0.84067655, 1.599556  , 0.6624421 ], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
     array([[ 1.        ,  0.28686655, -0.14782421, -0.04544666],
-           [ 0.28686655,  1.        ,  0.15916914,  0.12452225],
+           [ 0.28686655,  1.        ,  0.15916914,  0.12452224],
            [-0.14782421,  0.15916914,  1.        , -0.68510693],
-           [-0.04544666,  0.12452225, -0.68510693,  1.        ]],
+           [-0.04544666,  0.12452224, -0.68510693,  1.        ]],
           dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.99101084, 0.662579  , 0.0035584 , 0.6435361 ], dtype=float32)&gt;,
   var4=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
     array([[ 1.        ,  0.39802462, -0.13975878,  0.1300976 ],
-           [ 0.39802462,  1.        , -0.15651903,  0.63569427],
-           [-0.13975878, -0.15651903,  1.        ,  0.1375863 ],
-           [ 0.1300976 ,  0.63569427,  0.1375863 ,  1.        ]],
+           [ 0.39802462,  1.        , -0.15651903,  0.6356942 ],
+           [-0.13975878, -0.15651903,  1.        ,  0.13758628],
+           [ 0.1300976 ,  0.6356942 ,  0.13758628,  1.        ]],
           dtype=float32)&gt;,
   var5=&lt;tf.Tensor: shape=(7, 4), dtype=float32, numpy=
     array([[ 0.15415111, -0.25976393,  0.03859375, -0.11749208],
@@ -1534,12 +1534,12 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
            [-0.35215992, -0.19589104, -1.6252097 ,  1.0083439 ]],
           dtype=float32)&gt;,
   var6=&lt;tf.Tensor: shape=(6, 4), dtype=float32, numpy=
-    array([[ 8.4322256e-01, -7.4768537e-01,  5.6685898e-03, -4.1009983e-01],
-           [ 2.6758891e-02,  1.0470179e+00,  2.6456028e-04, -1.2967736e-01],
-           [-5.0622100e-01, -5.6426620e-01,  3.0645698e-03, -2.7039105e-01],
-           [ 1.9863398e-01, -6.1620015e-01,  5.8572530e-04, -2.3324998e-01],
+    array([[ 8.4322256e-01, -7.4768537e-01,  5.6685898e-03, -4.1009977e-01],
+           [ 2.6758891e-02,  1.0470179e+00,  2.6456028e-04, -1.2967741e-01],
+           [-5.0622100e-01, -5.6426620e-01,  3.0645698e-03, -2.7039108e-01],
+           [ 1.9863398e-01, -6.1620015e-01,  5.8572530e-04, -2.3324995e-01],
            [-1.0893668e+00, -2.1070799e-01,  1.4400762e-04, -2.7986500e-01],
-           [ 9.9617416e-01, -5.2842677e-01,  2.1571515e-04, -5.0732100e-01]],
+           [ 9.9617416e-01, -5.2842677e-01,  2.1571515e-04, -5.0732094e-01]],
           dtype=float32)&gt;,
   var7=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
     array([0., 0., 1., 0., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1.,

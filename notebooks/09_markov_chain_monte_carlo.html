@@ -553,7 +553,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:05:34.637181: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:30:38.345220: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -623,13 +623,13 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:05:36.542908: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:05:36.542980: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:30:40.132524: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:30:40.132556: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2104</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2113</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="c1"># move?</span>
 <span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
 <span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
@@ -733,11 +733,11 @@ rethinking            : 0.1.0
 <span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="sd">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/array_ops.py</span> in <span class="ni">_slice_helper</span><span class="nt">(tensor, slice_spec, var)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1026</span><span class="sd">       skip_on_eager=False) as name:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1027</span><span class="sd">     if begin:</span>
-<span class="ne">-&gt; </span><span class="mi">1028</span><span class="sd">       packed_begin, packed_end, packed_strides = (stack(begin), stack(end),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1029</span><span class="sd">                                                   stack(strides))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1028</span><span class="sd">       packed_begin, packed_end, packed_strides = (stack(begin), stack(end),</span>
+<span class="ne">-&gt; </span><span class="mi">1029</span><span class="sd">                                                   stack(strides))</span>
 <span class="g g-Whitespace">   </span><span class="mi">1030</span><span class="sd">       if (packed_begin.dtype == dtypes.int64 or</span>
+<span class="g g-Whitespace">   </span><span class="mi">1031</span><span class="sd">           packed_end.dtype == dtypes.int64 or</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">148</span><span class="sd">     filtered_tb = None</span>
