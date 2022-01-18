@@ -1,5 +1,13 @@
 {
     "python.pythonPath": "~/rethinkingtfp/bin/python3",
     "python.formatting.provider": "black",
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/__pycache__": true
+    },
 }

@@ -131,3 +131,4 @@ dmypy.json
 scratchee
 
 _build
+.DS_Store
