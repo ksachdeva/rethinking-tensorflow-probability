@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 14 - Adventures in Covariance &#8212; Statistical Rethinking (2nd Edition)</title>
+    <title>14. Adventures in Covariance &#8212; Statistical Rethinking (2nd Edition)</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,8 @@
     <link rel="canonical" href="https://ksachdeva.github.io/rethinking-tensorflow-probability/notebooks/14_adventures_in_covariance.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 15 - Missing Data and Other Opportunities" href="15_missing_data_and_other_opportunities.html" />
-    <link rel="prev" title="Chapter 13 - Models with Memory" href="13_models_with_memory.html" />
+    <link rel="next" title="15. Missing Data and Other Opportunities" href="15_missing_data_and_other_opportunities.html" />
+    <link rel="prev" title="13. Models with Memory" href="13_models_with_memory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -105,87 +105,87 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_the_golem_of_prague.html">
-   Chapter 1 The Gloem of Prague
+   1. The Gloem of Prague
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_small_worlds_and_large_worlds.html">
-   Chapter 2 - Small Worlds and Large Worlds
+   2. Small Worlds and Large Worlds
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_sampling_the_imaginary.html">
-   Chapter 3 - Sampling the Imaginary
+   3. Sampling the Imaginary
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_geocentric_models.html">
-   Chapter 4 - Geocentric Models
+   4. Geocentric Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_the_many_variables_and_the_spurious_waffles.html">
-   Chapter 5 - The Many Variables &amp; The Spurious Waffles
+   5. The Many Variables &amp; The Spurious Waffles
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_the_haunted_dag_and_the_causal_terror.html">
-   Chapter 6 - The Haunted DAG and The Causal Terror
+   6. The Haunted DAG and The Causal Terror
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_ulysses_compass.html">
-   Chapter 7 - Ulysses’ Compass
+   7. Ulysses’ Compass
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="08_conditional_manatees.html">
-   Chapter 8 - Conditional Manatees
+   8. Conditional Manatees
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="09_markov_chain_monte_carlo.html">
-   Chapter 9 - Markov Chain Monte Carlo
+   9. Markov Chain Monte Carlo
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="10_big_entropy_and_the_generalized_linear_model.html">
-   Chapter 10 - Big Entropy and The Generalized Linear Model
+   10. Big Entropy and The Generalized Linear Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="11_god_spiked_the_integers.html">
-   Chapter 11 - God Spiked the Integers
+   11. God Spiked the Integers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="12_monsters_and_mixtures.html">
-   Chapter 12 - Monsters and Mixtures
+   12. Monsters and Mixtures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="13_models_with_memory.html">
-   Chapter 13 - Models with Memory
+   13. Models with Memory
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 14 - Adventures in Covariance
+   14. Adventures in Covariance
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="15_missing_data_and_other_opportunities.html">
-   Chapter 15 - Missing Data and Other Opportunities
+   15. Missing Data and Other Opportunities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="16_generalized_linear_madness.html">
-   Chapter 16 - Generalized Linear Madness
+   16. Generalized Linear Madness
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="17_horoscopes.html">
-   Chapter 17 - Horoscopes
+   17. Horoscopes
   </a>
  </li>
 </ul>
@@ -442,7 +442,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 14 - Adventures in Covariance</h1>
+                <h1>14. Adventures in Covariance</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -602,8 +602,8 @@
               <div>
                 
   <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/14_adventures_in_covariance.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="tex2jax_ignore mathjax_ignore section" id="chapter-14-adventures-in-covariance">
-<h1>Chapter 14 - Adventures in Covariance<a class="headerlink" href="#chapter-14-adventures-in-covariance" title="Permalink to this headline">¶</a></h1>
+<div class="tex2jax_ignore mathjax_ignore section" id="adventures-in-covariance">
+<h1>14. Adventures in Covariance<a class="headerlink" href="#adventures-in-covariance" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
@@ -649,8 +649,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:43:13.254724: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 02:43:13.254761: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:09:05.665739: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:09:05.665778: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -709,12 +709,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:43:15.227991: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:43:15.228024: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 02:43:15.228045: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
-2022-01-18 02:43:15.228358: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:09:07.930083: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:09:07.930143: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:09:07.930167: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az269-271): /proc/driver/nvidia/version does not exist
+2022-01-18 03:09:07.930569: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1515,16 +1513,16 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
   var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.4553671 , 0.84067655, 1.599556  , 0.6624421 ], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
     array([[ 1.        ,  0.28686655, -0.14782421, -0.04544666],
-           [ 0.28686655,  1.        ,  0.15916914,  0.12452224],
+           [ 0.28686655,  1.        ,  0.15916914,  0.12452225],
            [-0.14782421,  0.15916914,  1.        , -0.68510693],
-           [-0.04544666,  0.12452224, -0.68510693,  1.        ]],
+           [-0.04544666,  0.12452225, -0.68510693,  1.        ]],
           dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.99101084, 0.662579  , 0.0035584 , 0.6435361 ], dtype=float32)&gt;,
   var4=&lt;tf.Tensor: shape=(4, 4), dtype=float32, numpy=
     array([[ 1.        ,  0.39802462, -0.13975878,  0.1300976 ],
-           [ 0.39802462,  1.        , -0.15651903,  0.6356942 ],
-           [-0.13975878, -0.15651903,  1.        ,  0.13758628],
-           [ 0.1300976 ,  0.6356942 ,  0.13758628,  1.        ]],
+           [ 0.39802462,  1.        , -0.15651903,  0.63569427],
+           [-0.13975878, -0.15651903,  1.        ,  0.1375863 ],
+           [ 0.1300976 ,  0.63569427,  0.1375863 ,  1.        ]],
           dtype=float32)&gt;,
   var5=&lt;tf.Tensor: shape=(7, 4), dtype=float32, numpy=
     array([[ 0.15415111, -0.25976393,  0.03859375, -0.11749208],
@@ -1536,12 +1534,12 @@ array([-0.60459495, -0.592773  , -0.69023496, ..., -0.7170182 ,
            [-0.35215992, -0.19589104, -1.6252097 ,  1.0083439 ]],
           dtype=float32)&gt;,
   var6=&lt;tf.Tensor: shape=(6, 4), dtype=float32, numpy=
-    array([[ 8.4322256e-01, -7.4768537e-01,  5.6685898e-03, -4.1009977e-01],
-           [ 2.6758891e-02,  1.0470179e+00,  2.6456028e-04, -1.2967741e-01],
-           [-5.0622100e-01, -5.6426620e-01,  3.0645698e-03, -2.7039108e-01],
-           [ 1.9863398e-01, -6.1620015e-01,  5.8572530e-04, -2.3324995e-01],
+    array([[ 8.4322256e-01, -7.4768537e-01,  5.6685898e-03, -4.1009983e-01],
+           [ 2.6758891e-02,  1.0470179e+00,  2.6456028e-04, -1.2967736e-01],
+           [-5.0622100e-01, -5.6426620e-01,  3.0645698e-03, -2.7039105e-01],
+           [ 1.9863398e-01, -6.1620015e-01,  5.8572530e-04, -2.3324998e-01],
            [-1.0893668e+00, -2.1070799e-01,  1.4400762e-04, -2.7986500e-01],
-           [ 9.9617416e-01, -5.2842677e-01,  2.1571515e-04, -5.0732094e-01]],
+           [ 9.9617416e-01, -5.2842677e-01,  2.1571515e-04, -5.0732100e-01]],
           dtype=float32)&gt;,
   var7=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
     array([0., 0., 1., 0., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1.,
@@ -1683,13 +1681,13 @@ entire structure in xarray. Really arviz does not work if there is 1 chain.</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Chapter 13 - Models with Memory</p>
+            <p class="prev-next-title">13. Models with Memory</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="15_missing_data_and_other_opportunities.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 15 - Missing Data and Other Opportunities</p>
+        <p class="prev-next-title">15. Missing Data and Other Opportunities</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
