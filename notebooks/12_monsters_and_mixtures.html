@@ -502,8 +502,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:31:32.275193: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 02:31:32.275232: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:42:09.197935: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:42:09.197969: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -560,10 +560,10 @@ rethinking            : 0.1.0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:31:34.421873: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 02:31:34.421912: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 02:31:34.421933: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
-2022-01-18 02:31:34.422252: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:42:11.354571: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:42:11.354604: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:42:11.354626: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:42:11.354944: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -719,62 +719,62 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.406</td>
-      <td>0.439</td>
-      <td>-1.069</td>
-      <td>0.303</td>
-      <td>0.013</td>
-      <td>0.011</td>
-      <td>1127.0</td>
-      <td>751.0</td>
+      <td>-0.420</td>
+      <td>0.433</td>
+      <td>-1.153</td>
+      <td>0.236</td>
+      <td>0.016</td>
+      <td>0.012</td>
+      <td>783.0</td>
+      <td>705.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.268</td>
-      <td>0.427</td>
-      <td>-0.882</td>
-      <td>0.425</td>
-      <td>0.013</td>
-      <td>0.009</td>
-      <td>1126.0</td>
-      <td>746.0</td>
+      <td>-0.284</td>
+      <td>0.411</td>
+      <td>-0.997</td>
+      <td>0.292</td>
+      <td>0.015</td>
+      <td>0.010</td>
+      <td>794.0</td>
+      <td>559.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>phi</th>
-      <td>0.592</td>
-      <td>0.848</td>
-      <td>-0.728</td>
-      <td>1.842</td>
-      <td>0.074</td>
-      <td>0.054</td>
-      <td>144.0</td>
-      <td>131.0</td>
+      <td>0.676</td>
+      <td>0.977</td>
+      <td>-0.770</td>
+      <td>2.085</td>
+      <td>0.094</td>
+      <td>0.075</td>
+      <td>134.0</td>
+      <td>100.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>da</th>
-      <td>-0.138</td>
+      <td>-0.136</td>
       <td>0.609</td>
-      <td>-1.130</td>
-      <td>0.724</td>
+      <td>-1.133</td>
+      <td>0.777</td>
+      <td>0.022</td>
       <td>0.017</td>
-      <td>0.017</td>
-      <td>1276.0</td>
-      <td>709.0</td>
-      <td>1.00</td>
+      <td>798.0</td>
+      <td>589.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>theta</th>
-      <td>2.592</td>
-      <td>0.848</td>
-      <td>1.272</td>
-      <td>3.842</td>
-      <td>0.074</td>
-      <td>0.054</td>
-      <td>144.0</td>
-      <td>131.0</td>
+      <td>2.676</td>
+      <td>0.977</td>
+      <td>1.230</td>
+      <td>4.085</td>
+      <td>0.094</td>
+      <td>0.072</td>
+      <td>134.0</td>
+      <td>100.0</td>
       <td>1.01</td>
     </tr>
   </tbody>

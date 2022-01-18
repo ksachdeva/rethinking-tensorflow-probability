@@ -930,8 +930,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:28:09.753352: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 02:28:09.753387: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:38:50.310485: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 02:38:50.310520: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1087,10 +1087,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:28:12.153693: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 02:28:12.153730: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 02:28:12.153752: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
-2022-01-18 02:28:12.154070: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 02:38:52.546620: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 02:38:52.546651: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 02:38:52.546674: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 02:38:52.546983: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1198,39 +1198,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.526</td>
-      <td>0.106</td>
-      <td>0.379</td>
+      <td>0.527</td>
+      <td>0.110</td>
+      <td>0.367</td>
       <td>0.690</td>
-      <td>0.002</td>
       <td>0.001</td>
-      <td>2353.0</td>
-      <td>2827.0</td>
-      <td>1.00</td>
+      <td>0.001</td>
+      <td>4625.0</td>
+      <td>3129.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>0.168</td>
-      <td>0.113</td>
-      <td>0.003</td>
-      <td>0.336</td>
+      <td>0.165</td>
+      <td>0.124</td>
+      <td>-0.028</td>
+      <td>0.343</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>1940.0</td>
-      <td>2530.0</td>
-      <td>1.00</td>
+      <td>5913.0</td>
+      <td>2671.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>-1.430</td>
-      <td>0.387</td>
-      <td>-2.155</td>
-      <td>-0.952</td>
-      <td>0.027</td>
-      <td>0.023</td>
-      <td>165.0</td>
-      <td>43.0</td>
-      <td>1.01</td>
+      <td>-1.375</td>
+      <td>0.373</td>
+      <td>-1.997</td>
+      <td>-0.874</td>
+      <td>0.010</td>
+      <td>0.008</td>
+      <td>1155.0</td>
+      <td>580.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1336,7 +1336,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5315752764694662
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5488947919634669
 </pre></div>
 </div>
 </div>
@@ -1617,271 +1617,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fb9d5601b90&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-KeyboardInterrupt                         Traceback (most recent call last)
-/tmp/ipykernel_2005/3035999005.py in &lt;module&gt;
-     10 posterior_7_3, trace_7_3 = compute_brain_body_posterior_for_simulation(3, jdc_7_3)
-     11 posterior_7_4, trace_7_4 = compute_brain_body_posterior_for_simulation(4, jdc_7_4)
----&gt; 12 posterior_7_5, trace_7_5 = compute_brain_body_posterior_for_simulation(5, jdc_7_5)
-     13 
-     14 posterior_7_6, trace_7_6 = compute_posterior_for_76_simulation(jdc_7_6)
-
-/tmp/ipykernel_2005/2077961507.py in compute_brain_body_posterior_for_simulation(beta_degree, jdc)
-     30             burnin=1000,
-     31             init_state=init_state,
----&gt; 32             bijectors=bijectors)
-     33 
-     34     return posterior, trace
-
-~/work/rethinking-tensorflow-probability/rethinking-tensorflow-probability/rethinking/mcmc/_helpers.py in sample_posterior(jdc, observed_data, params, init_state, bijectors, step_size, num_chains, num_samples, burnin)
-    108         target_log_prob_fn=target_log_prob_fn,
-    109         num_samples=num_samples,
---&gt; 110         burnin=burnin,
-    111     )
-    112 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py in error_handler(*args, **kwargs)
-    148     filtered_tb = None
-    149     try:
---&gt; 150       return fn(*args, **kwargs)
-    151     except Exception as e:
-    152       filtered_tb = _process_traceback_frames(e.__traceback__)
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py in __call__(self, *args, **kwds)
-    908 
-    909       with OptionalXlaContext(self._jit_compile):
---&gt; 910         result = self._call(*args, **kwds)
-    911 
-    912       new_tracing_count = self.experimental_get_tracing_count()
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py in _call(self, *args, **kwds)
-    947       # In this case we have not created variables on the first call. So we can
-    948       # run the first trace but we should fail if variables are created.
---&gt; 949       results = self._stateful_fn(*args, **kwds)
-    950       if self._created_variables and not ALLOW_DYNAMIC_VARIABLE_CREATION:
-    951         raise ValueError(&quot;Creating variables on a non-first call to a function&quot;
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py in __call__(self, *args, **kwargs)
-   3127     with self._lock:
-   3128       (graph_function,
--&gt; 3129        filtered_flat_args) = self._maybe_define_function(args, kwargs)
-   3130     return graph_function._call_flat(
-   3131         filtered_flat_args, captured_inputs=graph_function.captured_inputs)  # pylint: disable=protected-access
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py in _maybe_define_function(self, args, kwargs)
-   3555 
-   3556           self._function_cache.missed.add(call_context_key)
--&gt; 3557           graph_function = self._create_graph_function(args, kwargs)
-   3558           self._function_cache.primary[cache_key] = graph_function
-   3559 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py in _create_graph_function(self, args, kwargs, override_flat_arg_shapes)
-   3400             arg_names=arg_names,
-   3401             override_flat_arg_shapes=override_flat_arg_shapes,
--&gt; 3402             capture_by_value=self._capture_by_value),
-   3403         self._function_attributes,
-   3404         function_spec=self.function_spec,
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py in func_graph_from_py_func(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes, acd_record_initial_resource_uses)
-   1141         _, original_func = tf_decorator.unwrap(python_func)
-   1142 
--&gt; 1143       func_outputs = python_func(*func_args, **func_kwargs)
-   1144 
-   1145       # invariant: `func_outputs` contains only Tensors, CompositeTensors,
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py in wrapped_fn(*args, **kwds)
-    670         # the function a weak reference to itself to avoid a reference cycle.
-    671         with OptionalXlaContext(compile_with_xla):
---&gt; 672           out = weak_wrapped_fn().__wrapped__(*args, **kwds)
-    673         return out
-    674 
-
-~/work/rethinking-tensorflow-probability/rethinking-tensorflow-probability/rethinking/mcmc/_helpers.py in run_hmc_chain(init_state, bijectors, step_size, target_log_prob_fn, num_leapfrog_steps, num_samples, burnin)
-     76         current_state=init_state,
-     77         kernel=kernel,
----&gt; 78         trace_fn=_trace_fn_transitioned,
-     79     )
-     80 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/sample.py in sample_chain(num_results, current_state, previous_kernel_results, kernel, num_burnin_steps, num_steps_between_results, trace_fn, return_final_kernel_results, parallel_iterations, seed, name)
-    328         current_state)
-    329     if previous_kernel_results is None:
---&gt; 330       previous_kernel_results = kernel.bootstrap_results(current_state)
-    331 
-    332     if trace_fn is None:
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/simple_step_size_adaptation.py in bootstrap_results(self, init_state)
-    441     with tf.name_scope(mcmc_util.make_name(
-    442         self.name, &#39;simple_step_size_adaptation&#39;, &#39;bootstrap_results&#39;)):
---&gt; 443       inner_results = self.inner_kernel.bootstrap_results(init_state)
-    444       step_size = self.step_size_getter_fn(inner_results)
-    445       return SimpleStepSizeAdaptationResults(
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/transformed_kernel.py in bootstrap_results(self, init_state, transformed_init_state)
-    491           transformed_state=transformed_init_state,
-    492           inner_results=self._inner_kernel.bootstrap_results(
---&gt; 493               transformed_init_state))
-    494       return kernel_results
-    495 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/hmc.py in bootstrap_results(self, init_state)
-    559   def bootstrap_results(self, init_state):
-    560     &quot;&quot;&quot;Creates initial `previous_kernel_results` using a supplied `state`.&quot;&quot;&quot;
---&gt; 561     kernel_results = self._impl.bootstrap_results(init_state)
-    562     if self.step_size_update_fn is not None:
-    563       step_size_assign = self.step_size_update_fn(self.step_size, None)  # pylint: disable=not-callable
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/metropolis_hastings.py in bootstrap_results(self, init_state)
-    271     with tf.name_scope(mcmc_util.make_name(
-    272         self.name, &#39;mh&#39;, &#39;bootstrap_results&#39;)):
---&gt; 273       pkr = self.inner_kernel.bootstrap_results(init_state)
-    274       if not has_target_log_prob(pkr):
-    275         raise ValueError(
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/hmc.py in bootstrap_results(self, init_state)
-    773           init_target_log_prob,
-    774           init_grads_target_log_prob,
---&gt; 775       ] = mcmc_util.maybe_call_fn_and_grads(self.target_log_prob_fn, init_state)
-    776       result = UncalibratedHamiltonianMonteCarloKernelResults(
-    777           log_acceptance_correction=tf.zeros_like(init_target_log_prob),
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/util.py in maybe_call_fn_and_grads(fn, fn_arg_list, result, grads, check_non_none_grads, name)
-    295     fn_arg_list = (list(fn_arg_list) if is_list_like(fn_arg_list)
-    296                    else [fn_arg_list])
---&gt; 297     result, grads = _value_and_gradients(fn, fn_arg_list, result, grads)
-    298     if not all(dtype_util.is_floating(r.dtype)
-    299                for r in (result if is_list_like(result) else [result])):  # pylint: disable=superfluous-parens
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/util.py in _value_and_gradients(fn, fn_arg_list, result, grads, name)
-    263       # tensorflow eager mode (see below), so we will handle that case
-    264       # separately.
---&gt; 265       return tfp_math_value_and_gradients(fn, fn_arg_list)
-    266 
-    267     if result is None:
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py in value_and_gradient(f, output_gradients, use_gradient_tape, auto_unpack_single_arg, has_aux, name, *args, **kwargs)
-    115         expand_tf_modules_as_trainable_vars=False,
-    116         has_aux=has_aux,
---&gt; 117         **kwargs)
-    118 
-    119 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py in _value_and_grad_impl(f, grad_fn, output_gradients, auto_unpack_single_arg, expand_tf_modules_as_trainable_vars, has_aux, *args, **kwargs)
-    378   y, dydx, aux = grad_fn(lambda: f(*args, **kwargs) if _has_args(f) else f(),
-    379                          tf.nest.flatten([expand_args, expand_kwargs]),
---&gt; 380                          output_gradients)
-    381   dydx_args, dydx_kwargs = tf.nest.pack_sequence_as(
-    382       [expand_args, expand_kwargs], dydx)
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py in _gradient_old(f, xs, grad_ys)
-    329   assert not tf.executing_eagerly()
-    330   y, aux = f()
---&gt; 331   return y, tf.gradients(y, xs, grad_ys=grad_ys), aux
-    332 
-    333 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gradients_impl.py in gradients_v2(ys, xs, grad_ys, name, gate_gradients, aggregation_method, stop_gradients, unconnected_gradients)
-    316         ys, xs, grad_ys, name, True, gate_gradients,
-    317         aggregation_method, stop_gradients,
---&gt; 318         unconnected_gradients)
-    319   # pylint: enable=protected-access
-    320 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gradients_util.py in _GradientsHelper(ys, xs, grad_ys, name, colocate_gradients_with_ops, gate_gradients, aggregation_method, stop_gradients, unconnected_gradients, src_graph)
-    681                 # functions.
-    682                 in_grads = _MaybeCompile(grad_scope, op, func_call,
---&gt; 683                                          lambda: grad_fn(op, *out_grads))
-    684               else:
-    685                 # For function call ops, we add a &#39;SymbolicGradient&#39;
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gradients_util.py in _MaybeCompile(scope, op, func, grad_fn)
-    329 
-    330   if not xla_compile:
---&gt; 331     return grad_fn()  # Exit early
-    332 
-    333   # If the gradients are supposed to be compiled separately, we give them a
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gradients_util.py in &lt;lambda&gt;()
-    681                 # functions.
-    682                 in_grads = _MaybeCompile(grad_scope, op, func_call,
---&gt; 683                                          lambda: grad_fn(op, *out_grads))
-    684               else:
-    685                 # For function call ops, we add a &#39;SymbolicGradient&#39;
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/math_grad.py in _RealDivGrad(op, grad)
-   1469   y = math_ops.conj(y)
-   1470   return (array_ops.reshape(
--&gt; 1471       math_ops.reduce_sum(math_ops.realdiv(grad, y), rx), sx),
-   1472           array_ops.reshape(
-   1473               math_ops.reduce_sum(
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py in error_handler(*args, **kwargs)
-    148     filtered_tb = None
-    149     try:
---&gt; 150       return fn(*args, **kwargs)
-    151     except Exception as e:
-    152       filtered_tb = _process_traceback_frames(e.__traceback__)
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py in op_dispatch_handler(*args, **kwargs)
-   1094       # Fallback dispatch system (dispatch v1):
-   1095       try:
--&gt; 1096         return dispatch_target(*args, **kwargs)
-   1097       except (TypeError, ValueError):
-   1098         # Note: convert_to_eager_tensor currently raises a ValueError, not a
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/array_ops.py in reshape(tensor, shape, name)
-    195     A `Tensor`. Has the same type as `tensor`.
-    196   &quot;&quot;&quot;
---&gt; 197   result = gen_array_ops.reshape(tensor, shape, name)
-    198   tensor_util.maybe_set_static_shape(result, shape)
-    199   return result
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gen_array_ops.py in reshape(tensor, shape, name)
-   8545   # Add nodes to the TensorFlow graph.
-   8546   _, _, _op, _outputs = _op_def_library._apply_op_helper(
--&gt; 8547         &quot;Reshape&quot;, tensor=tensor, shape=shape, name=name)
-   8548   _result = _outputs[:]
-   8549   if _execute.must_record_gradient():
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py in _apply_op_helper(op_type_name, name, **keywords)
-    744       op = g._create_op_internal(op_type_name, inputs, dtypes=None,
-    745                                  name=scope, input_types=input_types,
---&gt; 746                                  attrs=attr_protos, op_def=op_def)
-    747 
-    748     # `outputs` is returned as a separate return value so that the output
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py in _create_op_internal(self, op_type, inputs, dtypes, input_types, name, attrs, op_def, compute_device)
-    689     return super(FuncGraph, self)._create_op_internal(  # pylint: disable=protected-access
-    690         op_type, captured_inputs, dtypes, input_types, name, attrs, op_def,
---&gt; 691         compute_device)
-    692 
-    693   def capture(self, tensor, name=None, shape=None):
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py in _create_op_internal(self, op_type, inputs, dtypes, input_types, name, attrs, op_def, compute_device)
-   3704           original_op=self._default_original_op,
-   3705           op_def=op_def)
--&gt; 3706       self._create_op_helper(ret, compute_device=compute_device)
-   3707     return ret
-   3708 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py in _create_op_helper(self, op, compute_device)
-   3807           &quot;_class&quot;,
-   3808           attr_value_pb2.AttrValue(
--&gt; 3809               list=attr_value_pb2.AttrValue.ListValue(s=all_colocation_groups)))
-   3810       # pylint: enable=protected-access
-   3811 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py in _set_attr(self, attr_name, attr_value)
-   2553     &quot;&quot;&quot;Private method used to set an attribute in the node_def.&quot;&quot;&quot;
-   2554     buf = pywrap_tf_session.TF_NewBufferFromString(
--&gt; 2555         compat.as_bytes(attr_value.SerializeToString()))
-   2556     try:
-   2557       self._set_attr_with_buf(attr_name, buf)
-
-KeyboardInterrupt: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7efda742db90&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
