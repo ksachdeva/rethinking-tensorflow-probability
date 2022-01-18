@@ -929,8 +929,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:25:57.425861: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 18:25:57.425916: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:23:24.424049: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 19:23:24.424087: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1088,10 +1088,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:25:59.889442: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 18:25:59.889477: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 18:25:59.889500: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
-2022-01-18 18:25:59.889817: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:23:26.793794: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 19:23:26.793826: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 19:23:26.793848: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 19:23:26.794172: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1199,38 +1199,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.532</td>
-      <td>0.111</td>
-      <td>0.364</td>
-      <td>0.687</td>
-      <td>0.002</td>
+      <td>0.528</td>
+      <td>0.110</td>
+      <td>0.375</td>
+      <td>0.705</td>
       <td>0.001</td>
-      <td>3350.0</td>
-      <td>3199.0</td>
+      <td>0.001</td>
+      <td>6381.0</td>
+      <td>2833.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>0.166</td>
-      <td>0.122</td>
-      <td>-0.030</td>
-      <td>0.328</td>
-      <td>0.002</td>
-      <td>0.002</td>
-      <td>3759.0</td>
-      <td>2997.0</td>
+      <td>0.168</td>
+      <td>0.115</td>
+      <td>-0.017</td>
+      <td>0.331</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>7539.0</td>
+      <td>3053.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>-1.397</td>
-      <td>0.384</td>
-      <td>-1.987</td>
-      <td>-0.834</td>
-      <td>0.017</td>
-      <td>0.014</td>
-      <td>404.0</td>
-      <td>152.0</td>
+      <td>-1.404</td>
+      <td>0.375</td>
+      <td>-1.969</td>
+      <td>-0.796</td>
+      <td>0.012</td>
+      <td>0.009</td>
+      <td>854.0</td>
+      <td>720.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1338,7 +1338,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5316596172765422
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5245229466275583
 </pre></div>
 </div>
 </div>
@@ -1619,79 +1619,10 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2075</span><span class="o">/</span><span class="mf">3035999005.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">posterior_7_2</span><span class="p">,</span> <span class="n">trace_7_2</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">jdc_7_2</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">posterior_7_3</span><span class="p">,</span> <span class="n">trace_7_3</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">jdc_7_3</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">posterior_7_4</span><span class="p">,</span> <span class="n">trace_7_4</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">jdc_7_4</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">posterior_7_5</span><span class="p">,</span> <span class="n">trace_7_5</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">jdc_7_5</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-
-<span class="nn">/tmp/ipykernel_2075/2077961507.py</span> in <span class="ni">compute_brain_body_posterior_for_simulation</span><span class="nt">(beta_degree, jdc)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span>             <span class="n">burnin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>             <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">32</span>             <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> 
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">trace</span>
-
-<span class="nn">~/work/rethinking-tensorflow-probability/rethinking-tensorflow-probability/rethinking/mcmc/_helpers.py</span> in <span class="ni">sample_posterior</span><span class="nt">(jdc, observed_data, params, init_state, bijectors, step_size, num_chains, num_samples, burnin)</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>         <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>         <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">110</span>         <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="n">filtered_tb</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span>       <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span>       <span class="n">filtered_tb</span> <span class="o">=</span> <span class="n">_process_traceback_frames</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">__traceback__</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">908</span> 
-<span class="g g-Whitespace">    </span><span class="mi">909</span>       <span class="k">with</span> <span class="n">OptionalXlaContext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jit_compile</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">910</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">911</span> 
-<span class="g g-Whitespace">    </span><span class="mi">912</span>       <span class="n">new_tracing_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experimental_get_tracing_count</span><span class="p">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">_call</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">947</span>       <span class="c1"># In this case we have not created variables on the first call. So we can</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>       <span class="c1"># run the first trace but we should fail if variables are created.</span>
-<span class="ne">--&gt; </span><span class="mi">949</span>       <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stateful_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">950</span>       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_created_variables</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ALLOW_DYNAMIC_VARIABLE_CREATION</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">951</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Creating variables on a non-first call to a function&quot;</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3129</span>        <span class="n">filtered_flat_args</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_define_function</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3130</span>     <span class="k">return</span> <span class="n">graph_function</span><span class="o">.</span><span class="n">_call_flat</span><span class="p">(</span>
-<span class="ne">-&gt; </span><span class="mi">3131</span>         <span class="n">filtered_flat_args</span><span class="p">,</span> <span class="n">captured_inputs</span><span class="o">=</span><span class="n">graph_function</span><span class="o">.</span><span class="n">captured_inputs</span><span class="p">)</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="g g-Whitespace">   </span><span class="mi">3132</span> 
-<span class="g g-Whitespace">   </span><span class="mi">3133</span>   <span class="nd">@property</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_call_flat</span><span class="nt">(self, args, captured_inputs, cancellation_manager)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1958</span>       <span class="c1"># No tape is watching; skip to running the function.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1959</span>       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_call_outputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inference_function</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
-<span class="ne">-&gt; </span><span class="mi">1960</span>           <span class="n">ctx</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">cancellation_manager</span><span class="o">=</span><span class="n">cancellation_manager</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1961</span>     <span class="n">forward_backward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_forward_and_backward_functions</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1962</span>         <span class="n">args</span><span class="p">,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">call</span><span class="nt">(self, ctx, args, cancellation_manager)</span>
-<span class="g g-Whitespace">    </span><span class="mi">601</span>               <span class="n">inputs</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">602</span>               <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">603</span>               <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">604</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span>           <span class="n">outputs</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">execute_with_cancellation</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/execute.py</span> in <span class="ni">quick_execute</span><span class="nt">(op_name, num_outputs, inputs, attrs, ctx, name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="n">ctx</span><span class="o">.</span><span class="n">ensure_initialized</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">tensors</span> <span class="o">=</span> <span class="n">pywrap_tfe</span><span class="o">.</span><span class="n">TFE_Py_Execute</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="n">device_name</span><span class="p">,</span> <span class="n">op_name</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>                                         <span class="n">inputs</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>   <span class="k">except</span> <span class="n">core</span><span class="o">.</span><span class="n">_NotOkStatusException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fc0fd1abc20&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7fc0fd1abc20&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -1925,8 +1856,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 4000, 7)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.35935482,  0.3816201 ,  0.2940106 ,  0.38145304,  0.24230157,
-        0.18068603, -0.736199  ], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.32919803,  0.3464269 ,  0.26362056,  0.3556084 ,  0.23945071,
+        0.18095168, -0.7166372 ], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1969,7 +1900,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 (2, 4000, 7)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.1032271, 0.16545793, -0.18839234, -0.02309987, -1.8634579]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.99861914, 0.49157566, -0.1321964, -0.91907674, -0.39120108]
 </pre></div>
 </div>
 </div>
@@ -2247,38 +2178,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>-0.659</td>
-      <td>1.304</td>
-      <td>-2.690</td>
-      <td>1.442</td>
-      <td>0.769</td>
-      <td>0.611</td>
+      <td>-1.287</td>
+      <td>1.590</td>
+      <td>-3.449</td>
+      <td>0.909</td>
+      <td>1.090</td>
+      <td>0.911</td>
       <td>3.0</td>
-      <td>11.0</td>
-      <td>1.61</td>
+      <td>13.0</td>
+      <td>2.09</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>2.953</td>
-      <td>0.148</td>
-      <td>2.722</td>
-      <td>3.185</td>
+      <td>2.999</td>
+      <td>0.143</td>
+      <td>2.771</td>
+      <td>3.230</td>
       <td>0.048</td>
       <td>0.035</td>
-      <td>10.0</td>
-      <td>35.0</td>
-      <td>1.16</td>
+      <td>9.0</td>
+      <td>101.0</td>
+      <td>1.18</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>14.511</td>
-      <td>1.273</td>
-      <td>12.348</td>
-      <td>16.422</td>
-      <td>0.088</td>
-      <td>0.063</td>
-      <td>215.0</td>
-      <td>274.0</td>
+      <td>14.541</td>
+      <td>1.300</td>
+      <td>12.498</td>
+      <td>16.621</td>
+      <td>0.087</td>
+      <td>0.062</td>
+      <td>229.0</td>
+      <td>350.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -2355,7 +2286,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>425.70892333984375
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>424.4059143066406
 </pre></div>
 </div>
 </div>
@@ -2371,7 +2302,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.37598974252174
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.55865678642497
 </pre></div>
 </div>
 </div>
@@ -2561,26 +2492,26 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>p</th>
-      <td>1.357</td>
+      <td>1.356</td>
       <td>0.019</td>
-      <td>1.326</td>
-      <td>1.387</td>
+      <td>1.328</td>
+      <td>1.388</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>1754.0</td>
-      <td>1681.0</td>
+      <td>1976.0</td>
+      <td>1321.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.899</td>
-      <td>0.132</td>
-      <td>1.698</td>
-      <td>2.109</td>
-      <td>0.004</td>
+      <td>1.895</td>
+      <td>0.139</td>
+      <td>1.671</td>
+      <td>2.105</td>
+      <td>0.005</td>
       <td>0.003</td>
-      <td>948.0</td>
-      <td>1263.0</td>
+      <td>892.0</td>
+      <td>727.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2670,51 +2601,51 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a</th>
-      <td>1.454</td>
-      <td>0.030</td>
-      <td>1.409</td>
-      <td>1.504</td>
+      <td>1.455</td>
+      <td>0.029</td>
+      <td>1.411</td>
+      <td>1.502</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>891.0</td>
-      <td>1042.0</td>
-      <td>1.00</td>
+      <td>1048.0</td>
+      <td>1364.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>bt</th>
-      <td>-0.011</td>
-      <td>0.035</td>
-      <td>-0.066</td>
-      <td>0.045</td>
+      <td>-0.012</td>
+      <td>0.033</td>
+      <td>-0.065</td>
+      <td>0.038</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1093.0</td>
-      <td>798.0</td>
-      <td>1.00</td>
+      <td>1301.0</td>
+      <td>1411.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>bf</th>
-      <td>-0.276</td>
-      <td>0.036</td>
-      <td>-0.331</td>
-      <td>-0.217</td>
+      <td>-0.277</td>
+      <td>0.035</td>
+      <td>-0.328</td>
+      <td>-0.218</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>933.0</td>
-      <td>905.0</td>
-      <td>1.00</td>
+      <td>1311.0</td>
+      <td>1372.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.398</td>
+      <td>1.395</td>
       <td>0.100</td>
-      <td>1.240</td>
-      <td>1.555</td>
+      <td>1.233</td>
+      <td>1.547</td>
       <td>0.005</td>
-      <td>0.004</td>
-      <td>354.0</td>
-      <td>427.0</td>
-      <td>1.02</td>
+      <td>0.003</td>
+      <td>453.0</td>
+      <td>954.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -2800,38 +2731,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a</th>
-      <td>1.286</td>
+      <td>1.287</td>
       <td>0.026</td>
-      <td>1.243</td>
-      <td>1.326</td>
+      <td>1.246</td>
+      <td>1.328</td>
       <td>0.001</td>
-      <td>0.000</td>
-      <td>2032.0</td>
-      <td>1522.0</td>
+      <td>0.001</td>
+      <td>1352.0</td>
+      <td>1285.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bt</th>
-      <td>0.133</td>
+      <td>0.134</td>
       <td>0.036</td>
-      <td>0.077</td>
+      <td>0.075</td>
       <td>0.189</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>3815.0</td>
-      <td>1344.0</td>
+      <td>3285.0</td>
+      <td>1830.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.784</td>
-      <td>0.126</td>
-      <td>1.592</td>
-      <td>1.979</td>
+      <td>1.794</td>
+      <td>0.131</td>
+      <td>1.596</td>
+      <td>2.003</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>1022.0</td>
-      <td>1403.0</td>
+      <td>961.0</td>
+      <td>1358.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2884,7 +2815,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ksachdeva/rethinkingtfp/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
 See http://arxiv.org/abs/1507.04544 for details
   &quot;For one or more samples the posterior variance of the log predictive &quot;
 </pre></div>
@@ -2892,8 +2823,8 @@ See http://arxiv.org/abs/1507.04544 for details
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 4000 by 100 log-likelihood matrix
 
               Estimate       SE
-deviance_waic   354.19    15.11
-p_waic            3.90        -
+deviance_waic   354.09    15.17
+p_waic            3.89        -
 
 There has been a warning during the calculation. Please check the results.
 </pre></div>
@@ -2979,7 +2910,7 @@ There has been a warning during the calculation. Please check the results.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ksachdeva/rethinkingtfp/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
 See http://arxiv.org/abs/1507.04544 for details
   &quot;For one or more samples the posterior variance of the log predictive &quot;
 </pre></div>
@@ -3017,11 +2948,11 @@ See http://arxiv.org/abs/1507.04544 for details
     <tr>
       <th>m6.7</th>
       <td>0</td>
-      <td>354.191325</td>
-      <td>3.904232</td>
+      <td>354.090595</td>
+      <td>3.886452</td>
       <td>0.000000</td>
-      <td>0.981133</td>
-      <td>15.106929</td>
+      <td>0.98095</td>
+      <td>15.167118</td>
       <td>0.000000</td>
       <td>True</td>
       <td>deviance</td>
@@ -3029,24 +2960,24 @@ See http://arxiv.org/abs/1507.04544 for details
     <tr>
       <th>m6.8</th>
       <td>1</td>
-      <td>403.471455</td>
-      <td>2.744505</td>
-      <td>49.280130</td>
-      <td>0.000000</td>
-      <td>12.246269</td>
-      <td>11.413125</td>
+      <td>403.634387</td>
+      <td>2.794228</td>
+      <td>49.543792</td>
+      <td>0.00000</td>
+      <td>12.129757</td>
+      <td>11.405065</td>
       <td>False</td>
       <td>deviance</td>
     </tr>
     <tr>
       <th>m6.6</th>
       <td>2</td>
-      <td>414.302507</td>
-      <td>1.628824</td>
-      <td>60.111182</td>
-      <td>0.018867</td>
-      <td>11.587795</td>
-      <td>13.134009</td>
+      <td>414.443816</td>
+      <td>1.687560</td>
+      <td>60.353221</td>
+      <td>0.01905</td>
+      <td>11.667459</td>
+      <td>13.180278</td>
       <td>False</td>
       <td>deviance</td>
     </tr>
@@ -3072,12 +3003,12 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ksachdeva/rethinkingtfp/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
 See http://arxiv.org/abs/1507.04544 for details
   &quot;For one or more samples the posterior variance of the log predictive &quot;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(11.41312533)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(11.40506478)
 </pre></div>
 </div>
 </div>
@@ -3126,7 +3057,7 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(7.29922556)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(7.28828157)
 </pre></div>
 </div>
 </div>
@@ -3173,19 +3104,19 @@ See http://arxiv.org/abs/1507.04544 for details
     <tr>
       <th>m6.6</th>
       <td>0.000000</td>
-      <td>13.134009</td>
-      <td>7.299226</td>
+      <td>13.180278</td>
+      <td>7.288282</td>
     </tr>
     <tr>
       <th>m6.7</th>
-      <td>13.134009</td>
+      <td>13.180278</td>
       <td>0.000000</td>
-      <td>11.413125</td>
+      <td>11.405065</td>
     </tr>
     <tr>
       <th>m6.8</th>
-      <td>7.299226</td>
-      <td>11.413125</td>
+      <td>7.288282</td>
+      <td>11.405065</td>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -3440,11 +3371,11 @@ See http://arxiv.org/abs/1507.04544 for details
     <tr>
       <th>m5.1</th>
       <td>0</td>
-      <td>126.682936</td>
-      <td>4.096793</td>
+      <td>125.375473</td>
+      <td>3.430735</td>
       <td>0.000000</td>
-      <td>0.885384</td>
-      <td>13.076602</td>
+      <td>8.955914e-01</td>
+      <td>12.406931</td>
       <td>0.000000</td>
       <td>False</td>
       <td>deviance</td>
@@ -3452,24 +3383,24 @@ See http://arxiv.org/abs/1507.04544 for details
     <tr>
       <th>m5.3</th>
       <td>1</td>
-      <td>127.504887</td>
-      <td>4.691563</td>
-      <td>0.821951</td>
-      <td>0.000000</td>
-      <td>12.805720</td>
-      <td>0.729711</td>
+      <td>127.520875</td>
+      <td>4.726062</td>
+      <td>2.145402</td>
+      <td>4.931956e-15</td>
+      <td>12.804540</td>
+      <td>0.697961</td>
       <td>False</td>
       <td>deviance</td>
     </tr>
     <tr>
       <th>m5.2</th>
       <td>2</td>
-      <td>138.987924</td>
-      <td>2.804857</td>
-      <td>12.304988</td>
-      <td>0.114616</td>
-      <td>9.758271</td>
-      <td>9.538878</td>
+      <td>138.736119</td>
+      <td>2.602729</td>
+      <td>13.360646</td>
+      <td>1.044086e-01</td>
+      <td>9.630296</td>
+      <td>8.887100</td>
       <td>False</td>
       <td>deviance</td>
     </tr>
@@ -3493,7 +3424,7 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ksachdeva/rethinkingtfp/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:1460: UserWarning: For one or more samples the posterior variance of the log predictive densities exceeds 0.4. This could be indication of WAIC starting to fail. 
 See http://arxiv.org/abs/1507.04544 for details
   &quot;For one or more samples the posterior variance of the log predictive &quot;
 </pre></div>
@@ -3609,10 +3540,18 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
-WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
 </div>
@@ -3634,8 +3573,8 @@ WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 2000 by 50 log-likelihood matrix
 
              Estimate       SE
-deviance_loo   127.50    12.81
-p_loo            4.69        -
+deviance_loo   127.52    12.80
+p_loo            4.73        -
 ------
 
 Pareto k diagnostic values:
@@ -3688,11 +3627,11 @@ Pareto k diagnostic values:
     <tr>
       <th>m5.3</th>
       <td>0</td>
-      <td>127.504887</td>
-      <td>4.691563</td>
+      <td>127.520875</td>
+      <td>4.726062</td>
       <td>0.000000</td>
-      <td>0.822603</td>
-      <td>12.805720</td>
+      <td>0.804324</td>
+      <td>12.804540</td>
       <td>0.000000</td>
       <td>False</td>
       <td>deviance</td>
@@ -3700,12 +3639,12 @@ Pareto k diagnostic values:
     <tr>
       <th>m5.3t</th>
       <td>1</td>
-      <td>132.532371</td>
-      <td>6.010404</td>
-      <td>5.027484</td>
-      <td>0.177397</td>
-      <td>11.468907</td>
-      <td>5.935832</td>
+      <td>132.016440</td>
+      <td>5.659430</td>
+      <td>4.495565</td>
+      <td>0.195676</td>
+      <td>11.383081</td>
+      <td>5.863183</td>
       <td>False</td>
       <td>deviance</td>
     </tr>
@@ -3752,51 +3691,51 @@ Pareto k diagnostic values:
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>-0.001</td>
-      <td>0.101</td>
-      <td>-0.185</td>
-      <td>0.141</td>
-      <td>0.005</td>
       <td>0.003</td>
-      <td>441.0</td>
-      <td>575.0</td>
-      <td>1.00</td>
+      <td>0.105</td>
+      <td>-0.144</td>
+      <td>0.184</td>
+      <td>0.007</td>
+      <td>0.005</td>
+      <td>200.0</td>
+      <td>338.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>betaA</th>
-      <td>-0.602</td>
+      <td>-0.603</td>
       <td>0.151</td>
-      <td>-0.872</td>
-      <td>-0.373</td>
+      <td>-0.820</td>
+      <td>-0.349</td>
+      <td>0.006</td>
       <td>0.005</td>
-      <td>0.004</td>
-      <td>876.0</td>
-      <td>323.0</td>
-      <td>1.00</td>
+      <td>680.0</td>
+      <td>321.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>betaM</th>
-      <td>-0.051</td>
-      <td>0.147</td>
-      <td>-0.281</td>
-      <td>0.167</td>
+      <td>-0.050</td>
+      <td>0.148</td>
+      <td>-0.291</td>
+      <td>0.180</td>
+      <td>0.006</td>
       <td>0.005</td>
-      <td>0.005</td>
-      <td>884.0</td>
-      <td>520.0</td>
-      <td>1.01</td>
+      <td>536.0</td>
+      <td>330.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.828</td>
-      <td>0.090</td>
-      <td>0.686</td>
-      <td>0.962</td>
+      <td>0.826</td>
+      <td>0.085</td>
+      <td>0.699</td>
+      <td>0.958</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>874.0</td>
-      <td>822.0</td>
-      <td>1.00</td>
+      <td>607.0</td>
+      <td>844.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -3841,50 +3780,50 @@ Pareto k diagnostic values:
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.027</td>
-      <td>0.093</td>
-      <td>-0.120</td>
-      <td>0.171</td>
-      <td>0.008</td>
-      <td>0.006</td>
-      <td>124.0</td>
-      <td>196.0</td>
+      <td>0.005</td>
+      <td>0.096</td>
+      <td>-0.147</td>
+      <td>0.154</td>
+      <td>0.007</td>
+      <td>0.005</td>
+      <td>202.0</td>
+      <td>335.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>betaA</th>
-      <td>-0.689</td>
+      <td>-0.697</td>
       <td>0.143</td>
-      <td>-0.908</td>
-      <td>-0.456</td>
-      <td>0.006</td>
+      <td>-0.914</td>
+      <td>-0.470</td>
       <td>0.005</td>
-      <td>646.0</td>
-      <td>203.0</td>
+      <td>0.004</td>
+      <td>887.0</td>
+      <td>460.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>betaM</th>
-      <td>0.056</td>
-      <td>0.200</td>
-      <td>-0.268</td>
-      <td>0.340</td>
+      <td>0.055</td>
+      <td>0.198</td>
+      <td>-0.249</td>
+      <td>0.368</td>
       <td>0.005</td>
       <td>0.006</td>
-      <td>1489.0</td>
-      <td>291.0</td>
+      <td>1423.0</td>
+      <td>519.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.578</td>
-      <td>0.087</td>
-      <td>0.440</td>
-      <td>0.703</td>
+      <td>0.579</td>
+      <td>0.079</td>
+      <td>0.461</td>
+      <td>0.696</td>
       <td>0.002</td>
-      <td>0.001</td>
-      <td>2415.0</td>
-      <td>249.0</td>
+      <td>0.002</td>
+      <td>1927.0</td>
+      <td>257.0</td>
       <td>1.02</td>
     </tr>
   </tbody>

@@ -631,8 +631,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:31:50.605202: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 18:31:50.605233: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:38:34.990470: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 19:38:34.990507: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -826,10 +826,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:31:52.910059: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 18:31:52.910092: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 18:31:52.910113: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
-2022-01-18 18:31:52.910464: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:38:37.253949: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 19:38:37.253983: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 19:38:37.254005: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 19:38:37.254312: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1078,7 +1078,7 @@ Name: y, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6333333333333333
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
 </pre></div>
 </div>
 </div>
@@ -1496,30 +1496,30 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.0717357],
-           [1.0905684]], dtype=float32)&gt;,
+    array([[1.0549161],
+           [1.2120383]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.812779],
-           [2.269113]], dtype=float32)&gt;,
+    array([[1.6439798],
+           [1.926743 ]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[4.6327963],
-           [5.069735 ]], dtype=float32)&gt;,
+    array([[7.298447],
+           [4.468544]], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(2, 1, 84), dtype=float32, numpy=
-    array([[[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  6.,  1.,  0.,  0.,  3.,
-              0.,  0.,  1.,  0.,  2.,  1.,  1.,  1.,  2.,  1.,  1.,  0.,
-              1.,  1.,  0.,  0.,  1.,  3.,  0.,  2.,  0.,  0.,  2.,  4.,
-              0.,  0.,  1.,  1.,  1.,  3.,  3.,  0.,  1., 10.,  2.,  3.,
-              3.,  6.,  8.,  1.,  4.,  1.,  0.,  1.,  2.,  8.,  3.,  1.,
-              1.,  2.,  2.,  3., 16.,  0.,  3., 24., 21.,  2.,  3.,  5.,
-              5., 20., 18., 19., 21., 15.,  6.,  6.,  3.,  6.,  8., 21.]],
+    array([[[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+              0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+              0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,
+              0.,  0.,  1.,  0.,  0.,  0.,  1.,  0.,  0.,  1.,  1.,  1.,
+              2.,  2.,  3.,  0.,  0.,  1.,  0.,  0.,  0.,  3.,  1.,  0.,
+              0.,  1.,  1.,  3.,  4.,  0.,  0.,  6., 13.,  1.,  2.,  1.,
+              3., 10.,  3.,  9., 11., 10.,  4.,  1.,  5.,  3.,  3., 12.]],
     
-           [[ 0.,  0.,  0.,  0.,  1.,  0.,  1.,  3.,  1.,  0.,  5.,  5.,
-              1.,  1.,  2.,  0.,  1.,  0.,  2.,  0.,  3.,  1.,  0.,  0.,
-              1.,  0.,  1.,  0.,  3.,  0.,  2.,  1.,  0.,  5.,  4.,  5.,
-              0.,  4.,  3.,  2.,  2.,  5.,  6.,  1.,  3., 14., 12., 11.,
-              9., 13.,  7.,  3.,  0.,  5.,  3.,  1.,  4., 11.,  5.,  9.,
-              0.,  4.,  1.,  5., 18.,  2.,  5., 24., 22.,  8.,  1.,  8.,
-             15., 25., 16., 25., 30., 14.,  9.,  6., 10.,  8., 19., 26.]]],
+           [[ 0.,  0.,  0.,  0.,  1.,  0.,  2.,  9.,  0.,  0.,  4.,  4.,
+              0.,  0.,  2.,  0.,  4.,  6.,  4.,  2.,  4.,  0.,  2.,  1.,
+              1.,  0.,  1.,  0.,  1.,  1.,  2.,  1.,  0.,  2.,  0.,  2.,
+              0.,  1.,  2.,  3.,  1.,  7.,  3.,  0.,  1., 13.,  7.,  6.,
+              7.,  6., 11.,  2.,  2.,  5.,  0.,  2.,  4.,  5.,  7.,  9.,
+              0.,  3.,  3.,  8., 12.,  0.,  3., 22., 21., 11.,  1.,  7.,
+             14., 38., 15., 23., 19.,  6.,  8.,  8.,  8.,  7., 16., 24.]]],
           dtype=float32)&gt;
 )
 </pre></div>

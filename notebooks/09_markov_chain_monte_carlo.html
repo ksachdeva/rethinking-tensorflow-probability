@@ -553,7 +553,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:27:18.778867: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:25:41.135453: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -623,18 +623,17 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:27:20.583439: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 18:27:20.583477: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:25:42.879276: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 19:25:42.879316: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2178</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="c1"># flip coin to generate proposal</span>
-<span class="ne">---&gt; </span><span class="mi">15</span>     <span class="n">bern</span> <span class="o">=</span> <span class="n">coin_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> 
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">proposal</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="p">(</span><span class="n">bern</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2138</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="c1"># move?</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
+<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
@@ -644,18 +643,11 @@ rethinking            : 0.1.0
 <span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1206</span><span class="sd">       raise ValueError(&#39;Must provide JAX PRNGKey as `dist.sample(seed=.)`&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1207</span><span class="sd">     sample_shape = ps.convert_to_shape_tensor(</span>
+<span class="ne">-&gt; </span><span class="mi">1208</span><span class="sd">         ps.cast(sample_shape, tf.int32), name=&#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1209</span><span class="sd">     sample_shape, n = self._expand_sample_shape_to_vector(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="sd">     samples = self._sample_n(</span>
-<span class="ne">-&gt; </span><span class="mi">1212</span><span class="sd">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="sd">     samples = tf.nest.map_structure(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="sd">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/bernoulli.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span><span class="sd">   def _sample_n(self, n, seed=None):</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="sd">     probs = self._probs_parameter_no_checks()</span>
-<span class="ne">--&gt; </span><span class="mi">112</span><span class="sd">     new_shape = ps.concat([[n], ps.shape(probs)], 0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd">     uniform = samplers.uniform(new_shape, seed=seed, dtype=probs.dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="sd">     sample = tf.less(uniform, probs)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
 <span class="g g-Whitespace">    </span><span class="mi">230</span><span class="sd">             if not kwsyntax:</span>
@@ -665,53 +657,74 @@ rethinking            : 0.1.0
 <span class="g g-Whitespace">    </span><span class="mi">234</span><span class="sd">     fun.__doc__ = func.__doc__</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/prefer_static.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
-<span class="nn">     78                      for arg, arg_</span> in <span class="ni">zip</span><span class="nt">(flat_args, flat_args_))</span>
 <span class="g g-Whitespace">     </span><span class="mi">79</span><span class="sd">     if all_static:</span>
-<span class="ne">---&gt; </span><span class="mi">80</span><span class="sd">       [args_, kwargs_] = tf.nest.pack_sequence_as([args, kwargs], flat_args_)</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span><span class="sd">       return static_fn(*args_, **kwargs_)</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span><span class="sd">       [args_, kwargs_] = tf.nest.pack_sequence_as([args, kwargs], flat_args_)</span>
+<span class="ne">---&gt; </span><span class="mi">81</span><span class="sd">       return static_fn(*args_, **kwargs_)</span>
 <span class="g g-Whitespace">     </span><span class="mi">82</span><span class="sd">     return original_fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="sd">   return wrap(original_fn)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">pack_sequence_as</span><span class="nt">(structure, flat_sequence, expand_composites)</span>
-<span class="g g-Whitespace">    </span><span class="mi">755</span><span class="sd">     TypeError: `structure` is or contains a dict with non-sortable keys.</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="sd">   &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">757</span>   <span class="k">return</span> <span class="n">_pack_sequence_as</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">flat_sequence</span><span class="p">,</span> <span class="n">expand_composites</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">758</span> 
-<span class="g g-Whitespace">    </span><span class="mi">759</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/_utils.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd">   def wrap(wrapped, instance, args, kwargs):</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">     del instance, wrapped</span>
+<span class="ne">---&gt; </span><span class="mi">62</span><span class="sd">     return new_fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="sd">   return wrap(original_fn)  # pylint: disable=no-value-for-parameter</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_pack_sequence_as</span><span class="nt">(structure, flat_sequence, expand_composites, sequence_fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span>   <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">final_index</span><span class="p">,</span> <span class="n">packed</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">flat_sequence</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">633</span>                                                     <span class="mi">0</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span> <span class="n">sequence_fn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span>     <span class="k">if</span> <span class="n">final_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_sequence</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>       <span class="k">raise</span> <span class="ne">IndexError</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(x, dtype, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span><span class="sd"> cast = utils.copy_docstring(</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span><span class="sd">     &#39;tf.cast&#39;,</span>
+<span class="ne">--&gt; </span><span class="mi">385</span><span class="sd">     lambda x, dtype, name=None: _cast(x, utils.numpy_dtype(dtype)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="sd"> clip_by_value = utils.copy_docstring(</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_packed_nest_with_indices</span><span class="nt">(structure, flat, index, is_seq, sequence_fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">595</span>     <span class="k">if</span> <span class="n">is_seq</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>       <span class="n">new_index</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">flat</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">597</span>                                                    <span class="n">sequence_fn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">598</span>       <span class="n">packed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence_fn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span>       <span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_cast</span><span class="nt">(x, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span><span class="sd"> def _cast(x, dtype):</span>
+<span class="ne">--&gt; </span><span class="mi">376</span><span class="sd">   x = convert_to_tensor(x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span><span class="sd">   if (np.issubdtype(x.dtype, np.complexfloating) and</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span><span class="sd">       not np.issubdtype(dtype, np.complexfloating)):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_packed_nest_with_indices</span><span class="nt">(structure, flat, index, is_seq, sequence_fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">595</span>     <span class="k">if</span> <span class="n">is_seq</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>       <span class="n">new_index</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">flat</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">597</span>                                                    <span class="n">sequence_fn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">598</span>       <span class="n">packed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence_fn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span>       <span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/_utils.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd">   def wrap(wrapped, instance, args, kwargs):</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">     del instance, wrapped</span>
+<span class="ne">---&gt; </span><span class="mi">62</span><span class="sd">     return new_fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="sd">   return wrap(original_fn)  # pylint: disable=no-value-for-parameter</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_packed_nest_with_indices</span><span class="nt">(structure, flat, index, is_seq, sequence_fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>       <span class="n">new_index</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">_packed_nest_with_indices</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">flat</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_seq</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">597</span>                                                    <span class="n">sequence_fn</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">598</span>       <span class="n">packed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence_fn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span>       <span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
-<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">else</span><span class="p">:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_convert_to_tensor</span><span class="nt">(value, dtype, dtype_hint, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span><span class="sd">   if ret is None:</span>
+<span class="ne">--&gt; </span><span class="mi">163</span><span class="sd">     ret = conversion_func(value, dtype=dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span><span class="sd">   return ret</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span><span class="sd"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/nest.py</span> in <span class="ni">_sequence_like</span><span class="nt">(instance, args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">196</span>     <span class="n">spec</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_type_spec</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="g g-Whitespace">    </span><span class="mi">197</span>     <span class="k">return</span> <span class="n">spec</span><span class="o">.</span><span class="n">_from_components</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="ne">--&gt; </span><span class="mi">198</span>   <span class="k">elif</span> <span class="n">_is_type_spec</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>     <span class="c1"># Pack a CompositeTensor&#39;s components according to a TypeSpec.</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span>     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_default_convert_to_tensor</span><span class="nt">(value, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="sd"> def _default_convert_to_tensor(value, dtype=None):</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span><span class="sd">   &quot;&quot;&quot;</span><span class="n">Default</span> <span class="n">tensor</span> <span class="n">conversion</span> <span class="n">function</span> <span class="k">for</span> <span class="n">array</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="ow">and</span> <span class="nb">complex</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">215</span><span class="s2">   inferred_dtype = _infer_dtype(value, np.float32)</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="s2">   # When a dtype is provided, we can go ahead and try converting to the dtype</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="s2">   # and force overflow/underflow if an int64 is converted to an int32.</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_infer_dtype</span><span class="nt">(value, default_dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span><span class="s2">   elif isinstance(value, (tuple, list)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="s2">     # Try inferring the type from items in the object if possible.</span>
+<span class="ne">--&gt; </span><span class="mi">184</span><span class="s2">     for v in nest.flatten(value):</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="s2">       if hasattr(v, &#39;dtype&#39;):</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="s2">         return v.dtype</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/nest.py</span> in <span class="ni">flatten</span><span class="nt">(structure, expand_composites)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="s2">     from jax import tree_util  # pylint: disable=g-import-not-at-top</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="s2">     return tree_util.tree_leaves(structure)</span>
+<span class="ne">--&gt; </span><span class="mi">185</span><span class="s2">   return dm_tree.flatten(structure)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span><span class="s2"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tree/__init__.py</span> in <span class="ni">flatten</span><span class="nt">(structure)</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span><span class="s2">     TypeError: If `structure` is or contains a mapping with non-sortable keys.</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="s2">   &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">306</span>   <span class="k">return</span> <span class="n">_tree</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span> 
+<span class="g g-Whitespace">    </span><span class="mi">308</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

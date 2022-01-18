@@ -1195,8 +1195,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:28:35.307367: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 18:28:35.307396: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:35:30.633295: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 19:35:30.633335: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1451,10 +1451,10 @@ Name: index, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:28:37.741922: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 18:28:37.741965: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 18:28:37.741989: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
-2022-01-18 18:28:37.742207: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:35:33.080586: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 19:35:33.080631: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 19:35:33.080655: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
+2022-01-18 19:35:33.080866: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1617,7 +1617,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.098744355
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09242749
 </pre></div>
 </div>
 </div>
@@ -1845,40 +1845,40 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([ 1.5751165 ,  3.0733223 , -1.0353392 , -1.2316277 , -0.32574522,
-            0.13857546,  0.8166714 ], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 0.02816708,  0.2571376 , -0.4502405 ,  0.49193972], dtype=float32)&gt;,
+    array([-0.91255385, -0.7811789 , -1.491576  ,  0.12370732,  0.83529115,
+           -1.0562735 ,  1.9914258 ], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.26457918, 0.4120234 , 0.4987498 , 0.48707154], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([1., 0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 1., 1., 0.,
-           1., 1., 1., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1.,
-           0., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 0., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 1., 0., 1., 1., 0.,
-           0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 1., 1., 0., 1., 1.,
-           1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0.,
-           1., 1., 1., 1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 1.,
-           1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-           0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0.,
-           1., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1.,
-           0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 1., 1., 0., 0.,
-           0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1.,
-           0., 1., 1., 1., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0., 0.,
-           0., 0., 0., 0., 0., 0., 1., 1., 1., 0., 1., 1., 1., 1., 0., 0., 1.,
-           0., 1., 0., 1., 0., 0., 1., 1., 0., 1., 1., 0., 0., 1., 0., 1., 0.,
-           0., 0., 1., 1., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 1., 0., 1.,
-           1., 1., 1., 1., 0., 0., 1., 1., 0., 1., 0., 1., 1., 0., 1., 1., 1.,
-           1., 1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0., 1.,
-           0., 0., 1., 1., 1., 1., 0., 0., 0., 1., 1., 1., 1., 1., 1., 0., 0.,
-           1., 0., 0., 1., 1., 0., 1., 0., 0., 1., 0., 1., 0., 0., 0., 1., 1.,
-           0., 0., 1., 1., 0., 0., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 0., 0., 1., 1., 1., 1., 1., 0., 0., 1., 0., 1., 0., 1., 0., 1.,
-           0., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 0., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1., 1., 0., 0., 1.,
-           1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 0.], dtype=float32)&gt;
+    array([0., 1., 0., 0., 1., 1., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 1.,
+           1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0.,
+           1., 1., 1., 1., 0., 1., 1., 0., 0., 0., 1., 0., 1., 0., 0., 0., 0.,
+           0., 1., 1., 1., 0., 0., 1., 0., 1., 0., 1., 0., 1., 0., 0., 0., 1.,
+           1., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
+           1., 1., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
+           1., 0., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 1., 0., 0., 0., 1.,
+           0., 1., 0., 0., 1., 0., 1., 1., 0., 0., 0., 1., 1., 1., 0., 0., 0.,
+           0., 0., 0., 1., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
+           0., 0., 1., 1., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
+           0., 1., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 1., 1., 1., 0., 0.,
+           0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 1., 1., 1., 1.,
+           0., 1., 1., 1., 0., 0., 1., 1., 0., 1., 1., 0., 1., 0., 1., 1., 0.,
+           1., 1., 1., 1., 1., 1., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1., 0.,
+           0., 1., 0., 0., 0., 1., 1., 0., 1., 1., 0., 1., 1., 1., 0., 1., 0.,
+           1., 0., 1., 1., 1., 1., 0., 0., 1., 1., 1., 0., 0., 1., 1., 1., 1.,
+           1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 0.,
+           1., 1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 0., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           1., 1., 1., 0., 0., 1., 1., 0., 1., 0., 0., 0., 0., 0., 1., 1., 1.,
+           1., 0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0.,
+           0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
+           1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0.,
+           0., 0., 0., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -1948,135 +1948,135 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.469</td>
-      <td>0.332</td>
-      <td>-1.006</td>
-      <td>0.016</td>
-      <td>0.015</td>
-      <td>0.011</td>
-      <td>473.0</td>
-      <td>576.0</td>
+      <td>-0.447</td>
+      <td>0.302</td>
+      <td>-0.902</td>
+      <td>0.056</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>457.0</td>
+      <td>444.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.915</td>
-      <td>0.774</td>
-      <td>2.598</td>
-      <td>4.931</td>
-      <td>0.046</td>
-      <td>0.033</td>
-      <td>300.0</td>
-      <td>285.0</td>
+      <td>3.884</td>
+      <td>0.763</td>
+      <td>2.680</td>
+      <td>4.926</td>
+      <td>0.043</td>
+      <td>0.031</td>
+      <td>324.0</td>
+      <td>395.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.740</td>
-      <td>0.318</td>
-      <td>-1.269</td>
-      <td>-0.283</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>369.0</td>
-      <td>505.0</td>
+      <td>-0.752</td>
+      <td>0.321</td>
+      <td>-1.241</td>
+      <td>-0.245</td>
+      <td>0.014</td>
+      <td>0.011</td>
+      <td>489.0</td>
+      <td>500.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.760</td>
-      <td>0.339</td>
-      <td>-1.339</td>
-      <td>-0.259</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>400.0</td>
-      <td>397.0</td>
-      <td>1.01</td>
+      <td>-0.750</td>
+      <td>0.321</td>
+      <td>-1.224</td>
+      <td>-0.228</td>
+      <td>0.014</td>
+      <td>0.010</td>
+      <td>555.0</td>
+      <td>440.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.448</td>
-      <td>0.318</td>
-      <td>-0.917</td>
-      <td>0.064</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>340.0</td>
-      <td>377.0</td>
+      <td>-0.456</td>
+      <td>0.322</td>
+      <td>-0.984</td>
+      <td>-0.010</td>
+      <td>0.015</td>
+      <td>0.010</td>
+      <td>475.0</td>
+      <td>434.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.461</td>
-      <td>0.322</td>
-      <td>-0.057</td>
-      <td>0.975</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>362.0</td>
-      <td>471.0</td>
+      <td>0.479</td>
+      <td>0.310</td>
+      <td>0.064</td>
+      <td>1.034</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>429.0</td>
+      <td>332.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.935</td>
-      <td>0.386</td>
-      <td>1.294</td>
-      <td>2.517</td>
+      <td>1.957</td>
+      <td>0.384</td>
+      <td>1.365</td>
+      <td>2.519</td>
       <td>0.015</td>
       <td>0.011</td>
-      <td>593.0</td>
-      <td>131.0</td>
-      <td>1.00</td>
+      <td>625.0</td>
+      <td>355.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta_treatment[0]</th>
-      <td>-0.030</td>
-      <td>0.275</td>
-      <td>-0.452</td>
-      <td>0.386</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>224.0</td>
-      <td>312.0</td>
-      <td>1.00</td>
+      <td>-0.051</td>
+      <td>0.259</td>
+      <td>-0.423</td>
+      <td>0.405</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>262.0</td>
+      <td>663.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta_treatment[1]</th>
-      <td>0.477</td>
-      <td>0.288</td>
-      <td>0.016</td>
-      <td>0.924</td>
-      <td>0.019</td>
-      <td>0.013</td>
-      <td>231.0</td>
-      <td>415.0</td>
-      <td>1.01</td>
+      <td>0.469</td>
+      <td>0.278</td>
+      <td>0.064</td>
+      <td>0.921</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>279.0</td>
+      <td>354.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[2]</th>
-      <td>-0.386</td>
-      <td>0.277</td>
-      <td>-0.865</td>
-      <td>-0.004</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>230.0</td>
-      <td>419.0</td>
-      <td>1.01</td>
+      <td>-0.396</td>
+      <td>0.275</td>
+      <td>-0.837</td>
+      <td>0.039</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>259.0</td>
+      <td>435.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[3]</th>
-      <td>0.372</td>
-      <td>0.301</td>
-      <td>-0.045</td>
-      <td>0.910</td>
-      <td>0.019</td>
-      <td>0.014</td>
-      <td>250.0</td>
-      <td>316.0</td>
-      <td>1.01</td>
+      <td>0.367</td>
+      <td>0.271</td>
+      <td>-0.107</td>
+      <td>0.774</td>
+      <td>0.022</td>
+      <td>0.016</td>
+      <td>163.0</td>
+      <td>406.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -2365,41 +2365,41 @@ Name: 1, dtype: float64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([-1.1557883 , -0.2306043 , -1.445543  ,  0.4398716 , -0.5333977 ,
-           -0.51735675, -0.12767664], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([0.21410768, 1.3455418 ], dtype=float32)&gt;,
-  var2=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([ 0.6824836 , -0.15277956], dtype=float32)&gt;,
+    array([ 0.9605031 ,  3.2768776 , -0.93877995,  0.07540443, -0.21505937,
+            2.9752536 , -1.8353469 ], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([0.0463462, 0.1194162], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([-0.04102339, -0.19102213], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(504,), dtype=float32, numpy=
-    array([0., 1., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1., 1.,
-           0., 1., 1., 0., 0., 0., 1., 1., 1., 0., 1., 1., 1., 0., 0., 1., 1.,
-           1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1.,
-           0., 1., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0., 1., 1., 0.,
-           0., 0., 0., 0., 1., 0., 0., 1., 1., 1., 1., 0., 1., 0., 0., 1., 0.,
-           0., 0., 1., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1.,
-           1., 1., 1., 0., 1., 1., 0., 0., 1., 0., 1., 1., 0., 0., 0., 1., 0.,
-           0., 0., 1., 1., 0., 1., 1., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0.,
-           1., 1., 0., 1., 1., 1., 1., 0., 1., 1., 1., 0., 0., 0., 0., 0., 1.,
-           1., 0., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 0., 0.,
-           1., 1., 0., 1., 0., 1., 0., 1., 1., 1., 1., 0., 1., 0., 1., 0., 0.,
-           0., 1., 0., 0., 0., 0., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 0.,
-           1., 1., 0., 1., 0., 1., 0., 0., 0., 1., 0., 0., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
-           1., 0., 0., 1., 1., 0., 0., 1., 1., 0., 0., 1., 1., 1., 1., 1., 1.,
-           1., 1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1., 0., 1., 1., 1., 1.,
-           1., 0., 1., 1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1., 1.,
-           1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 0., 0., 1., 1., 0., 1., 0.,
-           0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1., 1., 1., 1., 1., 1., 0.,
-           1., 0., 1., 0., 0., 1., 1., 1., 0., 0., 1., 0., 0., 0., 0., 1., 0.,
-           1., 0., 1., 1., 1., 1., 1., 0., 0., 0., 1., 0., 1., 0., 1., 1., 1.,
-           0., 1., 1., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 0., 1.,
-           0., 0., 1., 1., 0., 0., 0., 1., 1., 0., 1., 1., 0., 1., 0., 1., 1.,
-           1., 0., 0., 1., 1., 0., 0., 0., 1., 1., 1., 1., 0., 1., 0., 0., 1.,
-           1., 0., 0., 1., 0., 0., 1., 0., 1., 1., 1., 1., 1., 0., 0., 0., 0.,
-           1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 0., 0., 1., 1., 1., 1., 0.,
-           0., 1., 1., 0., 1., 1., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 0.,
-           1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 1., 1.,
-           0., 0., 1., 1., 1., 1., 1., 0., 0., 0., 1.], dtype=float32)&gt;
+    array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 0., 1., 0., 1., 0., 0.,
+           1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0., 0., 0.,
+           1., 1., 1., 0., 1., 0., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0.,
+           1., 1., 1., 1., 1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 0., 0., 1., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 1.,
+           1., 0., 0., 0., 0., 1., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 0.,
+           0., 1., 0., 1., 0., 1., 0., 1., 0., 0., 0., 1., 1., 0., 0., 1., 0.,
+           1., 1., 0., 1., 1., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0.,
+           1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 0., 0., 0., 0., 1.,
+           1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 0.,
+           1., 0., 0., 1., 0., 0., 1., 0., 1., 1., 0., 1., 0., 1., 1., 0., 1.,
+           0., 0., 1., 0., 1., 0., 1., 0., 1., 1., 1., 0., 0., 1., 1., 0., 1.,
+           1., 1., 0., 0., 1., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1.,
+           1., 1., 0., 1., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 1., 0., 0.,
+           1., 1., 0., 1., 0., 1., 0., 1., 0., 0., 1., 0., 1., 0., 0., 0., 0.,
+           1., 0., 0., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 0., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+           1., 1., 1., 1., 1., 1., 1., 0., 0., 1., 0., 1., 0., 0., 0., 0., 0.,
+           0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0.,
+           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2466,135 +2466,135 @@ Name: 1, dtype: float64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.687</td>
-      <td>0.445</td>
-      <td>-1.331</td>
-      <td>0.088</td>
-      <td>0.050</td>
-      <td>0.036</td>
-      <td>79.0</td>
-      <td>116.0</td>
-      <td>1.03</td>
+      <td>-0.643</td>
+      <td>0.486</td>
+      <td>-1.474</td>
+      <td>0.049</td>
+      <td>0.097</td>
+      <td>0.069</td>
+      <td>25.0</td>
+      <td>118.0</td>
+      <td>1.09</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.611</td>
-      <td>0.727</td>
-      <td>2.555</td>
-      <td>4.751</td>
-      <td>0.065</td>
-      <td>0.046</td>
-      <td>125.0</td>
-      <td>252.0</td>
-      <td>1.02</td>
+      <td>3.726</td>
+      <td>0.833</td>
+      <td>2.358</td>
+      <td>5.009</td>
+      <td>0.088</td>
+      <td>0.062</td>
+      <td>90.0</td>
+      <td>193.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.977</td>
-      <td>0.450</td>
-      <td>-1.661</td>
-      <td>-0.283</td>
-      <td>0.053</td>
-      <td>0.037</td>
-      <td>79.0</td>
-      <td>86.0</td>
-      <td>1.02</td>
+      <td>-0.945</td>
+      <td>0.467</td>
+      <td>-1.668</td>
+      <td>-0.173</td>
+      <td>0.094</td>
+      <td>0.068</td>
+      <td>24.0</td>
+      <td>141.0</td>
+      <td>1.10</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.992</td>
-      <td>0.429</td>
-      <td>-1.677</td>
-      <td>-0.280</td>
-      <td>0.049</td>
-      <td>0.035</td>
-      <td>78.0</td>
-      <td>110.0</td>
-      <td>1.02</td>
+      <td>-0.956</td>
+      <td>0.474</td>
+      <td>-1.792</td>
+      <td>-0.271</td>
+      <td>0.077</td>
+      <td>0.055</td>
+      <td>37.0</td>
+      <td>79.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.687</td>
-      <td>0.437</td>
-      <td>-1.388</td>
-      <td>-0.013</td>
-      <td>0.052</td>
+      <td>-0.648</td>
+      <td>0.476</td>
+      <td>-1.449</td>
       <td>0.037</td>
-      <td>73.0</td>
-      <td>131.0</td>
-      <td>1.02</td>
+      <td>0.092</td>
+      <td>0.066</td>
+      <td>24.0</td>
+      <td>125.0</td>
+      <td>1.09</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.241</td>
-      <td>0.437</td>
-      <td>-0.464</td>
-      <td>0.883</td>
-      <td>0.053</td>
-      <td>0.038</td>
-      <td>69.0</td>
-      <td>127.0</td>
-      <td>1.03</td>
+      <td>0.287</td>
+      <td>0.479</td>
+      <td>-0.434</td>
+      <td>1.015</td>
+      <td>0.088</td>
+      <td>0.063</td>
+      <td>30.0</td>
+      <td>147.0</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.723</td>
-      <td>0.492</td>
-      <td>1.013</td>
-      <td>2.534</td>
-      <td>0.045</td>
-      <td>0.033</td>
-      <td>121.0</td>
-      <td>181.0</td>
-      <td>1.01</td>
+      <td>1.767</td>
+      <td>0.528</td>
+      <td>0.868</td>
+      <td>2.525</td>
+      <td>0.091</td>
+      <td>0.071</td>
+      <td>33.0</td>
+      <td>272.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>beta_side[0]</th>
-      <td>-0.177</td>
-      <td>0.325</td>
-      <td>-0.697</td>
-      <td>0.284</td>
-      <td>0.024</td>
-      <td>0.017</td>
-      <td>182.0</td>
-      <td>305.0</td>
-      <td>1.01</td>
+      <td>-0.201</td>
+      <td>0.323</td>
+      <td>-0.706</td>
+      <td>0.332</td>
+      <td>0.032</td>
+      <td>0.022</td>
+      <td>103.0</td>
+      <td>230.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>beta_side[1]</th>
-      <td>0.503</td>
-      <td>0.304</td>
-      <td>0.052</td>
-      <td>1.023</td>
+      <td>0.481</td>
+      <td>0.319</td>
+      <td>-0.026</td>
+      <td>0.977</td>
+      <td>0.032</td>
       <td>0.023</td>
-      <td>0.017</td>
-      <td>168.0</td>
-      <td>302.0</td>
-      <td>1.01</td>
+      <td>100.0</td>
+      <td>299.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>beta_cond[0]</th>
-      <td>0.302</td>
-      <td>0.342</td>
-      <td>-0.225</td>
-      <td>0.847</td>
-      <td>0.038</td>
-      <td>0.027</td>
-      <td>81.0</td>
-      <td>200.0</td>
-      <td>1.03</td>
+      <td>0.292</td>
+      <td>0.328</td>
+      <td>-0.193</td>
+      <td>0.805</td>
+      <td>0.040</td>
+      <td>0.028</td>
+      <td>67.0</td>
+      <td>160.0</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>beta_cond[1]</th>
-      <td>0.055</td>
-      <td>0.345</td>
-      <td>-0.416</td>
-      <td>0.692</td>
-      <td>0.041</td>
-      <td>0.029</td>
-      <td>71.0</td>
-      <td>151.0</td>
-      <td>1.03</td>
+      <td>0.049</td>
+      <td>0.348</td>
+      <td>-0.499</td>
+      <td>0.616</td>
+      <td>0.048</td>
+      <td>0.034</td>
+      <td>48.0</td>
+      <td>237.0</td>
+      <td>1.06</td>
     </tr>
   </tbody>
 </table>
@@ -2706,24 +2706,24 @@ Name: 1, dtype: float64
     <tr>
       <th>m11.5</th>
       <td>0</td>
-      <td>-265.385146</td>
-      <td>7.634690</td>
+      <td>-265.242080</td>
+      <td>7.563874</td>
       <td>0.000000</td>
       <td>1.0</td>
-      <td>9.531466</td>
-      <td>0.000000</td>
+      <td>9.548068</td>
+      <td>0.0000</td>
       <td>False</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m11.4</th>
       <td>1</td>
-      <td>-265.670461</td>
-      <td>8.019487</td>
-      <td>0.285315</td>
+      <td>-265.984709</td>
+      <td>8.291088</td>
+      <td>0.742629</td>
       <td>0.0</td>
-      <td>9.399489</td>
-      <td>0.683212</td>
+      <td>9.462281</td>
+      <td>0.6799</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -3103,77 +3103,77 @@ Coordinates:
   * draw                  (draw) int64 0 1 2 3 4 5 6 ... 494 495 496 497 498 499
   * log_likelihood_dim_0  (log_likelihood_dim_0) int64 0 1 2 3 ... 501 502 503
 Data variables:
-    mean_tree_accept      (chain, draw) float32 0.1756 0.4123 ... 0.4097 -3.285
-    log_likelihood        (chain, draw, log_likelihood_dim_0) float32 -0.5872...
+    mean_tree_accept      (chain, draw) float32 0.9971 -0.2774 ... 0.5889
+    log_likelihood        (chain, draw, log_likelihood_dim_0) float32 -0.4278...
 Attributes:
-    created_at:     2022-01-18T18:28:43.397793
-    arviz_version:  0.11.4</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-38595632-8fcf-4e46-9f2b-231ec5975370' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-38595632-8fcf-4e46-9f2b-231ec5975370' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 2</li><li><span class='xr-has-index'>draw</span>: 500</li><li><span class='xr-has-index'>log_likelihood_dim_0</span>: 504</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-efb31ef2-6dee-4262-9929-953d4be94824' class='xr-section-summary-in' type='checkbox'  checked><label for='section-efb31ef2-6dee-4262-9929-953d4be94824' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1</div><input id='attrs-1a101bd0-f5f7-4970-a3e4-9d00de8a3b92' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1a101bd0-f5f7-4970-a3e4-9d00de8a3b92' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a1f9670f-ef4c-4701-9fce-749effcf98ba' class='xr-var-data-in' type='checkbox'><label for='data-a1f9670f-ef4c-4701-9fce-749effcf98ba' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-183af779-820d-4828-ac0a-9a9c0ee4f012' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-183af779-820d-4828-ac0a-9a9c0ee4f012' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4394e7f4-f24e-404e-ab39-00ca2b5b77ab' class='xr-var-data-in' type='checkbox'><label for='data-4394e7f4-f24e-404e-ab39-00ca2b5b77ab' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>log_likelihood_dim_0</span></div><div class='xr-var-dims'>(log_likelihood_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 499 500 501 502 503</div><input id='attrs-57358c80-6b7a-4a23-b646-366291eeb1ca' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-57358c80-6b7a-4a23-b646-366291eeb1ca' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-05fa952a-1920-49ec-832f-7d2e2aa204d6' class='xr-var-data-in' type='checkbox'><label for='data-05fa952a-1920-49ec-832f-7d2e2aa204d6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 501, 502, 503])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3d487c4f-61d8-4a51-a707-e1c2d757e715' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3d487c4f-61d8-4a51-a707-e1c2d757e715' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mean_tree_accept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.1756 0.4123 ... 0.4097 -3.285</div><input id='attrs-7e8c5fb5-d655-46fb-9bae-8085004d0627' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7e8c5fb5-d655-46fb-9bae-8085004d0627' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c1a5f7e2-b7ae-4126-ae6a-7f21f0faea2d' class='xr-var-data-in' type='checkbox'><label for='data-c1a5f7e2-b7ae-4126-ae6a-7f21f0faea2d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 1.75567627e-01,  4.12322998e-01,  3.36761475e-01,
-        -1.36932373e-01,  3.74816895e-01, -1.26525879e-01,
-         4.16900635e-01, -3.13171387e-01, -1.75848389e+00,
-        -5.37414551e-01,  2.31628418e-02, -1.83541870e+00,
-         2.80221558e+00, -4.51629639e-01,  5.78155518e-01,
-        -1.53585815e+00, -1.47653198e+00, -1.54174805e-01,
-        -1.37673950e+00, -1.65475464e+00, -6.11175537e-01,
-        -1.83630371e+00, -2.20211792e+00, -8.55804443e-01,
-        -1.97070312e+00, -1.62219238e+00,  8.54583740e-01,
-         8.98529053e-01,  2.54119873e-01, -1.04901123e+00,
-        -1.03271484e-01,  3.73748779e-01, -2.08679199e-01,
-         8.82568359e-02,  1.03115845e+00, -5.33050537e-01,
-        -1.53884888e+00,  1.01318359e-02, -8.41796875e-01,
-        -8.06243896e-01, -2.24530029e+00, -1.06610107e+00,
-        -9.70642090e-01, -3.50402832e-01, -1.33123779e+00,
-        -4.08538818e-01,  1.08480835e+00, -8.30017090e-01,
-        -3.43627930e-01, -6.65313721e-01, -5.47454834e-01,
-        -1.09161377e+00, -1.85089111e-01, -5.55572510e-01,
-         5.18249512e-01, -1.52044678e+00,  1.72494507e+00,
-         2.04650879e-01,  4.44519043e-01, -1.45376587e+00,
+    created_at:     2022-01-18T19:35:38.323191
+    arviz_version:  0.11.4</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-ddb19b31-fcbe-4f62-95ee-d0a985a1b7d7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ddb19b31-fcbe-4f62-95ee-d0a985a1b7d7' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 2</li><li><span class='xr-has-index'>draw</span>: 500</li><li><span class='xr-has-index'>log_likelihood_dim_0</span>: 504</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-ae32a247-42d8-4779-89a5-4d45967e7318' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ae32a247-42d8-4779-89a5-4d45967e7318' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1</div><input id='attrs-9a4a3537-7af8-4abc-a4fb-646a6e5f08bc' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9a4a3537-7af8-4abc-a4fb-646a6e5f08bc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9ae94a03-34d5-462b-b80a-df788f5356c0' class='xr-var-data-in' type='checkbox'><label for='data-9ae94a03-34d5-462b-b80a-df788f5356c0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-1c3290cf-4517-49b8-848a-99d2276a5cee' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1c3290cf-4517-49b8-848a-99d2276a5cee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-64ec9103-6236-40c3-9dc8-4a43af684402' class='xr-var-data-in' type='checkbox'><label for='data-64ec9103-6236-40c3-9dc8-4a43af684402' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>log_likelihood_dim_0</span></div><div class='xr-var-dims'>(log_likelihood_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 499 500 501 502 503</div><input id='attrs-31635331-e758-4aca-9f4e-9df33684371e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-31635331-e758-4aca-9f4e-9df33684371e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7271eca6-2bd0-4b88-8f77-7d5a282bd94f' class='xr-var-data-in' type='checkbox'><label for='data-7271eca6-2bd0-4b88-8f77-7d5a282bd94f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 501, 502, 503])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-56003203-68c3-415a-89e6-64df13cd5f5e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-56003203-68c3-415a-89e6-64df13cd5f5e' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mean_tree_accept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.9971 -0.2774 ... -0.8986 0.5889</div><input id='attrs-10af4a45-fdef-46c7-80a6-37d06cb5af2f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-10af4a45-fdef-46c7-80a6-37d06cb5af2f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b9b0fc26-059e-4a23-ac9f-de07357565f1' class='xr-var-data-in' type='checkbox'><label for='data-b9b0fc26-059e-4a23-ac9f-de07357565f1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 9.97100830e-01, -2.77374268e-01, -5.28991699e-01,
+         1.15380859e+00, -1.05590820e-01, -1.73553467e-01,
+        -5.45257568e-01,  3.79394531e-01,  2.65838623e-01,
+         6.79168701e-01, -3.92761230e-01, -1.85028076e+00,
+        -8.99688721e-01, -2.44351196e+00, -8.24890137e-01,
+         2.67852783e-01,  6.39007568e-01, -1.29910278e+00,
+        -6.78527832e-01, -7.02606201e-01,  2.57751465e-01,
+        -4.06524658e-01, -1.82507324e+00,  1.58569336e-01,
+         4.46105957e-01, -7.18872070e-01,  1.85333252e-01,
+        -2.17022705e+00, -5.22644043e-01, -1.24975586e+00,
+         1.41058350e+00, -5.35034180e-01,  5.74218750e-01,
+        -3.88153076e-01, -7.11822510e-01, -8.37982178e-01,
+         3.09368896e+00, -6.46209717e-01, -7.59124756e-01,
+        -3.62976074e-01, -1.18734741e+00,  1.69464111e-01,
+         3.78540039e-01, -1.98867798e+00, -2.27008057e+00,
+        -8.17687988e-01, -2.71588135e+00,  4.39270020e-01,
+         8.50524902e-02,  1.28570557e-01, -4.61517334e-01,
+        -8.37677002e-01,  1.04510498e+00, -6.30554199e-01,
+        -1.83779907e+00,  9.89685059e-02, -1.42639160e-01,
+         2.45452881e-01,  1.75506592e-01, -2.20108032e+00,
 ...
-        -1.25399780e+00, -4.32739258e-02, -2.55242920e+00,
-        -6.45965576e-01, -8.21319580e-01,  4.91821289e-01,
-         4.39666748e-01, -4.75433350e-01,  3.53027344e-01,
-         1.74499512e-01,  7.57904053e-01, -1.40765381e+00,
-        -1.30548096e+00, -1.13082886e+00,  3.58489990e-01,
-         6.73889160e-01, -1.62872314e+00, -1.53814697e+00,
-        -5.99090576e-01,  1.15103149e+00, -1.59637451e-01,
-        -2.92846680e-01, -1.55987549e+00,  6.88171387e-02,
-        -1.46313477e+00, -1.64617920e+00,  1.55487061e-01,
-         8.72192383e-01, -7.04132080e-01, -1.19754028e+00,
-         7.15698242e-01, -2.13504028e+00, -6.79199219e-01,
-        -8.75732422e-01,  1.14544678e+00,  3.96820068e-01,
-         1.91986084e-01, -3.78753662e-01,  6.01501465e-02,
-         1.64489746e-01, -1.86697388e+00, -1.32659912e-01,
-         5.40069580e-01, -1.62139893e-01, -3.95599365e-01,
-         6.09436035e-02,  1.47979736e+00, -1.85220337e+00,
-        -6.75964355e-01, -2.19158936e+00, -2.93548584e-01,
-        -2.13888550e+00, -5.27008057e-01, -5.25238037e-01,
-        -1.28649902e+00, -1.23843384e+00, -2.08679199e+00,
-         4.09729004e-01, -3.28546143e+00]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>log_likelihood</span></div><div class='xr-var-dims'>(chain, draw, log_likelihood_dim_0)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.5872 -0.8116 ... -0.2035 -0.2035</div><input id='attrs-e4421d91-70af-4e0b-8e90-717042842442' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e4421d91-70af-4e0b-8e90-717042842442' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0303f9df-3df0-485c-9b6b-adc04e94eba4' class='xr-var-data-in' type='checkbox'><label for='data-0303f9df-3df0-485c-9b6b-adc04e94eba4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[[-0.58724433, -0.8116085 , -0.6460568 , ..., -0.270391  ,
-         -0.270391  , -0.270391  ],
-        [-0.5913409 , -0.8065051 , -0.9118248 , ..., -0.14528954,
-         -0.14528954, -0.14528954],
-        [-0.42565614, -1.0594137 , -0.6141458 , ..., -0.20182753,
-         -0.20182753, -0.20182753],
+        -1.73706055e-01,  4.58831787e-01,  4.02893066e-01,
+        -4.58831787e-01, -6.15814209e-01, -1.37930298e+00,
+         4.74243164e-02, -4.72290039e-01, -1.25122070e-03,
+         5.89416504e-01, -5.08819580e-01, -3.63037109e-01,
+        -2.24423218e+00, -6.06018066e-01, -2.09777832e-01,
+        -1.66748047e-01,  1.38488770e-01,  1.08804321e+00,
+        -1.27133179e+00,  1.51913452e+00, -2.70242310e+00,
+        -7.22656250e-02, -1.07131958e+00, -1.40908813e+00,
+         8.94256592e-01, -2.14709473e+00,  2.98156738e-01,
+        -6.30767822e-01,  4.22851562e-01,  1.04675293e-02,
+        -6.34063721e-01,  8.73504639e-01, -2.81951904e-01,
+        -1.13226318e+00, -1.84466553e+00, -8.19305420e-01,
+        -1.14532471e-01, -7.18444824e-01,  3.74420166e-01,
+         9.74945068e-01, -9.29687500e-01, -7.15148926e-01,
+        -5.42236328e-01, -3.15307617e-01,  4.22637939e-01,
+         4.78729248e-01, -2.70324707e-01, -5.83496094e-01,
+        -1.67877197e-01, -2.59521484e-01,  1.02252197e+00,
+        -7.34588623e-01,  4.01702881e-01, -3.22723389e-01,
+        -1.51547241e+00,  1.03912354e-01, -1.04904175e+00,
+        -8.98559570e-01,  5.88928223e-01]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>log_likelihood</span></div><div class='xr-var-dims'>(chain, draw, log_likelihood_dim_0)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.4278 -1.055 ... -0.1176 -0.1176</div><input id='attrs-14a384c5-05ab-47aa-ac95-e9c0bfeaa4e1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-14a384c5-05ab-47aa-ac95-e9c0bfeaa4e1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9bb66794-a767-4523-bb13-1b8184a72a15' class='xr-var-data-in' type='checkbox'><label for='data-9bb66794-a767-4523-bb13-1b8184a72a15' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[[-0.42779806, -1.0553892 , -0.71658176, ..., -0.1638448 ,
+         -0.1638448 , -0.1638448 ],
+        [-0.55197203, -0.8575813 , -0.6783773 , ..., -0.20177789,
+         -0.20177789, -0.20177789],
+        [-0.60227036, -0.79311574, -0.7087336 , ..., -0.09695323,
+         -0.09695323, -0.09695323],
         ...,
-        [-0.5419139 , -0.8713986 , -0.82777387, ..., -0.0853769 ,
-         -0.0853769 , -0.0853769 ],
-        [-0.36812484, -1.1777555 , -0.59258336, ..., -0.2139933 ,
-         -0.2139933 , -0.2139933 ],
-        [-0.36812484, -1.1777555 , -0.59258336, ..., -0.2139933 ,
-         -0.2139933 , -0.2139933 ]],
+        [-0.45196787, -1.0116311 , -0.6768642 , ..., -0.1918512 ,
+         -0.1918512 , -0.1918512 ],
+        [-0.4632568 , -0.9921761 , -0.73477405, ..., -0.2029944 ,
+         -0.2029944 , -0.2029944 ],
+        [-0.4632568 , -0.9921761 , -0.73477405, ..., -0.2029944 ,
+         -0.2029944 , -0.2029944 ]],
 
-       [[-0.45794547, -1.0012552 , -0.6265704 , ..., -0.17261606,
-         -0.17261606, -0.17261606],
-        [-0.3779531 , -1.1560167 , -0.4745531 , ..., -0.20414339,
-         -0.20414339, -0.20414339],
-        [-0.3779531 , -1.1560167 , -0.4745531 , ..., -0.20414339,
-         -0.20414339, -0.20414339],
+       [[-0.41767213, -1.0746363 , -0.666546  , ..., -0.2442122 ,
+         -0.2442122 , -0.2442122 ],
+        [-0.41767213, -1.0746363 , -0.666546  , ..., -0.2442122 ,
+         -0.2442122 , -0.2442122 ],
+        [-0.41767213, -1.0746363 , -0.666546  , ..., -0.2442122 ,
+         -0.2442122 , -0.2442122 ],
         ...,
-        [-0.53163004, -0.8858738 , -0.77545667, ..., -0.18007602,
-         -0.18007602, -0.18007602],
-        [-0.40851158, -1.0925469 , -0.72623783, ..., -0.20347284,
-         -0.20347284, -0.20347284],
-        [-0.40851158, -1.0925469 , -0.72623783, ..., -0.20347284,
-         -0.20347284, -0.20347284]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-08b5fa9f-a234-44cd-b406-dc2bb96d19b2' class='xr-section-summary-in' type='checkbox'  checked><label for='section-08b5fa9f-a234-44cd-b406-dc2bb96d19b2' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2022-01-18T18:28:43.397793</dd><dt><span>arviz_version :</span></dt><dd>0.11.4</dd></dl></div></li></ul></div></div></div></div>
+        [-0.4839693 , -0.9579781 , -0.47663432, ..., -0.21421267,
+         -0.21421267, -0.21421267],
+        [-0.4839693 , -0.9579781 , -0.47663432, ..., -0.21421267,
+         -0.21421267, -0.21421267],
+        [-0.32601365, -1.2793983 , -0.84938353, ..., -0.11764708,
+         -0.11764708, -0.11764708]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5d7fae46-739b-4e28-b5e6-366ed9b26af3' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5d7fae46-739b-4e28-b5e6-366ed9b26af3' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2022-01-18T19:35:38.323191</dd><dt><span>arviz_version :</span></dt><dd>0.11.4</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </div>
 <div class="section" id="code-11-22">
@@ -3554,7 +3554,7 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;beta_treatment&#x27; ()&gt;
-array(0.9332306, dtype=float32)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta_treatment'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ec7cc27e-f491-4923-a904-4db7b622b702' class='xr-array-in' type='checkbox' checked><label for='section-ec7cc27e-f491-4923-a904-4db7b622b702' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.9332</span></div><div class='xr-array-data'><pre>array(0.9332306, dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-be4659fc-118f-4715-81a8-ba1696b6f302' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-be4659fc-118f-4715-81a8-ba1696b6f302' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-883f632b-bf2b-4d41-ae10-9c026be7d0db' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-883f632b-bf2b-4d41-ae10-9c026be7d0db' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+array(0.9411947, dtype=float32)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta_treatment'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-9b60bf6d-8d7d-4169-b7f8-f1c572969bf3' class='xr-array-in' type='checkbox' checked><label for='section-9b60bf6d-8d7d-4169-b7f8-f1c572969bf3' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.9412</span></div><div class='xr-array-data'><pre>array(0.9411947, dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-2915e62f-cbe7-4794-82be-4d9d8aae074f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2915e62f-cbe7-4794-82be-4d9d8aae074f' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-8b91e177-7c7b-409e-8569-90c6fa229365' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8b91e177-7c7b-409e-8569-90c6fa229365' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 </div>
 </div>
@@ -3896,13 +3896,15 @@ array(0.9332306, dtype=float32)</pre><div class='xr-wrap' style='display:none'><
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(7,), dtype=float32, numpy=
-    array([ 0.7657459 , -1.1124156 ,  0.29113266, -1.5741723 , -0.86237705,
-           -0.14399709, -1.2932572 ], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 0.75179136,  0.36947316, -0.49109387,  0.21333301], dtype=float32)&gt;,
+    array([-2.0893202 ,  0.369814  , -0.94611144,  0.71678823, -1.1210064 ,
+           -2.1485844 ,  0.11425063], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=
+    array([ 1.7817920e-01, -2.0366290e-04,  1.7057569e-01, -4.6575353e-01],
+          dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(28,), dtype=float32, numpy=
-    array([16.,  4., 17.,  7.,  6., 11., 11., 14.,  7., 14.,  4.,  7.,  8.,
-            5.,  6.,  6.,  5.,  2.,  7.,  7.,  0., 14.,  7., 12.,  5.,  3.,
-            8.,  7.], dtype=float32)&gt;
+    array([ 2.,  9.,  5., 13.,  3.,  3.,  9.,  1., 10.,  6., 11.,  2.,  3.,
+            6.,  1., 13.,  4., 14.,  6.,  4., 12.,  1., 12.,  1., 11.,  3.,
+            1., 10.], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -3970,135 +3972,135 @@ array(0.9332306, dtype=float32)</pre><div class='xr-wrap' style='display:none'><
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.417</td>
-      <td>0.329</td>
-      <td>-0.938</td>
-      <td>0.096</td>
-      <td>0.017</td>
+      <td>-0.422</td>
+      <td>0.335</td>
+      <td>-0.926</td>
+      <td>0.131</td>
+      <td>0.016</td>
       <td>0.012</td>
-      <td>356.0</td>
-      <td>369.0</td>
-      <td>1.00</td>
+      <td>424.0</td>
+      <td>505.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>3.878</td>
-      <td>0.725</td>
-      <td>2.860</td>
-      <td>5.112</td>
-      <td>0.044</td>
-      <td>0.031</td>
-      <td>274.0</td>
-      <td>289.0</td>
+      <td>4.025</td>
+      <td>0.795</td>
+      <td>2.889</td>
+      <td>5.437</td>
+      <td>0.057</td>
+      <td>0.042</td>
+      <td>195.0</td>
+      <td>308.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>-0.751</td>
-      <td>0.348</td>
-      <td>-1.274</td>
-      <td>-0.196</td>
+      <td>-0.713</td>
+      <td>0.334</td>
+      <td>-1.196</td>
+      <td>-0.190</td>
       <td>0.016</td>
       <td>0.011</td>
-      <td>468.0</td>
-      <td>486.0</td>
+      <td>440.0</td>
+      <td>396.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.751</td>
-      <td>0.346</td>
-      <td>-1.317</td>
+      <td>-0.709</td>
+      <td>0.341</td>
+      <td>-1.340</td>
       <td>-0.237</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>426.0</td>
-      <td>393.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[4]</th>
-      <td>-0.451</td>
-      <td>0.344</td>
-      <td>-1.022</td>
-      <td>0.075</td>
       <td>0.016</td>
       <td>0.011</td>
-      <td>474.0</td>
-      <td>420.0</td>
+      <td>463.0</td>
+      <td>465.0</td>
       <td>1.00</td>
     </tr>
     <tr>
+      <th>alpha[4]</th>
+      <td>-0.405</td>
+      <td>0.334</td>
+      <td>-0.903</td>
+      <td>0.150</td>
+      <td>0.015</td>
+      <td>0.011</td>
+      <td>470.0</td>
+      <td>495.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
       <th>alpha[5]</th>
-      <td>0.495</td>
-      <td>0.343</td>
-      <td>-0.016</td>
-      <td>1.037</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>415.0</td>
-      <td>345.0</td>
+      <td>0.497</td>
+      <td>0.335</td>
+      <td>-0.001</td>
+      <td>0.988</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>425.0</td>
+      <td>442.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>1.947</td>
-      <td>0.398</td>
-      <td>1.355</td>
-      <td>2.556</td>
-      <td>0.019</td>
+      <td>1.961</td>
+      <td>0.403</td>
+      <td>1.402</td>
+      <td>2.649</td>
+      <td>0.018</td>
       <td>0.013</td>
-      <td>456.0</td>
-      <td>308.0</td>
-      <td>1.01</td>
+      <td>482.0</td>
+      <td>362.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta_treatment[0]</th>
-      <td>-0.054</td>
-      <td>0.297</td>
-      <td>-0.482</td>
-      <td>0.429</td>
-      <td>0.026</td>
-      <td>0.018</td>
-      <td>137.0</td>
-      <td>267.0</td>
-      <td>1.01</td>
+      <td>-0.030</td>
+      <td>0.303</td>
+      <td>-0.473</td>
+      <td>0.485</td>
+      <td>0.021</td>
+      <td>0.015</td>
+      <td>212.0</td>
+      <td>565.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[1]</th>
-      <td>0.488</td>
+      <td>0.507</td>
       <td>0.289</td>
-      <td>0.040</td>
-      <td>0.954</td>
-      <td>0.023</td>
-      <td>0.016</td>
-      <td>162.0</td>
-      <td>278.0</td>
-      <td>1.01</td>
+      <td>0.060</td>
+      <td>0.976</td>
+      <td>0.018</td>
+      <td>0.013</td>
+      <td>275.0</td>
+      <td>433.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[2]</th>
-      <td>-0.396</td>
-      <td>0.301</td>
-      <td>-0.883</td>
-      <td>0.057</td>
-      <td>0.025</td>
-      <td>0.018</td>
-      <td>144.0</td>
-      <td>260.0</td>
+      <td>-0.358</td>
+      <td>0.284</td>
+      <td>-0.802</td>
+      <td>0.074</td>
+      <td>0.020</td>
+      <td>0.014</td>
+      <td>209.0</td>
+      <td>391.0</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>beta_treatment[3]</th>
-      <td>0.385</td>
-      <td>0.283</td>
-      <td>0.015</td>
-      <td>0.901</td>
-      <td>0.024</td>
-      <td>0.017</td>
-      <td>140.0</td>
-      <td>199.0</td>
-      <td>1.01</td>
+      <td>0.401</td>
+      <td>0.300</td>
+      <td>-0.078</td>
+      <td>0.873</td>
+      <td>0.023</td>
+      <td>0.016</td>
+      <td>177.0</td>
+      <td>357.0</td>
+      <td>1.03</td>
     </tr>
   </tbody>
 </table>
@@ -4435,25 +4437,25 @@ ValueError: The number of observations should be the same across all models
       <th>alpha[0]</th>
       <td>-0.22</td>
       <td>0.04</td>
-      <td>-0.29</td>
-      <td>-0.17</td>
+      <td>-0.27</td>
+      <td>-0.16</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td>2313.56</td>
-      <td>224.74</td>
-      <td>1.0</td>
+      <td>1133.08</td>
+      <td>233.92</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>-0.84</td>
       <td>0.05</td>
       <td>-0.92</td>
-      <td>-0.75</td>
+      <td>-0.78</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>4.22</td>
-      <td>15.43</td>
-      <td>1.4</td>
+      <td>3.23</td>
+      <td>21.15</td>
+      <td>1.74</td>
     </tr>
   </tbody>
 </table>
@@ -4512,50 +4514,50 @@ ValueError: The number of observations should be the same across all models
     <tr>
       <th>alpha[0]</th>
       <td>-0.221</td>
-      <td>0.040</td>
-      <td>-0.289</td>
-      <td>-0.165</td>
+      <td>0.036</td>
+      <td>-0.274</td>
+      <td>-0.163</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>2314.0</td>
-      <td>225.0</td>
+      <td>1133.0</td>
+      <td>234.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.835</td>
-      <td>0.053</td>
-      <td>-0.923</td>
-      <td>-0.753</td>
-      <td>0.026</td>
-      <td>0.020</td>
-      <td>4.0</td>
-      <td>15.0</td>
-      <td>1.40</td>
+      <td>-0.843</td>
+      <td>0.047</td>
+      <td>-0.922</td>
+      <td>-0.780</td>
+      <td>0.027</td>
+      <td>0.021</td>
+      <td>3.0</td>
+      <td>21.0</td>
+      <td>1.74</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>0.614</td>
-      <td>0.066</td>
-      <td>0.516</td>
-      <td>0.719</td>
-      <td>0.026</td>
-      <td>0.020</td>
-      <td>6.0</td>
-      <td>63.0</td>
-      <td>1.22</td>
+      <td>0.622</td>
+      <td>0.060</td>
+      <td>0.530</td>
+      <td>0.722</td>
+      <td>0.027</td>
+      <td>0.021</td>
+      <td>5.0</td>
+      <td>28.0</td>
+      <td>1.36</td>
     </tr>
     <tr>
       <th>diff_p</th>
-      <td>0.142</td>
-      <td>0.015</td>
-      <td>0.119</td>
-      <td>0.165</td>
-      <td>0.005</td>
+      <td>0.144</td>
+      <td>0.014</td>
+      <td>0.123</td>
+      <td>0.167</td>
+      <td>0.006</td>
       <td>0.004</td>
-      <td>7.0</td>
-      <td>69.0</td>
-      <td>1.19</td>
+      <td>6.0</td>
+      <td>34.0</td>
+      <td>1.30</td>
     </tr>
   </tbody>
 </table>
@@ -4585,7 +4587,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7f7cd5f8c170&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7efe18bec0e0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -4671,7 +4673,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f7cd56b47a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7efe18317710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -4706,99 +4708,99 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.748</td>
-      <td>0.644</td>
-      <td>-1.675</td>
-      <td>0.404</td>
-      <td>0.229</td>
-      <td>0.168</td>
-      <td>8.0</td>
+      <td>-0.665</td>
+      <td>0.445</td>
+      <td>-1.391</td>
+      <td>0.024</td>
+      <td>0.079</td>
+      <td>0.056</td>
       <td>32.0</td>
-      <td>1.20</td>
+      <td>87.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.641</td>
-      <td>0.639</td>
-      <td>-1.580</td>
-      <td>0.485</td>
-      <td>0.224</td>
-      <td>0.164</td>
-      <td>8.0</td>
-      <td>36.0</td>
-      <td>1.20</td>
+      <td>-0.567</td>
+      <td>0.449</td>
+      <td>-1.328</td>
+      <td>0.092</td>
+      <td>0.079</td>
+      <td>0.057</td>
+      <td>32.0</td>
+      <td>97.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[0]</th>
-      <td>1.326</td>
-      <td>0.644</td>
-      <td>0.148</td>
-      <td>2.240</td>
-      <td>0.227</td>
-      <td>0.167</td>
-      <td>8.0</td>
+      <td>1.244</td>
+      <td>0.450</td>
+      <td>0.602</td>
+      <td>2.038</td>
+      <td>0.079</td>
+      <td>0.056</td>
       <td>32.0</td>
-      <td>1.20</td>
+      <td>98.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[1]</th>
-      <td>1.281</td>
-      <td>0.646</td>
-      <td>0.150</td>
-      <td>2.239</td>
-      <td>0.227</td>
-      <td>0.167</td>
-      <td>8.0</td>
-      <td>34.0</td>
-      <td>1.19</td>
+      <td>1.200</td>
+      <td>0.451</td>
+      <td>0.563</td>
+      <td>1.995</td>
+      <td>0.078</td>
+      <td>0.056</td>
+      <td>33.0</td>
+      <td>95.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[2]</th>
-      <td>0.070</td>
-      <td>0.647</td>
-      <td>-1.019</td>
-      <td>1.076</td>
-      <td>0.230</td>
-      <td>0.169</td>
-      <td>8.0</td>
-      <td>31.0</td>
-      <td>1.20</td>
+      <td>-0.014</td>
+      <td>0.451</td>
+      <td>-0.662</td>
+      <td>0.770</td>
+      <td>0.080</td>
+      <td>0.057</td>
+      <td>32.0</td>
+      <td>100.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[3]</th>
-      <td>0.035</td>
-      <td>0.647</td>
-      <td>-1.135</td>
-      <td>0.945</td>
-      <td>0.229</td>
-      <td>0.168</td>
-      <td>8.0</td>
-      <td>34.0</td>
-      <td>1.20</td>
+      <td>-0.047</td>
+      <td>0.448</td>
+      <td>-0.667</td>
+      <td>0.738</td>
+      <td>0.078</td>
+      <td>0.056</td>
+      <td>33.0</td>
+      <td>94.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[4]</th>
-      <td>-0.409</td>
-      <td>0.646</td>
-      <td>-1.587</td>
-      <td>0.491</td>
-      <td>0.228</td>
-      <td>0.168</td>
-      <td>8.0</td>
-      <td>38.0</td>
-      <td>1.20</td>
+      <td>-0.491</td>
+      <td>0.453</td>
+      <td>-1.181</td>
+      <td>0.257</td>
+      <td>0.079</td>
+      <td>0.057</td>
+      <td>33.0</td>
+      <td>96.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[5]</th>
-      <td>-1.962</td>
-      <td>0.653</td>
-      <td>-3.046</td>
-      <td>-0.928</td>
-      <td>0.221</td>
-      <td>0.162</td>
-      <td>9.0</td>
+      <td>-2.046</td>
+      <td>0.464</td>
+      <td>-2.710</td>
+      <td>-1.249</td>
+      <td>0.078</td>
+      <td>0.056</td>
       <td>36.0</td>
-      <td>1.18</td>
+      <td>112.0</td>
+      <td>1.03</td>
     </tr>
   </tbody>
 </table>
@@ -4855,123 +4857,123 @@ ValueError: The number of observations should be the same across all models
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.748</td>
-      <td>0.644</td>
-      <td>-1.675</td>
-      <td>0.404</td>
-      <td>0.229</td>
-      <td>0.168</td>
-      <td>8.0</td>
+      <td>-0.665</td>
+      <td>0.445</td>
+      <td>-1.391</td>
+      <td>0.024</td>
+      <td>0.079</td>
+      <td>0.056</td>
       <td>32.0</td>
-      <td>1.20</td>
+      <td>87.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.641</td>
-      <td>0.639</td>
-      <td>-1.580</td>
-      <td>0.485</td>
-      <td>0.224</td>
-      <td>0.164</td>
-      <td>8.0</td>
-      <td>36.0</td>
-      <td>1.20</td>
+      <td>-0.567</td>
+      <td>0.449</td>
+      <td>-1.328</td>
+      <td>0.092</td>
+      <td>0.079</td>
+      <td>0.057</td>
+      <td>32.0</td>
+      <td>97.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[0]</th>
-      <td>1.326</td>
-      <td>0.644</td>
-      <td>0.148</td>
-      <td>2.240</td>
-      <td>0.227</td>
-      <td>0.167</td>
-      <td>8.0</td>
+      <td>1.244</td>
+      <td>0.450</td>
+      <td>0.602</td>
+      <td>2.038</td>
+      <td>0.079</td>
+      <td>0.056</td>
       <td>32.0</td>
-      <td>1.20</td>
+      <td>98.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[1]</th>
-      <td>1.281</td>
-      <td>0.646</td>
-      <td>0.150</td>
-      <td>2.239</td>
-      <td>0.227</td>
-      <td>0.167</td>
-      <td>8.0</td>
-      <td>34.0</td>
-      <td>1.19</td>
+      <td>1.200</td>
+      <td>0.451</td>
+      <td>0.563</td>
+      <td>1.995</td>
+      <td>0.078</td>
+      <td>0.056</td>
+      <td>33.0</td>
+      <td>95.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[2]</th>
-      <td>0.070</td>
-      <td>0.647</td>
-      <td>-1.019</td>
-      <td>1.076</td>
-      <td>0.230</td>
-      <td>0.169</td>
-      <td>8.0</td>
-      <td>31.0</td>
-      <td>1.20</td>
+      <td>-0.014</td>
+      <td>0.451</td>
+      <td>-0.662</td>
+      <td>0.770</td>
+      <td>0.080</td>
+      <td>0.057</td>
+      <td>32.0</td>
+      <td>100.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[3]</th>
-      <td>0.035</td>
-      <td>0.647</td>
-      <td>-1.135</td>
-      <td>0.945</td>
-      <td>0.229</td>
-      <td>0.168</td>
-      <td>8.0</td>
-      <td>34.0</td>
-      <td>1.20</td>
+      <td>-0.047</td>
+      <td>0.448</td>
+      <td>-0.667</td>
+      <td>0.738</td>
+      <td>0.078</td>
+      <td>0.056</td>
+      <td>33.0</td>
+      <td>94.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[4]</th>
-      <td>-0.409</td>
-      <td>0.646</td>
-      <td>-1.587</td>
-      <td>0.491</td>
-      <td>0.228</td>
-      <td>0.168</td>
-      <td>8.0</td>
-      <td>38.0</td>
-      <td>1.20</td>
+      <td>-0.491</td>
+      <td>0.453</td>
+      <td>-1.181</td>
+      <td>0.257</td>
+      <td>0.079</td>
+      <td>0.057</td>
+      <td>33.0</td>
+      <td>96.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>delta[5]</th>
-      <td>-1.962</td>
-      <td>0.653</td>
-      <td>-3.046</td>
-      <td>-0.928</td>
-      <td>0.221</td>
-      <td>0.162</td>
-      <td>9.0</td>
+      <td>-2.046</td>
+      <td>0.464</td>
+      <td>-2.710</td>
+      <td>-1.249</td>
+      <td>0.078</td>
+      <td>0.056</td>
       <td>36.0</td>
-      <td>1.18</td>
+      <td>112.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>-0.107</td>
-      <td>0.079</td>
-      <td>-0.226</td>
-      <td>0.026</td>
-      <td>0.006</td>
-      <td>0.004</td>
-      <td>163.0</td>
-      <td>517.0</td>
-      <td>1.01</td>
+      <td>-0.097</td>
+      <td>0.080</td>
+      <td>-0.219</td>
+      <td>0.037</td>
+      <td>0.003</td>
+      <td>0.002</td>
+      <td>826.0</td>
+      <td>840.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>diff_p</th>
-      <td>-0.022</td>
-      <td>0.017</td>
-      <td>-0.047</td>
-      <td>0.006</td>
+      <td>-0.021</td>
+      <td>0.018</td>
+      <td>-0.049</td>
+      <td>0.008</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>155.0</td>
-      <td>506.0</td>
-      <td>1.01</td>
+      <td>662.0</td>
+      <td>818.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -5058,10 +5060,10 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 12 calls to &lt;function _random_binomial at 0x7f7cd5f8c170&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 12 calls to &lt;function _random_binomial at 0x7efe18bec0e0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.00003, 1.0013701)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.99912, 0.9941392)
 </pre></div>
 </div>
 </div>
@@ -5231,7 +5233,7 @@ ValueError: The number of observations should be the same across all models
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=167793280000000.0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=905964950000.0&gt;
 </pre></div>
 </div>
 </div>
@@ -5386,7 +5388,7 @@ Instructions for updating:
 The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_zero_outside_support` (with the opposite sense).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f7cd56b47a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7efe18317710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -5548,11 +5550,11 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     <tr>
       <th>m11.10</th>
       <td>0</td>
-      <td>-42.385440</td>
-      <td>6.737483</td>
+      <td>-41.838746</td>
+      <td>6.129791</td>
       <td>0.000000</td>
-      <td>0.992243</td>
-      <td>6.030625</td>
+      <td>1.0</td>
+      <td>6.017812</td>
       <td>0.000000</td>
       <td>True</td>
       <td>log</td>
@@ -5560,12 +5562,12 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     <tr>
       <th>m11.9</th>
       <td>1</td>
-      <td>-70.451896</td>
-      <td>7.799120</td>
-      <td>28.066456</td>
-      <td>0.007757</td>
-      <td>15.753079</td>
-      <td>15.663184</td>
+      <td>-71.152379</td>
+      <td>8.840636</td>
+      <td>29.313633</td>
+      <td>0.0</td>
+      <td>16.212100</td>
+      <td>16.300307</td>
       <td>True</td>
       <td>log</td>
     </tr>
@@ -5774,103 +5776,103 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>8</th>
       <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>0.0</td>
+      <th>4</th>
+      <td>3.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>5</th>
       <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>6</th>
       <td>5.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>7</th>
       <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>8</th>
       <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>16</th>
+      <th>9</th>
       <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
+      <th>10</th>
+      <td>3.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>3.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
       <th>17</th>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -5882,7 +5884,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>19</th>
-      <td>0.0</td>
+      <td>2.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -5900,13 +5902,13 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>22</th>
-      <td>3.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>4.0</td>
+      <td>1.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -5918,49 +5920,49 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
     </tr>
     <tr>
       <th>25</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>2.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>1.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>28</th>
       <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
+      <th>26</th>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
       <th>29</th>
-      <td>3.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>3.0</td>
+      <td>2.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>1.0</td>
+      <td>3.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>1.0</td>
+      <td>4.0</td>
       <td>7</td>
       <td>1</td>
     </tr>
@@ -6079,27 +6081,27 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
   <tbody>
     <tr>
       <th>lambda_old</th>
-      <td>1.456</td>
-      <td>0.213</td>
-      <td>1.068</td>
-      <td>1.731</td>
-      <td>0.010</td>
-      <td>0.007</td>
-      <td>490.0</td>
-      <td>115.0</td>
-      <td>1.06</td>
+      <td>1.519</td>
+      <td>0.196</td>
+      <td>1.226</td>
+      <td>1.822</td>
+      <td>0.022</td>
+      <td>0.016</td>
+      <td>80.0</td>
+      <td>141.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>lambda_new</th>
-      <td>0.283</td>
-      <td>0.095</td>
-      <td>0.149</td>
-      <td>0.441</td>
-      <td>0.006</td>
-      <td>0.005</td>
-      <td>198.0</td>
-      <td>165.0</td>
-      <td>1.01</td>
+      <td>0.419</td>
+      <td>0.103</td>
+      <td>0.272</td>
+      <td>0.589</td>
+      <td>0.009</td>
+      <td>0.007</td>
+      <td>114.0</td>
+      <td>133.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -6208,11 +6210,11 @@ p (2, 3, 1)
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-    array([[-0.6098606, -1.6269721],
-           [-2.6214375,  1.7922566]], dtype=float32)&gt;,
+    array([[0.5223336 , 0.3313449 ],
+           [0.91362286, 1.1452603 ]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[0.33174884],
-           [0.7224732 ]], dtype=float32)&gt;,
+    array([[0.19818535],
+           [1.1558568 ]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 3), dtype=int32, numpy=
     array([[0, 0, 0],
            [0, 0, 0]], dtype=int32)&gt;
@@ -6487,7 +6489,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 7 calls to &lt;function random_poisson at 0x7f7cd5c3be60&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 7 calls to &lt;function random_poisson at 0x7efe1889add0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -6503,7 +6505,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.9945766&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.9946145&gt;
 </pre></div>
 </div>
 </div>
@@ -6524,7 +6526,7 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.38761392&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.38801956&gt;
 </pre></div>
 </div>
 </div>
@@ -6547,10 +6549,10 @@ p (2, 3, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([44.12654 , 63.286373, 49.920097, ..., 34.945724, 16.178215,
-        59.483234], dtype=float32),
- array([40.11182  ,  4.998057 ,  3.1206274, ...,  8.33386  ,  7.0191483,
-        34.50499  ], dtype=float32))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([10.816624, 79.306526, 60.04439 , ..., 59.569115, 53.284756,
+         5.215267], dtype=float32),
+ array([22.870214 ,  1.7652589,  8.702782 , ..., 25.429123 , 36.83277  ,
+        20.945744 ], dtype=float32))
 </pre></div>
 </div>
 </div>
