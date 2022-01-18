@@ -24,6 +24,10 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-extra.txt
 
+      - name: Install self
+        run: |
+          pip install -e .
+
       # Build the book
       - name: Build the book
         run: |
