@@ -871,7 +871,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
-<span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -897,8 +896,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:30:53.610884: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 17:30:53.610928: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:24:53.308197: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 18:24:53.308231: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -983,10 +982,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:30:56.423572: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 17:30:56.423615: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 17:30:56.423640: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-18 17:30:56.424038: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:24:55.506974: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 18:24:55.507012: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 18:24:55.507033: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
+2022-01-18 18:24:55.507342: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1220,50 +1219,50 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.274</td>
-      <td>0.369</td>
-      <td>-0.365</td>
-      <td>0.854</td>
-      <td>0.053</td>
-      <td>0.038</td>
-      <td>50.0</td>
-      <td>99.0</td>
-      <td>1.02</td>
+      <td>0.237</td>
+      <td>0.390</td>
+      <td>-0.381</td>
+      <td>0.868</td>
+      <td>0.047</td>
+      <td>0.033</td>
+      <td>70.0</td>
+      <td>97.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>1.126</td>
-      <td>0.564</td>
-      <td>0.391</td>
-      <td>2.122</td>
-      <td>0.116</td>
-      <td>0.087</td>
-      <td>23.0</td>
-      <td>39.0</td>
-      <td>1.11</td>
+      <td>1.823</td>
+      <td>1.133</td>
+      <td>0.219</td>
+      <td>3.609</td>
+      <td>0.687</td>
+      <td>0.566</td>
+      <td>3.0</td>
+      <td>18.0</td>
+      <td>1.74</td>
     </tr>
     <tr>
       <th>betaR</th>
-      <td>1.048</td>
-      <td>0.580</td>
-      <td>-0.006</td>
-      <td>1.764</td>
-      <td>0.120</td>
-      <td>0.086</td>
-      <td>23.0</td>
-      <td>39.0</td>
-      <td>1.12</td>
+      <td>0.358</td>
+      <td>1.116</td>
+      <td>-1.504</td>
+      <td>1.808</td>
+      <td>0.676</td>
+      <td>0.541</td>
+      <td>3.0</td>
+      <td>18.0</td>
+      <td>1.72</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.665</td>
-      <td>0.047</td>
-      <td>0.590</td>
-      <td>0.740</td>
+      <td>0.667</td>
+      <td>0.048</td>
+      <td>0.595</td>
+      <td>0.742</td>
+      <td>0.002</td>
       <td>0.001</td>
-      <td>0.001</td>
-      <td>1252.0</td>
-      <td>1163.0</td>
+      <td>748.0</td>
+      <td>817.0</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -1413,39 +1412,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.458</td>
-      <td>0.374</td>
-      <td>-0.032</td>
-      <td>1.106</td>
-      <td>0.070</td>
-      <td>0.050</td>
-      <td>30.0</td>
-      <td>34.0</td>
-      <td>1.06</td>
+      <td>0.607</td>
+      <td>0.466</td>
+      <td>-0.232</td>
+      <td>1.200</td>
+      <td>0.227</td>
+      <td>0.173</td>
+      <td>4.0</td>
+      <td>17.0</td>
+      <td>1.41</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>2.135</td>
-      <td>0.080</td>
-      <td>2.010</td>
-      <td>2.255</td>
-      <td>0.015</td>
-      <td>0.011</td>
-      <td>31.0</td>
-      <td>37.0</td>
-      <td>1.06</td>
+      <td>2.208</td>
+      <td>0.333</td>
+      <td>1.976</td>
+      <td>2.294</td>
+      <td>0.064</td>
+      <td>0.046</td>
+      <td>19.0</td>
+      <td>29.0</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.668</td>
-      <td>0.051</td>
-      <td>0.582</td>
-      <td>0.741</td>
-      <td>0.003</td>
-      <td>0.002</td>
-      <td>301.0</td>
-      <td>679.0</td>
-      <td>1.01</td>
+      <td>1.235</td>
+      <td>1.774</td>
+      <td>0.530</td>
+      <td>1.555</td>
+      <td>0.446</td>
+      <td>0.321</td>
+      <td>21.0</td>
+      <td>29.0</td>
+      <td>1.07</td>
     </tr>
   </tbody>
 </table>
@@ -1624,38 +1623,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.015</td>
-      <td>0.079</td>
-      <td>-0.102</td>
-      <td>0.140</td>
-      <td>0.007</td>
+      <td>0.003</td>
+      <td>0.083</td>
+      <td>-0.142</td>
+      <td>0.125</td>
+      <td>0.006</td>
       <td>0.005</td>
-      <td>125.0</td>
-      <td>231.0</td>
+      <td>166.0</td>
+      <td>219.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>betaF</th>
-      <td>0.855</td>
-      <td>0.094</td>
-      <td>0.715</td>
-      <td>1.010</td>
-      <td>0.004</td>
-      <td>0.003</td>
-      <td>474.0</td>
-      <td>333.0</td>
-      <td>1.01</td>
+      <td>0.852</td>
+      <td>0.096</td>
+      <td>0.697</td>
+      <td>0.988</td>
+      <td>0.012</td>
+      <td>0.009</td>
+      <td>70.0</td>
+      <td>127.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.487</td>
-      <td>0.071</td>
-      <td>0.372</td>
-      <td>0.587</td>
+      <td>0.486</td>
+      <td>0.069</td>
+      <td>0.369</td>
+      <td>0.589</td>
+      <td>0.003</td>
       <td>0.002</td>
-      <td>0.001</td>
-      <td>2100.0</td>
-      <td>78.0</td>
+      <td>451.0</td>
+      <td>163.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -1701,39 +1700,39 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>-0.000</td>
-      <td>0.066</td>
-      <td>-0.099</td>
-      <td>0.098</td>
-      <td>0.004</td>
       <td>0.003</td>
-      <td>226.0</td>
-      <td>322.0</td>
-      <td>1.00</td>
+      <td>0.073</td>
+      <td>-0.126</td>
+      <td>0.105</td>
+      <td>0.006</td>
+      <td>0.004</td>
+      <td>138.0</td>
+      <td>259.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>betaL</th>
-      <td>-0.891</td>
-      <td>0.075</td>
-      <td>-1.008</td>
-      <td>-0.780</td>
-      <td>0.006</td>
+      <td>-0.908</td>
+      <td>0.079</td>
+      <td>-1.047</td>
+      <td>-0.795</td>
       <td>0.004</td>
-      <td>137.0</td>
-      <td>139.0</td>
-      <td>1.02</td>
+      <td>0.003</td>
+      <td>373.0</td>
+      <td>330.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.408</td>
-      <td>0.051</td>
-      <td>0.329</td>
-      <td>0.484</td>
+      <td>0.409</td>
+      <td>0.063</td>
+      <td>0.298</td>
+      <td>0.495</td>
       <td>0.002</td>
-      <td>0.002</td>
-      <td>545.0</td>
-      <td>171.0</td>
-      <td>1.01</td>
+      <td>0.001</td>
+      <td>1258.0</td>
+      <td>149.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -1801,7 +1800,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7eff15fcd710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7ff40df2c710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1836,51 +1835,51 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>-0.000</td>
-      <td>0.071</td>
-      <td>-0.111</td>
-      <td>0.113</td>
       <td>0.003</td>
-      <td>0.002</td>
-      <td>410.0</td>
-      <td>459.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>betaF</th>
-      <td>0.239</td>
-      <td>0.188</td>
-      <td>-0.065</td>
-      <td>0.541</td>
-      <td>0.013</td>
-      <td>0.009</td>
-      <td>230.0</td>
-      <td>286.0</td>
+      <td>0.073</td>
+      <td>-0.111</td>
+      <td>0.115</td>
+      <td>0.004</td>
+      <td>0.003</td>
+      <td>390.0</td>
+      <td>405.0</td>
       <td>1.02</td>
     </tr>
     <tr>
+      <th>betaF</th>
+      <td>0.230</td>
+      <td>0.199</td>
+      <td>-0.057</td>
+      <td>0.545</td>
+      <td>0.019</td>
+      <td>0.013</td>
+      <td>112.0</td>
+      <td>233.0</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
       <th>betaL</th>
-      <td>-0.676</td>
-      <td>0.183</td>
-      <td>-0.994</td>
-      <td>-0.413</td>
+      <td>-0.691</td>
+      <td>0.192</td>
+      <td>-1.007</td>
+      <td>-0.402</td>
+      <td>0.016</td>
       <td>0.012</td>
-      <td>0.009</td>
-      <td>231.0</td>
-      <td>211.0</td>
-      <td>1.01</td>
+      <td>153.0</td>
+      <td>186.0</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.414</td>
-      <td>0.056</td>
-      <td>0.327</td>
-      <td>0.499</td>
+      <td>0.062</td>
+      <td>0.315</td>
+      <td>0.503</td>
       <td>0.002</td>
-      <td>0.001</td>
-      <td>830.0</td>
-      <td>332.0</td>
-      <td>1.01</td>
+      <td>0.002</td>
+      <td>693.0</td>
+      <td>308.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -1946,96 +1945,116 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-StopIteration                             Traceback (most recent call last)
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/inspect.py in _bind(self, args, kwargs, partial)
-   2891             try:
--&gt; 2892                 arg_val = next(arg_vals)
-   2893             except StopIteration:
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2019</span><span class="o">/</span><span class="mf">814816206.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">21</span>     <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">repsimcoll</span> <span class="p">(</span><span class="n">r</span><span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> 
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">lista</span><span class="p">)</span>
 
-StopIteration: 
+<span class="nn">/tmp/ipykernel_2019/814816206.py</span> in <span class="ni">repsimcoll</span><span class="nt">(r, N)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> 
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">def</span> <span class="nf">repsimcoll</span><span class="p">(</span><span class="n">r</span><span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">16</span>     <span class="n">stddev</span> <span class="o">=</span> <span class="p">[</span><span class="n">simcoll</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">stddev</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> 
 
-During handling of the above exception, another exception occurred:
+<span class="nn">/tmp/ipykernel_2019/814816206.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> 
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">def</span> <span class="nf">repsimcoll</span><span class="p">(</span><span class="n">r</span><span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">16</span>     <span class="n">stddev</span> <span class="o">=</span> <span class="p">[</span><span class="n">simcoll</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">stddev</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> 
 
-KeyboardInterrupt                         Traceback (most recent call last)
-/tmp/ipykernel_1983/814816206.py in &lt;module&gt;
-     19 lista = []
-     20 for i in np.arange(start = 0, stop = 0.99, step = 0.01):
----&gt; 21     lista.append(repsimcoll (r= i, N = 100))
-     22 
-     23 plt.plot(np.arange(start = 0, stop = 0.99, step = 0.01), lista)
+<span class="nn">/tmp/ipykernel_2019/814816206.py</span> in <span class="ni">simcoll</span><span class="nt">(r)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;perc.fat&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">m</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;kcal.per.g&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">cov</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">cov_params</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> 
 
-/tmp/ipykernel_1983/814816206.py in repsimcoll(r, N)
-     14 
-     15 def repsimcoll(r= 0.9, N = 100):
----&gt; 16     stddev = [simcoll(r) for _ in range(N)]
-     17     return np.mean(stddev)
-     18 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/wrapper.py</span> in <span class="ni">wrapper</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>             <span class="n">obj</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">wrap_output</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">how</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">how</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>         <span class="k">elif</span> <span class="n">how</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">113</span>             <span class="n">obj</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">wrap_output</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">how</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>         <span class="k">return</span> <span class="n">obj</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> 
 
-/tmp/ipykernel_1983/814816206.py in &lt;listcomp&gt;(.0)
-     14 
-     15 def repsimcoll(r= 0.9, N = 100):
----&gt; 16     stddev = [simcoll(r) for _ in range(N)]
-     17     return np.mean(stddev)
-     18 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/data.py</span> in <span class="ni">wrap_output</span><span class="nt">(self, obj, how, names)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attach_rows</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>         <span class="k">elif</span> <span class="n">how</span> <span class="o">==</span> <span class="s1">&#39;cov&#39;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">442</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attach_cov</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span>         <span class="k">elif</span> <span class="n">how</span> <span class="o">==</span> <span class="s1">&#39;dates&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attach_dates</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
-/tmp/ipykernel_1983/814816206.py in simcoll(r)
-      6     sd = np.sqrt((1 - r ** 2) * np.var(d[&quot;perc.fat&quot;].values))
-      7 
-----&gt; 8     x = tfd.Normal(loc=mean, scale=sd).sample()
-      9 
-     10     X = np.column_stack((d[&#39;perc.fat&#39;], x))
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/data.py</span> in <span class="ni">attach_cov</span><span class="nt">(self, result)</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span> 
+<span class="g g-Whitespace">    </span><span class="mi">565</span>     <span class="k">def</span> <span class="nf">attach_cov</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">566</span>         <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cov_names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cov_names</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> 
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="k">def</span> <span class="nf">attach_cov_eq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in sample(self, sample_shape, seed, name, **kwargs)
-   1232     &quot;&quot;&quot;
-   1233     with self._name_and_control_scope(name):
--&gt; 1234       return self._call_sample_n(sample_shape, seed, **kwargs)
-   1235 
-   1236   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/frame.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, index, columns, dtype, copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>                     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>                     <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">678</span>                     <span class="n">typ</span><span class="o">=</span><span class="n">manager</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>                 <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span> 
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _call_sample_n(self, sample_shape, seed, **kwargs)
-   1208         ps.cast(sample_shape, tf.int32), name=&#39;sample_shape&#39;)
-   1209     sample_shape, n = self._expand_sample_shape_to_vector(
--&gt; 1210         sample_shape, &#39;sample_shape&#39;)
-   1211     samples = self._sample_n(
-   1212         n, seed=seed() if callable(seed) else seed, **kwargs)
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/internals/construction.py</span> in <span class="ni">ndarray_to_mgr</span><span class="nt">(values, index, columns, dtype, copy, typ)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="c1"># _prep_ndarray ensures that values.ndim == 2 at this point</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="n">index</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">_get_axes</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">321</span>         <span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> 
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py in _expand_sample_shape_to_vector(self, x, name)
-   2012   def _expand_sample_shape_to_vector(self, x, name):
-   2013     &quot;&quot;&quot;Helper to `sample` which ensures input is 1D.&quot;&quot;&quot;
--&gt; 2014     prod = ps.reduce_prod(x)
-   2015     x = distribution_util.expand_to_vector(x, tensor_name=name)
-   2016     return x, prod
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/internals/construction.py</span> in <span class="ni">_get_axes</span><span class="nt">(N, K, index, columns)</span>
+<span class="g g-Whitespace">    </span><span class="mi">695</span>         <span class="n">index</span> <span class="o">=</span> <span class="n">ibase</span><span class="o">.</span><span class="n">default_index</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">696</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">697</span>         <span class="n">index</span> <span class="o">=</span> <span class="n">ensure_index</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> 
+<span class="g g-Whitespace">    </span><span class="mi">699</span>     <span class="k">if</span> <span class="n">columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py in fun(*args, **kw)
-    229         def fun(*args, **kw):
-    230             if not kwsyntax:
---&gt; 231                 args, kw = fix(args, kw, sig)
-    232             return caller(func, *(extras + args), **kw)
-    233     fun.__name__ = func.__name__
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">ensure_index</span><span class="nt">(index_like, copy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6331</span>             <span class="k">return</span> <span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span><span class="n">index_like</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6332</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6333</span>             <span class="k">return</span> <span class="n">Index</span><span class="p">(</span><span class="n">index_like</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">tupleize_cols</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6334</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6335</span> 
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py in fix(args, kwargs, sig)
-    201     Fix args and kwargs to be consistent with the signature
-    202     &quot;&quot;&quot;
---&gt; 203     ba = sig.bind(*args, **kwargs)
-    204     ba.apply_defaults()  # needed for test_dan_schult
-    205     return ba.args, ba.kwargs
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">__new__</span><span class="nt">(cls, data, dtype, copy, name, tupleize_cols, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span> 
+<span class="g g-Whitespace">    </span><span class="mi">494</span>             <span class="n">subarr</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">asarray_tuplesafe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">495</span>             <span class="k">return</span> <span class="n">Index</span><span class="p">(</span><span class="n">subarr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span> 
+<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="nd">@classmethod</span>
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/inspect.py in bind(*args, **kwargs)
-   3013         if the passed arguments can not be bound.
-   3014         &quot;&quot;&quot;
--&gt; 3015         return args[0]._bind(args[1:], kwargs)
-   3016 
-   3017     def bind_partial(*args, **kwargs):
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">__new__</span><span class="nt">(cls, data, dtype, copy, name, tupleize_cols, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> 
+<span class="g g-Whitespace">    </span><span class="mi">461</span>                 <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">462</span>                     <span class="n">arr</span> <span class="o">=</span> <span class="n">_maybe_cast_data_without_dtype</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span>                     <span class="n">dtype</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">dtype</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span> 
 
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/inspect.py in _bind(self, args, kwargs, partial)
-   2891             try:
-   2892                 arg_val = next(arg_vals)
--&gt; 2893             except StopIteration:
-   2894                 # No more positional arguments
-   2895                 try:
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">_maybe_cast_data_without_dtype</span><span class="nt">(subarr)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6415</span>         <span class="n">convert_period</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6416</span>         <span class="n">convert_interval</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">6417</span>         <span class="n">dtype_if_all_nat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">6418</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6419</span>     <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]:</span>
 
-KeyboardInterrupt: 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/_libs/lib.pyx</span> in <span class="ni">pandas._libs.lib.maybe_convert_objects</span><span class="nt">()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/numpy/core/numeric.py</span> in <span class="ni">full</span><span class="nt">(shape, fill_value, dtype, order, like)</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span> 
+<span class="g g-Whitespace">    </span><span class="mi">288</span> 
+<span class="ne">--&gt; </span><span class="mi">289</span> <span class="nd">@set_array_function_like_doc</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span> <span class="nd">@set_module</span><span class="p">(</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">like</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -2198,8 +2217,8 @@ KeyboardInterrupt:
       <th>sim_p</th>
       <td>1.034</td>
       <td>0.264</td>
-      <td>0.636</td>
-      <td>1.435</td>
+      <td>0.627</td>
+      <td>1.423</td>
     </tr>
   </tbody>
 </table>
@@ -2257,7 +2276,7 @@ KeyboardInterrupt:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x14a4ed440&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x14c24f560&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2294,24 +2313,24 @@ KeyboardInterrupt:
       <th>p</th>
       <td>1.356</td>
       <td>0.019</td>
-      <td>1.326</td>
-      <td>1.388</td>
-      <td>0.001</td>
+      <td>1.325</td>
+      <td>1.385</td>
       <td>0.000</td>
-      <td>1242.0</td>
-      <td>1248.0</td>
+      <td>0.000</td>
+      <td>2410.0</td>
+      <td>1606.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.896</td>
+      <td>1.899</td>
       <td>0.137</td>
-      <td>1.675</td>
-      <td>2.094</td>
+      <td>1.678</td>
+      <td>2.107</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>1164.0</td>
-      <td>1622.0</td>
+      <td>968.0</td>
+      <td>931.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2411,50 +2430,50 @@ KeyboardInterrupt:
   <tbody>
     <tr>
       <th>a</th>
-      <td>1.454</td>
-      <td>0.029</td>
-      <td>1.412</td>
-      <td>1.504</td>
+      <td>1.455</td>
+      <td>0.030</td>
+      <td>1.408</td>
+      <td>1.502</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1096.0</td>
-      <td>1167.0</td>
+      <td>905.0</td>
+      <td>1083.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bt</th>
-      <td>-0.011</td>
+      <td>-0.012</td>
       <td>0.033</td>
-      <td>-0.061</td>
+      <td>-0.067</td>
       <td>0.040</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1284.0</td>
-      <td>1281.0</td>
+      <td>917.0</td>
+      <td>596.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bf</th>
-      <td>-0.276</td>
+      <td>-0.277</td>
       <td>0.035</td>
-      <td>-0.329</td>
-      <td>-0.219</td>
+      <td>-0.333</td>
+      <td>-0.223</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1225.0</td>
-      <td>1267.0</td>
+      <td>934.0</td>
+      <td>1264.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.392</td>
-      <td>0.107</td>
-      <td>1.226</td>
-      <td>1.560</td>
+      <td>1.393</td>
+      <td>0.097</td>
+      <td>1.247</td>
+      <td>1.540</td>
       <td>0.005</td>
       <td>0.004</td>
-      <td>400.0</td>
-      <td>754.0</td>
+      <td>339.0</td>
+      <td>237.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2560,38 +2579,38 @@ KeyboardInterrupt:
   <tbody>
     <tr>
       <th>a</th>
-      <td>1.288</td>
-      <td>0.026</td>
-      <td>1.247</td>
-      <td>1.329</td>
+      <td>1.287</td>
+      <td>0.025</td>
+      <td>1.250</td>
+      <td>1.331</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>1961.0</td>
-      <td>1592.0</td>
+      <td>1722.0</td>
+      <td>1519.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bt</th>
-      <td>0.133</td>
-      <td>0.036</td>
+      <td>0.134</td>
+      <td>0.035</td>
       <td>0.077</td>
-      <td>0.192</td>
+      <td>0.187</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>3087.0</td>
-      <td>1343.0</td>
+      <td>3498.0</td>
+      <td>1571.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.796</td>
-      <td>0.127</td>
-      <td>1.592</td>
-      <td>1.983</td>
+      <td>1.791</td>
+      <td>0.128</td>
+      <td>1.602</td>
+      <td>1.999</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>1064.0</td>
-      <td>1749.0</td>
+      <td>980.0</td>
+      <td>1645.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2646,9 +2665,9 @@ KeyboardInterrupt:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;T&#39;, &#39;H0&#39;, set())
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;H0&#39;, &#39;F&#39;, set())
+(&#39;H0&#39;, &#39;T&#39;, set())
 (&#39;T&#39;, &#39;H1&#39;, {&#39;F&#39;})
-(&#39;H0&#39;, &#39;F&#39;, set())
 </pre></div>
 </div>
 </div>
@@ -3009,51 +3028,51 @@ KeyboardInterrupt:
   <tbody>
     <tr>
       <th>a[0]</th>
-      <td>-0.191</td>
-      <td>0.063</td>
-      <td>-0.293</td>
-      <td>-0.090</td>
+      <td>-0.189</td>
+      <td>0.062</td>
+      <td>-0.284</td>
+      <td>-0.088</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>896.0</td>
-      <td>1438.0</td>
-      <td>1.01</td>
+      <td>1068.0</td>
+      <td>1254.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>a[1]</th>
-      <td>1.334</td>
-      <td>0.087</td>
-      <td>1.196</td>
-      <td>1.477</td>
+      <td>1.336</td>
+      <td>0.084</td>
+      <td>1.213</td>
+      <td>1.479</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>784.0</td>
-      <td>1273.0</td>
-      <td>1.01</td>
+      <td>882.0</td>
+      <td>1189.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>bA</th>
-      <td>-0.830</td>
-      <td>0.113</td>
-      <td>-1.019</td>
-      <td>-0.664</td>
+      <td>-0.831</td>
+      <td>0.110</td>
+      <td>-1.003</td>
+      <td>-0.651</td>
       <td>0.004</td>
       <td>0.003</td>
-      <td>720.0</td>
-      <td>1276.0</td>
-      <td>1.01</td>
+      <td>766.0</td>
+      <td>1120.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.989</td>
+      <td>0.988</td>
       <td>0.023</td>
-      <td>0.952</td>
+      <td>0.951</td>
       <td>1.025</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>1823.0</td>
-      <td>1919.0</td>
-      <td>1.00</td>
+      <td>2092.0</td>
+      <td>2048.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -3150,38 +3169,38 @@ KeyboardInterrupt:
   <tbody>
     <tr>
       <th>a</th>
-      <td>-0.002</td>
+      <td>-0.001</td>
       <td>0.077</td>
-      <td>-0.120</td>
-      <td>0.122</td>
-      <td>0.003</td>
+      <td>-0.123</td>
+      <td>0.120</td>
       <td>0.002</td>
-      <td>867.0</td>
-      <td>1569.0</td>
+      <td>0.002</td>
+      <td>1082.0</td>
+      <td>1775.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bA</th>
-      <td>0.005</td>
-      <td>0.134</td>
-      <td>-0.206</td>
-      <td>0.218</td>
-      <td>0.005</td>
       <td>0.003</td>
-      <td>787.0</td>
-      <td>1503.0</td>
+      <td>0.129</td>
+      <td>-0.200</td>
+      <td>0.214</td>
+      <td>0.004</td>
+      <td>0.003</td>
+      <td>960.0</td>
+      <td>1479.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.215</td>
-      <td>0.027</td>
-      <td>1.169</td>
-      <td>1.255</td>
+      <td>1.214</td>
+      <td>0.028</td>
+      <td>1.171</td>
+      <td>1.258</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1275.0</td>
-      <td>1621.0</td>
+      <td>606.0</td>
+      <td>938.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3447,50 +3466,50 @@ KeyboardInterrupt:
   <tbody>
     <tr>
       <th>a</th>
-      <td>0.054</td>
-      <td>0.097</td>
-      <td>-0.092</td>
-      <td>0.212</td>
+      <td>0.056</td>
+      <td>0.093</td>
+      <td>-0.093</td>
+      <td>0.205</td>
       <td>0.001</td>
       <td>0.002</td>
-      <td>10035.0</td>
-      <td>2366.0</td>
+      <td>6845.0</td>
+      <td>1396.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bPC</th>
       <td>1.817</td>
       <td>0.045</td>
-      <td>1.746</td>
-      <td>1.892</td>
+      <td>1.745</td>
+      <td>1.889</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>2998.0</td>
-      <td>3612.0</td>
+      <td>3796.0</td>
+      <td>3582.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bGC</th>
-      <td>-0.900</td>
-      <td>0.105</td>
-      <td>-1.060</td>
-      <td>-0.725</td>
+      <td>-0.898</td>
+      <td>0.101</td>
+      <td>-1.042</td>
+      <td>-0.723</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>7303.0</td>
-      <td>2192.0</td>
+      <td>5393.0</td>
+      <td>1647.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.379</td>
+      <td>1.382</td>
       <td>0.070</td>
-      <td>1.264</td>
-      <td>1.484</td>
+      <td>1.265</td>
+      <td>1.486</td>
       <td>0.002</td>
-      <td>0.001</td>
-      <td>1614.0</td>
-      <td>2231.0</td>
+      <td>0.002</td>
+      <td>848.0</td>
+      <td>1351.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3599,62 +3618,62 @@ KeyboardInterrupt:
   <tbody>
     <tr>
       <th>a</th>
-      <td>-0.056</td>
-      <td>0.074</td>
-      <td>-0.168</td>
-      <td>0.064</td>
+      <td>-0.059</td>
+      <td>0.073</td>
+      <td>-0.179</td>
+      <td>0.052</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>7764.0</td>
-      <td>2416.0</td>
+      <td>9064.0</td>
+      <td>2793.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bPC</th>
       <td>0.929</td>
-      <td>0.080</td>
-      <td>0.801</td>
-      <td>1.052</td>
+      <td>0.079</td>
+      <td>0.800</td>
+      <td>1.051</td>
+      <td>0.003</td>
       <td>0.002</td>
-      <td>0.002</td>
-      <td>1096.0</td>
-      <td>1863.0</td>
+      <td>956.0</td>
+      <td>1911.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bGC</th>
-      <td>0.078</td>
+      <td>0.076</td>
       <td>0.110</td>
-      <td>-0.092</td>
-      <td>0.256</td>
+      <td>-0.091</td>
+      <td>0.255</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>1344.0</td>
-      <td>2261.0</td>
+      <td>1181.0</td>
+      <td>2294.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bU</th>
       <td>2.139</td>
-      <td>0.173</td>
-      <td>1.846</td>
-      <td>2.396</td>
-      <td>0.005</td>
+      <td>0.174</td>
+      <td>1.864</td>
+      <td>2.421</td>
+      <td>0.006</td>
       <td>0.004</td>
-      <td>1021.0</td>
-      <td>1672.0</td>
+      <td>867.0</td>
+      <td>1563.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.031</td>
-      <td>0.053</td>
-      <td>0.943</td>
-      <td>1.112</td>
+      <td>1.030</td>
+      <td>0.051</td>
+      <td>0.947</td>
+      <td>1.107</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>8903.0</td>
-      <td>1817.0</td>
+      <td>9414.0</td>
+      <td>2402.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3805,8 +3824,8 @@ KeyboardInterrupt:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;C&#39;})
-frozenset({&#39;A&#39;})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;A&#39;})
+frozenset({&#39;C&#39;})
 </pre></div>
 </div>
 </div>
@@ -3886,7 +3905,7 @@ frozenset({&#39;M&#39;, &#39;A&#39;})
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;D&#39;, &#39;S&#39;, {&#39;M&#39;, &#39;A&#39;, &#39;W&#39;})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;D&#39;, &#39;S&#39;, {&#39;W&#39;, &#39;M&#39;, &#39;A&#39;})
 (&#39;W&#39;, &#39;M&#39;, {&#39;S&#39;})
 (&#39;W&#39;, &#39;A&#39;, {&#39;S&#39;})
 </pre></div>

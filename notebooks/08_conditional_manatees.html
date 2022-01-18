@@ -733,10 +733,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
-<span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
@@ -756,8 +754,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:32:59.950958: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 17:32:59.950993: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:26:45.123750: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 18:26:45.123786: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -872,10 +870,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:33:02.719835: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 17:33:02.720008: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 17:33:02.720043: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-18 17:33:02.720351: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:26:47.658347: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 18:26:47.658398: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 18:26:47.658422: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
+2022-01-18 18:26:47.658676: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -892,7 +890,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.524
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.566
 </pre></div>
 </div>
 </div>
@@ -1026,37 +1024,37 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>alpha</th>
       <td>1.000</td>
-      <td>0.010</td>
-      <td>0.982</td>
-      <td>1.015</td>
-      <td>0.001</td>
+      <td>0.011</td>
+      <td>0.983</td>
+      <td>1.016</td>
       <td>0.000</td>
-      <td>296.0</td>
-      <td>293.0</td>
-      <td>1.01</td>
+      <td>0.000</td>
+      <td>654.0</td>
+      <td>250.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>0.005</td>
+      <td>0.002</td>
       <td>0.056</td>
-      <td>-0.073</td>
-      <td>0.100</td>
+      <td>-0.090</td>
+      <td>0.087</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>260.0</td>
-      <td>315.0</td>
+      <td>293.0</td>
+      <td>349.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.138</td>
       <td>0.008</td>
-      <td>0.126</td>
-      <td>0.150</td>
+      <td>0.127</td>
+      <td>0.149</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>329.0</td>
-      <td>515.0</td>
+      <td>294.0</td>
+      <td>267.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -1196,51 +1194,51 @@ Name: cid, Length: 170, dtype: int64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.879</td>
+      <td>0.880</td>
       <td>0.016</td>
-      <td>0.854</td>
-      <td>0.902</td>
+      <td>0.855</td>
+      <td>0.905</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>505.0</td>
-      <td>449.0</td>
-      <td>1.01</td>
+      <td>738.0</td>
+      <td>570.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>1.049</td>
-      <td>0.010</td>
-      <td>1.032</td>
+      <td>0.011</td>
+      <td>1.031</td>
       <td>1.064</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>531.0</td>
-      <td>438.0</td>
-      <td>1.00</td>
+      <td>509.0</td>
+      <td>597.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>-0.045</td>
-      <td>0.047</td>
-      <td>-0.114</td>
-      <td>0.041</td>
+      <td>-0.047</td>
+      <td>0.046</td>
+      <td>-0.107</td>
+      <td>0.043</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>411.0</td>
-      <td>439.0</td>
-      <td>1.00</td>
+      <td>400.0</td>
+      <td>361.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.114</td>
+      <td>0.115</td>
       <td>0.006</td>
       <td>0.104</td>
-      <td>0.123</td>
+      <td>0.124</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>328.0</td>
-      <td>484.0</td>
-      <td>1.01</td>
+      <td>263.0</td>
+      <td>324.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1355,11 +1353,11 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.2</th>
       <td>0</td>
-      <td>126.299738</td>
-      <td>4.002045</td>
+      <td>126.212006</td>
+      <td>4.039159</td>
       <td>0.000000</td>
-      <td>0.969226</td>
-      <td>7.423737</td>
+      <td>0.973434</td>
+      <td>7.345647</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -1367,12 +1365,12 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.1</th>
       <td>1</td>
-      <td>94.462455</td>
-      <td>2.542143</td>
-      <td>31.837283</td>
-      <td>0.030774</td>
-      <td>6.472299</td>
-      <td>7.337697</td>
+      <td>94.479500</td>
+      <td>2.511909</td>
+      <td>31.732505</td>
+      <td>0.026566</td>
+      <td>6.445862</td>
+      <td>7.253368</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -1422,51 +1420,51 @@ Name: cid, Length: 170, dtype: int64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.879</td>
+      <td>0.880</td>
       <td>0.016</td>
-      <td>0.854</td>
-      <td>0.902</td>
+      <td>0.855</td>
+      <td>0.905</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>505.0</td>
-      <td>449.0</td>
-      <td>1.01</td>
+      <td>738.0</td>
+      <td>570.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>1.049</td>
-      <td>0.010</td>
-      <td>1.032</td>
+      <td>0.011</td>
+      <td>1.031</td>
       <td>1.064</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>531.0</td>
-      <td>438.0</td>
-      <td>1.00</td>
+      <td>509.0</td>
+      <td>597.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>-0.045</td>
-      <td>0.047</td>
-      <td>-0.114</td>
-      <td>0.041</td>
+      <td>-0.047</td>
+      <td>0.046</td>
+      <td>-0.107</td>
+      <td>0.043</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>411.0</td>
-      <td>439.0</td>
-      <td>1.00</td>
+      <td>400.0</td>
+      <td>361.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.114</td>
+      <td>0.115</td>
       <td>0.006</td>
       <td>0.104</td>
-      <td>0.123</td>
+      <td>0.124</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>328.0</td>
-      <td>484.0</td>
-      <td>1.01</td>
+      <td>263.0</td>
+      <td>324.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1523,63 +1521,63 @@ Name: cid, Length: 170, dtype: int64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.879</td>
+      <td>0.880</td>
       <td>0.016</td>
-      <td>0.854</td>
-      <td>0.902</td>
+      <td>0.855</td>
+      <td>0.905</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>505.0</td>
-      <td>449.0</td>
-      <td>1.01</td>
+      <td>738.0</td>
+      <td>570.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>1.049</td>
-      <td>0.010</td>
-      <td>1.032</td>
+      <td>0.011</td>
+      <td>1.031</td>
       <td>1.064</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>531.0</td>
-      <td>438.0</td>
-      <td>1.00</td>
+      <td>509.0</td>
+      <td>597.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>-0.045</td>
-      <td>0.047</td>
-      <td>-0.114</td>
-      <td>0.041</td>
+      <td>-0.047</td>
+      <td>0.046</td>
+      <td>-0.107</td>
+      <td>0.043</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>411.0</td>
-      <td>439.0</td>
-      <td>1.00</td>
+      <td>400.0</td>
+      <td>361.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.114</td>
+      <td>0.115</td>
       <td>0.006</td>
       <td>0.104</td>
-      <td>0.123</td>
+      <td>0.124</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>328.0</td>
-      <td>484.0</td>
-      <td>1.01</td>
+      <td>263.0</td>
+      <td>324.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>-0.169</td>
+      <td>-0.168</td>
       <td>0.019</td>
-      <td>-0.201</td>
-      <td>-0.143</td>
+      <td>-0.202</td>
+      <td>-0.140</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>543.0</td>
-      <td>454.0</td>
-      <td>1.00</td>
+      <td>577.0</td>
+      <td>599.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1743,63 +1741,63 @@ Name: cid, Length: 170, dtype: int64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.887</td>
+      <td>0.888</td>
       <td>0.016</td>
-      <td>0.863</td>
-      <td>0.914</td>
+      <td>0.864</td>
+      <td>0.915</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>2776.0</td>
-      <td>1358.0</td>
+      <td>973.0</td>
+      <td>874.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>1.051</td>
-      <td>0.010</td>
-      <td>1.034</td>
-      <td>1.068</td>
-      <td>0.001</td>
+      <td>0.011</td>
+      <td>1.035</td>
+      <td>1.067</td>
       <td>0.000</td>
-      <td>351.0</td>
-      <td>352.0</td>
-      <td>1.00</td>
+      <td>0.000</td>
+      <td>882.0</td>
+      <td>842.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta[0]</th>
-      <td>0.130</td>
-      <td>0.074</td>
+      <td>0.139</td>
+      <td>0.075</td>
+      <td>0.020</td>
+      <td>0.258</td>
+      <td>0.004</td>
       <td>0.003</td>
-      <td>0.240</td>
-      <td>0.005</td>
-      <td>0.003</td>
-      <td>251.0</td>
-      <td>557.0</td>
-      <td>1.00</td>
+      <td>331.0</td>
+      <td>552.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta[1]</th>
-      <td>-0.139</td>
-      <td>0.057</td>
-      <td>-0.234</td>
-      <td>-0.054</td>
+      <td>-0.141</td>
+      <td>0.059</td>
+      <td>-0.236</td>
+      <td>-0.050</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>526.0</td>
-      <td>777.0</td>
+      <td>446.0</td>
+      <td>660.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.112</td>
       <td>0.006</td>
-      <td>0.103</td>
+      <td>0.102</td>
       <td>0.122</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>602.0</td>
-      <td>747.0</td>
-      <td>1.01</td>
+      <td>526.0</td>
+      <td>692.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -1883,11 +1881,11 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.3</th>
       <td>0</td>
-      <td>129.655672</td>
-      <td>4.897716</td>
+      <td>129.381163</td>
+      <td>5.165058</td>
       <td>0.000000</td>
-      <td>8.805278e-01</td>
-      <td>7.241244</td>
+      <td>0.837061</td>
+      <td>7.264191</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -1895,24 +1893,24 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.2</th>
       <td>1</td>
-      <td>126.299738</td>
-      <td>4.002045</td>
-      <td>3.355933</td>
-      <td>1.194722e-01</td>
-      <td>7.423737</td>
-      <td>3.156223</td>
+      <td>126.212041</td>
+      <td>4.039124</td>
+      <td>3.169122</td>
+      <td>0.162939</td>
+      <td>7.345632</td>
+      <td>3.235067</td>
       <td>False</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m8.1</th>
       <td>2</td>
-      <td>94.462455</td>
-      <td>2.542143</td>
-      <td>35.193216</td>
-      <td>1.110223e-16</td>
-      <td>6.472299</td>
-      <td>7.389665</td>
+      <td>94.479500</td>
+      <td>2.511909</td>
+      <td>34.901662</td>
+      <td>0.000000</td>
+      <td>6.445862</td>
+      <td>7.384986</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -1938,8 +1936,8 @@ See http://arxiv.org/abs/1507.04544 for details
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 2000 by 170 log-likelihood matrix
 
           Estimate       SE
-elpd_waic   129.70     7.24
-p_waic        4.85        -
+elpd_waic   129.43     7.26
+p_waic        5.12        -
 
 There has been a warning during the calculation. Please check the results.
 </pre></div>
@@ -2160,7 +2158,7 @@ memory usage: 992.0+ bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6187
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6236
 </pre></div>
 </div>
 </div>
@@ -2176,7 +2174,7 @@ memory usage: 992.0+ bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.044
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0463
 </pre></div>
 </div>
 </div>
@@ -2302,7 +2300,7 @@ memory usage: 992.0+ bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f1331683710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f51bed75710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>

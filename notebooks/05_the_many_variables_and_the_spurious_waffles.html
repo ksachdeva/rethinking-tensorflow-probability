@@ -929,8 +929,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:29:40.360167: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 17:29:40.360211: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:23:58.415307: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 18:23:58.415341: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1036,10 +1036,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:29:43.336651: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 17:29:43.336752: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 17:29:43.336784: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-18 17:29:43.337116: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:24:00.926628: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 18:24:00.926692: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 18:24:00.926715: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
+2022-01-18 18:24:00.927045: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1375,29 +1375,29 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
       <th>alpha[0]</th>
       <td>-0.00</td>
       <td>0.10</td>
-      <td>-0.15</td>
-      <td>0.16</td>
+      <td>-0.13</td>
+      <td>0.17</td>
     </tr>
     <tr>
       <th>betaA[0]</th>
-      <td>-0.62</td>
-      <td>0.15</td>
+      <td>-0.61</td>
+      <td>0.17</td>
       <td>-0.86</td>
-      <td>-0.40</td>
+      <td>-0.33</td>
     </tr>
     <tr>
       <th>betaM[0]</th>
-      <td>-0.07</td>
+      <td>-0.06</td>
       <td>0.16</td>
-      <td>-0.34</td>
-      <td>0.15</td>
+      <td>-0.32</td>
+      <td>0.20</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
       <td>0.82</td>
       <td>0.09</td>
-      <td>0.68</td>
-      <td>0.95</td>
+      <td>0.67</td>
+      <td>0.94</td>
     </tr>
   </tbody>
 </table>
@@ -1407,7 +1407,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <p>In the model above, we had include both the predictors i.e. M &amp; A. The weights of M i.e. betaM is approaching zero where as betaA is more or less unchanged.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_5_3</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_5_3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -1496,6 +1497,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_5_4</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -1661,33 +1663,33 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>0</th>
-      <td>2.253227</td>
-      <td>1.033099</td>
-      <td>1.890686</td>
+      <td>0.131590</td>
+      <td>-0.290167</td>
+      <td>-1.328220</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.484487</td>
-      <td>0.342238</td>
-      <td>-0.638910</td>
+      <td>1.474761</td>
+      <td>0.366043</td>
+      <td>-0.557734</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1.392830</td>
-      <td>0.307882</td>
-      <td>1.161639</td>
+      <td>-0.419548</td>
+      <td>-0.962072</td>
+      <td>-2.475945</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-3.360162</td>
-      <td>-0.750910</td>
-      <td>-0.401626</td>
+      <td>-1.277383</td>
+      <td>0.160732</td>
+      <td>0.500776</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.816022</td>
-      <td>-1.558116</td>
-      <td>-1.990762</td>
+      <td>0.430454</td>
+      <td>0.974108</td>
+      <td>0.618557</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1697,33 +1699,33 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     </tr>
     <tr>
       <th>95</th>
-      <td>-1.883195</td>
-      <td>-0.696775</td>
-      <td>-0.779798</td>
+      <td>2.316451</td>
+      <td>1.673826</td>
+      <td>-0.301911</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>0.326392</td>
-      <td>0.553218</td>
-      <td>1.387002</td>
+      <td>2.154572</td>
+      <td>1.465423</td>
+      <td>2.140575</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>-1.608410</td>
-      <td>-1.742868</td>
-      <td>-1.205316</td>
+      <td>0.915945</td>
+      <td>0.256225</td>
+      <td>-1.551033</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>-0.864420</td>
-      <td>-1.474485</td>
-      <td>-1.156252</td>
+      <td>1.320062</td>
+      <td>-0.125194</td>
+      <td>-0.375108</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>1.067291</td>
-      <td>0.782007</td>
-      <td>0.881739</td>
+      <td>-2.944400</td>
+      <td>-1.279876</td>
+      <td>-1.131443</td>
     </tr>
   </tbody>
 </table>
@@ -1795,17 +1797,18 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f5015286dd0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7ff2fc761dd0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7f5015286dd0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7ff2fc761dd0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_5_X_M</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_5_X_M</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -1816,21 +1819,12 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_5_3_A</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/density_utils.py:481: UserWarning: Your data appears to have a single value or no finite values
-  warnings.warn(&quot;Your data appears to have a single value or no finite values&quot;)
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/density_utils.py:481: UserWarning: Your data appears to have a single value or no finite values
-  warnings.warn(&quot;Your data appears to have a single value or no finite values&quot;)
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/density_utils.py:481: UserWarning: Your data appears to have a single value or no finite values
-  warnings.warn(&quot;Your data appears to have a single value or no finite values&quot;)
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/density_utils.py:481: UserWarning: Your data appears to have a single value or no finite values
-  warnings.warn(&quot;Your data appears to have a single value or no finite values&quot;)
-</pre></div>
-</div>
-<img alt="../_images/05_the_many_variables_and_the_spurious_waffles_66_1.png" src="../_images/05_the_many_variables_and_the_spurious_waffles_66_1.png" />
+<img alt="../_images/05_the_many_variables_and_the_spurious_waffles_66_0.png" src="../_images/05_the_many_variables_and_the_spurious_waffles_66_0.png" />
 </div>
 </div>
 </div>
@@ -2141,16 +2135,16 @@ memory usage: 1.9+ KB
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
-  var0=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.37887067], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.0473314], dtype=float32)&gt;,
-  var2=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([1.9537208], dtype=float32)&gt;,
+  var0=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.44008824], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.9151831], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([3.0475976], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(29,), dtype=float32, numpy=
-    array([ 2.5535598 ,         nan,         nan,         nan,         nan,
-            0.55570894, -2.0692036 ,  3.777536  ,         nan, -0.2621097 ,
-            3.8127909 ,  4.296336  , -2.321958  ,         nan,         nan,
-            0.9578258 ,         nan,  0.899952  ,         nan,  1.791842  ,
-                   nan, -1.4036967 ,         nan, -0.38999406, -0.16974083,
-                   nan,  0.72254586, -0.07838511, -1.7194096 ], dtype=float32)&gt;
+    array([-3.1806006 ,         nan,         nan,         nan,         nan,
+            1.3173065 , -3.9738727 , -1.7207934 ,         nan, -0.14205605,
+           -6.3146744 ,  1.951518  , -8.292915  ,         nan,         nan,
+           -1.1096443 ,         nan,  0.9178198 ,         nan,  0.17097628,
+                   nan,  2.9758554 ,         nan,  5.301573  ,  3.5558062 ,
+                   nan,  0.18876767, -2.568993  , -3.4277973 ], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2370,14 +2364,14 @@ Name: neocortex.perc, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
-  var0=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([-1.4740975], dtype=float32)&gt;,
-  var1=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([1.664898], dtype=float32)&gt;,
-  var2=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.18995734], dtype=float32)&gt;,
+  var0=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.28684855], dtype=float32)&gt;,
+  var1=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([0.59369445], dtype=float32)&gt;,
+  var2=&lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([1.4564557], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(17,), dtype=float32, numpy=
-    array([-4.665141  , -2.4880066 , -2.3598003 , -1.5035409 , -1.0283835 ,
-           -3.9238677 , -3.088861  , -3.4692883 , -0.6784431 , -0.51568216,
-            0.4293834 , -1.6967807 , -0.25387716, -0.12667544, -0.96461093,
-            0.98245317,  0.6001124 ], dtype=float32)&gt;
+    array([-2.131454  ,  0.8300973 ,  1.2601651 , -0.23079252,  2.8983202 ,
+           -0.31260762,  1.8723183 ,  1.7216728 ,  2.2673502 , -2.3877425 ,
+            3.2984    , -1.3017349 ,  1.647455  , -0.5622013 , -0.0141378 ,
+           -1.1797945 , -0.95047903], dtype=float32)&gt;
 )
 </pre></div>
 </div>
@@ -2475,24 +2469,24 @@ Name: neocortex.perc, dtype: float64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.01</td>
-      <td>0.06</td>
-      <td>-0.04</td>
-      <td>0.10</td>
+      <td>0.05</td>
+      <td>0.14</td>
+      <td>-0.15</td>
+      <td>0.29</td>
     </tr>
     <tr>
       <th>betaN[0]</th>
-      <td>0.28</td>
-      <td>0.06</td>
-      <td>0.15</td>
-      <td>0.34</td>
+      <td>0.11</td>
+      <td>0.24</td>
+      <td>-0.28</td>
+      <td>0.49</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>0.55</td>
-      <td>0.54</td>
-      <td>0.01</td>
-      <td>1.13</td>
+      <td>1.11</td>
+      <td>0.19</td>
+      <td>0.80</td>
+      <td>1.41</td>
     </tr>
   </tbody>
 </table>
@@ -2593,24 +2587,24 @@ Name: neocortex.perc, dtype: float64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.04</td>
-      <td>0.15</td>
-      <td>-0.18</td>
-      <td>0.29</td>
+      <td>-0.04</td>
+      <td>0.13</td>
+      <td>-0.26</td>
+      <td>0.13</td>
     </tr>
     <tr>
       <th>betaM[0]</th>
-      <td>-0.27</td>
-      <td>0.21</td>
-      <td>-0.62</td>
-      <td>0.05</td>
+      <td>-0.24</td>
+      <td>0.25</td>
+      <td>-0.60</td>
+      <td>0.11</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>1.05</td>
-      <td>0.17</td>
-      <td>0.79</td>
-      <td>1.33</td>
+      <td>1.11</td>
+      <td>0.14</td>
+      <td>0.91</td>
+      <td>1.29</td>
     </tr>
   </tbody>
 </table>
@@ -2676,29 +2670,29 @@ Name: neocortex.perc, dtype: float64
       <th>alpha[0]</th>
       <td>0.06</td>
       <td>0.14</td>
-      <td>-0.20</td>
-      <td>0.25</td>
+      <td>-0.18</td>
+      <td>0.27</td>
     </tr>
     <tr>
       <th>betaN[0]</th>
-      <td>0.60</td>
-      <td>0.28</td>
-      <td>0.18</td>
-      <td>1.04</td>
+      <td>0.61</td>
+      <td>0.27</td>
+      <td>0.19</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>betaM[0]</th>
       <td>-0.64</td>
-      <td>0.25</td>
-      <td>-0.99</td>
-      <td>-0.24</td>
+      <td>0.24</td>
+      <td>-1.03</td>
+      <td>-0.28</td>
     </tr>
     <tr>
       <th>sigma[0]</th>
-      <td>0.85</td>
-      <td>0.18</td>
-      <td>0.61</td>
-      <td>1.13</td>
+      <td>0.88</td>
+      <td>0.16</td>
+      <td>0.64</td>
+      <td>1.14</td>
     </tr>
   </tbody>
 </table>
@@ -2798,33 +2792,33 @@ Name: neocortex.perc, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>-1.267563</td>
-      <td>0.760497</td>
-      <td>0.633136</td>
+      <td>-0.295759</td>
+      <td>1.545937</td>
+      <td>1.231657</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.929093</td>
-      <td>-0.743142</td>
-      <td>0.205242</td>
+      <td>0.063388</td>
+      <td>0.734055</td>
+      <td>1.043210</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.150539</td>
-      <td>1.604486</td>
-      <td>0.628256</td>
+      <td>1.505580</td>
+      <td>-0.416897</td>
+      <td>-0.275243</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1.427182</td>
-      <td>2.557111</td>
-      <td>2.585474</td>
+      <td>0.788392</td>
+      <td>-0.821290</td>
+      <td>-1.201379</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.113944</td>
-      <td>0.754230</td>
-      <td>0.159118</td>
+      <td>0.593094</td>
+      <td>0.165033</td>
+      <td>-0.175690</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2834,33 +2828,33 @@ Name: neocortex.perc, dtype: float64
     </tr>
     <tr>
       <th>95</th>
-      <td>-0.169654</td>
-      <td>-1.603269</td>
-      <td>-1.560984</td>
+      <td>-0.958012</td>
+      <td>-2.312444</td>
+      <td>-1.324711</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>-0.675954</td>
-      <td>0.259353</td>
-      <td>1.313146</td>
+      <td>-0.539392</td>
+      <td>1.202195</td>
+      <td>0.404461</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>2.275240</td>
-      <td>-1.999724</td>
-      <td>-1.829948</td>
+      <td>-0.002055</td>
+      <td>-0.945222</td>
+      <td>0.276632</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>0.205367</td>
-      <td>1.132428</td>
-      <td>0.629318</td>
+      <td>2.831728</td>
+      <td>1.396218</td>
+      <td>0.379970</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>-2.360062</td>
-      <td>-2.910119</td>
-      <td>-1.136425</td>
+      <td>-0.186386</td>
+      <td>-1.150928</td>
+      <td>-0.902272</td>
     </tr>
   </tbody>
 </table>
@@ -3086,17 +3080,17 @@ to predict both female and male heights.</p>
   <tbody>
     <tr>
       <th>mu_female</th>
-      <td>178.42</td>
-      <td>20.14</td>
-      <td>146.03</td>
-      <td>210.17</td>
+      <td>178.08</td>
+      <td>20.01</td>
+      <td>146.25</td>
+      <td>210.04</td>
     </tr>
     <tr>
       <th>mu_male</th>
-      <td>178.15</td>
-      <td>22.20</td>
-      <td>143.85</td>
-      <td>214.38</td>
+      <td>177.89</td>
+      <td>22.33</td>
+      <td>144.07</td>
+      <td>215.62</td>
     </tr>
   </tbody>
 </table>
@@ -3210,24 +3204,24 @@ Name: sex, Length: 544, dtype: int64
   <tbody>
     <tr>
       <th>female_alpha</th>
-      <td>134.99</td>
-      <td>1.52</td>
-      <td>132.71</td>
-      <td>137.20</td>
+      <td>134.90</td>
+      <td>1.61</td>
+      <td>132.50</td>
+      <td>137.12</td>
     </tr>
     <tr>
       <th>male_alpha</th>
-      <td>142.62</td>
-      <td>0.84</td>
-      <td>141.33</td>
-      <td>143.75</td>
+      <td>142.58</td>
+      <td>1.71</td>
+      <td>139.66</td>
+      <td>145.25</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>27.38</td>
-      <td>0.83</td>
-      <td>26.12</td>
-      <td>28.58</td>
+      <td>27.50</td>
+      <td>0.78</td>
+      <td>26.48</td>
+      <td>28.63</td>
     </tr>
   </tbody>
 </table>
@@ -3280,31 +3274,31 @@ Name: sex, Length: 544, dtype: int64
   <tbody>
     <tr>
       <th>female_alpha</th>
-      <td>134.99</td>
-      <td>1.52</td>
-      <td>132.71</td>
-      <td>137.20</td>
+      <td>134.90</td>
+      <td>1.61</td>
+      <td>132.50</td>
+      <td>137.12</td>
     </tr>
     <tr>
       <th>male_alpha</th>
-      <td>142.62</td>
-      <td>0.84</td>
-      <td>141.33</td>
-      <td>143.75</td>
+      <td>142.58</td>
+      <td>1.71</td>
+      <td>139.66</td>
+      <td>145.25</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>27.38</td>
-      <td>0.83</td>
-      <td>26.12</td>
-      <td>28.58</td>
+      <td>27.50</td>
+      <td>0.78</td>
+      <td>26.48</td>
+      <td>28.63</td>
     </tr>
     <tr>
       <th>diff_fm</th>
-      <td>-7.63</td>
-      <td>1.27</td>
-      <td>-9.62</td>
-      <td>-5.64</td>
+      <td>-7.69</td>
+      <td>2.52</td>
+      <td>-11.33</td>
+      <td>-3.58</td>
     </tr>
   </tbody>
 </table>
@@ -3506,38 +3500,38 @@ Name: clade, dtype: object
   <tbody>
     <tr>
       <th>ape_alpha</th>
-      <td>-0.47</td>
-      <td>0.23</td>
+      <td>-0.77</td>
+      <td>0.04</td>
       <td>-0.83</td>
-      <td>-0.10</td>
+      <td>-0.70</td>
     </tr>
     <tr>
       <th>nwm_alpha</th>
-      <td>0.34</td>
-      <td>0.23</td>
-      <td>-0.05</td>
-      <td>0.67</td>
+      <td>0.21</td>
+      <td>0.04</td>
+      <td>0.13</td>
+      <td>0.27</td>
     </tr>
     <tr>
       <th>owm_alpha</th>
-      <td>0.64</td>
-      <td>0.29</td>
-      <td>0.16</td>
-      <td>1.06</td>
+      <td>0.27</td>
+      <td>0.08</td>
+      <td>0.14</td>
+      <td>0.36</td>
     </tr>
     <tr>
       <th>strep_alpha</th>
-      <td>-0.56</td>
-      <td>0.31</td>
-      <td>-0.94</td>
-      <td>0.09</td>
+      <td>-0.66</td>
+      <td>0.06</td>
+      <td>-0.76</td>
+      <td>-0.57</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.79</td>
-      <td>0.11</td>
-      <td>0.64</td>
-      <td>0.98</td>
+      <td>0.73</td>
+      <td>0.05</td>
+      <td>0.65</td>
+      <td>0.80</td>
     </tr>
   </tbody>
 </table>
@@ -3696,66 +3690,66 @@ Name: house, dtype: int64
   <tbody>
     <tr>
       <th>ape_alpha</th>
-      <td>-0.44</td>
+      <td>-0.45</td>
       <td>0.27</td>
-      <td>-0.88</td>
-      <td>-0.02</td>
+      <td>-0.81</td>
+      <td>0.07</td>
     </tr>
     <tr>
       <th>nwm_alpha</th>
       <td>0.30</td>
-      <td>0.30</td>
-      <td>-0.17</td>
-      <td>0.77</td>
+      <td>0.29</td>
+      <td>-0.12</td>
+      <td>0.75</td>
     </tr>
     <tr>
       <th>owm_alpha</th>
       <td>0.67</td>
       <td>0.31</td>
-      <td>0.16</td>
-      <td>1.10</td>
+      <td>0.22</td>
+      <td>1.17</td>
     </tr>
     <tr>
       <th>strep_alpha</th>
-      <td>-0.48</td>
-      <td>0.33</td>
-      <td>-1.01</td>
-      <td>0.03</td>
+      <td>-0.55</td>
+      <td>0.31</td>
+      <td>-1.00</td>
+      <td>-0.03</td>
     </tr>
     <tr>
       <th>house_0</th>
       <td>0.20</td>
-      <td>0.29</td>
-      <td>-0.22</td>
-      <td>0.68</td>
+      <td>0.28</td>
+      <td>-0.26</td>
+      <td>0.58</td>
     </tr>
     <tr>
       <th>house_1</th>
-      <td>-0.01</td>
-      <td>0.32</td>
-      <td>-0.44</td>
-      <td>0.51</td>
+      <td>-0.04</td>
+      <td>0.31</td>
+      <td>-0.48</td>
+      <td>0.50</td>
     </tr>
     <tr>
       <th>house_2</th>
-      <td>0.13</td>
+      <td>0.20</td>
       <td>0.30</td>
-      <td>-0.34</td>
-      <td>0.57</td>
+      <td>-0.21</td>
+      <td>0.67</td>
     </tr>
     <tr>
       <th>house_3</th>
-      <td>-0.33</td>
-      <td>0.28</td>
-      <td>-0.83</td>
-      <td>0.03</td>
+      <td>-0.32</td>
+      <td>0.27</td>
+      <td>-0.72</td>
+      <td>0.13</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.78</td>
       <td>0.12</td>
-      <td>0.60</td>
-      <td>0.96</td>
+      <td>0.58</td>
+      <td>0.94</td>
     </tr>
   </tbody>
 </table>

@@ -611,11 +611,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
-<span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 
@@ -634,8 +631,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:38:50.152681: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 17:38:50.152729: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:31:50.605202: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 18:31:50.605233: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -829,10 +826,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:38:53.023867: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 17:38:53.023913: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 17:38:53.023939: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-18 17:38:53.024295: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:31:52.910059: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 18:31:52.910092: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 18:31:52.910113: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
+2022-01-18 18:31:52.910464: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1081,7 +1078,7 @@ Name: y, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7333333333333333
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6333333333333333
 </pre></div>
 </div>
 </div>
@@ -1499,30 +1496,30 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.1162722],
-           [0.9561722]], dtype=float32)&gt;,
+    array([[1.0717357],
+           [1.0905684]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.8487864],
-           [3.1879861]], dtype=float32)&gt;,
+    array([[1.812779],
+           [2.269113]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[6.230128 ],
-           [4.4673886]], dtype=float32)&gt;,
+    array([[4.6327963],
+           [5.069735 ]], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(2, 1, 84), dtype=float32, numpy=
-    array([[[ 0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  0.,  1.,  0.,  1.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  1.,  0.,  0.,  0.,  1.,  3.,  0.,  0.,  1.,  2.,  3.,
-              0.,  2.,  0.,  0.,  1.,  1.,  2.,  0.,  0.,  0.,  2.,  2.,
-              1.,  7.,  6.,  0.,  1.,  3.,  0.,  2.,  0.,  7.,  1.,  1.,
-              2.,  2.,  0.,  4., 10.,  4.,  1., 17., 16.,  5.,  1.,  4.,
-              4., 18.,  6.,  9., 16.,  3.,  5.,  2.,  3.,  1.,  9., 11.]],
+    array([[[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  6.,  1.,  0.,  0.,  3.,
+              0.,  0.,  1.,  0.,  2.,  1.,  1.,  1.,  2.,  1.,  1.,  0.,
+              1.,  1.,  0.,  0.,  1.,  3.,  0.,  2.,  0.,  0.,  2.,  4.,
+              0.,  0.,  1.,  1.,  1.,  3.,  3.,  0.,  1., 10.,  2.,  3.,
+              3.,  6.,  8.,  1.,  4.,  1.,  0.,  1.,  2.,  8.,  3.,  1.,
+              1.,  2.,  2.,  3., 16.,  0.,  3., 24., 21.,  2.,  3.,  5.,
+              5., 20., 18., 19., 21., 15.,  6.,  6.,  3.,  6.,  8., 21.]],
     
-           [[ 0.,  1.,  2.,  1.,  2.,  0.,  1., 18.,  3.,  0.,  4., 15.,
-              1.,  5.,  3.,  1., 11., 12.,  3.,  3.,  5.,  2.,  4.,  0.,
-              3.,  4.,  3.,  1.,  4., 12.,  7.,  6.,  5.,  3.,  9.,  8.,
-              1.,  1.,  1.,  2.,  4., 10.,  9.,  6.,  4., 19., 11., 19.,
-             14., 20., 22.,  6.,  5., 10.,  6.,  1., 11., 25., 15., 14.,
-              1.,  6.,  5.,  6., 21.,  3.,  3., 29., 37.,  7., 11., 11.,
-             13., 47., 33., 30., 34., 11., 12.,  8., 10.,  7., 18., 25.]]],
+           [[ 0.,  0.,  0.,  0.,  1.,  0.,  1.,  3.,  1.,  0.,  5.,  5.,
+              1.,  1.,  2.,  0.,  1.,  0.,  2.,  0.,  3.,  1.,  0.,  0.,
+              1.,  0.,  1.,  0.,  3.,  0.,  2.,  1.,  0.,  5.,  4.,  5.,
+              0.,  4.,  3.,  2.,  2.,  5.,  6.,  1.,  3., 14., 12., 11.,
+              9., 13.,  7.,  3.,  0.,  5.,  3.,  1.,  4., 11.,  5.,  9.,
+              0.,  4.,  1.,  5., 18.,  2.,  5., 24., 22.,  8.,  1.,  8.,
+             15., 25., 16., 25., 30., 14.,  9.,  6., 10.,  8., 19., 26.]]],
           dtype=float32)&gt;
 )
 </pre></div>

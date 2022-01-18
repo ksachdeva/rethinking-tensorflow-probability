@@ -971,7 +971,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core</span>
-<span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -995,8 +994,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:36:24.804287: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 17:36:24.804338: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:29:42.792247: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 18:29:42.792280: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1157,10 +1156,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 17:36:27.544807: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 17:36:27.544865: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 17:36:27.544889: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az182-821): /proc/driver/nvidia/version does not exist
-2022-01-18 17:36:27.545280: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 18:29:45.135346: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 18:29:45.135378: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 18:29:45.135396: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az231-667): /proc/driver/nvidia/version does not exist
+2022-01-18 18:29:45.135661: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1225,579 +1224,579 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>1.74</td>
-      <td>0.80</td>
-      <td>0.52</td>
-      <td>2.97</td>
+      <td>1.71</td>
+      <td>0.77</td>
+      <td>0.65</td>
+      <td>3.06</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>678.38</td>
-      <td>459.72</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>alpha[1]</th>
-      <td>2.39</td>
-      <td>0.91</td>
-      <td>0.86</td>
-      <td>3.62</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>510.22</td>
-      <td>436.04</td>
+      <td>743.18</td>
+      <td>538.16</td>
       <td>1.01</td>
     </tr>
     <tr>
+      <th>alpha[1]</th>
+      <td>2.46</td>
+      <td>0.92</td>
+      <td>1.05</td>
+      <td>3.85</td>
+      <td>0.05</td>
+      <td>0.03</td>
+      <td>391.89</td>
+      <td>371.77</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
       <th>alpha[2]</th>
-      <td>0.75</td>
-      <td>0.67</td>
-      <td>-0.31</td>
-      <td>1.80</td>
+      <td>0.77</td>
+      <td>0.62</td>
+      <td>-0.10</td>
+      <td>1.83</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1016.37</td>
-      <td>272.12</td>
+      <td>1023.24</td>
+      <td>339.22</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>2.35</td>
-      <td>0.85</td>
-      <td>1.02</td>
-      <td>3.76</td>
+      <td>2.41</td>
+      <td>0.95</td>
+      <td>0.93</td>
+      <td>3.87</td>
+      <td>0.05</td>
       <td>0.04</td>
-      <td>0.03</td>
-      <td>449.32</td>
-      <td>341.93</td>
+      <td>380.85</td>
+      <td>276.40</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>1.68</td>
-      <td>0.75</td>
-      <td>0.51</td>
-      <td>2.79</td>
+      <td>1.69</td>
+      <td>0.78</td>
+      <td>0.27</td>
+      <td>2.65</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>601.11</td>
-      <td>430.07</td>
-      <td>1.00</td>
+      <td>521.42</td>
+      <td>307.69</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>1.80</td>
-      <td>0.76</td>
-      <td>0.57</td>
-      <td>2.99</td>
+      <td>1.64</td>
+      <td>0.70</td>
+      <td>0.58</td>
+      <td>2.81</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>719.62</td>
-      <td>620.59</td>
-      <td>1.00</td>
+      <td>790.36</td>
+      <td>399.33</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>2.41</td>
-      <td>0.86</td>
-      <td>1.04</td>
-      <td>3.77</td>
+      <td>2.47</td>
+      <td>0.90</td>
+      <td>1.00</td>
+      <td>3.72</td>
       <td>0.04</td>
-      <td>0.03</td>
-      <td>450.98</td>
-      <td>388.31</td>
-      <td>1.01</td>
+      <td>0.04</td>
+      <td>440.37</td>
+      <td>426.17</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[7]</th>
       <td>1.73</td>
-      <td>0.75</td>
-      <td>0.49</td>
-      <td>2.86</td>
+      <td>0.73</td>
+      <td>0.58</td>
+      <td>2.90</td>
       <td>0.03</td>
-      <td>0.03</td>
-      <td>519.70</td>
-      <td>317.44</td>
-      <td>1.00</td>
+      <td>0.02</td>
+      <td>608.56</td>
+      <td>429.52</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[8]</th>
-      <td>-0.38</td>
-      <td>0.64</td>
+      <td>-0.34</td>
+      <td>0.60</td>
       <td>-1.28</td>
-      <td>0.80</td>
+      <td>0.56</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>1156.00</td>
-      <td>349.56</td>
-      <td>1.00</td>
+      <td>0.03</td>
+      <td>705.27</td>
+      <td>145.55</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[9]</th>
-      <td>1.68</td>
-      <td>0.72</td>
-      <td>0.46</td>
-      <td>2.70</td>
+      <td>1.73</td>
+      <td>0.78</td>
+      <td>0.52</td>
+      <td>2.86</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>569.45</td>
-      <td>555.09</td>
-      <td>1.00</td>
+      <td>779.98</td>
+      <td>498.66</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[10]</th>
       <td>0.76</td>
-      <td>0.67</td>
-      <td>-0.18</td>
-      <td>1.84</td>
+      <td>0.62</td>
+      <td>-0.16</td>
+      <td>1.69</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1043.44</td>
-      <td>403.60</td>
+      <td>1061.93</td>
+      <td>507.10</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[11]</th>
-      <td>0.39</td>
-      <td>0.68</td>
-      <td>-0.65</td>
-      <td>1.48</td>
+      <td>0.40</td>
+      <td>0.61</td>
+      <td>-0.51</td>
+      <td>1.38</td>
       <td>0.02</td>
       <td>0.04</td>
-      <td>958.83</td>
-      <td>216.13</td>
-      <td>1.02</td>
+      <td>1058.59</td>
+      <td>163.75</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[12]</th>
-      <td>0.73</td>
-      <td>0.57</td>
-      <td>-0.27</td>
-      <td>1.48</td>
+      <td>0.79</td>
+      <td>0.64</td>
+      <td>-0.10</td>
+      <td>1.86</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>973.84</td>
-      <td>265.12</td>
-      <td>1.01</td>
+      <td>1066.87</td>
+      <td>417.91</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[13]</th>
-      <td>0.01</td>
-      <td>0.63</td>
-      <td>-0.91</td>
-      <td>1.03</td>
+      <td>0.02</td>
+      <td>0.57</td>
+      <td>-0.92</td>
+      <td>0.89</td>
       <td>0.02</td>
       <td>0.03</td>
-      <td>1039.77</td>
-      <td>293.92</td>
-      <td>1.01</td>
+      <td>798.38</td>
+      <td>329.98</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[14]</th>
-      <td>1.72</td>
-      <td>0.73</td>
-      <td>0.59</td>
-      <td>2.80</td>
+      <td>1.66</td>
+      <td>0.74</td>
+      <td>0.54</td>
+      <td>2.78</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>601.47</td>
-      <td>367.70</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>alpha[15]</th>
-      <td>1.75</td>
-      <td>0.78</td>
-      <td>0.52</td>
-      <td>2.93</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>516.12</td>
-      <td>394.98</td>
-      <td>1.02</td>
-    </tr>
-    <tr>
-      <th>alpha[16]</th>
-      <td>2.54</td>
-      <td>0.70</td>
-      <td>1.32</td>
-      <td>3.54</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>711.18</td>
-      <td>196.80</td>
+      <td>526.55</td>
+      <td>387.01</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>alpha[17]</th>
-      <td>2.14</td>
-      <td>0.58</td>
-      <td>1.26</td>
-      <td>3.17</td>
+      <th>alpha[15]</th>
+      <td>1.74</td>
+      <td>0.73</td>
+      <td>0.59</td>
+      <td>2.91</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>1209.88</td>
-      <td>366.23</td>
+      <td>0.02</td>
+      <td>900.68</td>
+      <td>454.19</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[16]</th>
+      <td>2.55</td>
+      <td>0.69</td>
+      <td>1.44</td>
+      <td>3.58</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>1058.78</td>
+      <td>450.52</td>
       <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[17]</th>
+      <td>2.13</td>
+      <td>0.56</td>
+      <td>1.32</td>
+      <td>3.09</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>489.55</td>
+      <td>175.91</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[18]</th>
       <td>1.80</td>
-      <td>0.55</td>
-      <td>0.96</td>
-      <td>2.59</td>
+      <td>0.57</td>
+      <td>0.87</td>
+      <td>2.70</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1338.15</td>
-      <td>185.51</td>
-      <td>1.01</td>
+      <td>1230.46</td>
+      <td>100.21</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[19]</th>
-      <td>3.15</td>
-      <td>0.82</td>
-      <td>1.80</td>
-      <td>4.31</td>
+      <td>3.13</td>
+      <td>0.80</td>
+      <td>1.92</td>
+      <td>4.36</td>
       <td>0.03</td>
-      <td>0.03</td>
-      <td>666.57</td>
-      <td>404.56</td>
-      <td>1.00</td>
+      <td>0.02</td>
+      <td>577.26</td>
+      <td>422.84</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[20]</th>
-      <td>2.13</td>
-      <td>0.55</td>
-      <td>1.29</td>
-      <td>2.92</td>
+      <td>2.11</td>
+      <td>0.56</td>
+      <td>1.30</td>
+      <td>3.05</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1121.41</td>
-      <td>367.17</td>
-      <td>1.00</td>
+      <td>1244.86</td>
+      <td>261.81</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[21]</th>
       <td>2.13</td>
-      <td>0.60</td>
-      <td>1.22</td>
-      <td>3.01</td>
+      <td>0.58</td>
+      <td>1.18</td>
+      <td>2.98</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>1166.46</td>
-      <td>449.62</td>
-      <td>1.01</td>
+      <td>1188.49</td>
+      <td>394.86</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[22]</th>
-      <td>2.15</td>
-      <td>0.62</td>
-      <td>1.10</td>
-      <td>2.92</td>
+      <td>2.13</td>
+      <td>0.58</td>
+      <td>1.14</td>
+      <td>2.95</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>1221.83</td>
-      <td>306.20</td>
+      <td>850.71</td>
+      <td>140.10</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[23]</th>
-      <td>1.54</td>
-      <td>0.43</td>
+      <td>1.56</td>
+      <td>0.44</td>
       <td>0.86</td>
-      <td>2.20</td>
+      <td>2.28</td>
       <td>0.01</td>
-      <td>0.02</td>
-      <td>1534.33</td>
-      <td>79.40</td>
-      <td>1.04</td>
+      <td>0.01</td>
+      <td>2387.96</td>
+      <td>120.49</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[24]</th>
-      <td>-1.12</td>
-      <td>0.41</td>
-      <td>-1.71</td>
-      <td>-0.42</td>
+      <td>-1.09</td>
+      <td>0.34</td>
+      <td>-1.69</td>
+      <td>-0.63</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1620.68</td>
-      <td>150.34</td>
+      <td>1364.12</td>
+      <td>170.52</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[25]</th>
-      <td>0.07</td>
-      <td>0.37</td>
-      <td>-0.49</td>
-      <td>0.69</td>
+      <td>0.06</td>
+      <td>0.38</td>
+      <td>-0.56</td>
+      <td>0.62</td>
       <td>0.01</td>
       <td>0.02</td>
-      <td>1093.72</td>
-      <td>335.86</td>
-      <td>1.02</td>
+      <td>1095.07</td>
+      <td>328.39</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[26]</th>
-      <td>-1.54</td>
-      <td>0.48</td>
-      <td>-2.21</td>
-      <td>-0.68</td>
+      <td>-1.52</td>
+      <td>0.47</td>
+      <td>-2.19</td>
+      <td>-0.81</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1196.50</td>
-      <td>114.21</td>
-      <td>1.09</td>
+      <td>1595.44</td>
+      <td>140.81</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[27]</th>
-      <td>-0.56</td>
-      <td>0.37</td>
-      <td>-1.16</td>
-      <td>-0.03</td>
+      <td>-0.53</td>
+      <td>0.42</td>
+      <td>-1.24</td>
+      <td>0.12</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1202.51</td>
-      <td>372.63</td>
+      <td>1236.66</td>
+      <td>165.10</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[28]</th>
       <td>0.07</td>
-      <td>0.39</td>
-      <td>-0.54</td>
-      <td>0.74</td>
-      <td>0.01</td>
+      <td>0.43</td>
+      <td>-0.61</td>
+      <td>0.73</td>
       <td>0.02</td>
-      <td>1134.17</td>
-      <td>371.77</td>
+      <td>0.03</td>
+      <td>710.42</td>
+      <td>129.06</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[29]</th>
-      <td>1.31</td>
+      <td>1.32</td>
       <td>0.53</td>
-      <td>0.11</td>
-      <td>1.87</td>
+      <td>0.41</td>
+      <td>2.09</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>1183.45</td>
-      <td>29.95</td>
-      <td>1.16</td>
+      <td>0.04</td>
+      <td>939.18</td>
+      <td>20.26</td>
+      <td>1.11</td>
     </tr>
     <tr>
       <th>alpha[30]</th>
-      <td>-0.75</td>
-      <td>0.44</td>
-      <td>-1.54</td>
+      <td>-0.71</td>
+      <td>0.39</td>
+      <td>-1.35</td>
       <td>-0.18</td>
+      <td>0.01</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>874.74</td>
-      <td>120.71</td>
-      <td>1.04</td>
+      <td>1133.14</td>
+      <td>165.66</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[31]</th>
-      <td>-0.38</td>
-      <td>0.39</td>
-      <td>-0.97</td>
-      <td>0.26</td>
+      <td>-0.37</td>
+      <td>0.37</td>
+      <td>-0.99</td>
+      <td>0.20</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>1442.70</td>
-      <td>354.99</td>
+      <td>1075.89</td>
+      <td>287.09</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[32]</th>
-      <td>2.89</td>
+      <td>2.86</td>
       <td>0.67</td>
-      <td>1.87</td>
-      <td>3.92</td>
+      <td>1.96</td>
+      <td>4.02</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>996.82</td>
-      <td>422.99</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>alpha[33]</th>
-      <td>2.45</td>
-      <td>0.58</td>
-      <td>1.55</td>
-      <td>3.36</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>1008.88</td>
-      <td>325.23</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>alpha[34]</th>
-      <td>2.45</td>
-      <td>0.57</td>
-      <td>1.61</td>
-      <td>3.29</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>1413.35</td>
-      <td>281.73</td>
+      <td>898.17</td>
+      <td>378.64</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>alpha[35]</th>
-      <td>1.89</td>
-      <td>0.53</td>
-      <td>0.99</td>
-      <td>2.69</td>
+      <th>alpha[33]</th>
+      <td>2.46</td>
+      <td>0.57</td>
+      <td>1.62</td>
+      <td>3.38</td>
       <td>0.02</td>
+      <td>0.02</td>
+      <td>1085.89</td>
+      <td>229.49</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[34]</th>
+      <td>2.48</td>
+      <td>0.57</td>
+      <td>1.60</td>
+      <td>3.23</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>1139.40</td>
+      <td>222.56</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>alpha[35]</th>
+      <td>1.90</td>
+      <td>0.47</td>
+      <td>1.24</td>
+      <td>2.71</td>
       <td>0.01</td>
-      <td>969.28</td>
-      <td>77.81</td>
-      <td>1.05</td>
+      <td>0.01</td>
+      <td>1126.60</td>
+      <td>106.73</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[36]</th>
-      <td>1.91</td>
-      <td>0.52</td>
-      <td>1.09</td>
-      <td>2.69</td>
-      <td>0.02</td>
+      <td>1.90</td>
+      <td>0.53</td>
+      <td>1.08</td>
+      <td>2.73</td>
       <td>0.01</td>
-      <td>1082.08</td>
-      <td>133.89</td>
-      <td>1.02</td>
+      <td>0.01</td>
+      <td>1867.03</td>
+      <td>128.91</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[37]</th>
       <td>3.33</td>
-      <td>0.74</td>
-      <td>2.31</td>
-      <td>4.59</td>
+      <td>0.75</td>
+      <td>2.27</td>
+      <td>4.49</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>784.48</td>
-      <td>472.44</td>
+      <td>726.07</td>
+      <td>458.06</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[38]</th>
-      <td>2.46</td>
+      <td>2.45</td>
       <td>0.55</td>
-      <td>1.71</td>
-      <td>3.38</td>
+      <td>1.62</td>
+      <td>3.42</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>1473.36</td>
-      <td>343.92</td>
-      <td>1.04</td>
+      <td>1325.84</td>
+      <td>295.26</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[39]</th>
-      <td>2.16</td>
-      <td>0.47</td>
-      <td>1.48</td>
-      <td>2.94</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>1464.75</td>
-      <td>64.61</td>
-      <td>1.10</td>
+      <td>2.19</td>
+      <td>0.50</td>
+      <td>1.46</td>
+      <td>2.97</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>1036.35</td>
+      <td>206.48</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[40]</th>
-      <td>-1.90</td>
-      <td>0.51</td>
-      <td>-2.73</td>
-      <td>-1.07</td>
-      <td>0.02</td>
+      <td>-1.94</td>
+      <td>0.52</td>
+      <td>-2.81</td>
+      <td>-1.13</td>
       <td>0.01</td>
-      <td>947.27</td>
-      <td>132.80</td>
-      <td>1.04</td>
+      <td>0.01</td>
+      <td>1487.17</td>
+      <td>122.46</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[41]</th>
       <td>-0.64</td>
-      <td>0.35</td>
-      <td>-1.21</td>
-      <td>-0.14</td>
-      <td>0.02</td>
+      <td>0.34</td>
+      <td>-1.12</td>
+      <td>-0.09</td>
       <td>0.01</td>
-      <td>560.09</td>
-      <td>346.98</td>
+      <td>0.01</td>
+      <td>713.71</td>
+      <td>553.37</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[42]</th>
-      <td>-0.51</td>
+      <td>-0.52</td>
       <td>0.35</td>
-      <td>-1.07</td>
-      <td>0.00</td>
+      <td>-1.03</td>
+      <td>0.06</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>691.18</td>
-      <td>566.60</td>
-      <td>1.00</td>
+      <td>635.77</td>
+      <td>522.10</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[43]</th>
-      <td>-0.40</td>
-      <td>0.35</td>
-      <td>-0.87</td>
-      <td>0.21</td>
+      <td>-0.41</td>
+      <td>0.33</td>
+      <td>-0.93</td>
+      <td>0.07</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>746.79</td>
-      <td>556.88</td>
+      <td>539.57</td>
+      <td>576.45</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[44]</th>
       <td>0.50</td>
       <td>0.34</td>
+      <td>-0.07</td>
+      <td>0.99</td>
       <td>0.01</td>
-      <td>1.07</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>703.30</td>
-      <td>422.45</td>
-      <td>1.00</td>
+      <td>620.47</td>
+      <td>500.84</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[45]</th>
-      <td>-0.64</td>
-      <td>0.36</td>
-      <td>-1.18</td>
-      <td>-0.06</td>
+      <td>-0.63</td>
+      <td>0.35</td>
+      <td>-1.10</td>
+      <td>-0.02</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>689.95</td>
-      <td>456.26</td>
+      <td>718.40</td>
+      <td>623.04</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[46]</th>
-      <td>1.90</td>
-      <td>0.42</td>
-      <td>1.27</td>
-      <td>2.54</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>1650.42</td>
-      <td>61.90</td>
-      <td>1.03</td>
+      <td>1.96</td>
+      <td>0.51</td>
+      <td>1.14</td>
+      <td>2.79</td>
+      <td>0.02</td>
+      <td>0.03</td>
+      <td>875.82</td>
+      <td>103.67</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>alpha[47]</th>
-      <td>-0.06</td>
-      <td>0.34</td>
-      <td>-0.58</td>
-      <td>0.52</td>
+      <td>-0.05</td>
+      <td>0.32</td>
+      <td>-0.53</td>
+      <td>0.48</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>572.01</td>
-      <td>425.96</td>
-      <td>1.00</td>
+      <td>584.56</td>
+      <td>477.72</td>
+      <td>1.01</td>
     </tr>
   </tbody>
 </table>
@@ -1892,602 +1891,602 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>1.32</td>
-      <td>0.27</td>
-      <td>0.91</td>
-      <td>1.79</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>373.46</td>
-      <td>123.33</td>
-      <td>1.11</td>
+      <td>1.35</td>
+      <td>0.29</td>
+      <td>0.92</td>
+      <td>1.82</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>189.57</td>
+      <td>77.57</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.60</td>
-      <td>0.20</td>
-      <td>1.29</td>
+      <td>1.59</td>
+      <td>0.22</td>
+      <td>1.26</td>
       <td>1.93</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>100.58</td>
-      <td>221.84</td>
-      <td>1.03</td>
-    </tr>
-    <tr>
-      <th>alpha[0]</th>
-      <td>2.00</td>
-      <td>0.73</td>
-      <td>0.81</td>
-      <td>3.16</td>
-      <td>0.09</td>
-      <td>0.07</td>
-      <td>78.96</td>
-      <td>220.81</td>
-      <td>1.03</td>
-    </tr>
-    <tr>
-      <th>alpha[1]</th>
-      <td>3.01</td>
-      <td>1.03</td>
-      <td>1.36</td>
-      <td>4.62</td>
-      <td>0.13</td>
-      <td>0.09</td>
-      <td>62.66</td>
-      <td>133.07</td>
+      <td>0.04</td>
+      <td>0.03</td>
+      <td>38.85</td>
+      <td>180.16</td>
       <td>1.05</td>
     </tr>
     <tr>
+      <th>alpha[0]</th>
+      <td>2.05</td>
+      <td>0.86</td>
+      <td>0.71</td>
+      <td>3.31</td>
+      <td>0.09</td>
+      <td>0.07</td>
+      <td>90.00</td>
+      <td>100.39</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[1]</th>
+      <td>3.13</td>
+      <td>1.16</td>
+      <td>1.60</td>
+      <td>5.24</td>
+      <td>0.18</td>
+      <td>0.13</td>
+      <td>41.47</td>
+      <td>113.61</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
       <th>alpha[2]</th>
-      <td>1.04</td>
-      <td>0.69</td>
-      <td>-0.06</td>
-      <td>2.03</td>
-      <td>0.06</td>
+      <td>1.03</td>
+      <td>0.66</td>
+      <td>0.01</td>
+      <td>2.05</td>
+      <td>0.05</td>
       <td>0.04</td>
-      <td>118.04</td>
-      <td>253.59</td>
+      <td>156.14</td>
+      <td>315.79</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>2.87</td>
-      <td>0.95</td>
-      <td>1.18</td>
-      <td>4.17</td>
-      <td>0.11</td>
-      <td>0.08</td>
-      <td>77.33</td>
-      <td>127.97</td>
-      <td>1.02</td>
+      <td>2.90</td>
+      <td>1.01</td>
+      <td>1.15</td>
+      <td>4.23</td>
+      <td>0.13</td>
+      <td>0.09</td>
+      <td>61.08</td>
+      <td>93.81</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>2.16</td>
-      <td>0.82</td>
-      <td>0.96</td>
+      <td>2.26</td>
+      <td>0.97</td>
+      <td>0.81</td>
       <td>3.53</td>
-      <td>0.09</td>
-      <td>0.06</td>
-      <td>97.06</td>
-      <td>103.17</td>
-      <td>1.00</td>
+      <td>0.16</td>
+      <td>0.12</td>
+      <td>49.47</td>
+      <td>49.01</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>2.17</td>
-      <td>0.93</td>
-      <td>0.75</td>
-      <td>3.47</td>
-      <td>0.18</td>
-      <td>0.14</td>
-      <td>34.88</td>
-      <td>15.99</td>
+      <td>2.13</td>
+      <td>0.87</td>
+      <td>0.64</td>
+      <td>3.29</td>
+      <td>0.13</td>
+      <td>0.10</td>
+      <td>52.76</td>
+      <td>34.41</td>
       <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>2.79</td>
-      <td>0.86</td>
-      <td>1.55</td>
-      <td>4.24</td>
-      <td>0.09</td>
-      <td>0.07</td>
-      <td>82.87</td>
-      <td>126.90</td>
+      <td>2.99</td>
+      <td>1.05</td>
+      <td>1.43</td>
+      <td>4.64</td>
+      <td>0.14</td>
+      <td>0.10</td>
+      <td>62.37</td>
+      <td>130.98</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[7]</th>
-      <td>2.18</td>
-      <td>0.89</td>
-      <td>0.70</td>
-      <td>3.50</td>
-      <td>0.12</td>
-      <td>0.09</td>
-      <td>67.57</td>
-      <td>80.18</td>
-      <td>1.04</td>
+      <td>2.12</td>
+      <td>0.88</td>
+      <td>0.59</td>
+      <td>3.32</td>
+      <td>0.10</td>
+      <td>0.07</td>
+      <td>78.64</td>
+      <td>132.65</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[8]</th>
-      <td>-0.21</td>
-      <td>0.61</td>
-      <td>-1.25</td>
-      <td>0.69</td>
-      <td>0.06</td>
+      <td>-0.18</td>
+      <td>0.60</td>
+      <td>-1.18</td>
+      <td>0.73</td>
+      <td>0.05</td>
       <td>0.04</td>
-      <td>116.48</td>
-      <td>169.03</td>
-      <td>1.01</td>
+      <td>129.39</td>
+      <td>198.05</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[9]</th>
-      <td>2.31</td>
-      <td>0.96</td>
-      <td>0.84</td>
-      <td>3.54</td>
-      <td>0.13</td>
-      <td>0.10</td>
-      <td>59.82</td>
-      <td>65.59</td>
+      <td>1.97</td>
+      <td>0.76</td>
+      <td>0.80</td>
+      <td>3.25</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>109.88</td>
+      <td>180.57</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[10]</th>
-      <td>0.91</td>
-      <td>0.64</td>
-      <td>-0.07</td>
-      <td>1.87</td>
-      <td>0.06</td>
-      <td>0.05</td>
-      <td>124.87</td>
-      <td>147.40</td>
       <td>1.01</td>
+      <td>0.67</td>
+      <td>-0.11</td>
+      <td>1.90</td>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>130.88</td>
+      <td>216.01</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[11]</th>
-      <td>0.59</td>
-      <td>0.62</td>
-      <td>-0.39</td>
-      <td>1.55</td>
-      <td>0.05</td>
-      <td>0.03</td>
-      <td>164.33</td>
-      <td>210.88</td>
+      <td>0.55</td>
+      <td>0.61</td>
+      <td>-0.28</td>
+      <td>1.62</td>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>113.00</td>
+      <td>180.64</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[12]</th>
-      <td>0.93</td>
+      <td>0.98</td>
       <td>0.64</td>
-      <td>-0.15</td>
-      <td>1.84</td>
+      <td>-0.05</td>
+      <td>1.97</td>
       <td>0.06</td>
       <td>0.04</td>
-      <td>120.34</td>
-      <td>203.98</td>
+      <td>117.41</td>
+      <td>126.23</td>
       <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[13]</th>
-      <td>0.07</td>
-      <td>0.60</td>
-      <td>-0.92</td>
-      <td>1.04</td>
-      <td>0.05</td>
-      <td>0.04</td>
-      <td>150.36</td>
-      <td>145.91</td>
-      <td>1.02</td>
-    </tr>
-    <tr>
-      <th>alpha[14]</th>
-      <td>2.08</td>
-      <td>0.92</td>
-      <td>0.71</td>
-      <td>3.62</td>
       <td>0.11</td>
-      <td>0.08</td>
-      <td>78.54</td>
-      <td>90.13</td>
+      <td>0.61</td>
+      <td>-0.99</td>
+      <td>1.00</td>
+      <td>0.05</td>
+      <td>0.03</td>
+      <td>163.37</td>
+      <td>90.97</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>alpha[15]</th>
-      <td>2.01</td>
-      <td>0.82</td>
-      <td>0.72</td>
-      <td>3.09</td>
-      <td>0.09</td>
-      <td>0.08</td>
-      <td>98.22</td>
-      <td>51.42</td>
+      <th>alpha[14]</th>
+      <td>2.28</td>
+      <td>1.00</td>
+      <td>0.76</td>
+      <td>3.88</td>
+      <td>0.13</td>
+      <td>0.10</td>
+      <td>70.07</td>
+      <td>93.61</td>
       <td>1.02</td>
+    </tr>
+    <tr>
+      <th>alpha[15]</th>
+      <td>2.17</td>
+      <td>0.95</td>
+      <td>0.69</td>
+      <td>3.70</td>
+      <td>0.14</td>
+      <td>0.10</td>
+      <td>56.70</td>
+      <td>177.79</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[16]</th>
       <td>2.86</td>
       <td>0.71</td>
-      <td>1.79</td>
-      <td>4.03</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>145.33</td>
-      <td>185.39</td>
-      <td>1.01</td>
+      <td>1.73</td>
+      <td>3.93</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>95.81</td>
+      <td>218.63</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[17]</th>
-      <td>2.42</td>
-      <td>0.64</td>
-      <td>1.51</td>
-      <td>3.48</td>
-      <td>0.07</td>
-      <td>0.05</td>
-      <td>90.48</td>
-      <td>65.25</td>
-      <td>1.00</td>
+      <td>2.39</td>
+      <td>0.69</td>
+      <td>1.21</td>
+      <td>3.37</td>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>158.81</td>
+      <td>178.80</td>
+      <td>1.03</td>
     </tr>
     <tr>
       <th>alpha[18]</th>
-      <td>2.00</td>
-      <td>0.50</td>
-      <td>1.18</td>
-      <td>2.74</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>262.49</td>
-      <td>229.59</td>
-      <td>1.00</td>
+      <td>2.03</td>
+      <td>0.65</td>
+      <td>0.85</td>
+      <td>2.89</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>171.82</td>
+      <td>195.46</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[19]</th>
-      <td>3.61</td>
-      <td>0.98</td>
-      <td>2.18</td>
-      <td>5.28</td>
-      <td>0.15</td>
-      <td>0.11</td>
-      <td>45.73</td>
-      <td>98.74</td>
-      <td>1.05</td>
+      <td>3.64</td>
+      <td>1.11</td>
+      <td>2.02</td>
+      <td>5.29</td>
+      <td>0.24</td>
+      <td>0.17</td>
+      <td>28.94</td>
+      <td>54.15</td>
+      <td>1.10</td>
     </tr>
     <tr>
       <th>alpha[20]</th>
-      <td>2.42</td>
-      <td>0.66</td>
-      <td>1.32</td>
-      <td>3.44</td>
+      <td>2.38</td>
+      <td>0.65</td>
+      <td>1.43</td>
+      <td>3.43</td>
       <td>0.06</td>
       <td>0.04</td>
-      <td>155.20</td>
-      <td>175.42</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[21]</th>
-      <td>2.34</td>
-      <td>0.68</td>
-      <td>1.23</td>
-      <td>3.30</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>128.50</td>
-      <td>149.95</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>alpha[22]</th>
-      <td>2.44</td>
-      <td>0.67</td>
-      <td>1.41</td>
-      <td>3.57</td>
-      <td>0.06</td>
-      <td>0.05</td>
-      <td>126.05</td>
-      <td>94.62</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>alpha[23]</th>
-      <td>1.64</td>
-      <td>0.51</td>
-      <td>0.83</td>
-      <td>2.47</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>191.74</td>
-      <td>291.30</td>
+      <td>121.68</td>
+      <td>227.44</td>
       <td>1.02</td>
     </tr>
     <tr>
-      <th>alpha[24]</th>
-      <td>-1.02</td>
-      <td>0.43</td>
-      <td>-1.63</td>
-      <td>-0.26</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>263.11</td>
-      <td>256.32</td>
+      <th>alpha[21]</th>
+      <td>2.47</td>
+      <td>0.68</td>
+      <td>1.33</td>
+      <td>3.38</td>
+      <td>0.06</td>
+      <td>0.05</td>
+      <td>115.48</td>
+      <td>122.41</td>
       <td>1.00</td>
     </tr>
     <tr>
-      <th>alpha[25]</th>
-      <td>0.17</td>
-      <td>0.39</td>
-      <td>-0.48</td>
+      <th>alpha[22]</th>
+      <td>2.51</td>
       <td>0.69</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>436.79</td>
-      <td>424.93</td>
+      <td>1.47</td>
+      <td>3.73</td>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>155.98</td>
+      <td>277.95</td>
       <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[23]</th>
+      <td>1.75</td>
+      <td>0.57</td>
+      <td>0.93</td>
+      <td>2.69</td>
+      <td>0.04</td>
+      <td>0.03</td>
+      <td>175.84</td>
+      <td>161.26</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
+      <th>alpha[24]</th>
+      <td>-1.01</td>
+      <td>0.44</td>
+      <td>-1.62</td>
+      <td>-0.22</td>
+      <td>0.03</td>
+      <td>0.02</td>
+      <td>310.69</td>
+      <td>336.75</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>alpha[25]</th>
+      <td>0.19</td>
+      <td>0.42</td>
+      <td>-0.51</td>
+      <td>0.76</td>
+      <td>0.02</td>
+      <td>0.02</td>
+      <td>397.82</td>
+      <td>331.31</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[26]</th>
-      <td>-1.37</td>
-      <td>0.47</td>
-      <td>-2.06</td>
-      <td>-0.65</td>
+      <td>-1.41</td>
+      <td>0.46</td>
+      <td>-2.20</td>
+      <td>-0.74</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>237.33</td>
-      <td>247.02</td>
-      <td>1.01</td>
+      <td>249.39</td>
+      <td>272.40</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[27]</th>
-      <td>-0.43</td>
+      <td>-0.48</td>
       <td>0.42</td>
-      <td>-1.10</td>
-      <td>0.20</td>
+      <td>-1.08</td>
+      <td>0.22</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>392.92</td>
-      <td>361.66</td>
+      <td>250.02</td>
+      <td>167.62</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[28]</th>
-      <td>0.17</td>
-      <td>0.37</td>
-      <td>-0.47</td>
-      <td>0.70</td>
+      <td>0.15</td>
+      <td>0.38</td>
+      <td>-0.51</td>
+      <td>0.71</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>465.62</td>
-      <td>373.23</td>
-      <td>1.00</td>
+      <td>0.02</td>
+      <td>360.81</td>
+      <td>240.84</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[29]</th>
-      <td>1.42</td>
-      <td>0.50</td>
-      <td>0.58</td>
-      <td>2.15</td>
-      <td>0.04</td>
+      <td>1.47</td>
+      <td>0.49</td>
+      <td>0.62</td>
+      <td>2.14</td>
       <td>0.03</td>
-      <td>183.47</td>
-      <td>243.97</td>
-      <td>1.02</td>
+      <td>0.02</td>
+      <td>262.24</td>
+      <td>262.46</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[30]</th>
       <td>-0.62</td>
-      <td>0.44</td>
-      <td>-1.32</td>
-      <td>0.08</td>
+      <td>0.40</td>
+      <td>-1.22</td>
+      <td>0.01</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>327.97</td>
-      <td>219.22</td>
-      <td>1.02</td>
+      <td>397.18</td>
+      <td>418.07</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[31]</th>
-      <td>-0.30</td>
-      <td>0.39</td>
-      <td>-0.96</td>
-      <td>0.26</td>
+      <td>-0.31</td>
+      <td>0.42</td>
+      <td>-0.95</td>
+      <td>0.38</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>359.03</td>
-      <td>302.04</td>
+      <td>0.02</td>
+      <td>359.65</td>
+      <td>159.05</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[32]</th>
-      <td>2.99</td>
-      <td>0.67</td>
-      <td>1.96</td>
-      <td>4.01</td>
+      <td>3.26</td>
+      <td>0.75</td>
+      <td>2.17</td>
+      <td>4.50</td>
+      <td>0.10</td>
       <td>0.07</td>
-      <td>0.05</td>
-      <td>105.00</td>
-      <td>128.95</td>
-      <td>1.03</td>
+      <td>66.20</td>
+      <td>121.87</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[33]</th>
-      <td>2.72</td>
-      <td>0.64</td>
-      <td>1.67</td>
-      <td>3.72</td>
-      <td>0.05</td>
+      <td>2.58</td>
+      <td>0.58</td>
+      <td>1.69</td>
+      <td>3.56</td>
       <td>0.04</td>
-      <td>152.51</td>
-      <td>234.17</td>
+      <td>0.03</td>
+      <td>187.90</td>
+      <td>188.57</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[34]</th>
-      <td>2.62</td>
-      <td>0.57</td>
-      <td>1.71</td>
-      <td>3.44</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>179.56</td>
-      <td>311.22</td>
-      <td>1.01</td>
+      <td>2.79</td>
+      <td>0.72</td>
+      <td>1.52</td>
+      <td>3.80</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>115.95</td>
+      <td>233.08</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[35]</th>
-      <td>2.03</td>
-      <td>0.52</td>
-      <td>1.30</td>
-      <td>2.89</td>
+      <td>2.06</td>
+      <td>0.49</td>
+      <td>1.23</td>
+      <td>2.82</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>246.80</td>
-      <td>219.29</td>
+      <td>0.03</td>
+      <td>212.16</td>
+      <td>161.15</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[36]</th>
-      <td>2.10</td>
-      <td>0.57</td>
-      <td>1.20</td>
-      <td>2.94</td>
-      <td>0.05</td>
-      <td>0.04</td>
-      <td>159.54</td>
-      <td>128.30</td>
-      <td>1.02</td>
+      <td>2.03</td>
+      <td>0.51</td>
+      <td>1.08</td>
+      <td>2.67</td>
+      <td>0.03</td>
+      <td>0.03</td>
+      <td>228.13</td>
+      <td>281.95</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[37]</th>
-      <td>3.63</td>
-      <td>0.81</td>
-      <td>2.28</td>
-      <td>4.76</td>
-      <td>0.07</td>
-      <td>0.05</td>
-      <td>126.94</td>
-      <td>196.60</td>
-      <td>1.02</td>
+      <td>3.89</td>
+      <td>1.12</td>
+      <td>2.44</td>
+      <td>5.51</td>
+      <td>0.18</td>
+      <td>0.13</td>
+      <td>45.65</td>
+      <td>68.22</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>alpha[38]</th>
-      <td>2.74</td>
-      <td>0.66</td>
-      <td>1.73</td>
-      <td>3.76</td>
-      <td>0.06</td>
+      <td>2.64</td>
+      <td>0.61</td>
+      <td>1.74</td>
+      <td>3.61</td>
+      <td>0.05</td>
       <td>0.04</td>
-      <td>129.00</td>
-      <td>221.44</td>
+      <td>154.65</td>
+      <td>179.89</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[39]</th>
       <td>2.38</td>
-      <td>0.56</td>
-      <td>1.55</td>
-      <td>3.28</td>
+      <td>0.57</td>
+      <td>1.51</td>
+      <td>3.31</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>130.44</td>
-      <td>202.28</td>
-      <td>1.01</td>
+      <td>112.97</td>
+      <td>106.76</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[40]</th>
-      <td>-1.82</td>
+      <td>-1.84</td>
       <td>0.48</td>
-      <td>-2.56</td>
-      <td>-1.11</td>
+      <td>-2.57</td>
+      <td>-1.09</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>283.81</td>
-      <td>248.79</td>
-      <td>1.01</td>
+      <td>235.00</td>
+      <td>361.64</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[41]</th>
-      <td>-0.57</td>
-      <td>0.34</td>
-      <td>-1.07</td>
-      <td>0.02</td>
+      <td>-0.58</td>
+      <td>0.35</td>
+      <td>-1.10</td>
+      <td>-0.02</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>467.87</td>
-      <td>364.50</td>
+      <td>369.07</td>
+      <td>477.62</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[42]</th>
-      <td>-0.45</td>
-      <td>0.32</td>
-      <td>-1.07</td>
-      <td>-0.04</td>
+      <td>-0.44</td>
+      <td>0.34</td>
+      <td>-0.99</td>
+      <td>0.10</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>465.16</td>
-      <td>396.79</td>
+      <td>448.30</td>
+      <td>288.36</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[43]</th>
-      <td>-0.32</td>
-      <td>0.33</td>
-      <td>-0.88</td>
-      <td>0.18</td>
+      <td>-0.31</td>
+      <td>0.34</td>
+      <td>-0.83</td>
+      <td>0.21</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>515.56</td>
-      <td>358.42</td>
-      <td>1.00</td>
+      <td>653.01</td>
+      <td>377.80</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[44]</th>
-      <td>0.57</td>
-      <td>0.34</td>
-      <td>0.03</td>
-      <td>1.13</td>
+      <td>0.61</td>
+      <td>0.35</td>
+      <td>0.10</td>
+      <td>1.20</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>436.23</td>
-      <td>304.78</td>
-      <td>1.00</td>
+      <td>0.02</td>
+      <td>379.15</td>
+      <td>347.90</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[45]</th>
-      <td>-0.56</td>
-      <td>0.34</td>
-      <td>-1.18</td>
-      <td>-0.10</td>
+      <td>-0.58</td>
+      <td>0.33</td>
+      <td>-1.09</td>
+      <td>-0.06</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>581.87</td>
-      <td>241.61</td>
-      <td>1.00</td>
+      <td>365.43</td>
+      <td>434.44</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[46]</th>
-      <td>2.08</td>
-      <td>0.54</td>
-      <td>1.24</td>
-      <td>2.85</td>
-      <td>0.05</td>
+      <td>2.01</td>
+      <td>0.50</td>
+      <td>1.30</td>
+      <td>2.80</td>
       <td>0.03</td>
-      <td>143.49</td>
-      <td>229.20</td>
-      <td>1.02</td>
+      <td>0.02</td>
+      <td>286.33</td>
+      <td>297.85</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[47]</th>
-      <td>-0.01</td>
-      <td>0.32</td>
-      <td>-0.49</td>
-      <td>0.49</td>
+      <td>-0.00</td>
+      <td>0.33</td>
+      <td>-0.52</td>
+      <td>0.50</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>570.38</td>
-      <td>336.54</td>
+      <td>636.61</td>
+      <td>374.23</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -2604,24 +2603,24 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>m13.2</th>
       <td>0</td>
-      <td>-106.620519</td>
-      <td>27.298826</td>
+      <td>-107.073967</td>
+      <td>27.738678</td>
       <td>0.000000</td>
       <td>1.000000e+00</td>
-      <td>4.069134</td>
-      <td>0.0000</td>
+      <td>4.132069</td>
+      <td>0.000000</td>
       <td>True</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m13.1</th>
       <td>1</td>
-      <td>-113.619100</td>
-      <td>31.909306</td>
-      <td>6.998581</td>
-      <td>7.727152e-14</td>
-      <td>2.820086</td>
-      <td>2.7357</td>
+      <td>-114.016556</td>
+      <td>32.685135</td>
+      <td>6.942589</td>
+      <td>4.707346e-14</td>
+      <td>2.624665</td>
+      <td>3.233662</td>
       <td>True</td>
       <td>log</td>
     </tr>
@@ -2781,43 +2780,43 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
       <th>mean</th>
       <td>30.500000</td>
       <td>18.750000</td>
-      <td>1.570977</td>
+      <td>1.538624</td>
     </tr>
     <tr>
       <th>std</th>
       <td>17.464249</td>
       <td>12.024868</td>
-      <td>1.401410</td>
+      <td>1.459586</td>
     </tr>
     <tr>
       <th>min</th>
       <td>1.000000</td>
       <td>5.000000</td>
-      <td>-1.559185</td>
+      <td>-2.347911</td>
     </tr>
     <tr>
       <th>25%</th>
       <td>15.750000</td>
       <td>8.750000</td>
-      <td>0.785823</td>
+      <td>0.600533</td>
     </tr>
     <tr>
       <th>50%</th>
       <td>30.500000</td>
       <td>17.500000</td>
-      <td>1.431928</td>
+      <td>1.528202</td>
     </tr>
     <tr>
       <th>75%</th>
       <td>45.250000</td>
       <td>27.500000</td>
-      <td>2.306098</td>
+      <td>2.502113</td>
     </tr>
     <tr>
       <th>max</th>
       <td>60.000000</td>
       <td>35.000000</td>
-      <td>5.073413</td>
+      <td>4.467738</td>
     </tr>
   </tbody>
 </table>
@@ -2994,63 +2993,63 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>1.60</td>
-      <td>0.20</td>
-      <td>1.31</td>
-      <td>1.91</td>
-      <td>0.02</td>
-      <td>0.01</td>
-      <td>134.94</td>
-      <td>82.10</td>
-      <td>1.01</td>
+      <td>1.65</td>
+      <td>0.26</td>
+      <td>1.26</td>
+      <td>2.06</td>
+      <td>0.03</td>
+      <td>0.03</td>
+      <td>58.64</td>
+      <td>175.06</td>
+      <td>1.04</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>1.33</td>
-      <td>0.19</td>
-      <td>1.04</td>
       <td>1.61</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>49.83</td>
-      <td>98.74</td>
-      <td>1.02</td>
+      <td>0.22</td>
+      <td>1.27</td>
+      <td>1.98</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>20.06</td>
+      <td>92.32</td>
+      <td>1.09</td>
     </tr>
     <tr>
       <th>alpha[0]</th>
-      <td>1.39</td>
-      <td>0.80</td>
-      <td>0.01</td>
-      <td>2.62</td>
+      <td>0.84</td>
+      <td>0.85</td>
+      <td>-0.44</td>
+      <td>2.19</td>
       <td>0.08</td>
       <td>0.06</td>
-      <td>103.33</td>
-      <td>196.69</td>
+      <td>101.75</td>
+      <td>209.07</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>2.41</td>
-      <td>0.97</td>
-      <td>0.98</td>
-      <td>3.92</td>
-      <td>0.13</td>
+      <td>1.63</td>
+      <td>0.82</td>
+      <td>0.23</td>
+      <td>2.71</td>
       <td>0.10</td>
-      <td>57.12</td>
-      <td>57.26</td>
-      <td>1.03</td>
+      <td>0.07</td>
+      <td>67.99</td>
+      <td>134.53</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
-      <td>1.52</td>
-      <td>0.85</td>
+      <td>2.85</td>
+      <td>1.34</td>
+      <td>0.93</td>
+      <td>5.13</td>
+      <td>0.22</td>
       <td>0.16</td>
-      <td>2.89</td>
-      <td>0.08</td>
-      <td>0.06</td>
-      <td>103.06</td>
-      <td>175.20</td>
-      <td>1.04</td>
+      <td>37.59</td>
+      <td>90.89</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>...</th>
@@ -3066,62 +3065,62 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     </tr>
     <tr>
       <th>alpha[55]</th>
-      <td>1.29</td>
-      <td>0.40</td>
-      <td>0.71</td>
-      <td>1.99</td>
+      <td>1.83</td>
+      <td>0.46</td>
+      <td>1.10</td>
+      <td>2.58</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>462.88</td>
-      <td>519.08</td>
-      <td>1.00</td>
+      <td>242.48</td>
+      <td>252.02</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>alpha[56]</th>
-      <td>3.75</td>
-      <td>0.76</td>
-      <td>2.48</td>
-      <td>4.83</td>
-      <td>0.08</td>
-      <td>0.06</td>
-      <td>106.32</td>
-      <td>88.59</td>
-      <td>1.01</td>
+      <td>0.56</td>
+      <td>0.35</td>
+      <td>0.07</td>
+      <td>1.17</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>537.52</td>
+      <td>498.93</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[57]</th>
-      <td>1.00</td>
-      <td>0.37</td>
-      <td>0.42</td>
-      <td>1.65</td>
+      <td>1.85</td>
+      <td>0.48</td>
+      <td>1.16</td>
+      <td>2.64</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>0.01</td>
-      <td>424.92</td>
-      <td>197.57</td>
-      <td>1.01</td>
+      <td>236.32</td>
+      <td>341.07</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>alpha[58]</th>
-      <td>3.06</td>
-      <td>0.70</td>
-      <td>1.99</td>
-      <td>4.11</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>128.75</td>
-      <td>261.73</td>
+      <td>0.47</td>
+      <td>0.35</td>
+      <td>-0.08</td>
+      <td>1.02</td>
+      <td>0.02</td>
+      <td>0.01</td>
+      <td>500.95</td>
+      <td>329.50</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[59]</th>
-      <td>1.66</td>
-      <td>0.45</td>
-      <td>0.91</td>
-      <td>2.35</td>
-      <td>0.03</td>
+      <td>1.61</td>
+      <td>0.42</td>
+      <td>0.97</td>
+      <td>2.32</td>
       <td>0.02</td>
-      <td>328.29</td>
-      <td>313.09</td>
+      <td>0.02</td>
+      <td>318.39</td>
+      <td>385.21</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -3334,7 +3333,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fcf352fd7a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fb9e0a8f710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -3381,243 +3380,243 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>0.68</td>
-      <td>0.84</td>
-      <td>-0.55</td>
-      <td>2.03</td>
-      <td>0.28</td>
-      <td>0.20</td>
-      <td>9.35</td>
-      <td>32.07</td>
-      <td>1.19</td>
+      <td>0.36</td>
+      <td>0.78</td>
+      <td>-0.75</td>
+      <td>1.69</td>
+      <td>0.15</td>
+      <td>0.11</td>
+      <td>27.80</td>
+      <td>66.88</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>sigma_a</th>
-      <td>2.07</td>
-      <td>0.64</td>
-      <td>1.21</td>
-      <td>3.29</td>
-      <td>0.15</td>
-      <td>0.11</td>
-      <td>16.89</td>
-      <td>36.37</td>
-      <td>1.11</td>
+      <td>2.18</td>
+      <td>0.88</td>
+      <td>1.02</td>
+      <td>3.56</td>
+      <td>0.47</td>
+      <td>0.37</td>
+      <td>4.19</td>
+      <td>31.04</td>
+      <td>1.44</td>
     </tr>
     <tr>
       <th>sigma_g</th>
-      <td>0.27</td>
+      <td>0.24</td>
       <td>0.20</td>
       <td>0.05</td>
-      <td>0.54</td>
-      <td>0.04</td>
+      <td>0.40</td>
       <td>0.03</td>
-      <td>24.84</td>
-      <td>30.51</td>
-      <td>1.06</td>
+      <td>0.02</td>
+      <td>19.32</td>
+      <td>58.87</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>alpha[0]</th>
-      <td>-0.53</td>
-      <td>0.35</td>
-      <td>-1.06</td>
-      <td>0.06</td>
-      <td>0.09</td>
+      <td>-0.41</td>
+      <td>0.38</td>
+      <td>-0.97</td>
+      <td>0.26</td>
       <td>0.07</td>
-      <td>13.50</td>
-      <td>45.49</td>
-      <td>1.11</td>
+      <td>0.05</td>
+      <td>28.70</td>
+      <td>99.54</td>
+      <td>1.07</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>4.43</td>
-      <td>1.01</td>
-      <td>3.13</td>
-      <td>6.26</td>
-      <td>0.22</td>
-      <td>0.16</td>
-      <td>22.29</td>
-      <td>46.76</td>
-      <td>1.04</td>
+      <td>5.33</td>
+      <td>2.53</td>
+      <td>3.08</td>
+      <td>10.55</td>
+      <td>1.68</td>
+      <td>1.38</td>
+      <td>3.25</td>
+      <td>32.05</td>
+      <td>1.72</td>
     </tr>
     <tr>
       <th>alpha[2]</th>
       <td>-0.74</td>
-      <td>0.36</td>
-      <td>-1.23</td>
-      <td>-0.08</td>
-      <td>0.06</td>
+      <td>0.38</td>
+      <td>-1.26</td>
+      <td>-0.07</td>
+      <td>0.07</td>
       <td>0.05</td>
-      <td>32.07</td>
-      <td>76.52</td>
-      <td>1.04</td>
+      <td>32.45</td>
+      <td>117.86</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[3]</th>
-      <td>-0.81</td>
+      <td>-0.70</td>
       <td>0.36</td>
-      <td>-1.30</td>
-      <td>-0.20</td>
-      <td>0.09</td>
+      <td>-1.28</td>
+      <td>-0.09</td>
       <td>0.06</td>
-      <td>18.21</td>
-      <td>64.54</td>
-      <td>1.09</td>
+      <td>0.04</td>
+      <td>39.37</td>
+      <td>212.46</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[4]</th>
-      <td>-0.49</td>
-      <td>0.36</td>
-      <td>-0.98</td>
-      <td>0.17</td>
-      <td>0.12</td>
-      <td>0.09</td>
-      <td>9.31</td>
-      <td>55.83</td>
-      <td>1.16</td>
+      <td>-0.45</td>
+      <td>0.38</td>
+      <td>-1.00</td>
+      <td>0.20</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>30.69</td>
+      <td>119.64</td>
+      <td>1.05</td>
     </tr>
     <tr>
       <th>alpha[5]</th>
-      <td>0.47</td>
-      <td>0.36</td>
-      <td>-0.18</td>
-      <td>0.99</td>
-      <td>0.08</td>
-      <td>0.06</td>
-      <td>20.22</td>
-      <td>85.77</td>
-      <td>1.09</td>
+      <td>0.52</td>
+      <td>0.39</td>
+      <td>-0.07</td>
+      <td>1.18</td>
+      <td>0.10</td>
+      <td>0.07</td>
+      <td>15.32</td>
+      <td>39.05</td>
+      <td>1.11</td>
     </tr>
     <tr>
       <th>alpha[6]</th>
-      <td>2.01</td>
+      <td>2.08</td>
       <td>0.49</td>
-      <td>1.27</td>
-      <td>2.73</td>
-      <td>0.09</td>
-      <td>0.06</td>
-      <td>31.61</td>
-      <td>48.17</td>
-      <td>1.06</td>
+      <td>1.22</td>
+      <td>2.76</td>
+      <td>0.10</td>
+      <td>0.07</td>
+      <td>25.11</td>
+      <td>91.64</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>gamma[0]</th>
-      <td>-0.17</td>
+      <td>-0.18</td>
       <td>0.21</td>
-      <td>-0.50</td>
-      <td>0.10</td>
-      <td>0.03</td>
+      <td>-0.52</td>
+      <td>0.11</td>
       <td>0.02</td>
-      <td>73.05</td>
-      <td>187.23</td>
-      <td>1.02</td>
+      <td>0.02</td>
+      <td>112.30</td>
+      <td>106.14</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>gamma[1]</th>
-      <td>0.08</td>
-      <td>0.19</td>
-      <td>-0.23</td>
-      <td>0.38</td>
-      <td>0.02</td>
-      <td>0.02</td>
-      <td>80.96</td>
-      <td>138.25</td>
-      <td>1.03</td>
+      <td>0.03</td>
+      <td>0.17</td>
+      <td>-0.28</td>
+      <td>0.26</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>179.65</td>
+      <td>115.11</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>gamma[2]</th>
-      <td>0.10</td>
-      <td>0.21</td>
-      <td>-0.21</td>
-      <td>0.41</td>
-      <td>0.03</td>
+      <td>0.05</td>
+      <td>0.19</td>
+      <td>-0.23</td>
+      <td>0.33</td>
       <td>0.02</td>
-      <td>62.48</td>
-      <td>72.82</td>
-      <td>1.04</td>
+      <td>0.01</td>
+      <td>106.54</td>
+      <td>154.65</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>gamma[3]</th>
-      <td>0.05</td>
-      <td>0.20</td>
-      <td>-0.22</td>
-      <td>0.39</td>
-      <td>0.02</td>
-      <td>0.02</td>
-      <td>96.87</td>
-      <td>163.30</td>
-      <td>1.03</td>
+      <td>-0.01</td>
+      <td>0.18</td>
+      <td>-0.28</td>
+      <td>0.28</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>179.97</td>
+      <td>111.54</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>gamma[4]</th>
-      <td>-0.01</td>
-      <td>0.18</td>
-      <td>-0.31</td>
+      <td>-0.05</td>
+      <td>0.20</td>
+      <td>-0.41</td>
       <td>0.24</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>99.48</td>
-      <td>54.66</td>
-      <td>1.03</td>
+      <td>133.54</td>
+      <td>117.96</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>gamma[5]</th>
-      <td>0.18</td>
-      <td>0.24</td>
-      <td>-0.15</td>
-      <td>0.59</td>
+      <td>0.11</td>
+      <td>0.20</td>
+      <td>-0.19</td>
+      <td>0.41</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>42.13</td>
-      <td>35.01</td>
+      <td>31.88</td>
+      <td>139.24</td>
       <td>1.06</td>
     </tr>
     <tr>
       <th>beta[0]</th>
       <td>-0.06</td>
-      <td>0.29</td>
-      <td>-0.53</td>
-      <td>0.36</td>
-      <td>0.06</td>
-      <td>0.04</td>
-      <td>23.79</td>
-      <td>111.44</td>
+      <td>0.33</td>
+      <td>-0.50</td>
+      <td>0.55</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>23.73</td>
+      <td>71.16</td>
       <td>1.07</td>
     </tr>
     <tr>
       <th>beta[1]</th>
-      <td>0.47</td>
-      <td>0.28</td>
-      <td>0.01</td>
-      <td>0.90</td>
+      <td>0.48</td>
+      <td>0.30</td>
+      <td>0.00</td>
+      <td>0.94</td>
       <td>0.05</td>
-      <td>0.03</td>
-      <td>35.53</td>
-      <td>187.39</td>
+      <td>0.04</td>
+      <td>34.96</td>
+      <td>107.49</td>
       <td>1.05</td>
     </tr>
     <tr>
       <th>beta[2]</th>
-      <td>-0.39</td>
-      <td>0.28</td>
-      <td>-0.77</td>
-      <td>0.13</td>
-      <td>0.04</td>
-      <td>0.03</td>
-      <td>50.01</td>
-      <td>142.12</td>
-      <td>1.05</td>
+      <td>-0.42</td>
+      <td>0.31</td>
+      <td>-0.88</td>
+      <td>0.07</td>
+      <td>0.07</td>
+      <td>0.05</td>
+      <td>22.87</td>
+      <td>144.81</td>
+      <td>1.09</td>
     </tr>
     <tr>
       <th>beta[3]</th>
-      <td>0.37</td>
-      <td>0.26</td>
-      <td>-0.05</td>
-      <td>0.77</td>
+      <td>0.34</td>
+      <td>0.30</td>
+      <td>-0.12</td>
+      <td>0.80</td>
       <td>0.06</td>
       <td>0.04</td>
-      <td>22.68</td>
-      <td>154.88</td>
-      <td>1.08</td>
+      <td>27.25</td>
+      <td>153.60</td>
+      <td>1.07</td>
     </tr>
   </tbody>
 </table>
@@ -3688,7 +3687,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7fcf352fd7a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:6 out of the last 6 calls to &lt;function run_hmc_chain at 0x7fb9e0a8f710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -3779,10 +3778,6 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/arviz/stats/stats.py:695: UserWarning: Estimated shape parameter of Pareto distribution is greater than 0.7 for one or more samples. You should consider using a more robust model, this is because importance sampling is less likely to work well if the marginal posterior and LOO posterior are very different. This is more likely to happen with a non-robust model and highly influential observations.
-  &quot;Estimated shape parameter of Pareto distribution is greater than 0.7 for &quot;
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3814,26 +3809,26 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   </thead>
   <tbody>
     <tr>
-      <th>m13.4</th>
+      <th>m13.5</th>
       <td>0</td>
-      <td>-266.327305</td>
-      <td>11.030288</td>
+      <td>-264.994449</td>
+      <td>8.287208</td>
+      <td>0.00000</td>
+      <td>1.0</td>
+      <td>9.668180</td>
       <td>0.000000</td>
-      <td>1.000000e+00</td>
-      <td>9.750992</td>
-      <td>0.000000</td>
-      <td>True</td>
+      <td>False</td>
       <td>log</td>
     </tr>
     <tr>
-      <th>m13.5</th>
+      <th>m13.4</th>
       <td>1</td>
-      <td>-267.603778</td>
-      <td>10.658836</td>
-      <td>1.276474</td>
-      <td>4.440892e-16</td>
-      <td>9.663864</td>
-      <td>1.098654</td>
+      <td>-266.026859</td>
+      <td>10.492569</td>
+      <td>1.03241</td>
+      <td>0.0</td>
+      <td>9.740499</td>
+      <td>0.890219</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -3921,8 +3916,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;m13.4&#39;: array([-0.0490968 ,  0.46747574, -0.38396844,  0.35717282], dtype=float32),
- &#39;m13.6&#39;: array([-0.16016227,  0.32585338, -0.4858018 ,  0.22108448], dtype=float32)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;m13.4&#39;: array([ 0.00863132,  0.5282708 , -0.33873308,  0.39978296], dtype=float32),
+ &#39;m13.6&#39;: array([-0.21383272,  0.2239805 , -0.50428754,  0.12721713], dtype=float32)}
 </pre></div>
 </div>
 </div>
@@ -4013,27 +4008,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>v</th>
-      <td>-1.062</td>
-      <td>0.766</td>
-      <td>-2.033</td>
-      <td>-0.090</td>
-      <td>0.328</td>
-      <td>0.310</td>
-      <td>6.0</td>
+      <td>-1.075</td>
+      <td>0.937</td>
+      <td>-2.010</td>
+      <td>-0.093</td>
+      <td>0.656</td>
+      <td>0.555</td>
       <td>3.0</td>
-      <td>1.26</td>
+      <td>2.0</td>
+      <td>2.33</td>
     </tr>
     <tr>
       <th>x</th>
-      <td>0.271</td>
-      <td>0.676</td>
-      <td>-0.230</td>
-      <td>1.185</td>
-      <td>0.345</td>
-      <td>0.272</td>
-      <td>6.0</td>
-      <td>29.0</td>
-      <td>1.37</td>
+      <td>-0.433</td>
+      <td>0.599</td>
+      <td>-1.195</td>
+      <td>0.153</td>
+      <td>0.419</td>
+      <td>0.353</td>
+      <td>2.0</td>
+      <td>22.0</td>
+      <td>3.72</td>
     </tr>
   </tbody>
 </table>
@@ -4110,26 +4105,26 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>v</th>
-      <td>0.111</td>
-      <td>3.110</td>
-      <td>-4.556</td>
-      <td>5.140</td>
+      <td>-0.063</td>
+      <td>3.053</td>
+      <td>-5.217</td>
+      <td>4.330</td>
       <td>0.086</td>
-      <td>0.109</td>
-      <td>1286.0</td>
-      <td>430.0</td>
+      <td>0.125</td>
+      <td>1279.0</td>
+      <td>480.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>z</th>
-      <td>-0.031</td>
-      <td>1.045</td>
-      <td>-1.724</td>
-      <td>1.665</td>
-      <td>0.093</td>
-      <td>0.066</td>
-      <td>129.0</td>
-      <td>183.0</td>
+      <td>0.001</td>
+      <td>1.043</td>
+      <td>-1.492</td>
+      <td>1.772</td>
+      <td>0.084</td>
+      <td>0.059</td>
+      <td>155.0</td>
+      <td>240.0</td>
       <td>1.01</td>
     </tr>
   </tbody>
@@ -4188,15 +4183,15 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7fcf35bd6170&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 11 calls to &lt;function _random_binomial at 0x7fb9e13650e0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
-array([[-291.93396, -292.0967 ],
-       [-297.03925, -297.202  ]], dtype=float32)&gt;
+array([[-215.16406, -211.91098],
+       [-248.13425, -244.88116]], dtype=float32)&gt;
 </pre></div>
 </div>
 </div>
@@ -4272,243 +4267,243 @@ array([[-291.93396, -292.0967 ],
   <tbody>
     <tr>
       <th>a_bar</th>
-      <td>0.515</td>
-      <td>0.655</td>
-      <td>-0.422</td>
-      <td>1.587</td>
-      <td>0.122</td>
-      <td>0.087</td>
-      <td>30.0</td>
-      <td>60.0</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>sigma_a</th>
-      <td>2.040</td>
-      <td>0.529</td>
-      <td>1.182</td>
-      <td>2.799</td>
-      <td>0.087</td>
-      <td>0.062</td>
-      <td>31.0</td>
-      <td>157.0</td>
-      <td>1.07</td>
-    </tr>
-    <tr>
-      <th>sigma_g</th>
-      <td>0.267</td>
-      <td>0.169</td>
-      <td>0.038</td>
-      <td>0.524</td>
-      <td>0.029</td>
-      <td>0.020</td>
-      <td>25.0</td>
-      <td>99.0</td>
-      <td>1.10</td>
-    </tr>
-    <tr>
-      <th>z[0]</th>
-      <td>-0.457</td>
-      <td>0.323</td>
-      <td>-1.015</td>
-      <td>-0.013</td>
-      <td>0.057</td>
-      <td>0.041</td>
-      <td>32.0</td>
-      <td>88.0</td>
+      <td>0.217</td>
+      <td>0.706</td>
+      <td>-0.919</td>
+      <td>1.340</td>
+      <td>0.163</td>
+      <td>0.117</td>
+      <td>20.0</td>
+      <td>33.0</td>
       <td>1.05</td>
     </tr>
     <tr>
+      <th>sigma_a</th>
+      <td>2.165</td>
+      <td>0.620</td>
+      <td>1.399</td>
+      <td>3.317</td>
+      <td>0.091</td>
+      <td>0.066</td>
+      <td>47.0</td>
+      <td>42.0</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>sigma_g</th>
+      <td>0.227</td>
+      <td>0.175</td>
+      <td>0.016</td>
+      <td>0.415</td>
+      <td>0.037</td>
+      <td>0.026</td>
+      <td>15.0</td>
+      <td>39.0</td>
+      <td>1.12</td>
+    </tr>
+    <tr>
+      <th>z[0]</th>
+      <td>-0.317</td>
+      <td>0.345</td>
+      <td>-0.767</td>
+      <td>0.276</td>
+      <td>0.074</td>
+      <td>0.053</td>
+      <td>22.0</td>
+      <td>43.0</td>
+      <td>1.06</td>
+    </tr>
+    <tr>
       <th>z[1]</th>
-      <td>2.164</td>
-      <td>0.624</td>
-      <td>1.029</td>
-      <td>2.972</td>
-      <td>0.086</td>
-      <td>0.061</td>
-      <td>50.0</td>
-      <td>58.0</td>
-      <td>1.10</td>
+      <td>2.232</td>
+      <td>0.614</td>
+      <td>1.241</td>
+      <td>3.184</td>
+      <td>0.152</td>
+      <td>0.109</td>
+      <td>14.0</td>
+      <td>13.0</td>
+      <td>1.14</td>
     </tr>
     <tr>
       <th>z[2]</th>
-      <td>-0.626</td>
-      <td>0.337</td>
-      <td>-1.091</td>
-      <td>-0.044</td>
-      <td>0.066</td>
-      <td>0.053</td>
-      <td>26.0</td>
-      <td>83.0</td>
-      <td>1.07</td>
+      <td>-0.448</td>
+      <td>0.366</td>
+      <td>-0.883</td>
+      <td>0.183</td>
+      <td>0.075</td>
+      <td>0.054</td>
+      <td>24.0</td>
+      <td>41.0</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>z[3]</th>
-      <td>-0.618</td>
-      <td>0.351</td>
-      <td>-1.129</td>
-      <td>-0.103</td>
-      <td>0.061</td>
-      <td>0.048</td>
-      <td>32.0</td>
-      <td>94.0</td>
+      <td>-0.469</td>
+      <td>0.371</td>
+      <td>-0.944</td>
+      <td>0.156</td>
+      <td>0.078</td>
+      <td>0.056</td>
+      <td>23.0</td>
+      <td>42.0</td>
       <td>1.06</td>
     </tr>
     <tr>
       <th>z[4]</th>
-      <td>-0.464</td>
-      <td>0.317</td>
-      <td>-0.885</td>
-      <td>0.084</td>
-      <td>0.056</td>
-      <td>0.040</td>
-      <td>32.0</td>
-      <td>114.0</td>
+      <td>-0.316</td>
+      <td>0.340</td>
+      <td>-0.728</td>
+      <td>0.253</td>
+      <td>0.070</td>
+      <td>0.050</td>
+      <td>24.0</td>
+      <td>73.0</td>
       <td>1.05</td>
     </tr>
     <tr>
       <th>z[5]</th>
-      <td>0.034</td>
-      <td>0.300</td>
-      <td>-0.467</td>
-      <td>0.483</td>
-      <td>0.043</td>
-      <td>0.031</td>
-      <td>47.0</td>
-      <td>138.0</td>
-      <td>1.04</td>
+      <td>0.167</td>
+      <td>0.332</td>
+      <td>-0.339</td>
+      <td>0.614</td>
+      <td>0.081</td>
+      <td>0.058</td>
+      <td>19.0</td>
+      <td>73.0</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>z[6]</th>
-      <td>0.834</td>
-      <td>0.400</td>
-      <td>0.193</td>
-      <td>1.363</td>
-      <td>0.052</td>
-      <td>0.037</td>
-      <td>55.0</td>
-      <td>57.0</td>
-      <td>1.03</td>
-    </tr>
-    <tr>
-      <th>x[0]</th>
-      <td>-0.748</td>
-      <td>0.789</td>
-      <td>-2.139</td>
-      <td>0.313</td>
-      <td>0.107</td>
-      <td>0.076</td>
-      <td>54.0</td>
-      <td>88.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>x[1]</th>
-      <td>0.167</td>
-      <td>0.692</td>
-      <td>-0.812</td>
-      <td>1.246</td>
-      <td>0.115</td>
-      <td>0.082</td>
-      <td>38.0</td>
-      <td>76.0</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>x[2]</th>
-      <td>0.379</td>
-      <td>0.692</td>
-      <td>-0.637</td>
-      <td>1.561</td>
-      <td>0.224</td>
-      <td>0.164</td>
-      <td>10.0</td>
-      <td>79.0</td>
-      <td>1.15</td>
-    </tr>
-    <tr>
-      <th>x[3]</th>
-      <td>-0.235</td>
-      <td>0.666</td>
-      <td>-1.241</td>
-      <td>0.743</td>
-      <td>0.199</td>
-      <td>0.144</td>
-      <td>11.0</td>
-      <td>71.0</td>
-      <td>1.17</td>
-    </tr>
-    <tr>
-      <th>x[4]</th>
-      <td>-0.003</td>
-      <td>0.661</td>
-      <td>-1.026</td>
-      <td>1.018</td>
-      <td>0.119</td>
-      <td>0.085</td>
+      <td>0.913</td>
+      <td>0.402</td>
+      <td>0.237</td>
+      <td>1.403</td>
+      <td>0.064</td>
+      <td>0.046</td>
       <td>26.0</td>
-      <td>114.0</td>
+      <td>104.0</td>
       <td>1.10</td>
     </tr>
     <tr>
+      <th>x[0]</th>
+      <td>-0.580</td>
+      <td>0.851</td>
+      <td>-1.839</td>
+      <td>0.518</td>
+      <td>0.178</td>
+      <td>0.128</td>
+      <td>24.0</td>
+      <td>34.0</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>x[1]</th>
+      <td>0.116</td>
+      <td>0.835</td>
+      <td>-1.049</td>
+      <td>1.692</td>
+      <td>0.179</td>
+      <td>0.128</td>
+      <td>23.0</td>
+      <td>30.0</td>
+      <td>1.08</td>
+    </tr>
+    <tr>
+      <th>x[2]</th>
+      <td>0.517</td>
+      <td>0.853</td>
+      <td>-0.786</td>
+      <td>1.923</td>
+      <td>0.179</td>
+      <td>0.128</td>
+      <td>24.0</td>
+      <td>84.0</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <th>x[3]</th>
+      <td>-0.053</td>
+      <td>0.740</td>
+      <td>-1.363</td>
+      <td>1.040</td>
+      <td>0.124</td>
+      <td>0.089</td>
+      <td>35.0</td>
+      <td>53.0</td>
+      <td>1.07</td>
+    </tr>
+    <tr>
+      <th>x[4]</th>
+      <td>-0.288</td>
+      <td>0.959</td>
+      <td>-1.974</td>
+      <td>1.106</td>
+      <td>0.189</td>
+      <td>0.195</td>
+      <td>27.0</td>
+      <td>40.0</td>
+      <td>1.09</td>
+    </tr>
+    <tr>
       <th>x[5]</th>
-      <td>0.838</td>
-      <td>0.796</td>
-      <td>-0.497</td>
-      <td>1.884</td>
-      <td>0.237</td>
-      <td>0.172</td>
-      <td>11.0</td>
-      <td>49.0</td>
-      <td>1.15</td>
+      <td>0.368</td>
+      <td>0.741</td>
+      <td>-0.467</td>
+      <td>1.847</td>
+      <td>0.143</td>
+      <td>0.103</td>
+      <td>27.0</td>
+      <td>68.0</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>b[0]</th>
-      <td>-0.148</td>
-      <td>0.307</td>
-      <td>-0.618</td>
-      <td>0.354</td>
-      <td>0.033</td>
-      <td>0.023</td>
-      <td>88.0</td>
-      <td>177.0</td>
-      <td>1.01</td>
+      <td>-0.121</td>
+      <td>0.296</td>
+      <td>-0.572</td>
+      <td>0.313</td>
+      <td>0.042</td>
+      <td>0.030</td>
+      <td>49.0</td>
+      <td>117.0</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>b[1]</th>
-      <td>0.394</td>
-      <td>0.296</td>
-      <td>-0.002</td>
-      <td>0.903</td>
-      <td>0.031</td>
-      <td>0.022</td>
-      <td>90.0</td>
-      <td>128.0</td>
-      <td>1.01</td>
+      <td>0.409</td>
+      <td>0.286</td>
+      <td>-0.025</td>
+      <td>0.826</td>
+      <td>0.055</td>
+      <td>0.040</td>
+      <td>25.0</td>
+      <td>181.0</td>
+      <td>1.08</td>
     </tr>
     <tr>
       <th>b[2]</th>
-      <td>-0.473</td>
-      <td>0.293</td>
-      <td>-0.928</td>
-      <td>-0.051</td>
-      <td>0.029</td>
-      <td>0.021</td>
-      <td>102.0</td>
-      <td>203.0</td>
-      <td>1.03</td>
+      <td>-0.464</td>
+      <td>0.273</td>
+      <td>-0.814</td>
+      <td>0.044</td>
+      <td>0.050</td>
+      <td>0.036</td>
+      <td>31.0</td>
+      <td>95.0</td>
+      <td>1.06</td>
     </tr>
     <tr>
       <th>b[3]</th>
-      <td>0.239</td>
-      <td>0.300</td>
-      <td>-0.191</td>
-      <td>0.733</td>
-      <td>0.032</td>
-      <td>0.023</td>
-      <td>85.0</td>
-      <td>145.0</td>
-      <td>1.01</td>
+      <td>0.285</td>
+      <td>0.308</td>
+      <td>-0.127</td>
+      <td>0.791</td>
+      <td>0.042</td>
+      <td>0.030</td>
+      <td>54.0</td>
+      <td>89.0</td>
+      <td>1.06</td>
     </tr>
   </tbody>
 </table>
@@ -4553,10 +4548,10 @@ array([[-291.93396, -292.0967 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.97875744, 0.9873317 , 0.97052467, 0.986063  ], dtype=float32)&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.9808446 , 0.9888279 , 0.97401476, 0.9870116 ], dtype=float32)&gt;,
  &lt;tf.Tensor: shape=(2, 4), dtype=float32, numpy=
- array([[0.94560325, 0.9659693 , 0.92561615, 0.962708  ],
-        [0.99786574, 0.998611  , 0.99650747, 0.99830693]], dtype=float32)&gt;)
+ array([[0.9284419 , 0.9551405 , 0.89950603, 0.94793683],
+        [0.99996734, 0.9999821 , 0.99995804, 0.99997854]], dtype=float32)&gt;)
 </pre></div>
 </div>
 </div>
@@ -4571,17 +4566,17 @@ array([[-291.93396, -292.0967 ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a_bar&#39;: array([0.37307966, 0.37307966, 0.37307966, 0.37307966, 0.37307966],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a_bar&#39;: array([1.2548262, 1.2548262, 1.2548262, 1.2548262, 1.2548262],
        dtype=float32),
- &#39;sigma_a&#39;: array([1.3673637, 1.3673637, 1.3673637, 1.3673637, 1.3673637],
+ &#39;sigma_a&#39;: array([3.7267454, 3.7267454, 3.7267454, 3.7267454, 3.7267454],
        dtype=float32),
- &#39;sigma_g&#39;: array([0.04352055, 0.04352055, 0.04352055, 0.04352055, 0.04352055],
+ &#39;sigma_g&#39;: array([0.05609225, 0.05609225, 0.05609225, 0.05609225, 0.05609225],
        dtype=float32),
- &#39;alpha&#39;: array([-0.83744746,  4.637912  , -0.6818117 , -1.1963792 , -0.2775007 ],
+ &#39;alpha&#39;: array([-0.22248413,  9.33521   , -0.2770499 , -0.3217228 ,  0.11383999],
        dtype=float32),
- &#39;gamma&#39;: array([ 0.00560713,  0.06131982,  0.03578348, -0.05057431,  0.01438229],
+ &#39;gamma&#39;: array([-0.08684478, -0.058831  ,  0.05478607,  0.01757792, -0.08170889],
        dtype=float32),
- &#39;beta&#39;: array([-0.33527055,  0.3127951 , -0.3968166 ,  0.5175907 , -0.33527055],
+ &#39;beta&#39;: array([-0.69528484,  0.18587136, -1.4063146 ,  0.19316544, -0.69528484],
        dtype=float32)}
 </pre></div>
 </div>
