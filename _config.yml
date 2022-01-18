@@ -3,6 +3,9 @@ title: Statistical Rethinking (2nd Edition)
 author: Richard McElreath
 logo: logo.png
 
+execute:
+  timeout: 300
+
 latex:
   latex_documents:
     targetname: book.tex
