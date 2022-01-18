@@ -930,8 +930,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:29:19.744988: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:29:19.745026: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:42:25.104681: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:42:25.104726: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -1087,10 +1087,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:29:22.193055: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:29:22.193086: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:29:22.193107: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-18 03:29:22.193416: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:42:27.528495: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:42:27.528531: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:42:27.528554: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az173-245): /proc/driver/nvidia/version does not exist
+2022-01-18 03:42:27.528858: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1198,38 +1198,38 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>0.529</td>
-      <td>0.110</td>
-      <td>0.360</td>
-      <td>0.693</td>
+      <td>0.528</td>
+      <td>0.107</td>
+      <td>0.361</td>
+      <td>0.684</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>4586.0</td>
-      <td>2819.0</td>
+      <td>6639.0</td>
+      <td>2834.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>0.165</td>
-      <td>0.123</td>
-      <td>-0.007</td>
-      <td>0.362</td>
-      <td>0.002</td>
-      <td>0.002</td>
-      <td>4129.0</td>
-      <td>2830.0</td>
+      <td>0.168</td>
+      <td>0.118</td>
+      <td>0.003</td>
+      <td>0.353</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>6397.0</td>
+      <td>3287.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>-1.401</td>
-      <td>0.384</td>
-      <td>-2.040</td>
-      <td>-0.876</td>
-      <td>0.015</td>
-      <td>0.011</td>
-      <td>578.0</td>
-      <td>266.0</td>
+      <td>-1.399</td>
+      <td>0.374</td>
+      <td>-1.990</td>
+      <td>-0.822</td>
+      <td>0.012</td>
+      <td>0.009</td>
+      <td>847.0</td>
+      <td>628.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1336,7 +1336,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5276143641092472
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5339334846635939
 </pre></div>
 </div>
 </div>
@@ -1617,502 +1617,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f4fbd877b90&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2023</span><span class="o">/</span><span class="mf">3035999005.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">posterior_7_3</span><span class="p">,</span> <span class="n">trace_7_3</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">jdc_7_3</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">posterior_7_4</span><span class="p">,</span> <span class="n">trace_7_4</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">jdc_7_4</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">posterior_7_5</span><span class="p">,</span> <span class="n">trace_7_5</span> <span class="o">=</span> <span class="n">compute_brain_body_posterior_for_simulation</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">jdc_7_5</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">posterior_7_6</span><span class="p">,</span> <span class="n">trace_7_6</span> <span class="o">=</span> <span class="n">compute_posterior_for_76_simulation</span><span class="p">(</span><span class="n">jdc_7_6</span><span class="p">)</span>
-
-<span class="nn">/tmp/ipykernel_2023/2077961507.py</span> in <span class="ni">compute_brain_body_posterior_for_simulation</span><span class="nt">(beta_degree, jdc)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span>             <span class="n">burnin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>             <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">32</span>             <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> 
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">return</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">trace</span>
-
-<span class="nn">~/work/rethinking-tensorflow-probability/rethinking-tensorflow-probability/rethinking/mcmc/_helpers.py</span> in <span class="ni">sample_posterior</span><span class="nt">(jdc, observed_data, params, init_state, bijectors, step_size, num_chains, num_samples, burnin)</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>         <span class="n">target_log_prob_fn</span><span class="o">=</span><span class="n">target_log_prob_fn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>         <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">110</span>         <span class="n">burnin</span><span class="o">=</span><span class="n">burnin</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="n">filtered_tb</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span>       <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span>       <span class="n">filtered_tb</span> <span class="o">=</span> <span class="n">_process_traceback_frames</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">__traceback__</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">908</span> 
-<span class="g g-Whitespace">    </span><span class="mi">909</span>       <span class="k">with</span> <span class="n">OptionalXlaContext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jit_compile</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">910</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">911</span> 
-<span class="g g-Whitespace">    </span><span class="mi">912</span>       <span class="n">new_tracing_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experimental_get_tracing_count</span><span class="p">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">_call</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">947</span>       <span class="c1"># In this case we have not created variables on the first call. So we can</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>       <span class="c1"># run the first trace but we should fail if variables are created.</span>
-<span class="ne">--&gt; </span><span class="mi">949</span>       <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stateful_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">950</span>       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_created_variables</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ALLOW_DYNAMIC_VARIABLE_CREATION</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">951</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Creating variables on a non-first call to a function&quot;</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3127</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3128</span>       <span class="p">(</span><span class="n">graph_function</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">3129</span>        <span class="n">filtered_flat_args</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_define_function</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3130</span>     <span class="k">return</span> <span class="n">graph_function</span><span class="o">.</span><span class="n">_call_flat</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">3131</span>         <span class="n">filtered_flat_args</span><span class="p">,</span> <span class="n">captured_inputs</span><span class="o">=</span><span class="n">graph_function</span><span class="o">.</span><span class="n">captured_inputs</span><span class="p">)</span>  <span class="c1"># pylint: disable=protected-access</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_maybe_define_function</span><span class="nt">(self, args, kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3555</span> 
-<span class="g g-Whitespace">   </span><span class="mi">3556</span>           <span class="bp">self</span><span class="o">.</span><span class="n">_function_cache</span><span class="o">.</span><span class="n">missed</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">call_context_key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">3557</span>           <span class="n">graph_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_graph_function</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3558</span>           <span class="bp">self</span><span class="o">.</span><span class="n">_function_cache</span><span class="o">.</span><span class="n">primary</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">graph_function</span>
-<span class="g g-Whitespace">   </span><span class="mi">3559</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/function.py</span> in <span class="ni">_create_graph_function</span><span class="nt">(self, args, kwargs, override_flat_arg_shapes)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3400</span>             <span class="n">arg_names</span><span class="o">=</span><span class="n">arg_names</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3401</span>             <span class="n">override_flat_arg_shapes</span><span class="o">=</span><span class="n">override_flat_arg_shapes</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">3402</span>             <span class="n">capture_by_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_capture_by_value</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">3403</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_function_attributes</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3404</span>         <span class="n">function_spec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">function_spec</span><span class="p">,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ni">func_graph_from_py_func</span><span class="nt">(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes, acd_record_initial_resource_uses)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1141</span>         <span class="n">_</span><span class="p">,</span> <span class="n">original_func</span> <span class="o">=</span> <span class="n">tf_decorator</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">python_func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1142</span> 
-<span class="ne">-&gt; </span><span class="mi">1143</span>       <span class="n">func_outputs</span> <span class="o">=</span> <span class="n">python_func</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1145</span>       <span class="c1"># invariant: `func_outputs` contains only Tensors, CompositeTensors,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ni">wrapped_fn</span><span class="nt">(*args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">670</span>         <span class="c1"># the function a weak reference to itself to avoid a reference cycle.</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="k">with</span> <span class="n">OptionalXlaContext</span><span class="p">(</span><span class="n">compile_with_xla</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">672</span>           <span class="n">out</span> <span class="o">=</span> <span class="n">weak_wrapped_fn</span><span class="p">()</span><span class="o">.</span><span class="n">__wrapped__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="k">return</span> <span class="n">out</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span> 
-
-<span class="nn">~/work/rethinking-tensorflow-probability/rethinking-tensorflow-probability/rethinking/mcmc/_helpers.py</span> in <span class="ni">run_hmc_chain</span><span class="nt">(init_state, bijectors, step_size, target_log_prob_fn, num_leapfrog_steps, num_samples, burnin)</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span>         <span class="n">current_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span>         <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">78</span>         <span class="n">trace_fn</span><span class="o">=</span><span class="n">_trace_fn_transitioned</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/sample.py</span> in <span class="ni">sample_chain</span><span class="nt">(num_results, current_state, previous_kernel_results, kernel, num_burnin_steps, num_steps_between_results, trace_fn, return_final_kernel_results, parallel_iterations, seed, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">370</span>             <span class="n">seed_state_and_results</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">trace_fn</span><span class="p">(</span><span class="o">*</span><span class="n">seed_state_and_results</span><span class="p">[</span><span class="mi">1</span><span class="p">:])),</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span>         <span class="c1"># pylint: enable=g-long-lambda</span>
-<span class="ne">--&gt; </span><span class="mi">372</span>         <span class="n">parallel_iterations</span><span class="o">=</span><span class="n">parallel_iterations</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span> 
-<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="k">if</span> <span class="n">return_final_kernel_results</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/loop_util.py</span> in <span class="ni">trace_scan</span><span class="nt">(loop_fn, initial_state, elems, trace_fn, trace_criterion_fn, static_trace_allocation_size, condition_fn, parallel_iterations, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="n">body</span><span class="o">=</span><span class="n">_body</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="n">loop_vars</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">trace_arrays</span><span class="p">),</span>
-<span class="ne">--&gt; </span><span class="mi">223</span>         <span class="n">parallel_iterations</span><span class="o">=</span><span class="n">parallel_iterations</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span> 
-<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="c1"># unflatten</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/deprecation.py</span> in <span class="ni">new_func</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">618</span>                   <span class="n">func</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_value</span><span class="p">,</span> <span class="s1">&#39;in a future version&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span>                   <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;after </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">date</span><span class="p">),</span> <span class="n">instructions</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">620</span>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">621</span> 
-<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="n">doc</span> <span class="o">=</span> <span class="n">_add_deprecated_arg_value_notice_to_docstring</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/control_flow_ops.py</span> in <span class="ni">while_loop_v2</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, back_prop, swap_memory, maximum_iterations, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2556</span>       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2557</span>       <span class="n">maximum_iterations</span><span class="o">=</span><span class="n">maximum_iterations</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2558</span>       <span class="n">return_same_structure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2559</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2560</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/control_flow_ops.py</span> in <span class="ni">while_loop</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, back_prop, swap_memory, name, maximum_iterations, return_same_structure)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2753</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2754</span>         <span class="n">return_same_structure</span><span class="o">=</span><span class="n">return_same_structure</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2755</span>         <span class="n">back_prop</span><span class="o">=</span><span class="n">back_prop</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2756</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2757</span>   <span class="k">with</span> <span class="n">ops</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;while&quot;</span><span class="p">,</span> <span class="n">loop_vars</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/while_v2.py</span> in <span class="ni">while_loop</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, maximum_iterations, name, return_same_structure, back_prop)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>             <span class="n">body_name</span><span class="p">,</span> <span class="n">collections</span><span class="o">=</span><span class="n">ops</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span><span class="o">.</span><span class="n">_collections</span><span class="p">),</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="n">add_control_dependencies</span><span class="o">=</span><span class="n">add_control_dependencies</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">223</span>         <span class="n">acd_record_initial_resource_uses</span><span class="o">=</span><span class="n">stateful_parallelism</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="c1"># Add external captures of body to the list of loop vars.</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="c1"># Note that external tensors will be treated as loop invariants, i.e.,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ni">func_graph_from_py_func</span><span class="nt">(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes, acd_record_initial_resource_uses)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1141</span>         <span class="n">_</span><span class="p">,</span> <span class="n">original_func</span> <span class="o">=</span> <span class="n">tf_decorator</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">python_func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1142</span> 
-<span class="ne">-&gt; </span><span class="mi">1143</span>       <span class="n">func_outputs</span> <span class="o">=</span> <span class="n">python_func</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1145</span>       <span class="c1"># invariant: `func_outputs` contains only Tensors, CompositeTensors,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/while_v2.py</span> in <span class="ni">wrapped_body</span><span class="nt">(loop_counter, maximum_iterations_arg, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span>       <span class="c1"># `orig_loop_vars` and `args`, converts flows in `args` to TensorArrays</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>       <span class="c1"># and packs it into the structure of `orig_loop_vars`.</span>
-<span class="ne">--&gt; </span><span class="mi">200</span>       <span class="n">outputs</span> <span class="o">=</span> <span class="n">body</span><span class="p">(</span><span class="o">*</span><span class="n">_pack_sequence_as</span><span class="p">(</span><span class="n">orig_loop_vars</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>       <span class="k">if</span> <span class="ow">not</span> <span class="n">nest</span><span class="o">.</span><span class="n">is_sequence_or_composite</span><span class="p">(</span><span class="n">outputs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outputs</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/loop_util.py</span> in <span class="ni">_body</span><span class="nt">(i, state, num_steps_traced, trace_arrays)</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">def</span> <span class="nf">_body</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">num_steps_traced</span><span class="p">,</span> <span class="n">trace_arrays</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>       <span class="n">elem</span> <span class="o">=</span> <span class="n">elems_array</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">204</span>       <span class="n">state</span> <span class="o">=</span> <span class="n">loop_fn</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">elem</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span> 
-<span class="g g-Whitespace">    </span><span class="mi">206</span>       <span class="n">trace_arrays</span><span class="p">,</span> <span class="n">num_steps_traced</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/sample.py</span> in <span class="ni">_trace_scan_fn</span><span class="nt">(seed_state_and_results, num_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">354</span>           <span class="n">body_fn</span><span class="o">=</span><span class="n">_seeded_one_step</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span>           <span class="n">initial_loop_vars</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">seed_state_and_results</span><span class="p">),</span>
-<span class="ne">--&gt; </span><span class="mi">356</span>           <span class="n">parallel_iterations</span><span class="o">=</span><span class="n">parallel_iterations</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">357</span>       <span class="k">return</span> <span class="n">seed</span><span class="p">,</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">current_kernel_results</span>
-<span class="g g-Whitespace">    </span><span class="mi">358</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/loop_util.py</span> in <span class="ni">smart_for_loop</span><span class="nt">(loop_num_iter, body_fn, initial_loop_vars, parallel_iterations, unroll_threshold, name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>           <span class="n">body</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">body_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)),</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>           <span class="n">loop_vars</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span> <span class="o">+</span> <span class="n">initial_loop_vars</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">94</span>           <span class="n">parallel_iterations</span><span class="o">=</span><span class="n">parallel_iterations</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>       <span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">initial_loop_vars</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/deprecation.py</span> in <span class="ni">new_func</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">618</span>                   <span class="n">func</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_value</span><span class="p">,</span> <span class="s1">&#39;in a future version&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span>                   <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;after </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">date</span><span class="p">),</span> <span class="n">instructions</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">620</span>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">621</span> 
-<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="n">doc</span> <span class="o">=</span> <span class="n">_add_deprecated_arg_value_notice_to_docstring</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/control_flow_ops.py</span> in <span class="ni">while_loop_v2</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, back_prop, swap_memory, maximum_iterations, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2556</span>       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2557</span>       <span class="n">maximum_iterations</span><span class="o">=</span><span class="n">maximum_iterations</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2558</span>       <span class="n">return_same_structure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2559</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2560</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/control_flow_ops.py</span> in <span class="ni">while_loop</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, back_prop, swap_memory, name, maximum_iterations, return_same_structure)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2753</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2754</span>         <span class="n">return_same_structure</span><span class="o">=</span><span class="n">return_same_structure</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2755</span>         <span class="n">back_prop</span><span class="o">=</span><span class="n">back_prop</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2756</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2757</span>   <span class="k">with</span> <span class="n">ops</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;while&quot;</span><span class="p">,</span> <span class="n">loop_vars</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/while_v2.py</span> in <span class="ni">while_loop</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, maximum_iterations, name, return_same_structure, back_prop)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>             <span class="n">body_name</span><span class="p">,</span> <span class="n">collections</span><span class="o">=</span><span class="n">ops</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span><span class="o">.</span><span class="n">_collections</span><span class="p">),</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="n">add_control_dependencies</span><span class="o">=</span><span class="n">add_control_dependencies</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">223</span>         <span class="n">acd_record_initial_resource_uses</span><span class="o">=</span><span class="n">stateful_parallelism</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="c1"># Add external captures of body to the list of loop vars.</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="c1"># Note that external tensors will be treated as loop invariants, i.e.,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ni">func_graph_from_py_func</span><span class="nt">(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes, acd_record_initial_resource_uses)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1141</span>         <span class="n">_</span><span class="p">,</span> <span class="n">original_func</span> <span class="o">=</span> <span class="n">tf_decorator</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">python_func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1142</span> 
-<span class="ne">-&gt; </span><span class="mi">1143</span>       <span class="n">func_outputs</span> <span class="o">=</span> <span class="n">python_func</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1145</span>       <span class="c1"># invariant: `func_outputs` contains only Tensors, CompositeTensors,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/while_v2.py</span> in <span class="ni">wrapped_body</span><span class="nt">(loop_counter, maximum_iterations_arg, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span>       <span class="c1"># `orig_loop_vars` and `args`, converts flows in `args` to TensorArrays</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>       <span class="c1"># and packs it into the structure of `orig_loop_vars`.</span>
-<span class="ne">--&gt; </span><span class="mi">200</span>       <span class="n">outputs</span> <span class="o">=</span> <span class="n">body</span><span class="p">(</span><span class="o">*</span><span class="n">_pack_sequence_as</span><span class="p">(</span><span class="n">orig_loop_vars</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>       <span class="k">if</span> <span class="ow">not</span> <span class="n">nest</span><span class="o">.</span><span class="n">is_sequence_or_composite</span><span class="p">(</span><span class="n">outputs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outputs</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/loop_util.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(i, *args)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>       <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>           <span class="n">cond</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loop_num_iter</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">92</span>           <span class="n">body</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">body_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)),</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>           <span class="n">loop_vars</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span> <span class="o">+</span> <span class="n">initial_loop_vars</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span>           <span class="n">parallel_iterations</span><span class="o">=</span><span class="n">parallel_iterations</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/sample.py</span> in <span class="ni">_seeded_one_step</span><span class="nt">(seed, *state_and_results)</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span>       <span class="n">one_step_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">step_seed</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_seeded</span> <span class="k">else</span> <span class="p">{}</span>
-<span class="g g-Whitespace">    </span><span class="mi">348</span>       <span class="k">return</span> <span class="p">[</span><span class="n">passalong_seed</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
-<span class="ne">--&gt; </span><span class="mi">349</span>           <span class="n">kernel</span><span class="o">.</span><span class="n">one_step</span><span class="p">(</span><span class="o">*</span><span class="n">state_and_results</span><span class="p">,</span> <span class="o">**</span><span class="n">one_step_kwargs</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">350</span> 
-<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="k">def</span> <span class="nf">_trace_scan_fn</span><span class="p">(</span><span class="n">seed_state_and_results</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/simple_step_size_adaptation.py</span> in <span class="ni">one_step</span><span class="nt">(self, current_state, previous_kernel_results, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">353</span>       <span class="n">inner_kwargs</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">dict</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">354</span>       <span class="n">new_state</span><span class="p">,</span> <span class="n">new_inner_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_kernel</span><span class="o">.</span><span class="n">one_step</span><span class="p">(</span>
-<span class="ne">--&gt; </span><span class="mi">355</span>           <span class="n">current_state</span><span class="p">,</span> <span class="n">inner_results</span><span class="p">,</span> <span class="o">**</span><span class="n">inner_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">356</span> 
-<span class="g g-Whitespace">    </span><span class="mi">357</span>       <span class="c1"># Get the new step size.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/transformed_kernel.py</span> in <span class="ni">one_step</span><span class="nt">(self, current_state, previous_kernel_results, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>           <span class="n">transformed_prev_state</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>           <span class="n">previous_kernel_results</span><span class="o">.</span><span class="n">inner_results</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">403</span>           <span class="o">**</span><span class="n">inner_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>       <span class="n">transformed_next_state_parts</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>           <span class="n">transformed_next_state</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/hmc.py</span> in <span class="ni">one_step</span><span class="nt">(self, current_state, previous_kernel_results, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">548</span>     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">control_dependencies</span><span class="p">(</span><span class="n">previous_step_size_assign</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">549</span>       <span class="n">next_state</span><span class="p">,</span> <span class="n">kernel_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_impl</span><span class="o">.</span><span class="n">one_step</span><span class="p">(</span>
-<span class="ne">--&gt; </span><span class="mi">550</span>           <span class="n">current_state</span><span class="p">,</span> <span class="n">previous_kernel_results</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span>       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size_update_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">552</span>         <span class="n">step_size_assign</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size_update_fn</span><span class="p">(</span>  <span class="c1"># pylint: disable=not-callable</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/metropolis_hastings.py</span> in <span class="ni">one_step</span><span class="nt">(self, current_state, previous_kernel_results, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span>           <span class="n">current_state</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span>           <span class="n">previous_kernel_results</span><span class="o">.</span><span class="n">accepted_results</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">194</span>           <span class="o">**</span><span class="n">inner_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span>       <span class="k">if</span> <span class="n">mcmc_util</span><span class="o">.</span><span class="n">is_list_like</span><span class="p">(</span><span class="n">current_state</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">196</span>         <span class="n">proposed_state</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">pack_sequence_as</span><span class="p">(</span><span class="n">current_state</span><span class="p">,</span> <span class="n">proposed_state</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/hmc.py</span> in <span class="ni">one_step</span><span class="nt">(self, current_state, previous_kernel_results, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">740</span>                      <span class="n">current_state_parts</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">741</span>                      <span class="n">current_target_log_prob</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">742</span>                      <span class="n">current_target_log_prob_grad_parts</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">743</span>       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_gradients_are_stopped</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">744</span>         <span class="n">next_state_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">next_state_parts</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/leapfrog_integrator.py</span> in <span class="ni">__call__</span><span class="nt">(self, momentum_parts, state_parts, target, target_grad_parts, kinetic_energy_fn, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span>               <span class="n">state_parts</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span>               <span class="n">target</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">300</span>               <span class="n">target_grad_parts</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>           <span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/deprecation.py</span> in <span class="ni">new_func</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">618</span>                   <span class="n">func</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_value</span><span class="p">,</span> <span class="s1">&#39;in a future version&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span>                   <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;after </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">date</span><span class="p">),</span> <span class="n">instructions</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">620</span>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">621</span> 
-<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="n">doc</span> <span class="o">=</span> <span class="n">_add_deprecated_arg_value_notice_to_docstring</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/control_flow_ops.py</span> in <span class="ni">while_loop_v2</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, back_prop, swap_memory, maximum_iterations, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2556</span>       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2557</span>       <span class="n">maximum_iterations</span><span class="o">=</span><span class="n">maximum_iterations</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2558</span>       <span class="n">return_same_structure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2559</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2560</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/control_flow_ops.py</span> in <span class="ni">while_loop</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, back_prop, swap_memory, name, maximum_iterations, return_same_structure)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2753</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2754</span>         <span class="n">return_same_structure</span><span class="o">=</span><span class="n">return_same_structure</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2755</span>         <span class="n">back_prop</span><span class="o">=</span><span class="n">back_prop</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2756</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2757</span>   <span class="k">with</span> <span class="n">ops</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;while&quot;</span><span class="p">,</span> <span class="n">loop_vars</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/while_v2.py</span> in <span class="ni">while_loop</span><span class="nt">(cond, body, loop_vars, shape_invariants, parallel_iterations, maximum_iterations, name, return_same_structure, back_prop)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>             <span class="n">body_name</span><span class="p">,</span> <span class="n">collections</span><span class="o">=</span><span class="n">ops</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span><span class="o">.</span><span class="n">_collections</span><span class="p">),</span>  <span class="c1"># pylint: disable=protected-access</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="n">add_control_dependencies</span><span class="o">=</span><span class="n">add_control_dependencies</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">223</span>         <span class="n">acd_record_initial_resource_uses</span><span class="o">=</span><span class="n">stateful_parallelism</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="c1"># Add external captures of body to the list of loop vars.</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="c1"># Note that external tensors will be treated as loop invariants, i.e.,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ni">func_graph_from_py_func</span><span class="nt">(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes, acd_record_initial_resource_uses)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1141</span>         <span class="n">_</span><span class="p">,</span> <span class="n">original_func</span> <span class="o">=</span> <span class="n">tf_decorator</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">python_func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1142</span> 
-<span class="ne">-&gt; </span><span class="mi">1143</span>       <span class="n">func_outputs</span> <span class="o">=</span> <span class="n">python_func</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1145</span>       <span class="c1"># invariant: `func_outputs` contains only Tensors, CompositeTensors,</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/while_v2.py</span> in <span class="ni">wrapped_body</span><span class="nt">(loop_counter, maximum_iterations_arg, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span>       <span class="c1"># `orig_loop_vars` and `args`, converts flows in `args` to TensorArrays</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>       <span class="c1"># and packs it into the structure of `orig_loop_vars`.</span>
-<span class="ne">--&gt; </span><span class="mi">200</span>       <span class="n">outputs</span> <span class="o">=</span> <span class="n">body</span><span class="p">(</span><span class="o">*</span><span class="n">_pack_sequence_as</span><span class="p">(</span><span class="n">orig_loop_vars</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>       <span class="k">if</span> <span class="ow">not</span> <span class="n">nest</span><span class="o">.</span><span class="n">is_sequence_or_composite</span><span class="p">(</span><span class="n">outputs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outputs</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/leapfrog_integrator.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(i, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span>           <span class="n">cond</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">:</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span>           <span class="n">body</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">_one_step</span><span class="p">(</span>  <span class="c1"># pylint: disable=no-value-for-parameter,g-long-lambda</span>
-<span class="ne">--&gt; </span><span class="mi">294</span>               <span class="bp">self</span><span class="o">.</span><span class="n">target_fn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_sizes</span><span class="p">,</span> <span class="n">get_velocity_parts</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)),</span>
-<span class="g g-Whitespace">    </span><span class="mi">295</span>           <span class="n">loop_vars</span><span class="o">=</span><span class="p">[</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>               <span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;iter&#39;</span><span class="p">),</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/leapfrog_integrator.py</span> in <span class="ni">_one_step</span><span class="nt">(target_fn, step_sizes, get_velocity_parts, half_next_momentum_parts, state_parts, target, target_grad_parts)</span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span>           <span class="n">state_part</span> <span class="o">+</span> <span class="n">_multiply</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">velocity_part</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">state_part</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">336</span>     <span class="p">[</span><span class="n">next_target</span><span class="p">,</span> <span class="n">next_target_grad_parts</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcmc_util</span><span class="o">.</span><span class="n">maybe_call_fn_and_grads</span><span class="p">(</span>
-<span class="ne">--&gt; </span><span class="mi">337</span>         <span class="n">target_fn</span><span class="p">,</span> <span class="n">next_state_parts</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">338</span>     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">g</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">next_target_grad_parts</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span>       <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/util.py</span> in <span class="ni">maybe_call_fn_and_grads</span><span class="nt">(fn, fn_arg_list, result, grads, check_non_none_grads, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="n">fn_arg_list</span> <span class="o">=</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fn_arg_list</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_list_like</span><span class="p">(</span><span class="n">fn_arg_list</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>                    <span class="k">else</span> <span class="p">[</span><span class="n">fn_arg_list</span><span class="p">])</span>
-<span class="ne">--&gt; </span><span class="mi">297</span>     <span class="n">result</span><span class="p">,</span> <span class="n">grads</span> <span class="o">=</span> <span class="n">_value_and_gradients</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">fn_arg_list</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">grads</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">dtype_util</span><span class="o">.</span><span class="n">is_floating</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span>                <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">(</span><span class="n">result</span> <span class="k">if</span> <span class="n">is_list_like</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">result</span><span class="p">])):</span>  <span class="c1"># pylint: disable=superfluous-parens</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/internal/util.py</span> in <span class="ni">_value_and_gradients</span><span class="nt">(fn, fn_arg_list, result, grads, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>       <span class="c1"># tensorflow eager mode (see below), so we will handle that case</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span>       <span class="c1"># separately.</span>
-<span class="ne">--&gt; </span><span class="mi">265</span>       <span class="k">return</span> <span class="n">tfp_math_value_and_gradients</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">fn_arg_list</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span> 
-<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py</span> in <span class="ni">value_and_gradient</span><span class="nt">(f, output_gradients, use_gradient_tape, auto_unpack_single_arg, has_aux, name, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span>         <span class="n">expand_tf_modules_as_trainable_vars</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span>         <span class="n">has_aux</span><span class="o">=</span><span class="n">has_aux</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">117</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span> 
-<span class="g g-Whitespace">    </span><span class="mi">119</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py</span> in <span class="ni">_value_and_grad_impl</span><span class="nt">(f, grad_fn, output_gradients, auto_unpack_single_arg, expand_tf_modules_as_trainable_vars, has_aux, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span>   <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">grad_fn</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">_has_args</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">else</span> <span class="n">f</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span>                          <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">([</span><span class="n">expand_args</span><span class="p">,</span> <span class="n">expand_kwargs</span><span class="p">]),</span>
-<span class="ne">--&gt; </span><span class="mi">380</span>                          <span class="n">output_gradients</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span>   <span class="n">dydx_args</span><span class="p">,</span> <span class="n">dydx_kwargs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">pack_sequence_as</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span>       <span class="p">[</span><span class="n">expand_args</span><span class="p">,</span> <span class="n">expand_kwargs</span><span class="p">],</span> <span class="n">dydx</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py</span> in <span class="ni">_gradient_old</span><span class="nt">(f, xs, grad_ys)</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span> <span class="k">def</span> <span class="nf">_gradient_old</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">grad_ys</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span>   <span class="k">assert</span> <span class="ow">not</span> <span class="n">tf</span><span class="o">.</span><span class="n">executing_eagerly</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">330</span>   <span class="n">y</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span>   <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">gradients</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">grad_ys</span><span class="o">=</span><span class="n">grad_ys</span><span class="p">),</span> <span class="n">aux</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>                                  <span class="k">if</span> <span class="n">_has_args</span><span class="p">(</span><span class="n">real_f</span><span class="p">)</span> <span class="k">else</span> <span class="n">real_f</span><span class="p">(),</span> <span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span> 
-<span class="ne">--&gt; </span><span class="mi">378</span>   <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">grad_fn</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">_has_args</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">else</span> <span class="n">f</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span>                          <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">([</span><span class="n">expand_args</span><span class="p">,</span> <span class="n">expand_kwargs</span><span class="p">]),</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>                          <span class="n">output_gradients</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/math/gradient.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="n">real_f</span> <span class="o">=</span> <span class="n">f</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="p">(</span><span class="n">real_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># pylint: disable=g-long-lambda</span>
-<span class="ne">--&gt; </span><span class="mi">376</span>                                  <span class="k">if</span> <span class="n">_has_args</span><span class="p">(</span><span class="n">real_f</span><span class="p">)</span> <span class="k">else</span> <span class="n">real_f</span><span class="p">(),</span> <span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span> 
-<span class="g g-Whitespace">    </span><span class="mi">378</span>   <span class="n">y</span><span class="p">,</span> <span class="n">dydx</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">grad_fn</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">_has_args</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">else</span> <span class="n">f</span><span class="p">(),</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/mcmc/transformed_kernel.py</span> in <span class="ni">transformed_log_prob_fn</span><span class="nt">(*state_parts)</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">enable_bijector_caching</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>       <span class="n">state_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span> <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="n">state_parts</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">123</span>     <span class="n">tlp</span> <span class="o">=</span> <span class="n">log_prob_fn</span><span class="p">(</span><span class="o">*</span><span class="n">fn</span><span class="p">(</span><span class="n">state_parts</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="n">tlp_rank</span> <span class="o">=</span> <span class="n">prefer_static</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">tlp</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>     <span class="n">event_ndims</span> <span class="o">=</span> <span class="p">[(</span><span class="n">prefer_static</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span> <span class="o">-</span> <span class="n">tlp_rank</span><span class="p">)</span> <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="n">state_parts</span><span class="p">]</span>
-
-<span class="nn">~/work/rethinking-tensorflow-probability/rethinking-tensorflow-probability/rethinking/mcmc/_helpers.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(*x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">init_state</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span> 
-<span class="ne">--&gt; </span><span class="mi">102</span>     <span class="n">target_log_prob_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">jdc</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">observed_data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span> 
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="n">results</span><span class="p">,</span> <span class="n">sample_stats</span> <span class="o">=</span> <span class="n">run_hmc_chain</span><span class="p">(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/joint_distribution.py</span> in <span class="ni">log_prob</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">900</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">901</span><span class="s2">     name = kwargs.pop(&#39;name&#39;, &#39;log_prob&#39;)</span>
-<span class="ne">--&gt; </span><span class="mi">902</span><span class="s2">     return self._call_log_prob(self._resolve_value(*args, **kwargs), name=name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">903</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">904</span><span class="s2">   # Override the base method to capture *args and **kwargs, so we can</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_log_prob</span><span class="nt">(self, value, name, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1296</span><span class="s2">     with self._name_and_control_scope(name, value, kwargs):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1297</span><span class="s2">       if hasattr(self, &#39;_log_prob&#39;):</span>
-<span class="ne">-&gt; </span><span class="mi">1298</span><span class="s2">         return self._log_prob(value, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1299</span><span class="s2">       if hasattr(self, &#39;_prob&#39;):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1300</span><span class="s2">         return tf.math.log(self._prob(value, **kwargs))</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/joint_distribution.py</span> in <span class="ni">_log_prob</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span><span class="s2">   def _log_prob(self, value):</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span><span class="s2">     return self._reduce_log_probs_over_dists(</span>
-<span class="ne">--&gt; </span><span class="mi">680</span><span class="s2">         self._map_measure_over_dists(&#39;log_prob&#39;, value))</span>
-<span class="g g-Whitespace">    </span><span class="mi">681</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">682</span><span class="s2">   def _unnormalized_log_prob(self, value):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/joint_distribution.py</span> in <span class="ni">_map_measure_over_dists</span><span class="nt">(self, attr, value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span><span class="s2">         seed=samplers.zeros_seed(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span><span class="s2">         sample_and_trace_fn=(</span>
-<span class="ne">--&gt; </span><span class="mi">750</span><span class="s2">             lambda dist, value, **_: ValueWithTrace(value=value,  # pylint: disable=g-long-lambda</span>
-<span class="g g-Whitespace">    </span><span class="mi">751</span><span class="s2">                                                     traced=attr(dist, value))))</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="s2"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/joint_distribution.py</span> in <span class="ni">_call_execute_model</span><span class="nt">(self, sample_shape, seed, value, sample_and_trace_fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">853</span><span class="s2">       return self._execute_model(</span>
-<span class="g g-Whitespace">    </span><span class="mi">854</span><span class="s2">           sample_shape=sample_shape, seed=seed, value=flat_value,</span>
-<span class="ne">--&gt; </span><span class="mi">855</span><span class="s2">           sample_and_trace_fn=sample_and_trace_fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">856</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span><span class="s2">     # Set up for autovectorized sampling. To support the `value` arg, we need to</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/joint_distribution.py</span> in <span class="ni">_execute_model</span><span class="nt">(self, sample_shape, seed, value, stop_index, sample_and_trace_fn)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1054</span><span class="s2">         if stop_index is not None and index == stop_index:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1055</span><span class="s2">           break</span>
-<span class="ne">-&gt; </span><span class="mi">1056</span><span class="s2">         d = gen.send(next_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1057</span><span class="s2">     except StopIteration:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="s2">       pass</span>
-
-<span class="nn">/tmp/ipykernel_2023/3498904838.py</span> in <span class="ni">_generator</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="s2">                                      beta2[...,tf.newaxis] * (mass_std ** 2) + </span><span class="se">\</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2">                                      beta3[...,tf.newaxis] * (mass_std ** 3) + </span><span class="se">\</span>
-<span class="ne">---&gt; </span><span class="mi">61</span><span class="s2">                                      beta4[...,tf.newaxis] * (mass_std ** 4) + </span><span class="se">\</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="s2">                                      beta5[...,tf.newaxis] * (mass_std ** 5)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="s2"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="s2">     filtered_tb = None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">     try:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span><span class="s2">       return fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">     except Exception as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py</span> in <span class="ni">binary_op_wrapper</span><span class="nt">(x, y)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1381</span><span class="s2">         #   r_binary_op_wrapper use different force_same_dtype values.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1382</span><span class="s2">         x, y = maybe_promote_tensors(x, y, force_same_dtype=False)</span>
-<span class="ne">-&gt; </span><span class="mi">1383</span><span class="s2">         return func(x, y, name=name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1384</span><span class="s2">       except (TypeError, ValueError) as e:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1385</span><span class="s2">         # Even if dispatching the op failed, the RHS may be a tensor aware</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="s2">     filtered_tb = None</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">     try:</span>
-<span class="ne">--&gt; </span><span class="mi">150</span><span class="s2">       return fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">     except Exception as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="s2">       # Fallback dispatch system (dispatch v1):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="s2">       try:</span>
-<span class="ne">-&gt; </span><span class="mi">1096</span><span class="s2">         return dispatch_target(*args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="s2">       except (TypeError, ValueError):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="s2">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py</span> in <span class="ni">_add_dispatch</span><span class="nt">(x, y, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1735</span><span class="s2">     return gen_math_ops.add(x, y, name=name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1736</span><span class="s2">   else:</span>
-<span class="ne">-&gt; </span><span class="mi">1737</span><span class="s2">     return gen_math_ops.add_v2(x, y, name=name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1738</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1739</span><span class="s2"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/gen_math_ops.py</span> in <span class="ni">add_v2</span><span class="nt">(x, y, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">474</span><span class="s2">   # Add nodes to the TensorFlow graph.</span>
-<span class="g g-Whitespace">    </span><span class="mi">475</span><span class="s2">   _, _, _op, _outputs = _op_def_library._apply_op_helper(</span>
-<span class="ne">--&gt; </span><span class="mi">476</span><span class="s2">         &quot;AddV2&quot;, x=x, y=y, name=name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">477</span><span class="s2">   _result = _outputs[:]</span>
-<span class="g g-Whitespace">    </span><span class="mi">478</span><span class="s2">   if _execute.must_record_gradient():</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py</span> in <span class="ni">_apply_op_helper</span><span class="nt">(op_type_name, name, **keywords)</span>
-<span class="g g-Whitespace">    </span><span class="mi">707</span><span class="s2">                                        op_type_name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">708</span><span class="s2">       if attr_def.type == &quot;type&quot;:</span>
-<span class="ne">--&gt; </span><span class="mi">709</span><span class="s2">         _SatisfiesTypeConstraint(attr_value.type, attr_def, key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">710</span><span class="s2">       if attr_def.type == &quot;list(type)&quot;:</span>
-<span class="g g-Whitespace">    </span><span class="mi">711</span><span class="s2">         for value in attr_value.list.type:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py</span> in <span class="ni">_SatisfiesTypeConstraint</span><span class="nt">(dtype, attr_def, param_name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="s2">   if attr_def.HasField(&quot;allowed_values&quot;):</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="s2">     allowed_list = attr_def.allowed_values.list.type</span>
-<span class="ne">---&gt; </span><span class="mi">58</span><span class="s2">     allowed_values = &quot;, &quot;.join(dtypes.as_dtype(x).name for x in allowed_list)</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="s2">     if dtype not in allowed_list:</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2">       raise TypeError(</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="s2">   if attr_def.HasField(&quot;allowed_values&quot;):</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="s2">     allowed_list = attr_def.allowed_values.list.type</span>
-<span class="ne">---&gt; </span><span class="mi">58</span><span class="s2">     allowed_values = &quot;, &quot;.join(dtypes.as_dtype(x).name for x in allowed_list)</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="s2">     if dtype not in allowed_list:</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2">       raise TypeError(</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f35846c7c20&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>

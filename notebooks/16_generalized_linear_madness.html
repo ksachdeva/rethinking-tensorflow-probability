@@ -293,11 +293,6 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports-and-utility-functions">
-   Imports and utility functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#geometric-people">
    16.1 Geometric people
   </a>
@@ -450,11 +445,6 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports-and-utility-functions">
-   Imports and utility functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#geometric-people">
    16.1 Geometric people
   </a>
@@ -598,8 +588,6 @@
   <p><a class="reference external" href="https://colab.research.google.com/github/ksachdeva/rethinking-tensorflow-probability/blob/master/notebooks/16_generalized_linear_madness.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="tex2jax_ignore mathjax_ignore section" id="generalized-linear-madness">
 <h1>16. Generalized Linear Madness<a class="headerlink" href="#generalized-linear-madness" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="imports-and-utility-functions">
-<h2>Imports and utility functions<a class="headerlink" href="#imports-and-utility-functions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
@@ -646,8 +634,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:34:57.740464: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 03:34:57.740541: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:47:48.851947: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-18 03:47:48.851984: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -675,7 +663,6 @@ rethinking            : 0.1.0
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># config of various plotting libraries</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -842,10 +829,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:35:00.081410: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 03:35:00.081444: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 03:35:00.081466: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
-2022-01-18 03:35:00.081801: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 03:47:50.925135: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-18 03:47:50.925162: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-18 03:47:50.925186: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az173-245): /proc/driver/nvidia/version does not exist
+2022-01-18 03:47:50.925486: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -952,7 +939,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_18_0.png" src="../_images/16_generalized_linear_madness_18_0.png" />
+<img alt="../_images/16_generalized_linear_madness_17_0.png" src="../_images/16_generalized_linear_madness_17_0.png" />
 </div>
 </div>
 </div>
@@ -1094,7 +1081,7 @@ Name: y, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6666666666666666
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5333333333333333
 </pre></div>
 </div>
 </div>
@@ -1463,8 +1450,8 @@ Name: y, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_40_0.png" src="../_images/16_generalized_linear_madness_40_0.png" />
-<img alt="../_images/16_generalized_linear_madness_40_1.png" src="../_images/16_generalized_linear_madness_40_1.png" />
+<img alt="../_images/16_generalized_linear_madness_39_0.png" src="../_images/16_generalized_linear_madness_39_0.png" />
+<img alt="../_images/16_generalized_linear_madness_39_1.png" src="../_images/16_generalized_linear_madness_39_1.png" />
 </div>
 </div>
 <p>The first graph (body mass vs age) is showing that opening kill tries to start leveling off around age 12</p>
@@ -1512,30 +1499,30 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.0703101],
-           [0.9079593]], dtype=float32)&gt;,
+    array([[1.0086869],
+           [1.1289623]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[2.3402364],
-           [1.2563845]], dtype=float32)&gt;,
+    array([[2.4100084],
+           [1.8147008]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[6.8298154],
-           [7.1679134]], dtype=float32)&gt;,
+    array([[3.9986308],
+           [6.9639444]], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(2, 1, 84), dtype=float32, numpy=
-    array([[[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  3.,  0.,  0.,  0.,  5.,
-              0.,  0.,  1.,  0.,  1.,  1.,  1.,  1.,  2.,  1.,  1.,  1.,
-              1.,  0.,  0.,  0.,  0.,  0.,  2.,  2.,  0.,  4.,  0.,  0.,
-              1.,  0.,  0.,  1.,  0.,  2.,  4.,  1.,  0.,  4.,  5.,  5.,
-              6.,  7., 10.,  1.,  0.,  3.,  1.,  0.,  0.,  4.,  3.,  2.,
-              0.,  2.,  4.,  2., 17.,  4.,  3., 16., 14.,  2.,  7.,  2.,
-              6., 33., 16., 19., 27., 13., 11., 11.,  3.,  7., 10.,  7.]],
+    array([[[ 0.,  1.,  2.,  0.,  1.,  1.,  3.,  5.,  3.,  2.,  0., 13.,
+              0.,  5.,  3.,  0.,  6.,  7.,  2.,  3.,  0.,  2.,  3.,  0.,
+              2.,  2.,  1.,  0.,  2.,  7.,  2.,  4.,  1.,  4.,  2.,  9.,
+              0.,  2.,  1.,  3.,  0.,  8.,  7.,  0.,  1., 13.,  8.,  7.,
+             17., 13., 14.,  3.,  7.,  7.,  4.,  1.,  4., 13.,  9.,  8.,
+              1.,  2.,  5.,  6., 28.,  8.,  2., 30., 23., 10.,  3.,  6.,
+             10., 38., 23., 25., 32.,  9., 15.,  9., 11.,  8., 14., 31.]],
     
-           [[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  0.,  0.,  0.,  0.,  1.,  0.,  1.,  0.,  0.,  0.,  0.,
-              0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  0.,  0.,  0.,  4.,  0.,  0.,  4.,  3.,  0.,  0.,  0.,
-              2.,  2.,  2.,  0.,  3.,  0.,  0.,  2.,  0.,  2.,  2.,  3.]]],
+           [[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.,  1.,
+              0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,
+              0.,  0.,  1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.,  2.,  1.,
+              0.,  0.,  0.,  0.,  0.,  0.,  2.,  1.,  0.,  2.,  1.,  2.,
+              2.,  1.,  2.,  2.,  0.,  2.,  0.,  0.,  0.,  1.,  3.,  3.,
+              0.,  1.,  3.,  3.,  9.,  1.,  0., 10., 11.,  2.,  1.,  2.,
+              6., 15.,  6., 16., 12.,  6., 14.,  2.,  6.,  4.,  6.,  7.]]],
           dtype=float32)&gt;
 )
 </pre></div>
@@ -1608,7 +1595,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_47_0.png" src="../_images/16_generalized_linear_madness_47_0.png" />
+<img alt="../_images/16_generalized_linear_madness_46_0.png" src="../_images/16_generalized_linear_madness_46_0.png" />
 </div>
 </div>
 </div>
@@ -1631,7 +1618,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_50_0.png" src="../_images/16_generalized_linear_madness_50_0.png" />
+<img alt="../_images/16_generalized_linear_madness_49_0.png" src="../_images/16_generalized_linear_madness_49_0.png" />
 </div>
 </div>
 <p>Above graph is showing 20 years of Lynx &amp; hare pelts (attacks).</p>
@@ -1678,7 +1665,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_55_0.png" src="../_images/16_generalized_linear_madness_55_0.png" />
+<img alt="../_images/16_generalized_linear_madness_54_0.png" src="../_images/16_generalized_linear_madness_54_0.png" />
 </div>
 </div>
 </div>
@@ -1696,7 +1683,7 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_57_0.png" src="../_images/16_generalized_linear_madness_57_0.png" />
+<img alt="../_images/16_generalized_linear_madness_56_0.png" src="../_images/16_generalized_linear_madness_56_0.png" />
 </div>
 </div>
 </div>
