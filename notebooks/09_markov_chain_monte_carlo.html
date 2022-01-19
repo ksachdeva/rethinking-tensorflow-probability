@@ -509,8 +509,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="o">!</span>pip install -q watermark
-  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
+  <span class="o">%</span><span class="k">pip</span> install -q watermark
+  <span class="o">%</span><span class="k">pip</span> install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -538,7 +538,7 @@
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 
-<span class="c1"># visualization </span>
+<span class="c1"># visualization</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
@@ -553,7 +553,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:25:41.135453: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:01:51.571884: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -600,7 +600,7 @@ rethinking            : 0.1.0
 <span class="n">current</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="n">coin_dist</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="n">probs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">proposal_dist</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span> <span class="p">)</span>
+<span class="n">proposal_dist</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_weeks</span><span class="p">):</span>
     <span class="c1"># record current position</span>
@@ -608,9 +608,9 @@ rethinking            : 0.1.0
 
     <span class="c1"># flip coin to generate proposal</span>
     <span class="n">bern</span> <span class="o">=</span> <span class="n">coin_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    
+
     <span class="n">proposal</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="p">(</span><span class="n">bern</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    
+
     <span class="c1"># now make sure he loops around the archipelago</span>
     <span class="n">proposal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">proposal</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">proposal</span><span class="p">)</span>
     <span class="n">proposal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">proposal</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">proposal</span><span class="p">)</span>
@@ -618,113 +618,90 @@ rethinking            : 0.1.0
     <span class="c1"># move?</span>
     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>    
+    <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:25:42.879276: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 19:25:42.879316: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:01:53.728325: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-19 19:01:53.728361: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2138</span><span class="o">/</span><span class="mf">4073096055.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2260</span><span class="o">/</span><span class="mf">2591419575.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="c1"># move?</span>
 <span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">prob_move</span> <span class="o">=</span> <span class="n">proposal</span> <span class="o">/</span> <span class="n">current</span>
 <span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">unif</span> <span class="o">=</span> <span class="n">proposal_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unif</span> <span class="o">&lt;</span> <span class="n">prob_move</span><span class="p">,</span> <span class="n">proposal</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">sample</span><span class="nt">(self, sample_shape, seed, name, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="sd">     with self._name_and_control_scope(name):</span>
-<span class="ne">-&gt; </span><span class="mi">1234</span><span class="sd">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1232</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="s2">     with self._name_and_control_scope(name):</span>
+<span class="ne">-&gt; </span><span class="mi">1234</span><span class="s2">       return self._call_sample_n(sample_shape, seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="s2">   def _call_sample_and_log_prob(self, sample_shape, seed, **kwargs):</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/distribution.py</span> in <span class="ni">_call_sample_n</span><span class="nt">(self, sample_shape, seed, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1206</span><span class="sd">       raise ValueError(&#39;Must provide JAX PRNGKey as `dist.sample(seed=.)`&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1207</span><span class="sd">     sample_shape = ps.convert_to_shape_tensor(</span>
-<span class="ne">-&gt; </span><span class="mi">1208</span><span class="sd">         ps.cast(sample_shape, tf.int32), name=&#39;sample_shape&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1209</span><span class="sd">     sample_shape, n = self._expand_sample_shape_to_vector(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="sd">         sample_shape, &#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1210</span><span class="s2">         sample_shape, &#39;sample_shape&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1211</span><span class="s2">     samples = self._sample_n(</span>
+<span class="ne">-&gt; </span><span class="mi">1212</span><span class="s2">         n, seed=seed() if callable(seed) else seed, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span><span class="s2">     samples = tf.nest.map_structure(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1214</span><span class="s2">         lambda x: tf.reshape(x, ps.concat([sample_shape, ps.shape(x)[1:]], 0)),</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/decorator.py</span> in <span class="ni">fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span><span class="sd">             if not kwsyntax:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="sd">                 args, kw = fix(args, kw, sig)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span><span class="sd">             return caller(func, *(extras + args), **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="sd">     fun.__name__ = func.__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="sd">     fun.__doc__ = func.__doc__</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/distributions/uniform.py</span> in <span class="ni">_sample_n</span><span class="nt">(self, n, seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="s2">     shape = ps.concat([[n], self._batch_shape_tensor(</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span><span class="s2">         low=low, high=high)], 0)</span>
+<span class="ne">--&gt; </span><span class="mi">156</span><span class="s2">     samples = samplers.uniform(shape=shape, dtype=self.dtype, seed=seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="s2">     return low + self._range(low=low, high=high) * samples</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span><span class="s2"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/prefer_static.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span><span class="sd">     if all_static:</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span><span class="sd">       [args_, kwargs_] = tf.nest.pack_sequence_as([args, kwargs], flat_args_)</span>
-<span class="ne">---&gt; </span><span class="mi">81</span><span class="sd">       return static_fn(*args_, **kwargs_)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="sd">     return original_fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="sd">   return wrap(original_fn)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/samplers.py</span> in <span class="ni">uniform</span><span class="nt">(shape, minval, maxval, dtype, seed, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span><span class="s2">     seed = sanitize_seed(seed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span><span class="s2">     return tf.random.stateless_uniform(</span>
+<span class="ne">--&gt; </span><span class="mi">284</span><span class="s2">         shape=shape, seed=seed, minval=minval, maxval=maxval, dtype=dtype)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/_utils.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd">   def wrap(wrapped, instance, args, kwargs):</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">     del instance, wrapped</span>
-<span class="ne">---&gt; </span><span class="mi">62</span><span class="sd">     return new_fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="sd">   return wrap(original_fn)  # pylint: disable=no-value-for-parameter</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/traceback_utils.py</span> in <span class="ni">error_handler</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="s2">     filtered_tb = None</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">     try:</span>
+<span class="ne">--&gt; </span><span class="mi">150</span><span class="s2">       return fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">     except Exception as e:</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="s2">       filtered_tb = _process_traceback_frames(e.__traceback__)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(x, dtype, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span><span class="sd"> cast = utils.copy_docstring(</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span><span class="sd">     &#39;tf.cast&#39;,</span>
-<span class="ne">--&gt; </span><span class="mi">385</span><span class="sd">     lambda x, dtype, name=None: _cast(x, utils.numpy_dtype(dtype)))</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="sd"> clip_by_value = utils.copy_docstring(</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ni">op_dispatch_handler</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="s2">       # Fallback dispatch system (dispatch v1):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="s2">       try:</span>
+<span class="ne">-&gt; </span><span class="mi">1096</span><span class="s2">         return dispatch_target(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1097</span><span class="s2">       except (TypeError, ValueError):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="s2">         # Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_cast</span><span class="nt">(x, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span><span class="sd"> def _cast(x, dtype):</span>
-<span class="ne">--&gt; </span><span class="mi">376</span><span class="sd">   x = convert_to_tensor(x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span><span class="sd">   if (np.issubdtype(x.dtype, np.complexfloating) and</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span><span class="sd">       not np.issubdtype(dtype, np.complexfloating)):</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/ops/stateless_random_ops.py</span> in <span class="ni">stateless_random_uniform</span><span class="nt">(shape, seed, minval, maxval, dtype, name, alg)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="s2">   with ops.name_scope(name, &quot;stateless_random_uniform&quot;,</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="s2">                       [shape, seed, minval, maxval]) as name:</span>
+<span class="ne">--&gt; </span><span class="mi">344</span><span class="s2">     shape = tensor_util.shape_tensor(shape)</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span><span class="s2">     if dtype.is_integer and minval is None:</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span><span class="s2">       key, counter, alg = _get_key_counter_alg(seed, alg)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/_utils.py</span> in <span class="ni">wrap</span><span class="nt">(***failed resolving arguments***)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd">   def wrap(wrapped, instance, args, kwargs):</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">     del instance, wrapped</span>
-<span class="ne">---&gt; </span><span class="mi">62</span><span class="sd">     return new_fn(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="sd">   return wrap(original_fn)  # pylint: disable=no-value-for-parameter</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/tensor_util.py</span> in <span class="ni">shape_tensor</span><span class="nt">(shape)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1081</span><span class="s2">       # not convertible to Tensors because of mixed content.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1082</span><span class="s2">       shape = tuple(map(tensor_shape.dimension_value, shape))</span>
+<span class="ne">-&gt; </span><span class="mi">1083</span><span class="s2">   return ops.convert_to_tensor(shape, dtype=dtype, name=&quot;shape&quot;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1084</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1085</span><span class="s2"> </span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_convert_to_tensor</span><span class="nt">(value, dtype, dtype_hint, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span><span class="sd">   if ret is None:</span>
-<span class="ne">--&gt; </span><span class="mi">163</span><span class="sd">     ret = conversion_func(value, dtype=dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span><span class="sd">   return ret</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span><span class="sd"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/profiler/trace.py</span> in <span class="ni">wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="s2">         with Trace(trace_name, **trace_kwargs):</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span><span class="s2">           return func(*args, **kwargs)</span>
+<span class="ne">--&gt; </span><span class="mi">163</span><span class="s2">       return func(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span><span class="s2">     return wrapped</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_default_convert_to_tensor</span><span class="nt">(value, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="sd"> def _default_convert_to_tensor(value, dtype=None):</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span><span class="sd">   &quot;&quot;&quot;</span><span class="n">Default</span> <span class="n">tensor</span> <span class="n">conversion</span> <span class="n">function</span> <span class="k">for</span> <span class="n">array</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="ow">and</span> <span class="nb">complex</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">215</span><span class="s2">   inferred_dtype = _infer_dtype(value, np.float32)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="s2">   # When a dtype is provided, we can go ahead and try converting to the dtype</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="s2">   # and force overflow/underflow if an int64 is converted to an int32.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/ops.py</span> in <span class="ni">_infer_dtype</span><span class="nt">(value, default_dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span><span class="s2">   elif isinstance(value, (tuple, list)):</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="s2">     # Try inferring the type from items in the object if possible.</span>
-<span class="ne">--&gt; </span><span class="mi">184</span><span class="s2">     for v in nest.flatten(value):</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="s2">       if hasattr(v, &#39;dtype&#39;):</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="s2">         return v.dtype</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow_probability/python/internal/backend/numpy/nest.py</span> in <span class="ni">flatten</span><span class="nt">(structure, expand_composites)</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="s2">     from jax import tree_util  # pylint: disable=g-import-not-at-top</span>
-<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="s2">     return tree_util.tree_leaves(structure)</span>
-<span class="ne">--&gt; </span><span class="mi">185</span><span class="s2">   return dm_tree.flatten(structure)</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span><span class="s2"> </span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tree/__init__.py</span> in <span class="ni">flatten</span><span class="nt">(structure)</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span><span class="s2">     TypeError: If `structure` is or contains a mapping with non-sortable keys.</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="s2">   &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">306</span>   <span class="k">return</span> <span class="n">_tree</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span> 
-<span class="g g-Whitespace">    </span><span class="mi">308</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ni">convert_to_tensor</span><span class="nt">(value, dtype, name, as_ref, preferred_dtype, dtype_hint, ctx, accepted_result_types)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1584</span><span class="s2">   if dtype is not None:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1585</span><span class="s2">     dtype = dtypes.as_dtype(dtype)</span>
+<span class="ne">-&gt; </span><span class="mi">1586</span><span class="s2">   if isinstance(value, Tensor):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1587</span><span class="s2">     if dtype is not None and not dtype.is_compatible_with(value.dtype):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1588</span><span class="s2">       raise ValueError(</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -741,7 +718,10 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_markov_chain_monte_carlo_12_0.png" src="../_images/09_markov_chain_monte_carlo_12_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14b8e3b10&gt;]
+</pre></div>
+</div>
+<img alt="../_images/09_markov_chain_monte_carlo_12_1.png" src="../_images/09_markov_chain_monte_carlo_12_1.png" />
 </div>
 </div>
 </div>
@@ -754,7 +734,13 @@ rethinking            : 0.1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_markov_chain_monte_carlo_14_0.png" src="../_images/09_markov_chain_monte_carlo_14_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 1877.,  3575.,  5267.,  7174.,  9175., 11077., 12910., 14408.,
+        16217., 18320.]),
+ array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11]),
+ &lt;BarContainer object of 10 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/09_markov_chain_monte_carlo_14_1.png" src="../_images/09_markov_chain_monte_carlo_14_1.png" />
 </div>
 </div>
 <p>In above plot, horizontal axis is the islands (and their relative populations). Vertical axis is the number of weeks that King stayed at that island</p>
@@ -774,23 +760,28 @@ rethinking            : 0.1.0
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span>
 
-<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Radial distance from the mode&quot;</span><span class="p">)</span>    
-    
-<span class="k">def</span> <span class="nf">build_and_plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">ax_p</span><span class="p">):</span>    
+<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Radial distance from the mode&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">build_and_plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">ax_p</span><span class="p">):</span>
     <span class="n">loc</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     <span class="n">scale_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalDiag</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale_diag</span><span class="o">=</span><span class="n">scale_diag</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">T</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
     <span class="n">rad_dist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">Y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">Rd</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">rad_dist</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span>
-    <span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Rd</span><span class="p">),</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Dim = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_p</span><span class="p">);</span>
-    
+    <span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Rd</span><span class="p">),</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Dim = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_p</span><span class="p">)</span>
+
+
 <span class="n">build_and_plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">build_and_plot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">build_and_plot</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">build_and_plot</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_markov_chain_monte_carlo_20_0.png" src="../_images/09_markov_chain_monte_carlo_20_0.png" />
 </div>
 </div>
 <p>In the above plot, the horizontal axis shows <strong>Radial distance</strong> from the <strong>mode</strong> in the parameter space.</p>
@@ -823,39 +814,56 @@ rethinking            : 0.1.0
 <span class="c1">#</span>
 <span class="c1"># The book generates the test data in code 9.6 but I am going to generate it here</span>
 
+
 <span class="k">def</span> <span class="nf">generate_test_data</span><span class="p">():</span>
     <span class="c1"># test data</span>
     <span class="n">_SEED</span> <span class="o">=</span> <span class="mi">7</span>
 
     <span class="n">seed</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SeedStream</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">_SEED</span><span class="p">,</span> <span class="n">salt</span><span class="o">=</span><span class="s2">&quot;Testdata&quot;</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">())</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
     <span class="c1"># standardize the data</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
 
-<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">generate_test_data</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">generate_test_data</span><span class="p">()</span>
 
 <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.12833239, -0.22964787, -0.40774608, -0.30924067, -0.75710726,
+       -1.12151   ,  0.54429084,  0.20373885,  0.5373924 ,  2.2354805 ,
+       -0.55821157,  0.8479281 , -0.01069919, -2.2879438 ,  2.1183472 ,
+        0.5721366 ,  1.5381907 , -2.4450817 , -0.15067661,  0.0314163 ,
+       -0.06329995, -1.5469027 ,  0.6112922 , -0.6234371 ,  0.7724736 ,
+        0.31413972,  2.2127857 , -0.30521753, -0.06263847,  0.60814875,
+        1.7873812 , -0.23929906, -0.1567227 , -0.09433585, -0.25074163,
+        0.3817731 , -1.289493  , -0.03346271, -0.25672948, -0.02745551,
+        1.6410016 , -1.2717627 , -0.18327089,  0.6673328 , -0.7348228 ,
+       -0.5346852 , -1.177903  , -0.9149043 , -0.3239217 ,  0.6152883 ],
+      dtype=float32)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">muy</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">mux</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    
-    <span class="n">logprob_y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">muy</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    <span class="n">logprob_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mux</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    
+
+    <span class="n">logprob_y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">muy</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">logprob_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mux</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
     <span class="n">logprob_muy</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">muy</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
     <span class="n">logprob_mux</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">mux</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">logprob_y</span> <span class="o">+</span> <span class="n">logprob_x</span> <span class="o">+</span> <span class="n">logprob_muy</span> <span class="o">+</span> <span class="n">logprob_mux</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -866,7 +874,7 @@ rethinking            : 0.1.0
 <h3>Code 9.6<a class="headerlink" href="#code-9-6" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U_gradient</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U_gradient</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">muy</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">mux</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">G1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">muy</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">muy</span><span class="p">)</span> <span class="o">/</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># dU/dmuy</span>
@@ -895,26 +903,32 @@ rethinking            : 0.1.0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x14bd51d50&gt;
+</pre></div>
+</div>
+<img alt="../_images/09_markov_chain_monte_carlo_29_1.png" src="../_images/09_markov_chain_monte_carlo_29_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">HMC2</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">grad_U</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">current_q</span><span class="p">):</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">current_q</span>
-    
+
     <span class="c1"># Random flick - p is the momentum</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
     <span class="n">current_p</span> <span class="o">=</span> <span class="n">p</span>
-    
+
     <span class="c1"># Make a half step for momentum at the begining</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">grad_U</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-    
+
     <span class="c1"># initialize bookkeeping - saves trajectory</span>
     <span class="n">qtraj</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">qtraj</span>        
-    
+    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">qtraj</span>
+
     <span class="n">qtraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">qtraj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">current_q</span><span class="p">)</span>
-    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">ptraj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>    
-    
+    <span class="n">ptraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">ptraj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
     <span class="c1"># Alternate full steps for position and momentum</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">p</span>  <span class="c1"># Full step for the position</span>
@@ -926,10 +940,10 @@ rethinking            : 0.1.0
 
     <span class="c1"># Make a half step for momentum at the end</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">grad_U</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-    
-    <span class="c1">#ptraj[L] = p</span>
+
+    <span class="c1"># ptraj[L] = p</span>
     <span class="n">ptraj</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">index_update</span><span class="p">(</span><span class="n">ptraj</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-    
+
     <span class="c1"># Negate momentum at end of trajectory to make the proposal symmetric</span>
     <span class="n">p</span> <span class="o">=</span> <span class="o">-</span><span class="n">p</span>
     <span class="c1"># Evaluate potential and kinetic energies at start and end of trajectory</span>
@@ -940,39 +954,64 @@ rethinking            : 0.1.0
     <span class="c1"># Accept or reject the state at end of trajectory, returning either</span>
     <span class="c1"># the position at the end of the trajectory or the initial position</span>
     <span class="n">accept</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">runif</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">runif</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">runif</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">current_U</span> <span class="o">-</span> <span class="n">proposed_U</span> <span class="o">+</span> <span class="n">current_K</span> <span class="o">-</span> <span class="n">proposed_K</span><span class="p">):</span>
         <span class="n">new_q</span> <span class="o">=</span> <span class="n">q</span>  <span class="c1"># accept</span>
         <span class="n">accept</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">new_q</span> <span class="o">=</span> <span class="n">current_q</span>  <span class="c1"># reject</span>
-        
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">new_q</span><span class="p">,</span> <span class="s2">&quot;traj&quot;</span><span class="p">:</span> <span class="n">qtraj</span><span class="p">,</span> <span class="s2">&quot;ptraj&quot;</span><span class="p">:</span> <span class="n">ptraj</span><span class="p">,</span> <span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="n">accept</span><span class="p">,</span>
-            <span class="s2">&quot;dH&quot;</span><span class="p">:</span> <span class="n">proposed_U</span> <span class="o">+</span> <span class="n">proposed_K</span> <span class="o">-</span> <span class="p">(</span><span class="n">current_U</span> <span class="o">+</span> <span class="n">current_K</span><span class="p">)}</span>
-    
-    
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>    
-    <span class="n">Q</span> <span class="o">=</span> <span class="n">HMC2</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U_gradient</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">])</span> 
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">new_q</span><span class="p">,</span>
+        <span class="s2">&quot;traj&quot;</span><span class="p">:</span> <span class="n">qtraj</span><span class="p">,</span>
+        <span class="s2">&quot;ptraj&quot;</span><span class="p">:</span> <span class="n">ptraj</span><span class="p">,</span>
+        <span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="n">accept</span><span class="p">,</span>
+        <span class="s2">&quot;dH&quot;</span><span class="p">:</span> <span class="n">proposed_U</span> <span class="o">+</span> <span class="n">proposed_K</span> <span class="o">-</span> <span class="p">(</span><span class="n">current_U</span> <span class="o">+</span> <span class="n">current_K</span><span class="p">),</span>
+    <span class="p">}</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">HMC2</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U_gradient</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
             <span class="n">K0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;ptraj&quot;</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                     <span class="n">c</span><span class="o">=</span><span class="n">path_col</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">K0</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">j</span> <span class="p">:</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">j</span> <span class="p">:</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">path_col</span><span class="p">,</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">K0</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         <span class="c1"># for fancy arrows</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-                     <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-                     <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;arrowstyle&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;-&quot;</span><span class="p">})</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-                     <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;dH&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-    
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;arrowstyle&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;-&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">Q</span><span class="p">[</span><span class="s2">&quot;traj&quot;</span><span class="p">][</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="s2">&quot;dH&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:absl:No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+</pre></div>
+</div>
+<img alt="../_images/09_markov_chain_monte_carlo_30_1.png" src="../_images/09_markov_chain_monte_carlo_30_1.png" />
 </div>
 </div>
 </div>

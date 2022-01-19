@@ -593,8 +593,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="o">!</span>pip install -q watermark
-  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
+  <span class="o">%</span><span class="k">pip</span> install -q watermark
+  <span class="o">%</span><span class="k">pip</span> install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -616,7 +616,7 @@
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 
-<span class="c1"># visualization </span>
+<span class="c1"># visualization</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
@@ -631,8 +631,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:38:34.990470: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 19:38:34.990507: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:16:09.010782: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-19 19:16:09.010830: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -821,15 +821,15 @@ rethinking            : 0.1.0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;Howell1&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Howell1&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:38:37.253949: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 19:38:37.253983: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 19:38:37.254005: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
-2022-01-18 19:38:37.254312: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:16:11.734030: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-19 19:16:11.734062: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-19 19:16:11.734085: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-19 19:16:11.734400: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -842,22 +842,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_16_1</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
-      <span class="n">p</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">18.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>      
-      <span class="n">k</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-      <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>     
-        
-      <span class="n">term1</span> <span class="o">=</span> <span class="n">p</span> <span class="o">**</span> <span class="mi">2</span>
-      <span class="n">term2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">3</span>
-      
-      <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.141593</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">term1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">term2</span><span class="p">)</span> 
-        
-      <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-      
-      <span class="n">w</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
-      
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
-    
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">18.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">term1</span> <span class="o">=</span> <span class="n">p</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">3</span>
+
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.141593</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">term1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">term2</span><span class="p">)</span>
+
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="n">w</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
 <span class="n">jdc_16_1</span> <span class="o">=</span> <span class="n">model_16_1</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -883,15 +888,17 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 
 <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>    
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>    
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>
 <span class="p">]</span>
 
-<span class="n">posterior_16_1</span><span class="p">,</span> <span class="n">trace_16_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span><span class="n">jdc_16_1</span><span class="p">,</span>
-                               <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">w</span><span class="p">,),</span>
-                               <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
-                               <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                               <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+<span class="n">posterior_16_1</span><span class="p">,</span> <span class="n">trace_16_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
+    <span class="n">jdc_16_1</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">w</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -918,9 +925,11 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="n">k_sample</span> <span class="o">=</span> <span class="n">trace_16_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">sigma_sample</span> <span class="o">=</span> <span class="n">trace_16_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
+
 <span class="k">def</span> <span class="nf">compute_w_from_samples</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.141593</span> <span class="o">*</span> <span class="n">k_sample</span> <span class="o">*</span> <span class="n">p_sample</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>     
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.141593</span> <span class="o">*</span> <span class="n">k_sample</span> <span class="o">*</span> <span class="n">p_sample</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma_sample</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
 
 <span class="n">w_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">compute_w_from_samples</span><span class="p">,</span> <span class="n">h_seq</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
 
@@ -928,15 +937,22 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="n">w_CI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">w_sim</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">94.5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;royalblue&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
-              <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;height (scaled)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;weight (scaled)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;height (scaled)&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;weight (scaled)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_seq</span><span class="p">,</span> <span class="n">mu_mean</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">h_seq</span><span class="p">,</span> <span class="n">w_CI</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">w_CI</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">h_seq</span><span class="p">,</span> <span class="n">w_CI</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">w_CI</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/16_generalized_linear_madness_17_0.png" src="../_images/16_generalized_linear_madness_17_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x7fde34415d90&gt;
+</pre></div>
+</div>
+<img alt="../_images/16_generalized_linear_madness_17_1.png" src="../_images/16_generalized_linear_madness_17_1.png" />
 </div>
 </div>
 </div>
@@ -1060,7 +1076,9 @@ Name: y, dtype: float64
 <span class="c1"># half are random</span>
 <span class="c1"># sample from 1,2,3 at random for each</span>
 <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])[</span>
-    <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,))</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,))</span>
+    <span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 <span class="p">]</span>
 
 <span class="c1"># half follow majority</span>
@@ -1078,7 +1096,7 @@ Name: y, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6666666666666666
 </pre></div>
 </div>
 </div>
@@ -1198,34 +1216,43 @@ Name: y, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_boxes_model</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">majority_first</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
         <span class="c1"># prior</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Dirichlet</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
+        <span class="n">p</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span>
+                <span class="n">tfd</span><span class="o">.</span><span class="n">Dirichlet</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)),</span>
+                <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
         <span class="c1"># probability of data</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
         <span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># majority</span>
         <span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># minority</span>
         <span class="n">phi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># maverick</span>
-        <span class="n">phi</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="c1"># random</span>
-        <span class="n">phi</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">majority_first</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># follow first</span>
-                          <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                          <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        
-<span class="c1">#         ps = tf.squeeze(p)</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>  <span class="c1"># random</span>
+        <span class="n">phi</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">majority_first</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># follow first</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1">#         ps = tf.squeeze(p)</span>
         <span class="n">ps</span> <span class="o">=</span> <span class="n">p</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        
+
         <span class="nb">print</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">phi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        
+
         <span class="c1"># compute log( p_s * Pr(y_i|s )</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
             <span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ps</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-            
+
         <span class="c1"># compute average log-probability of y</span>
         <span class="n">logprob</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_logsumexp</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-        <span class="n">w</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">logprob</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
-        
+
+        <span class="n">w</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">logprob</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
     <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1436,8 +1463,7 @@ Name: y, dtype: float64
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># implied rate of nut opening curve</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
-                 <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;nuts per second&quot;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;nuts per second&quot;</span><span class="p">)</span>
 <span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">at</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
@@ -1462,21 +1488,31 @@ Name: y, dtype: float64
 
 <span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Nuts&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;nuts_opened&quot;</span><span class="p">,</span> <span class="s2">&quot;age_prop&quot;</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">])</span>
 
+
 <span class="k">def</span> <span class="nf">model_16_4</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
-      <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;phi&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>      
-      <span class="n">k</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>      
-      <span class="n">theta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">5.</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
-    
-      <span class="n">term1</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-      <span class="n">term2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">*</span><span class="n">age</span><span class="p">))</span> <span class="o">**</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  
-    
-      <span class="n">lambda_</span> <span class="o">=</span> <span class="n">seconds</span> <span class="o">*</span> <span class="n">term1</span> <span class="o">*</span> <span class="n">term2</span> 
-      
-      <span class="n">n</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">lambda_</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
-      
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
-    
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;phi&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span>
+                <span class="n">tfd</span><span class="o">.</span><span class="n">LogNormal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">5.0</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">term1</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">age</span><span class="p">))</span> <span class="o">**</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="n">lambda_</span> <span class="o">=</span> <span class="n">seconds</span> <span class="o">*</span> <span class="n">term1</span> <span class="o">*</span> <span class="n">term2</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">lambda_</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
 <span class="n">jdc_16_4</span> <span class="o">=</span> <span class="n">model_16_4</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">seconds</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">age_prop</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1496,30 +1532,30 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StructTuple(
   var0=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.0549161],
-           [1.2120383]], dtype=float32)&gt;,
+    array([[0.8813147],
+           [0.9588341]], dtype=float32)&gt;,
   var1=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[1.6439798],
-           [1.926743 ]], dtype=float32)&gt;,
+    array([[2.0577004],
+           [2.9271986]], dtype=float32)&gt;,
   var2=&lt;tf.Tensor: shape=(2, 1), dtype=float32, numpy=
-    array([[7.298447],
-           [4.468544]], dtype=float32)&gt;,
+    array([[3.5044107],
+           [5.081681 ]], dtype=float32)&gt;,
   var3=&lt;tf.Tensor: shape=(2, 1, 84), dtype=float32, numpy=
-    array([[[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,
-              0.,  0.,  1.,  0.,  0.,  0.,  1.,  0.,  0.,  1.,  1.,  1.,
-              2.,  2.,  3.,  0.,  0.,  1.,  0.,  0.,  0.,  3.,  1.,  0.,
-              0.,  1.,  1.,  3.,  4.,  0.,  0.,  6., 13.,  1.,  2.,  1.,
-              3., 10.,  3.,  9., 11., 10.,  4.,  1.,  5.,  3.,  3., 12.]],
+    array([[[ 4.,  3.,  2.,  0.,  0.,  1.,  0.,  7.,  3.,  1.,  1.,  7.,
+              0.,  3.,  3.,  1.,  4.,  6.,  1.,  1.,  2.,  1.,  1.,  1.,
+              3.,  0.,  2.,  2.,  2.,  4.,  1.,  0.,  0.,  4.,  7.,  9.,
+              3.,  5.,  4.,  0.,  1.,  3.,  4.,  0.,  4.,  9.,  7.,  6.,
+              9., 16., 17.,  0.,  1.,  2.,  5.,  0.,  4., 12.,  7., 11.,
+              0.,  7.,  1.,  6., 20.,  2.,  2., 17., 23.,  6.,  2.,  7.,
+              8., 28., 20., 17., 17., 10.,  5.,  5., 10.,  8., 14., 15.]],
     
-           [[ 0.,  0.,  0.,  0.,  1.,  0.,  2.,  9.,  0.,  0.,  4.,  4.,
-              0.,  0.,  2.,  0.,  4.,  6.,  4.,  2.,  4.,  0.,  2.,  1.,
-              1.,  0.,  1.,  0.,  1.,  1.,  2.,  1.,  0.,  2.,  0.,  2.,
-              0.,  1.,  2.,  3.,  1.,  7.,  3.,  0.,  1., 13.,  7.,  6.,
-              7.,  6., 11.,  2.,  2.,  5.,  0.,  2.,  4.,  5.,  7.,  9.,
-              0.,  3.,  3.,  8., 12.,  0.,  3., 22., 21., 11.,  1.,  7.,
-             14., 38., 15., 23., 19.,  6.,  8.,  8.,  8.,  7., 16., 24.]]],
+           [[ 0.,  0.,  0.,  0.,  0.,  2.,  0., 10.,  3.,  2.,  1., 10.,
+              1.,  1.,  2.,  0.,  3.,  3.,  3.,  2.,  1.,  0.,  1.,  2.,
+              3.,  1.,  1.,  3.,  2.,  3.,  5.,  2.,  1.,  3., 13.,  7.,
+              0.,  1.,  3.,  2.,  1.,  7., 11.,  2.,  2., 17., 12., 17.,
+             10., 20., 16.,  1.,  2.,  9.,  2.,  7.,  7., 18.,  6., 14.,
+              1.,  8.,  4., 10., 28.,  3.,  1., 37., 32., 15.,  5., 10.,
+              5., 39., 19., 19., 29., 25.,  8.,  6., 11., 12., 17., 28.]]],
           dtype=float32)&gt;
 )
 </pre></div>
@@ -1540,21 +1576,23 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">phi_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
     <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">k_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
-    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">theta_init</span><span class="p">,(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">theta_init</span><span class="p">,</span> <span class="p">(</span><span class="n">NUM_CHAINS_FOR_16_4</span><span class="p">,)),</span>
 <span class="p">]</span>
 
 
 <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>    
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>    
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
 <span class="p">]</span>
 
-<span class="n">posterior_16_4</span><span class="p">,</span> <span class="n">trace_16_4</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span><span class="n">jdc_16_4</span><span class="p">,</span>
-                               <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">nuts_opened</span><span class="p">,),</span>
-                               <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;phi&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;theta&#39;</span><span class="p">],</span>
-                               <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                               <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+<span class="n">posterior_16_4</span><span class="p">,</span> <span class="n">trace_16_4</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
+    <span class="n">jdc_16_4</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">nuts_opened</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;phi&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;theta&quot;</span><span class="p">],</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1565,11 +1603,10 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_phi</span> <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;phi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">post_k</span>   <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">post_theta</span>  <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">post_k</span> <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">post_theta</span> <span class="o">=</span> <span class="n">trace_16_4</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
-            <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;nuts per second&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;nuts per second&quot;</span><span class="p">)</span>
 <span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">at</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
 
@@ -1579,15 +1616,18 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <span class="n">point_size</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">seconds</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">eps</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mi">5</span>
 <span class="n">jitter</span> <span class="o">=</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">jitter</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">point_size</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">age_prop</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">jitter</span><span class="p">,</span>
+    <span class="n">pts</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">point_size</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+    <span class="n">facecolors</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># 30 posterior curves</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-        <span class="n">x</span><span class="p">,</span>
-        <span class="n">post_phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">post_k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="n">post_theta</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">post_phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">post_k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="n">post_theta</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;gray&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1610,7 +1650,8 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">at</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">Year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">at</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;bo-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Lepus&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1636,10 +1677,10 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
         <span class="k">return</span> <span class="p">(</span><span class="n">H_i</span><span class="p">,</span> <span class="n">L_i</span><span class="p">)</span>
 
     <span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">L0</span><span class="p">))</span>
-    
+
     <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">H</span><span class="o">.</span><span class="n">numpy</span><span class="p">()])</span>
     <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">L0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">L</span><span class="o">.</span><span class="n">numpy</span><span class="p">()])</span>
-    
+
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">L</span><span class="p">,</span> <span class="n">H</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1652,12 +1693,12 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">sim_lynx_hare</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">theta</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Hare population</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Lynx population</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Hare population</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Lynx population</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-              <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;number (thousands)&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;number (thousands)&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1675,7 +1716,8 @@ The `interpolate_nondiscrete` flag is deprecated; instead use `force_probs_to_ze
 <span class="n">p</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">Ht</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;thousand of pelts&quot;</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;thousand of pelts&quot;</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

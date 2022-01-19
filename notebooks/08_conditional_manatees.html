@@ -715,8 +715,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="o">!</span>pip install -q watermark
-  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
+  <span class="o">%</span><span class="k">pip</span> install -q watermark
+  <span class="o">%</span><span class="k">pip</span> install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -739,7 +739,7 @@
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 
-<span class="c1"># visualization </span>
+<span class="c1"># visualization</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
@@ -754,8 +754,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:25:10.360726: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 19:25:10.360764: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:01:11.227162: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-19 19:01:11.227210: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -822,15 +822,23 @@ pandas                : 1.3.5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_1</span><span class="p">(</span><span class="n">rugged_std</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
         <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span><span class="p">)</span>
-        
-        <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+
+        <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -845,8 +853,7 @@ pandas                : 1.3.5
 <span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># set up the plot dimensions</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
-            <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 
@@ -855,12 +862,9 @@ pandas                : 1.3.5
 
 <span class="n">jdc_8_1_test</span> <span class="o">=</span> <span class="n">model_8_1</span><span class="p">(</span><span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
 
-<span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">sample_alpha</span><span class="p">,</span>
-    <span class="n">sample_beta</span><span class="p">,</span>
-    <span class="n">sample_sigma</span><span class="p">,</span>
-    <span class="kc">None</span>
-<span class="p">])</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="n">mu</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span>
 
@@ -870,10 +874,10 @@ pandas                : 1.3.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:25:12.757989: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 19:25:12.758027: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 19:25:12.758051: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
-2022-01-18 19:25:12.758252: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:01:14.138503: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-19 19:01:14.138539: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-19 19:01:14.138564: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-19 19:01:14.138788: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -890,7 +894,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.534
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.56
 </pre></div>
 </div>
 </div>
@@ -900,7 +904,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <h4>Code 8.5<a class="headerlink" href="#code-8-5" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;Rugged&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;rugged_std&#39;</span><span class="p">,</span> <span class="s1">&#39;log_gdp_std&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Rugged&quot;</span><span class="p">,</span> <span class="n">dd</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;rugged_std&quot;</span><span class="p">,</span> <span class="s2">&quot;log_gdp_std&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -909,17 +913,24 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_1</span><span class="p">(</span><span class="n">rugged_std</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span><span class="p">)</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span><span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
         <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
-            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
 <span class="n">jdc_8_1</span> <span class="o">=</span> <span class="n">model_8_1</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">rugged_std</span><span class="p">)</span>
@@ -932,8 +943,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># set up the plot dimensions</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
-            <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 
@@ -942,12 +952,9 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 
 <span class="n">jdc_8_1_test</span> <span class="o">=</span> <span class="n">model_8_1</span><span class="p">(</span><span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
 
-<span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">sample_alpha</span><span class="p">,</span>
-    <span class="n">sample_beta</span><span class="p">,</span>
-    <span class="n">sample_sigma</span><span class="p">,</span>
-    <span class="kc">None</span>
-<span class="p">])</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 
@@ -977,14 +984,16 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
     <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>    
+    <span class="n">tfb</span><span class="o">.</span><span class="n">Exp</span><span class="p">(),</span>
 <span class="p">]</span>
 
-<span class="n">posterior_8_1</span><span class="p">,</span> <span class="n">trace_8_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span><span class="n">jdc_8_1</span><span class="p">,</span>
-                               <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,),</span>
-                               <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
-                               <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                               <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+<span class="n">posterior_8_1</span><span class="p">,</span> <span class="n">trace_8_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
+    <span class="n">jdc_8_1</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace_8_1</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
 </pre></div>
@@ -1026,36 +1035,36 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
       <td>1.000</td>
       <td>0.010</td>
       <td>0.984</td>
-      <td>1.016</td>
+      <td>1.018</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>833.0</td>
-      <td>399.0</td>
-      <td>1.0</td>
+      <td>1028.0</td>
+      <td>433.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>0.005</td>
-      <td>0.055</td>
-      <td>-0.072</td>
-      <td>0.102</td>
+      <td>0.002</td>
+      <td>0.057</td>
+      <td>-0.078</td>
+      <td>0.093</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>354.0</td>
+      <td>278.0</td>
       <td>416.0</td>
-      <td>1.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.138</td>
-      <td>0.007</td>
-      <td>0.127</td>
-      <td>0.150</td>
+      <td>0.008</td>
+      <td>0.125</td>
+      <td>0.149</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>389.0</td>
-      <td>345.0</td>
-      <td>1.0</td>
+      <td>372.0</td>
+      <td>288.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -1098,11 +1107,9 @@ Name: cid, Length: 170, dtype: int64
 <h4>Code 8.8<a class="headerlink" href="#code-8-8" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s1">&#39;Rugged&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;rugged_std&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-    <span class="s1">&#39;log_gdp_std&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-    <span class="s1">&#39;cid&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span>
-<span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span>
+    <span class="s2">&quot;Rugged&quot;</span><span class="p">,</span> <span class="n">dd</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;rugged_std&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="s2">&quot;log_gdp_std&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="s2">&quot;cid&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1111,17 +1118,26 @@ Name: cid, Length: 170, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_2</span><span class="p">(</span><span class="n">cid</span><span class="p">,</span> <span class="n">rugged_std</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span><span class="p">)</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span>
+        <span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
         <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
-            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
 <span class="n">jdc_8_2</span> <span class="o">=</span> <span class="n">model_8_2</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">cid</span><span class="p">,</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">rugged_std</span><span class="p">)</span>
@@ -1146,11 +1162,12 @@ Name: cid, Length: 170, dtype: int64
 <span class="p">]</span>
 
 <span class="n">posterior_8_2</span><span class="p">,</span> <span class="n">trace_8_2</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                                <span class="n">jdc_8_2</span><span class="p">,</span> 
-                                <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,),</span>
-                                <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
-                                <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                                <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+    <span class="n">jdc_8_2</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1196,49 +1213,49 @@ Name: cid, Length: 170, dtype: int64
       <th>alpha[0]</th>
       <td>0.881</td>
       <td>0.016</td>
-      <td>0.858</td>
-      <td>0.908</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>409.0</td>
-      <td>484.0</td>
-      <td>1.00</td>
+      <td>0.852</td>
+      <td>0.905</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1226.0</td>
+      <td>782.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>1.049</td>
-      <td>0.011</td>
-      <td>1.031</td>
+      <td>1.050</td>
+      <td>0.010</td>
+      <td>1.035</td>
       <td>1.066</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>832.0</td>
-      <td>416.0</td>
-      <td>1.00</td>
+      <td>285.0</td>
+      <td>268.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>-0.048</td>
-      <td>0.049</td>
-      <td>-0.117</td>
-      <td>0.034</td>
-      <td>0.003</td>
+      <td>-0.047</td>
+      <td>0.048</td>
+      <td>-0.136</td>
+      <td>0.019</td>
       <td>0.002</td>
-      <td>314.0</td>
-      <td>375.0</td>
-      <td>1.00</td>
+      <td>0.002</td>
+      <td>479.0</td>
+      <td>459.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.114</td>
-      <td>0.006</td>
+      <td>0.007</td>
       <td>0.104</td>
-      <td>0.123</td>
+      <td>0.125</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>300.0</td>
-      <td>245.0</td>
-      <td>1.01</td>
+      <td>291.0</td>
+      <td>365.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1250,30 +1267,33 @@ Name: cid, Length: 170, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_and_store_log_likelihood_for_model_8_1</span><span class="p">():</span>
-    
+
     <span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_1</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
-    <span class="n">sample_beta</span>  <span class="o">=</span> <span class="n">posterior_8_1</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
+    <span class="n">sample_beta</span> <span class="o">=</span> <span class="n">posterior_8_1</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
     <span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_1</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span>
-    
-    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">sample_alpha</span><span class="p">,</span> 
-        <span class="n">sample_beta</span><span class="p">,</span> 
-        <span class="n">sample_sigma</span><span class="p">,</span> 
-        <span class="kc">None</span>
-    <span class="p">])</span>
-    
-    <span class="n">log_likelihood_8_1</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>    
-    
+
+    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_1</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">log_likelihood_8_1</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
     <span class="c1"># we need to insert this in the sampler_stats</span>
     <span class="n">sample_stats_8_1</span> <span class="o">=</span> <span class="n">trace_8_1</span><span class="o">.</span><span class="n">sample_stats</span>
-    
-    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample_stats_8_1</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;chain&#39;</span><span class="p">],</span> <span class="n">sample_stats_8_1</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;draw&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">170</span><span class="p">)]</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">sample_stats_8_1</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">],</span>
+        <span class="n">sample_stats_8_1</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;draw&quot;</span><span class="p">],</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">170</span><span class="p">),</span>
+    <span class="p">]</span>
 
     <span class="n">sample_stats_8_1</span><span class="p">[</span><span class="s2">&quot;log_likelihood&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-        <span class="n">log_likelihood_8_1</span><span class="p">,</span> 
-        <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>  
-        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chain&#39;</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">,</span> <span class="s1">&#39;log_likelihood_dim_0&#39;</span><span class="p">])</span>
-    
+        <span class="n">log_likelihood_8_1</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">,</span> <span class="s2">&quot;draw&quot;</span><span class="p">,</span> <span class="s2">&quot;log_likelihood_dim_0&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+
 <span class="n">compute_and_store_log_likelihood_for_model_8_1</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1283,30 +1303,33 @@ Name: cid, Length: 170, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We need to first compute the log likelihoods so as to be able to compare them</span>
 <span class="k">def</span> <span class="nf">compute_and_store_log_likelihood_for_model_8_2</span><span class="p">():</span>
-    
+
     <span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
-    <span class="n">sample_beta</span>  <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
+    <span class="n">sample_beta</span> <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
     <span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span>
-    
-    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_2</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">sample_alpha</span><span class="p">,</span> 
-        <span class="n">sample_beta</span><span class="p">,</span> 
-        <span class="n">sample_sigma</span><span class="p">,</span>
-        <span class="kc">None</span>
-    <span class="p">])</span>
-    
-    <span class="n">log_likelihood_8_2</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> 
-    
+
+    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_2</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">log_likelihood_8_2</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
     <span class="c1"># we need to insert this in the sampler_stats</span>
     <span class="n">sample_stats_8_2</span> <span class="o">=</span> <span class="n">trace_8_2</span><span class="o">.</span><span class="n">sample_stats</span>
-    
-    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample_stats_8_2</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;chain&#39;</span><span class="p">],</span> <span class="n">sample_stats_8_2</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;draw&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">170</span><span class="p">)]</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">sample_stats_8_2</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">],</span>
+        <span class="n">sample_stats_8_2</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;draw&quot;</span><span class="p">],</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">170</span><span class="p">),</span>
+    <span class="p">]</span>
 
     <span class="n">sample_stats_8_2</span><span class="p">[</span><span class="s2">&quot;log_likelihood&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-        <span class="n">log_likelihood_8_2</span><span class="p">,</span> 
-        <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>  
-        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chain&#39;</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">,</span> <span class="s1">&#39;log_likelihood_dim_0&#39;</span><span class="p">])</span>
-    
+        <span class="n">log_likelihood_8_2</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">,</span> <span class="s2">&quot;draw&quot;</span><span class="p">,</span> <span class="s2">&quot;log_likelihood_dim_0&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+
 <span class="n">compute_and_store_log_likelihood_for_model_8_2</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1314,8 +1337,7 @@ Name: cid, Length: 170, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">compare</span><span class="p">({</span><span class="s2">&quot;m8.1&quot;</span><span class="p">:</span> <span class="n">trace_8_1</span><span class="p">,</span>
-            <span class="s2">&quot;m8.2&quot;</span><span class="p">:</span> <span class="n">trace_8_2</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">compare</span><span class="p">({</span><span class="s2">&quot;m8.1&quot;</span><span class="p">:</span> <span class="n">trace_8_1</span><span class="p">,</span> <span class="s2">&quot;m8.2&quot;</span><span class="p">:</span> <span class="n">trace_8_2</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1353,11 +1375,11 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.2</th>
       <td>0</td>
-      <td>125.788381</td>
-      <td>4.503934</td>
+      <td>125.968312</td>
+      <td>4.329834</td>
       <td>0.000000</td>
-      <td>0.965597</td>
-      <td>7.412982</td>
+      <td>0.964731</td>
+      <td>7.448146</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -1365,12 +1387,12 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.1</th>
       <td>1</td>
-      <td>94.511689</td>
-      <td>2.514765</td>
-      <td>31.276692</td>
-      <td>0.034403</td>
-      <td>6.460355</td>
-      <td>7.330456</td>
+      <td>94.428626</td>
+      <td>2.590254</td>
+      <td>31.539686</td>
+      <td>0.035269</td>
+      <td>6.506622</td>
+      <td>7.386764</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -1422,49 +1444,49 @@ Name: cid, Length: 170, dtype: int64
       <th>alpha[0]</th>
       <td>0.881</td>
       <td>0.016</td>
-      <td>0.858</td>
-      <td>0.908</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>409.0</td>
-      <td>484.0</td>
-      <td>1.00</td>
+      <td>0.852</td>
+      <td>0.905</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1226.0</td>
+      <td>782.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>1.049</td>
-      <td>0.011</td>
-      <td>1.031</td>
+      <td>1.050</td>
+      <td>0.010</td>
+      <td>1.035</td>
       <td>1.066</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>832.0</td>
-      <td>416.0</td>
-      <td>1.00</td>
+      <td>285.0</td>
+      <td>268.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>-0.048</td>
-      <td>0.049</td>
-      <td>-0.117</td>
-      <td>0.034</td>
-      <td>0.003</td>
+      <td>-0.047</td>
+      <td>0.048</td>
+      <td>-0.136</td>
+      <td>0.019</td>
       <td>0.002</td>
-      <td>314.0</td>
-      <td>375.0</td>
-      <td>1.00</td>
+      <td>0.002</td>
+      <td>479.0</td>
+      <td>459.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.114</td>
-      <td>0.006</td>
+      <td>0.007</td>
       <td>0.104</td>
-      <td>0.123</td>
+      <td>0.125</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>300.0</td>
-      <td>245.0</td>
-      <td>1.01</td>
+      <td>291.0</td>
+      <td>365.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1475,7 +1497,7 @@ Name: cid, Length: 170, dtype: int64
 <h4>Code 8.11<a class="headerlink" href="#code-8-11" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_a</span> <span class="o">=</span> <span class="n">trace_8_2</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">trace_8_2</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,:,</span> <span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_a</span> <span class="o">=</span> <span class="n">trace_8_2</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">trace_8_2</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1523,61 +1545,61 @@ Name: cid, Length: 170, dtype: int64
       <th>alpha[0]</th>
       <td>0.881</td>
       <td>0.016</td>
-      <td>0.858</td>
-      <td>0.908</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>409.0</td>
-      <td>484.0</td>
-      <td>1.00</td>
+      <td>0.852</td>
+      <td>0.905</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1226.0</td>
+      <td>782.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>1.049</td>
-      <td>0.011</td>
-      <td>1.031</td>
+      <td>1.050</td>
+      <td>0.010</td>
+      <td>1.035</td>
       <td>1.066</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>832.0</td>
-      <td>416.0</td>
-      <td>1.00</td>
+      <td>285.0</td>
+      <td>268.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>-0.048</td>
-      <td>0.049</td>
-      <td>-0.117</td>
-      <td>0.034</td>
-      <td>0.003</td>
+      <td>-0.047</td>
+      <td>0.048</td>
+      <td>-0.136</td>
+      <td>0.019</td>
       <td>0.002</td>
-      <td>314.0</td>
-      <td>375.0</td>
-      <td>1.00</td>
+      <td>0.002</td>
+      <td>479.0</td>
+      <td>459.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
       <td>0.114</td>
-      <td>0.006</td>
+      <td>0.007</td>
       <td>0.104</td>
-      <td>0.123</td>
+      <td>0.125</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>300.0</td>
-      <td>245.0</td>
-      <td>1.01</td>
+      <td>291.0</td>
+      <td>365.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>diff_a</th>
-      <td>-0.168</td>
-      <td>0.020</td>
-      <td>-0.198</td>
-      <td>-0.136</td>
+      <td>-0.169</td>
+      <td>0.019</td>
+      <td>-0.196</td>
+      <td>-0.135</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>500.0</td>
-      <td>399.0</td>
-      <td>1.00</td>
+      <td>639.0</td>
+      <td>624.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1591,32 +1613,26 @@ Name: cid, Length: 170, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rugged_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
 <span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_beta</span>  <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_beta</span> <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_2</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># compute mu over samples, fixing cid=1</span>
-<span class="n">jdc_8_2_test_cid_1</span> <span class="o">=</span> <span class="n">model_8_2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
+<span class="n">jdc_8_2_test_cid_1</span> <span class="o">=</span> <span class="n">model_8_2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
 
-<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_2_test_cid_1</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">sample_alpha</span><span class="p">,</span>
-    <span class="n">sample_beta</span><span class="p">,</span> 
-    <span class="n">sample_sigma</span><span class="p">,</span>
-    <span class="kc">None</span>
-<span class="p">])</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_2_test_cid_1</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="n">mu_NotAfrica</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 <span class="n">mu_NotAfrica_mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">mu_NotAfrica</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">mu_NotAfrica_ci</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">mu_NotAfrica</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">98.5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># compute mu over samples, fixing cid=0</span>
-<span class="n">jdc_8_2_test_cid_0</span> <span class="o">=</span> <span class="n">model_8_2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
+<span class="n">jdc_8_2_test_cid_0</span> <span class="o">=</span> <span class="n">model_8_2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
 
-<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_2_test_cid_0</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">sample_alpha</span><span class="p">,</span> 
-    <span class="n">sample_beta</span><span class="p">,</span> 
-    <span class="n">sample_sigma</span><span class="p">,</span>
-    <span class="kc">None</span>
-<span class="p">])</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_2_test_cid_0</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="n">mu_Africa</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 <span class="n">mu_Africa_mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">mu_Africa</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -1630,16 +1646,21 @@ Name: cid, Length: 170, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw figure 8.4 in the book [note - no code was provided for it in the book]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">rugged_std</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,</span> 
-            <span class="n">edgecolors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;none&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;b&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dd</span><span class="p">[</span><span class="s2">&quot;cid&quot;</span><span class="p">]],</span>
-            <span class="n">facecolors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;none&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;b&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dd</span><span class="p">[</span><span class="s2">&quot;cid&quot;</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">dd</span><span class="o">.</span><span class="n">rugged_std</span><span class="p">,</span>
+    <span class="n">dd</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,</span>
+    <span class="n">edgecolors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;none&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;b&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dd</span><span class="p">[</span><span class="s2">&quot;cid&quot;</span><span class="p">]],</span>
+    <span class="n">facecolors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;none&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;b&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dd</span><span class="p">[</span><span class="s2">&quot;cid&quot;</span><span class="p">]],</span>
+<span class="p">)</span>
 
 <span class="c1"># draw MAP line</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_Africa_mu</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Africa&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_Africa_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_Africa_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_NotAfrica_mu</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Not Africa&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -1656,17 +1677,26 @@ Name: cid, Length: 170, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_3</span><span class="p">(</span><span class="n">cid</span><span class="p">,</span> <span class="n">rugged_std</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span><span class="p">)</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">rugged_std</span> <span class="o">-</span> <span class="mf">0.215</span>
+        <span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
         <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
-            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
 <span class="n">jdc_8_3</span> <span class="o">=</span> <span class="n">model_8_3</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">cid</span><span class="p">,</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">rugged_std</span><span class="p">)</span>
@@ -1689,12 +1719,13 @@ Name: cid, Length: 170, dtype: int64
 <span class="p">]</span>
 
 <span class="n">posterior_8_3</span><span class="p">,</span> <span class="n">trace_8_3</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                                <span class="n">jdc_8_3</span><span class="p">,</span> 
-                                <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,),</span>
-                                <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
-                                <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-                                <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                                <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+    <span class="n">jdc_8_3</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+    <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1741,63 +1772,63 @@ Name: cid, Length: 170, dtype: int64
   <tbody>
     <tr>
       <th>alpha[0]</th>
-      <td>0.887</td>
-      <td>0.017</td>
-      <td>0.862</td>
-      <td>0.915</td>
+      <td>0.886</td>
+      <td>0.016</td>
+      <td>0.861</td>
+      <td>0.911</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>1528.0</td>
-      <td>1332.0</td>
+      <td>2375.0</td>
+      <td>1378.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
       <td>1.050</td>
       <td>0.010</td>
-      <td>1.033</td>
-      <td>1.065</td>
+      <td>1.036</td>
+      <td>1.067</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>848.0</td>
-      <td>923.0</td>
-      <td>1.00</td>
+      <td>431.0</td>
+      <td>587.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta[0]</th>
       <td>0.133</td>
-      <td>0.077</td>
-      <td>0.015</td>
-      <td>0.251</td>
+      <td>0.079</td>
+      <td>0.008</td>
+      <td>0.256</td>
+      <td>0.005</td>
       <td>0.004</td>
-      <td>0.003</td>
-      <td>324.0</td>
-      <td>427.0</td>
-      <td>1.00</td>
+      <td>239.0</td>
+      <td>464.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>beta[1]</th>
       <td>-0.144</td>
-      <td>0.054</td>
-      <td>-0.229</td>
-      <td>-0.059</td>
+      <td>0.055</td>
+      <td>-0.230</td>
+      <td>-0.062</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>607.0</td>
-      <td>758.0</td>
-      <td>1.01</td>
+      <td>582.0</td>
+      <td>892.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.112</td>
+      <td>0.111</td>
       <td>0.006</td>
       <td>0.101</td>
-      <td>0.121</td>
+      <td>0.120</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>589.0</td>
-      <td>869.0</td>
-      <td>1.00</td>
+      <td>522.0</td>
+      <td>614.0</td>
+      <td>1.01</td>
     </tr>
   </tbody>
 </table>
@@ -1810,30 +1841,33 @@ Name: cid, Length: 170, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We need to first compute the log likelihoods so as to be able to compare them</span>
 <span class="k">def</span> <span class="nf">compute_and_store_log_likelihood_for_model_8_3</span><span class="p">():</span>
-    
+
     <span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
-    <span class="n">sample_beta</span>  <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
+    <span class="n">sample_beta</span> <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
     <span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span>
-    
-    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_3</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">sample_alpha</span><span class="p">,</span> 
-        <span class="n">sample_beta</span><span class="p">,</span> 
-        <span class="n">sample_sigma</span><span class="p">,</span>
-        <span class="kc">None</span>
-    <span class="p">])</span>
-    
-    <span class="n">log_likelihood_8_3</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>    
-    
+
+    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_3</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">log_likelihood_8_3</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">log_gdp_std</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
     <span class="c1"># we need to insert this in the sampler_stats</span>
     <span class="n">sample_stats_8_3</span> <span class="o">=</span> <span class="n">trace_8_3</span><span class="o">.</span><span class="n">sample_stats</span>
-    
-    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample_stats_8_3</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;chain&#39;</span><span class="p">],</span> <span class="n">sample_stats_8_3</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;draw&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">170</span><span class="p">)]</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">sample_stats_8_3</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">],</span>
+        <span class="n">sample_stats_8_3</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;draw&quot;</span><span class="p">],</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">170</span><span class="p">),</span>
+    <span class="p">]</span>
 
     <span class="n">sample_stats_8_3</span><span class="p">[</span><span class="s2">&quot;log_likelihood&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-        <span class="n">log_likelihood_8_3</span><span class="p">,</span> 
-        <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>  
-        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chain&#39;</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">,</span> <span class="s1">&#39;log_likelihood_dim_0&#39;</span><span class="p">])</span>
-    
+        <span class="n">log_likelihood_8_3</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">,</span> <span class="s2">&quot;draw&quot;</span><span class="p">,</span> <span class="s2">&quot;log_likelihood_dim_0&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+
 <span class="n">compute_and_store_log_likelihood_for_model_8_3</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1841,9 +1875,7 @@ Name: cid, Length: 170, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">compare</span><span class="p">({</span><span class="s2">&quot;m8.1&quot;</span><span class="p">:</span> <span class="n">trace_8_1</span><span class="p">,</span>
-            <span class="s2">&quot;m8.2&quot;</span><span class="p">:</span> <span class="n">trace_8_2</span><span class="p">,</span>
-            <span class="s2">&quot;m8.3&quot;</span><span class="p">:</span> <span class="n">trace_8_3</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">compare</span><span class="p">({</span><span class="s2">&quot;m8.1&quot;</span><span class="p">:</span> <span class="n">trace_8_1</span><span class="p">,</span> <span class="s2">&quot;m8.2&quot;</span><span class="p">:</span> <span class="n">trace_8_2</span><span class="p">,</span> <span class="s2">&quot;m8.3&quot;</span><span class="p">:</span> <span class="n">trace_8_3</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1881,11 +1913,11 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.3</th>
       <td>0</td>
-      <td>129.536767</td>
-      <td>4.971600</td>
+      <td>129.606079</td>
+      <td>5.002433</td>
       <td>0.000000</td>
-      <td>0.900253</td>
-      <td>7.235793</td>
+      <td>8.738141e-01</td>
+      <td>7.358786</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -1893,24 +1925,24 @@ Name: cid, Length: 170, dtype: int64
     <tr>
       <th>m8.2</th>
       <td>1</td>
-      <td>125.788381</td>
-      <td>4.503934</td>
-      <td>3.748386</td>
-      <td>0.099747</td>
-      <td>7.412982</td>
-      <td>3.263365</td>
+      <td>125.968900</td>
+      <td>4.329246</td>
+      <td>3.637179</td>
+      <td>1.261859e-01</td>
+      <td>7.448509</td>
+      <td>3.310409</td>
       <td>False</td>
       <td>log</td>
     </tr>
     <tr>
       <th>m8.1</th>
       <td>2</td>
-      <td>94.511689</td>
-      <td>2.514765</td>
-      <td>35.025078</td>
-      <td>0.000000</td>
-      <td>6.460355</td>
-      <td>7.402299</td>
+      <td>94.428626</td>
+      <td>2.590254</td>
+      <td>35.177453</td>
+      <td>4.440892e-16</td>
+      <td>6.506622</td>
+      <td>7.503596</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -1936,8 +1968,8 @@ See http://arxiv.org/abs/1507.04544 for details
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 2000 by 170 log-likelihood matrix
 
           Estimate       SE
-elpd_waic   129.61     7.23
-p_waic        4.90        -
+elpd_waic   129.67     7.35
+p_waic        4.94        -
 
 There has been a warning during the calculation. Please check the results.
 </pre></div>
@@ -1955,32 +1987,26 @@ There has been a warning during the calculation. Please check the results.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rugged_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
 <span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_beta</span>  <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_beta</span> <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_3</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># compute mu over samples, fixing cid=1</span>
-<span class="n">jdc_8_3_test_cid_1</span> <span class="o">=</span> <span class="n">model_8_3</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
+<span class="n">jdc_8_3_test_cid_1</span> <span class="o">=</span> <span class="n">model_8_3</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
 
-<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_3_test_cid_1</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">sample_alpha</span><span class="p">,</span> 
-    <span class="n">sample_beta</span><span class="p">,</span> 
-    <span class="n">sample_sigma</span><span class="p">,</span>
-    <span class="kc">None</span>
-<span class="p">])</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_3_test_cid_1</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="n">mu_NotAfrica</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 <span class="n">mu_NotAfrica_mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">mu_NotAfrica</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">mu_NotAfrica_ci</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">mu_NotAfrica</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">98.5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># compute mu over samples, fixing cid=0</span>
-<span class="n">jdc_8_3_test_cid_0</span> <span class="o">=</span> <span class="n">model_8_3</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
+<span class="n">jdc_8_3_test_cid_0</span> <span class="o">=</span> <span class="n">model_8_3</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">rugged_std</span><span class="o">=</span><span class="n">rugged_seq</span><span class="p">)</span>
 
-<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_3_test_cid_0</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">sample_alpha</span><span class="p">,</span> 
-                <span class="n">sample_beta</span><span class="p">,</span> 
-                <span class="n">sample_sigma</span><span class="p">,</span> 
-                <span class="kc">None</span>
-<span class="p">])</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">jdc_8_3_test_cid_0</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_beta</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="n">mu_Africa</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 <span class="n">mu_Africa_mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">mu_Africa</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -1992,13 +2018,16 @@ There has been a warning during the calculation. Please check the results.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_pair</span><span class="p">(</span><span class="n">d_A1</span><span class="p">[[</span><span class="s2">&quot;rugged_std&quot;</span><span class="p">,</span> <span class="s2">&quot;log_gdp_std&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;list&quot;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness (standardized)&quot;</span><span class="p">,</span>
-              <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP (as proportion of mean)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness (standardized)&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP (as proportion of mean)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_Africa_mu</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_Africa_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_Africa_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;African nations&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -2009,12 +2038,17 @@ There has been a warning during the calculation. Please check the results.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_pair</span><span class="p">(</span><span class="n">d_A1</span><span class="p">[[</span><span class="s2">&quot;rugged_std&quot;</span><span class="p">,</span> <span class="s2">&quot;log_gdp_std&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;list&quot;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness (standardized)&quot;</span><span class="p">,</span>
-              <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">1.3</span><span class="p">),</span>
-              <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP (as proportion of mean)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;ruggedness (standardized)&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">),</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;log GDP (as proportion of mean)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_NotAfrica_mu</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">rugged_seq</span><span class="p">,</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_NotAfrica_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Non-African nations&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -2152,13 +2186,13 @@ memory usage: 992.0+ bytes
 <h4>Code 8.21<a class="headerlink" href="#code-8-21" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),))</span>
 <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6203
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6196
 </pre></div>
 </div>
 </div>
@@ -2174,7 +2208,7 @@ memory usage: 992.0+ bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0449
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0497
 </pre></div>
 </div>
 </div>
@@ -2184,31 +2218,46 @@ memory usage: 992.0+ bytes
 <h4>Code 8.23<a class="headerlink" href="#code-8-23" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Tulip&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;blooms_std&#39;</span><span class="p">,</span> <span class="s1">&#39;water_cent&#39;</span><span class="p">,</span> <span class="s1">&#39;shade_cent&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;Tulip&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;blooms_std&quot;</span><span class="p">,</span> <span class="s2">&quot;water_cent&quot;</span><span class="p">,</span> <span class="s2">&quot;shade_cent&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_4</span><span class="p">(</span><span class="n">water_cent</span><span class="p">,</span> <span class="n">shade_cent</span><span class="p">,):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_4</span><span class="p">(</span>
+    <span class="n">water_cent</span><span class="p">,</span>
+    <span class="n">shade_cent</span><span class="p">,</span>
+<span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">betaW</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;betaW&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">betaS</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;betaS&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">+</span> <span class="n">betaW</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">water_cent</span> <span class="o">+</span> <span class="n">betaS</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">shade_cent</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">betaW</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;betaW&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">betaS</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;betaS&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">alpha</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">betaW</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">water_cent</span>
+            <span class="o">+</span> <span class="n">betaS</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">shade_cent</span>
+        <span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
         <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
-            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
-<span class="n">jdc_8_4</span> <span class="o">=</span> <span class="n">model_8_4</span><span class="p">(</span><span class="n">shade_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">shade_cent</span><span class="p">,</span> 
-                    <span class="n">water_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">water_cent</span><span class="p">)</span>
+<span class="n">jdc_8_4</span> <span class="o">=</span> <span class="n">model_8_4</span><span class="p">(</span><span class="n">shade_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">shade_cent</span><span class="p">,</span> <span class="n">water_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">water_cent</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2230,12 +2279,13 @@ memory usage: 992.0+ bytes
 <span class="p">]</span>
 
 <span class="n">posterior_8_4</span><span class="p">,</span> <span class="n">trace_8_4</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                                <span class="n">jdc_8_4</span><span class="p">,</span> 
-                                <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">blooms_std</span><span class="p">,),</span>
-                                <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;betaW&#39;</span><span class="p">,</span> <span class="s1">&#39;betaS&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
-                                <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-                                <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                                <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+    <span class="n">jdc_8_4</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">blooms_std</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;betaW&quot;</span><span class="p">,</span> <span class="s2">&quot;betaS&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+    <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2247,26 +2297,39 @@ memory usage: 992.0+ bytes
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_8_5</span><span class="p">(</span><span class="n">water_cent</span><span class="p">,</span> <span class="n">shade_cent</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
-        <span class="n">alpha</span>  <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">betaW</span>  <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;betaW&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">betaS</span>  <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;betaS&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">betaWS</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;betaWS&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">sigma</span>  <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        
-        <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">+</span> \
-                <span class="n">betaW</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="o">*</span> <span class="n">water_cent</span> <span class="o">+</span> \
-                <span class="n">betaS</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="o">*</span> <span class="n">shade_cent</span> <span class="o">+</span> \
-                <span class="n">betaWS</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">shade_cent</span> <span class="o">*</span> <span class="n">water_cent</span>
-        
-        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        
-        <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
-            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">betaW</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;betaW&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">betaS</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;betaS&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">betaWS</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;betaWS&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
 
-<span class="n">jdc_8_5</span> <span class="o">=</span> <span class="n">model_8_5</span><span class="p">(</span><span class="n">shade_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">shade_cent</span><span class="p">,</span> 
-                    <span class="n">water_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">water_cent</span><span class="p">)</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">alpha</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">betaW</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">water_cent</span>
+            <span class="o">+</span> <span class="n">betaS</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">shade_cent</span>
+            <span class="o">+</span> <span class="n">betaWS</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">shade_cent</span> <span class="o">*</span> <span class="n">water_cent</span>
+        <span class="p">)</span>
+
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="n">log_gdp_std</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="n">jdc_8_5</span> <span class="o">=</span> <span class="n">model_8_5</span><span class="p">(</span><span class="n">shade_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">shade_cent</span><span class="p">,</span> <span class="n">water_cent</span><span class="o">=</span><span class="n">tdf</span><span class="o">.</span><span class="n">water_cent</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2290,17 +2353,18 @@ memory usage: 992.0+ bytes
 <span class="p">]</span>
 
 <span class="n">posterior_8_5</span><span class="p">,</span> <span class="n">trace_8_5</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                                <span class="n">jdc_8_5</span><span class="p">,</span> 
-                                <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">blooms_std</span><span class="p">,),</span>
-                                <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;betaW&#39;</span><span class="p">,</span> <span class="s1">&#39;betaS&#39;</span><span class="p">,</span> <span class="s1">&#39;betaWS&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">],</span>
-                                <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-                                <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                                <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">)</span>
+    <span class="n">jdc_8_5</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">blooms_std</span><span class="p">,),</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;betaW&quot;</span><span class="p">,</span> <span class="s2">&quot;betaS&quot;</span><span class="p">,</span> <span class="s2">&quot;betaWS&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+    <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7f045088f710&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 5 calls to &lt;function run_hmc_chain at 0x7fb05a5af7a0&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -2313,10 +2377,10 @@ memory usage: 992.0+ bytes
 <h4>Code 8.25<a class="headerlink" href="#code-8-25" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span>  <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_betaW</span>  <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s1">&#39;betaW&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_betaS</span>  <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s1">&#39;betaS&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>    
-<span class="n">sample_sigma</span>  <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_betaW</span> <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s2">&quot;betaW&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_betaS</span> <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s2">&quot;betaS&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_4</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 3 plots in 1 row</span>
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
@@ -2324,21 +2388,19 @@ memory usage: 992.0+ bytes
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">water_cent</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">d</span><span class="o">.</span><span class="n">blooms_std</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;blooms&quot;</span><span class="p">)</span>
 
-    <span class="n">shade_cent</span><span class="o">=</span><span class="n">s</span>
-    <span class="n">water_cent</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>    
-    
-    <span class="n">jdc_8_4_test</span> <span class="o">=</span> <span class="n">model_8_4</span><span class="p">(</span><span class="n">water_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">water_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
-                             <span class="n">shade_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">shade_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
-    
-    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_4_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">sample_alpha</span><span class="p">,</span> 
-        <span class="n">sample_betaW</span><span class="p">,</span> 
-        <span class="n">sample_betaS</span><span class="p">,</span> 
-        <span class="n">sample_sigma</span><span class="p">,</span> 
-        <span class="kc">None</span>
-    <span class="p">])</span>
-    
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>    
+    <span class="n">shade_cent</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="n">water_cent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">jdc_8_4_test</span> <span class="o">=</span> <span class="n">model_8_4</span><span class="p">(</span>
+        <span class="n">water_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">water_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+        <span class="n">shade_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">shade_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_4_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">sample_betaW</span><span class="p">,</span> <span class="n">sample_betaS</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
@@ -2354,34 +2416,38 @@ memory usage: 992.0+ bytes
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code for plotting model 8.5 is not listed in the book but there are corresponding figures so</span>
 <span class="c1"># draw them here</span>
 
-<span class="n">sample_alpha</span>  <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_betaW</span>  <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s1">&#39;betaW&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_betaS</span>  <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s1">&#39;betaS&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>    
-<span class="n">sample_betaWS</span> <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s1">&#39;betaWS&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">sample_sigma</span>  <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    
+<span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_betaW</span> <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s2">&quot;betaW&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_betaS</span> <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s2">&quot;betaS&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_betaWS</span> <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s2">&quot;betaWS&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">posterior_8_5</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
 <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 3 plots in 1 row</span>
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">shade_cent</span> <span class="o">==</span> <span class="n">s</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">water_cent</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">d</span><span class="o">.</span><span class="n">blooms_std</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;blooms&quot;</span><span class="p">)</span>
 
-    <span class="n">shade_cent</span><span class="o">=</span><span class="n">s</span>
-    <span class="n">water_cent</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    
-    <span class="n">jdc_8_5_test</span> <span class="o">=</span> <span class="n">model_8_5</span><span class="p">(</span><span class="n">water_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">water_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
-                             <span class="n">shade_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">shade_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
-    
-    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_5_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">sample_alpha</span><span class="p">,</span>  
-        <span class="n">sample_betaW</span><span class="p">,</span>  
-        <span class="n">sample_betaS</span><span class="p">,</span>  
-        <span class="n">sample_betaWS</span><span class="p">,</span> 
-        <span class="n">sample_sigma</span><span class="p">,</span>  
-        <span class="kc">None</span>
-    <span class="p">])</span>
-    
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span> 
+    <span class="n">shade_cent</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="n">water_cent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">jdc_8_5_test</span> <span class="o">=</span> <span class="n">model_8_5</span><span class="p">(</span>
+        <span class="n">water_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">water_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+        <span class="n">shade_cent</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">shade_cent</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">ds</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jdc_8_5_test</span><span class="o">.</span><span class="n">sample_distributions</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">sample_alpha</span><span class="p">,</span>
+            <span class="n">sample_betaW</span><span class="p">,</span>
+            <span class="n">sample_betaS</span><span class="p">,</span>
+            <span class="n">sample_betaWS</span><span class="p">,</span>
+            <span class="n">sample_sigma</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>

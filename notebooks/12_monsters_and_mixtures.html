@@ -461,8 +461,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages that are not installed in colab</span>
 <span class="k">try</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">google.colab</span>
-  <span class="o">!</span>pip install -q watermark
-  <span class="o">!</span>pip install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
+  <span class="o">%</span><span class="k">pip</span> install -q watermark
+  <span class="o">%</span><span class="k">pip</span> install git+https://github.com/ksachdeva/rethinking-tensorflow-probability.git
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
@@ -484,7 +484,7 @@
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 
-<span class="c1"># visualization </span>
+<span class="c1"># visualization</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">rethinking.data</span> <span class="kn">import</span> <span class="n">RethinkingDataset</span>
@@ -500,8 +500,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:36:18.901690: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-01-18 19:36:18.901728: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:13:11.706740: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-01-19 19:13:11.706778: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 </div>
@@ -541,8 +541,8 @@ rethinking            : 0.1.0
 <p>A beta distribution is a probability distribution for probabilities !</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pbar</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1"># mean</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># total concentration</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pbar</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># mean</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># total concentration</span>
 
 <span class="n">alpha</span> <span class="o">=</span> <span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span>
@@ -550,7 +550,8 @@ rethinking            : 0.1.0
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -558,10 +559,10 @@ rethinking            : 0.1.0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:@custom_gradient grad_fn has &#39;variables&#39; in signature, but no ResourceVariables were used on the forward pass.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-18 19:36:21.024935: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-01-18 19:36:21.024969: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-01-18 19:36:21.024989: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az129-677): /proc/driver/nvidia/version does not exist
-2022-01-18 19:36:21.025316: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-01-19 19:13:14.263744: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-01-19 19:13:14.263785: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-01-19 19:13:14.263812: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az272-145): /proc/driver/nvidia/version does not exist
+2022-01-19 19:13:14.264123: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -581,12 +582,16 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span><span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s2">&quot;gid&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
-    <span class="s2">&quot;applications&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-    <span class="s2">&quot;admit&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-    <span class="s2">&quot;reject&quot;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
-<span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdf</span> <span class="o">=</span> <span class="n">dataframe_to_tensors</span><span class="p">(</span>
+    <span class="s2">&quot;UCBAdmit&quot;</span><span class="p">,</span>
+    <span class="n">d</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;gid&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+        <span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;admit&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;reject&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -594,25 +599,29 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_12_1</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
-      <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-      <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-      <span class="n">theta</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">+</span> <span class="mi">2</span>
-      <span class="n">pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>        
-        
-      <span class="c1"># prepare the concentration vector</span>
-      <span class="n">concentration1</span> <span class="o">=</span> <span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-      <span class="n">concentration0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>    
-    
-      <span class="n">concentration</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">concentration1</span><span class="p">,</span> <span class="n">concentration0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        
-      <span class="c1"># outcome A i.e. admit  </span>
-      <span class="c1"># since it is a multinomial we will have K = 2</span>
-      <span class="c1"># note -  this does not really behave like Binomial in terms of the sample shape</span>
-      <span class="n">A</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">DirichletMultinomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="n">concentration</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
-      
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    
-    
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">+</span> <span class="mi">2</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>
+
+        <span class="c1"># prepare the concentration vector</span>
+        <span class="n">concentration1</span> <span class="o">=</span> <span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">concentration0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="n">concentration</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">concentration1</span><span class="p">,</span> <span class="n">concentration0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># outcome A i.e. admit</span>
+        <span class="c1"># since it is a multinomial we will have K = 2</span>
+        <span class="c1"># note -  this does not really behave like Binomial in terms of the sample shape</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">DirichletMultinomial</span><span class="p">(</span><span class="n">total_count</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">concentration</span><span class="o">=</span><span class="n">concentration</span><span class="p">),</span>
+            <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
 <span class="n">jdc_12_1</span> <span class="o">=</span> <span class="n">model_12_1</span><span class="p">(</span><span class="n">tdf</span><span class="o">.</span><span class="n">gid</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">applications</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -623,7 +632,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <h4>Code 12.3<a class="headerlink" href="#code-12-3" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the expected shape by the DirichletMultinomial  </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the expected shape by the DirichletMultinomial</span>
 <span class="n">obs_values</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tdf</span><span class="o">.</span><span class="n">admit</span><span class="p">,</span> <span class="n">tdf</span><span class="o">.</span><span class="n">reject</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -633,24 +642,19 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBER_OF_CHAINS_12_1</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS_12_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
-    <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS_12_1</span><span class="p">])</span>
-<span class="p">]</span>
+<span class="n">init_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS_12_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">NUMBER_OF_CHAINS_12_1</span><span class="p">])]</span>
 
-<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
-    <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
-<span class="p">]</span>
+<span class="n">bijectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span> <span class="n">tfb</span><span class="o">.</span><span class="n">Identity</span><span class="p">()]</span>
 
 
 <span class="n">posterior_12_1</span><span class="p">,</span> <span class="n">trace_12_1</span> <span class="o">=</span> <span class="n">sample_posterior</span><span class="p">(</span>
-                                <span class="n">jdc_12_1</span><span class="p">,</span> 
-                                <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-                                <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">obs_values</span><span class="p">,),</span> 
-                                <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
-                                <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
-                                <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;phi&#39;</span><span class="p">])</span>
+    <span class="n">jdc_12_1</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">observed_data</span><span class="o">=</span><span class="p">(</span><span class="n">obs_values</span><span class="p">,),</span>
+    <span class="n">init_state</span><span class="o">=</span><span class="n">init_state</span><span class="p">,</span>
+    <span class="n">bijectors</span><span class="o">=</span><span class="n">bijectors</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;phi&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -669,11 +673,12 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the difference between alphas</span>
-<span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;da&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> \
-         <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;da&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
 
 <span class="c1"># compute theta</span>
-<span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;phi&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;phi&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -718,62 +723,62 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
     <tr>
       <th>alpha[0]</th>
       <td>-0.427</td>
-      <td>0.429</td>
-      <td>-1.056</td>
-      <td>0.280</td>
-      <td>0.018</td>
-      <td>0.013</td>
-      <td>564.0</td>
-      <td>484.0</td>
+      <td>0.417</td>
+      <td>-1.004</td>
+      <td>0.303</td>
+      <td>0.017</td>
+      <td>0.012</td>
+      <td>600.0</td>
+      <td>498.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>alpha[1]</th>
-      <td>-0.296</td>
-      <td>0.429</td>
-      <td>-0.902</td>
-      <td>0.464</td>
-      <td>0.016</td>
-      <td>0.012</td>
-      <td>687.0</td>
-      <td>319.0</td>
+      <td>-0.325</td>
+      <td>0.421</td>
+      <td>-1.056</td>
+      <td>0.290</td>
+      <td>0.018</td>
+      <td>0.013</td>
+      <td>558.0</td>
+      <td>719.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>phi</th>
-      <td>0.649</td>
-      <td>0.853</td>
-      <td>-0.716</td>
-      <td>1.982</td>
-      <td>0.097</td>
-      <td>0.071</td>
-      <td>85.0</td>
-      <td>94.0</td>
-      <td>1.03</td>
+      <td>0.680</td>
+      <td>0.890</td>
+      <td>-0.684</td>
+      <td>1.886</td>
+      <td>0.085</td>
+      <td>0.061</td>
+      <td>117.0</td>
+      <td>160.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>da</th>
-      <td>-0.131</td>
-      <td>0.592</td>
-      <td>-1.062</td>
-      <td>0.858</td>
-      <td>0.021</td>
-      <td>0.016</td>
-      <td>786.0</td>
-      <td>482.0</td>
+      <td>-0.102</td>
+      <td>0.610</td>
+      <td>-1.000</td>
+      <td>0.929</td>
+      <td>0.026</td>
+      <td>0.018</td>
+      <td>556.0</td>
+      <td>803.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>theta</th>
-      <td>2.649</td>
-      <td>0.853</td>
-      <td>1.284</td>
-      <td>3.982</td>
-      <td>0.097</td>
-      <td>0.071</td>
-      <td>85.0</td>
-      <td>94.0</td>
-      <td>1.03</td>
+      <td>2.680</td>
+      <td>0.890</td>
+      <td>1.316</td>
+      <td>3.886</td>
+      <td>0.085</td>
+      <td>0.061</td>
+      <td>117.0</td>
+      <td>160.0</td>
+      <td>1.01</td>
     </tr>
   </tbody>
 </table>
@@ -788,8 +793,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="c1"># we have to manually extract it</span>
 <span class="c1">#</span>
 <span class="c1"># Here I am using the data from chain 0</span>
-<span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">sample_theta</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">sample_alpha</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">sample_theta</span> <span class="o">=</span> <span class="n">trace_12_1</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
@@ -802,15 +807,17 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="n">pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">[:,</span> <span class="n">gid</span><span class="p">]))</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">sample_theta</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">pbar</span> <span class="o">*</span> <span class="n">theta</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;probability admit&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;probability admit&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># draw 50 beta distributions sampled from posterior</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">gid</span><span class="p">])</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">sample_theta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">theta</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-             <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;distribution of female admission rates&quot;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">theta</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;distribution of female admission rates&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -827,14 +834,14 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="n">N</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">gid</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">gid</span><span class="o">.</span><span class="n">values</span>
 
-<span class="n">sample_pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>    
+<span class="n">sample_pbar</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">sample_alpha</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>
 
 <span class="c1"># need to reshape it to make it happy</span>
-<span class="n">st</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sample_theta</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sample_theta</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># prepare the concentration vector</span>
 <span class="n">concentration1</span> <span class="o">=</span> <span class="n">sample_pbar</span> <span class="o">*</span> <span class="n">st</span>
-<span class="n">concentration0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sample_pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">st</span>    
+<span class="n">concentration0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sample_pbar</span><span class="p">)</span> <span class="o">*</span> <span class="n">st</span>
 
 <span class="n">concentration</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">concentration1</span><span class="p">,</span> <span class="n">concentration0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
@@ -848,18 +855,27 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numpy style indexing magic ! .. hate it !</span>
-<span class="n">admit_rate</span> <span class="o">=</span> <span class="n">predictive_samples</span><span class="p">[::,::,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span>
+<span class="n">admit_rate</span> <span class="o">=</span> <span class="n">predictive_samples</span><span class="p">[::,</span> <span class="p">::,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span><span class="n">N</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-             <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">elinewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">d</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">ms</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">elinewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;k+&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mf">94.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;k+&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">admit_rate</span><span class="p">,</span> <span class="mf">94.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;k+&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -976,25 +992,31 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_12_2</span><span class="p">(</span><span class="n">cid</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>      
-      <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-      <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-      <span class="n">gamma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-      <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">():</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">Root</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">sample_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 
-      <span class="n">lambda_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> \
-              <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span> <span class="o">/</span> <span class="n">gamma</span>
-    
-      <span class="n">g_concentration</span> <span class="o">=</span> <span class="n">lambda_</span> <span class="o">/</span> <span class="n">phi</span>
-      <span class="n">g_rate</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">phi</span>
-    
-      <span class="n">t1</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
-          <span class="n">tfd</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="n">concentration</span><span class="o">=</span><span class="n">g_concentration</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">g_rate</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-      <span class="n">T</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">t1</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             
-      
-    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
-    
+        <span class="n">lambda_</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>
+            <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)))</span>
+            <span class="o">/</span> <span class="n">gamma</span>
+        <span class="p">)</span>
+
+        <span class="n">g_concentration</span> <span class="o">=</span> <span class="n">lambda_</span> <span class="o">/</span> <span class="n">phi</span>
+        <span class="n">g_rate</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">phi</span>
+
+        <span class="n">t1</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span>
+            <span class="n">tfd</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="n">concentration</span><span class="o">=</span><span class="n">g_concentration</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">g_rate</span><span class="p">),</span>
+            <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">T</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">t1</span><span class="p">),</span> <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">JointDistributionCoroutine</span><span class="p">(</span><span class="n">_generator</span><span class="p">,</span> <span class="n">validate_args</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
 <span class="n">jdc_12_2</span> <span class="o">=</span> <span class="n">model_12_2</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">cid</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">P</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
 
 <span class="c1"># Issue -</span>
@@ -1026,7 +1048,7 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 <span class="c1">#     tfb.Identity(),</span>
 <span class="c1"># ]</span>
 
-<span class="c1"># posterior_12_2, trace_12_2 = sample_posterior(jdc_12_2, </span>
+<span class="c1"># posterior_12_2, trace_12_2 = sample_posterior(jdc_12_2,</span>
 <span class="c1">#                                    observed_data=(d.total_tools.values,),</span>
 <span class="c1">#                                    init_state=init_state,</span>
 <span class="c1">#                                    bijectors=bijectors,</span>
